@@ -1,0 +1,6 @@
+.nav {
+  width: 100%;
+  justify-content: space-evenly;
+  padding-inline-start: 10vw;
+  padding-inline-end: 10vw;
+}
