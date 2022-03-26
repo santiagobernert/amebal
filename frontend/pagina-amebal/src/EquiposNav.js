@@ -3,39 +3,54 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Navbar } from "react-bootstrap";
 import styles from "./EquiposNav.module.css";
 
-export default function EquiposNav(link) {
+export default function EquiposNav({link}) {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" justify-content="space-evenly" className={ styles.nav }>
+      <Navbar justify-content="space-evenly" expand="lg" className={ styles.nav }>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
         </Navbar.Brand>
         <Navbar.Brand>
-          <img src="https://placedog.net/40/40" alt="" />
+          <img src={link} alt="" />
+        </Navbar.Brand>
+        <Navbar.Brand>
+          <img src={link} alt="" />
+        </Navbar.Brand>
+        <Navbar.Brand>
+          <img src={link} alt="" />
+        </Navbar.Brand>
+        <Navbar.Brand>
+          <img src={link} alt="" />
+        </Navbar.Brand>
+        <Navbar.Brand>
+          <img src={link} alt="" />
+        </Navbar.Brand>
+        <Navbar.Brand>
+          <img src={link} alt="" />
         </Navbar.Brand>
       </Navbar>
     </div>

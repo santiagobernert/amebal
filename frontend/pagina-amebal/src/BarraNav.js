@@ -2,23 +2,25 @@ import React from 'react'
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Nav } from "react-bootstrap";
-//import styles from "./BarraNav.module.css";
+import logo from "./imgs/logohz.png";
 
 export default function BarraNav() {
   return (
     <div>
-        <Navbar bg="dark">
+        <Navbar className="barranav" expand="md" collapseOnSelect>
             <Navbar.Brand>
-                <img src="https://placedog.net/100/60"/>
+                <img src={logo} />
             </Navbar.Brand>
+            <Navbar.Toggle />
             <Navbar.Collapse className="right-aligned">
                 <Nav>
-                    <Nav.Link className="text-light" href="/">Inicio</Nav.Link>
-                    <Nav.Link className="text-light" href="/fixture">Fixture</Nav.Link>
-                    <Nav.Link className="text-light" href="/posiciones">Posiciones</Nav.Link>
-                    <Nav.Link className="text-light" href="/club">Club</Nav.Link>
-                    <Nav.Link className="text-light" href="/institucional">Institucional</Nav.Link>
-                    <Nav.Link className="text-light" href="/descargas">Descargas</Nav.Link>
+                    <Nav.Link href="/">Inicio</Nav.Link>
+                    <Nav.Link href="/nacionales">Nacionales</Nav.Link>
+                    <Nav.Link href="/fixture">Fixture</Nav.Link>
+                    <Nav.Link href="/posiciones">Posiciones</Nav.Link>
+                    <Nav.Link href="/club">Club</Nav.Link>
+                    <Nav.Link href="/institucional">Institucional</Nav.Link>
+                    <Nav.Link href="/descargas">Descargas</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
