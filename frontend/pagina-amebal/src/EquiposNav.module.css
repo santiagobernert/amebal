@@ -7,3 +7,6 @@
   padding-inline-end: 10vw;
   background-color: rgb(230, 230, 230);
 }
+.logo {
+  max-width: 2rem;
+}
