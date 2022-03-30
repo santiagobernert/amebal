@@ -1,11 +1,10 @@
 .nav {
+  display: block;
   width: 100%;
-  justify-content: space-evenly;
   padding-block-start: 0.8vh;
   padding-block-end: 0.8vh;
-  padding-inline-start: 10vw;
-  padding-inline-end: 10vw;
   background-color: rgb(230, 230, 230);
+  text-align: center;
 }
 .logo {
   max-width: 2rem;

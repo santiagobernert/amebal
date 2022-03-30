@@ -15,18 +15,15 @@ function App() {
         <Articulo
           titulo="Se inicia el Apertura 2022"
           imagesrc="https://placedog.net/100/100"
-          width="25rem"
           principal={true}
         />
         <Articulo
           titulo="CentroSur de damas Juniors"
           imagesrc="https://placedog.net/100/100"
-          width="18rem"
         />
         <Articulo
           titulo="Competencias de la CAH 2022"
           imagesrc="https://placedog.net/100/100"
-          width="18rem"
         />
       </div>
       <Footer />
