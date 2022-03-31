@@ -12,13 +12,13 @@ import twitter from "../imgs/twitter-logo.png";
 
 export default function Footer() {
   return (
-    <div className="footer">
+    <div className={styles.footer}>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
           <img src={logocd} style={{ width: "3.5rem" }} />
           Asociación Mendocina de Balonmano
         </Navbar.Brand>
-        <Nav className="justify-content-flex-end text-right">
+        <Nav className="justify-content-end text-right container pr-1">
           <Nav.Link href="ubicacion">
             <img className={styles.icon} src={ubicacion} alt="ubicacion" />
             San Juan 816, Capital, Mendoza

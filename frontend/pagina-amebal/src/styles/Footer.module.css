@@ -1,3 +1,8 @@
+.footer {
+  position: sticky;
+  bottom: 0;
+}
+
 .icon {
   max-width: 1.7rem;
 }

@@ -12,19 +12,23 @@ function App() {
       <EquiposNav link="https://placedog.net/40/40" />
       <BarraNav />
       <div className="sector-articulos row">
-        <Articulo
-          titulo="Se inicia el Apertura 2022"
-          imagesrc="https://placedog.net/100/100"
-          principal={true}
-        />
-        <Articulo
-          titulo="CentroSur de damas Juniors"
-          imagesrc="https://placedog.net/100/100"
-        />
-        <Articulo
-          titulo="Competencias de la CAH 2022"
-          imagesrc="https://placedog.net/100/100"
-        />
+        <div className="col">
+          <Articulo
+            titulo="Se inicia el Apertura 2022"
+            imagesrc="https://placedog.net/200/100"
+            principal={true}
+          />
+        </div>
+        <div className="col">
+          <Articulo
+            titulo="CentroSur de damas Juniors"
+            imagesrc="https://placedog.net/100/100"
+          />
+          <Articulo
+            titulo="Competencias de la CAH 2022"
+            imagesrc="https://placedog.net/100/100"
+          />
+        </div>
       </div>
       <Footer />
     </div>
