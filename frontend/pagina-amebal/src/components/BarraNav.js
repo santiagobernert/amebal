@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import styles from "../styles/BarraNav.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Nav } from "react-bootstrap";
 import logo from "../imgs/logohz.png";
@@ -7,12 +8,12 @@ import logo from "../imgs/logohz.png";
 export default function BarraNav() {
   return (
     <div>
-      <Navbar className="barranav" expand="md" collapseOnSelect>
+      <Navbar className={styles.barranav} expand="md" collapseOnSelect>
         <Navbar.Brand>
           <img src={logo} />
         </Navbar.Brand>
         <Navbar.Toggle />
-        <Navbar.Collapse className="right-aligned">
+        <Navbar.Collapse className={styles.nav_options}>
           <Nav>
             <Nav.Link href="/">Inicio</Nav.Link>
             <Nav.Link href="/nacionales">Nacionales</Nav.Link>

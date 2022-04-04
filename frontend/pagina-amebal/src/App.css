@@ -1,14 +1,12 @@
+* {
+  overflow-x: hidden;
+}
+
 a {
   color: white;
 }
 .right-aligned {
   justify-content: flex-end;
-}
-.barranav {
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 0.8rem;
-  padding-right: 1rem;
 }
 .sector-articulos {
   padding: 2rem 5rem;

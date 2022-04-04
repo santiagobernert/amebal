@@ -13,33 +13,36 @@ import twitter from "../imgs/twitter-logo.png";
 export default function Footer() {
   return (
     <div className={styles.footer}>
-      <Navbar bg="dark" variant="dark" className="container">
-        <div className="col col-md-6">
-          <Navbar.Brand>
-          <img src={logocd} style={{ width: "3.5rem" }} />
-          <h3>Asociación Mendocina de Balonmano</h3> 
-        </Navbar.Brand>
-        </div>
-        
-        <Nav className="justify-content-end text-right container pr-1">
-          <Nav.Link href="ubicacion">
+      <div className={styles.brand}>
+        <img className={styles.logo_grande} src={logocd} alt="logo" />
+        <h4>Asociación Mendocina de Balonmano</h4>
+      </div>
+      <div className={styles.nav_links}>
+        <div className={styles.link}>
+          <a href="">
             <img className={styles.icon} src={ubicacion} alt="ubicacion" />
-            San Juan 816, Capital, Mendoza
-          </Nav.Link>
-          <Nav.Link href="instagram">
+            <p>San Juan 816, Capital, Mendoza</p>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="">
             <img className={styles.icon} src={instagram} alt="instagram" />
-            @Balonamebal
-          </Nav.Link>
-          <Nav.Link href="twitter">
+            <p>@balonamebal</p>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="">
             <img className={styles.icon} src={twitter} alt="twitter" />
-            @Amebal0
-          </Nav.Link>
-          <Nav.Link href="facebook">
+            <p>@Amebal0</p>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="">
             <img className={styles.icon} src={facebook} alt="facebook" />
-            Amebalmendoza
-          </Nav.Link>
-        </Nav>
-      </Navbar>
+            <p>Amebalmendoza</p>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,9 +1,50 @@
 .footer {
+  display: inline-flex;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
   position: relative;
   bottom: 0;
   background-color: rgb(33, 37, 41);
 }
 
+.brand {
+  display: inline-flex;
+  color: white;
+  align-items: center;
+}
+
+.nav_links {
+  width: 100%;
+  display: inherit;
+  justify-content: flex-end;
+  justify-self: flex-end;
+}
+
+.link {
+  display: inherit;
+}
+
 .icon {
   max-width: 1.7rem;
+}
+
+.logo_grande {
+  max-width: 5rem;
+}
+
+@media (max-width: 500px) {
+  .footer {
+    padding: 0.5rem;
+  }
+  .brand {
+    font-size: 0.2em;
+  }
+  .nav_links {
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  p,
+  h4 {
+    display: none;
+  }
 }
