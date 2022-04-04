@@ -13,11 +13,14 @@ import twitter from "../imgs/twitter-logo.png";
 export default function Footer() {
   return (
     <div className={styles.footer}>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>
+      <Navbar bg="dark" variant="dark" className="container">
+        <div className="col col-md-6">
+          <Navbar.Brand>
           <img src={logocd} style={{ width: "3.5rem" }} />
-          Asociación Mendocina de Balonmano
+          <h3>Asociación Mendocina de Balonmano</h3> 
         </Navbar.Brand>
+        </div>
+        
         <Nav className="justify-content-end text-right container pr-1">
           <Nav.Link href="ubicacion">
             <img className={styles.icon} src={ubicacion} alt="ubicacion" />

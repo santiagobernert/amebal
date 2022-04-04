@@ -20,11 +20,10 @@
 }
 
 .articulo img {
-  width: 20rem;
+  width: 18rem;
   filter: brightness(50%);
 }
 .articulo:hover img {
-  zoom: 110%;
 }
 .principal {
   font-size: 3em;
