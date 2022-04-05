@@ -20,15 +20,15 @@
 }
 
 .articulo img {
-  width: 18rem;
+  width: 17rem;
   filter: brightness(50%);
 }
 .articulo:hover img {
 }
 .principal {
   font-size: 3em;
-  margin-right: 4rem;
+  margin-right: 1rem;
 }
 .principal img {
-  width: 33rem;
+  width: 32rem;
 }

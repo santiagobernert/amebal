@@ -13,8 +13,8 @@ export default function BarraNav() {
           <img src={logo} />
         </Navbar.Brand>
         <Navbar.Toggle />
-        <Navbar.Collapse className={styles.nav_options}>
-          <Nav>
+        <Navbar.Collapse className="justify-content-end">
+          <Nav className={styles.nav_options}>
             <Nav.Link href="/">Inicio</Nav.Link>
             <Nav.Link href="/nacionales">Nacionales</Nav.Link>
             <Nav.Link href="/fixture">Fixture</Nav.Link>
