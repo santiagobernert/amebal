@@ -1,16 +1,16 @@
 import React from "react";
-import "../App.css";
-import styles from "../styles/BarraNav.module.css";
+import ".../App.css";
+import styles from ".../styles/BarraNav.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Nav } from "react-bootstrap";
-import logo from "../imgs/logohz.png";
+import logo from ".../imgs/logohz.png";
 
 export default function BarraNav() {
   return (
     <div>
       <Navbar className={styles.barranav} expand="md" collapseOnSelect>
         <Navbar.Brand>
-          <img src={logo} />
+          <img src={logo} alt="logo" />
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">

@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar } from "react-bootstrap";
-import styles from "../styles/EquiposNav.module.css";
+import styles from ".../styles/EquiposNav.module.css";
 
 import IMGS_EQUIPOS from "../imgs/index.js";
 

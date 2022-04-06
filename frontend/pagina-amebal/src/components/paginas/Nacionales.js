@@ -1,11 +1,11 @@
 import React from "react";
 //import styles from "../styles/Posiciones.module.css";
-import Titulo from "./Titulo";
+import Titulo from "../otros/Titulo";
 
-export default function Posiciones() {
+export default function Nacionales() {
   return (
     <div>
-      <Titulo text="POSICIONES" />
+      <Titulo text="NACIONALES" />
     </div>
   );
 }
