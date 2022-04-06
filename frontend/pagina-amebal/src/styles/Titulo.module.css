@@ -1,0 +1,22 @@
+.cont_titulo {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding-inline: 10rem;
+  padding-block: 2rem;
+  text-align: center;
+  color: white;
+  background: rgb(0, 24, 128);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 24, 128, 1) 0%,
+    rgba(88, 14, 207, 1) 35%,
+    rgba(196, 0, 255, 1) 100%
+  );
+}
+
+.titulo {
+  font-size: 4em;
+  font-weight: bold;
+  font-family: fantasy;
+}
