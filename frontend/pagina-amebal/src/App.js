@@ -14,7 +14,10 @@ import Fixture from "./components/paginas/Fixture";
 import Clubes from "./components/paginas/Clubes";
 import Posiciones from "./components/paginas/Posiciones";
 
+//https://youtu.be/0ChpbdflTMY
+
 function App() {
+  window.scrollTo(0, 10);
   return (
     <div className="App">
       <EquiposNav link="https://placedog.net/40/40" />
@@ -30,7 +33,7 @@ function App() {
           <Route path="/descargas" element={<Descargas />} />
         </Routes>
       </BrowserRouter>
-      
+
       <Footer />
     </div>
   );

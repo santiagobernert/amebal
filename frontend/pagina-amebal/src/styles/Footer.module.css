@@ -2,7 +2,7 @@
   display: inline-flex;
   width: 100%;
   padding: 0.5rem 0.5rem 0.5rem 2rem;
-  position: relative;
+  position: static;
   bottom: 0;
   background-color: rgb(230, 230, 230);
 }
@@ -35,6 +35,11 @@
 @media (max-width: 500px) {
   .footer {
     padding: 0.5rem;
+    position: fixed;
+    max-height: 6vh;
+  }
+  .logo_grande {
+    max-width: 3rem;
   }
   .brand {
     font-size: 0.2em;

@@ -1,4 +1,6 @@
 .barranav {
+  width: 100%;
+  background-color: white;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0.8rem;
@@ -12,6 +14,10 @@
 }
 
 @media (max-width: 600px) {
+  .barranav {
+    position: sticky;
+    z-index: 10;
+  }
   .nav_options {
     background-color: rgb(250, 250, 250);
     justify-content: center;

@@ -1,13 +1,14 @@
 import React from "react";
-import styles from ".../styles/Inicio.module.css";
+import styles from "../../styles/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 
 export default function Inicio() {
+  window.scrollTo(0, 0);
   return (
     <div>
       <div className={styles.sector_articulos}>
         <div className="row">
-            <div className="col">
+          <div className="col">
             <Articulo
               titulo="Se inicia el Apertura 2022"
               imagesrc="https://placedog.net/200/100"

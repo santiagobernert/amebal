@@ -1,5 +1,5 @@
 import React from "react";
-import styles from ".../styles/Articulo.module.css";
+import styles from "../../styles/Articulo.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Card } from "react-bootstrap";
 
