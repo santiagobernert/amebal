@@ -3,6 +3,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import IMGS_EQUIPOS from "../../imgs/index.js";
+
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";
 import Footer from "./components/otros/Footer";
@@ -28,7 +30,15 @@ function App() {
           <Route path="/posiciones" element={<Posiciones />} />
           <Route path="/fixture" element={<Fixture />} />
           <Route path="/nacionales" element={<Nacionales />} />
-          <Route path="/clubes" element={<Clubes />} />
+          <Route path="/clubes" element={<Clubes />}>
+            {IMGS_EQUIPOS &&
+              IMGS_EQUIPOS.map((item) => (
+                <Route
+                  path={item.nombre}
+                  element={<Club nombre={item.nombre} imagen={item.imagen} />}
+                />
+              ))}
+          </Route>
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/descargas" element={<Descargas />} />
         </Routes>
