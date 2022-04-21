@@ -1,7 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 
-import IMGS_EQUIPOS from "../../imgs/index.js";
 import Titulo from "../otros/Titulo.js";
 
 export default function Club({ nombre, imagen }) {

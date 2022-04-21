@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardGroup } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 import ClubCard from "../otros/ClubCard";
 //import styles from "../styles/Posiciones.module.css";
 import Titulo from "../otros/Titulo";
@@ -12,7 +12,7 @@ export default function Clubes() {
       <CardGroup>
         {IMGS_EQUIPOS &&
           IMGS_EQUIPOS.map((item) => (
-            <ClubCard img={item.imagen} titulo={item.nombre} />
+            <ClubCard key={item.id} img={item.imagen} titulo={item.nombre} />
           ))}
       </CardGroup>
     </div>

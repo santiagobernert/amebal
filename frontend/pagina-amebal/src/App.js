@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import IMGS_EQUIPOS from "../../imgs/index.js";
+import IMGS_EQUIPOS from "./imgs/index.js";
 
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";
@@ -14,6 +14,7 @@ import Institucional from "./components/paginas/Institucional";
 import Nacionales from "./components/paginas/Nacionales";
 import Fixture from "./components/paginas/Fixture";
 import Clubes from "./components/paginas/Clubes";
+import Club from "./components/paginas/Club";
 import Posiciones from "./components/paginas/Posiciones";
 
 //https://youtu.be/0ChpbdflTMY
@@ -34,7 +35,8 @@ function App() {
             {IMGS_EQUIPOS &&
               IMGS_EQUIPOS.map((item) => (
                 <Route
-                  path={item.nombre}
+                  key={item.id}
+                  path={item.nombre.replace(/ /g, "").toLowerCase()}
                   element={<Club nombre={item.nombre} imagen={item.imagen} />}
                 />
               ))}
