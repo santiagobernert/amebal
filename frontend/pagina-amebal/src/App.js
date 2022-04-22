@@ -31,16 +31,15 @@ function App() {
           <Route path="/posiciones" element={<Posiciones />} />
           <Route path="/fixture" element={<Fixture />} />
           <Route path="/nacionales" element={<Nacionales />} />
-          <Route path="/clubes" element={<Clubes />}>
-            {IMGS_EQUIPOS &&
-              IMGS_EQUIPOS.map((item) => (
-                <Route
-                  key={item.id}
-                  path={item.nombre.replace(/ /g, "").toLowerCase()}
-                  element={<Club nombre={item.nombre} imagen={item.imagen} />}
-                />
-              ))}
-          </Route>
+          <Route path="/clubes" element={<Clubes />} />
+          {IMGS_EQUIPOS &&
+            IMGS_EQUIPOS.map((item) => (
+              <Route
+                key={item.id}
+                path={"clubes/" + item.nombre.replace(/ /g, "").toLowerCase()}
+                element={<Club nombre={item.nombre} imagen={item.imagen} />}
+              />
+            ))}
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/descargas" element={<Descargas />} />
         </Routes>

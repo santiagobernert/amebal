@@ -22,17 +22,17 @@ const IMGS_EQUIPOS = [
   },
   {
     id: 6,
-    nombre: "Municipalidad de Junín",
+    nombre: "Municipalidad de Junin",
     imagen: require("./../imgs/equipos/junin.png"),
   },
   {
     id: 7,
-    nombre: "Municipalidad de Luján",
+    nombre: "Municipalidad de Lujan",
     imagen: require("./../imgs/equipos/lujan.png"),
   },
   {
     id: 8,
-    nombre: "Municipalidad de Maipú",
+    nombre: "Municipalidad de Maipu",
     imagen: require("./../imgs/equipos/maipu.png"),
   },
   {
@@ -53,7 +53,7 @@ const IMGS_EQUIPOS = [
   { id: 12, nombre: "Russel", imagen: require("./../imgs/equipos/russel.png") },
   {
     id: 13,
-    nombre: "Municipalidad de Tunuyán",
+    nombre: "Municipalidad de Tunuyan",
     imagen: require("./../imgs/equipos/tunuyan.png"),
   },
   {

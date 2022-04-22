@@ -1,6 +1,7 @@
 import React from "react";
-//import styles from "../styles/Posiciones.module.css";
+import styles from "../../styles/Descargas.module.css";
 import Titulo from "../otros/Titulo";
+import Archivo from "../otros/Archivo";
 import { Form } from "react-bootstrap";
 
 export default function Descargas() {
@@ -20,6 +21,9 @@ export default function Descargas() {
             <option value="3">Instituciones</option>
             <option value="3">Otros</option>
           </Form.Select>
+        </div>
+        <div className={styles.seccion_archivos}>
+          <Archivo nombre="Planilla" />
         </div>
       </div>
     </div>

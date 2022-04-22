@@ -1,0 +1,7 @@
+.seccion_archivos {
+  display: block;
+  padding: 3rem;
+  align-items: center;
+  border-radius: 0.4rem;
+  border: solid grey 0.6px;
+}
