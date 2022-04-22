@@ -1,0 +1,23 @@
+.archivo{
+    width: 100%;
+    align-items: center;
+    padding-inline-start: 2rem;
+    padding-inline-end: 0rem;
+    display: inline-flex;
+    border: solid grey 0.5px;
+    border-radius: .6rem;
+    justify-content: space-between;
+}
+.descargar{
+    float: inline-end;
+    border: none;
+    border-radius: .6rem;
+    background-color: #0d6efd;
+    color: white;
+    height: 8rem;
+    width: 4rem;
+}
+.descargar :hover{
+    cursor: pointer;
+    background-color: #054ebb;
+}

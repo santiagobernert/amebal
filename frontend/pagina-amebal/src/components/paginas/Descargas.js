@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/Descargas.module.css";
 import Titulo from "../otros/Titulo";
 import Archivo from "../otros/Archivo";
-import { Form } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 
 export default function Descargas() {
   return (
@@ -10,7 +10,7 @@ export default function Descargas() {
       <Titulo text="DESCARGAS" />
       <div className="container">
         <h3>Archivos</h3>
-        <div>
+        <Col sm={2}>
           <Form.Select aria-label="Default select example">
             <option selected value="liga">
               Todos
@@ -21,8 +21,11 @@ export default function Descargas() {
             <option value="3">Instituciones</option>
             <option value="3">Otros</option>
           </Form.Select>
-        </div>
+        </Col>
         <div className={styles.seccion_archivos}>
+          <Archivo nombre="Planilla" />
+          <Archivo nombre="Planilla" />
+          <Archivo nombre="Planilla" />
           <Archivo nombre="Planilla" />
         </div>
       </div>
