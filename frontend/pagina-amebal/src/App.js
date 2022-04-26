@@ -4,10 +4,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import IMGS_EQUIPOS from "./imgs/index.js";
+import ARTICULOS from "./articulos.js";
 
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";
 import Footer from "./components/otros/Footer";
+import Noticia from "./components/otros/Noticia";
 import Inicio from "./components/paginas/Inicio";
 import Descargas from "./components/paginas/Descargas";
 import Institucional from "./components/paginas/Institucional";
@@ -16,6 +18,8 @@ import Fixture from "./components/paginas/Fixture";
 import Clubes from "./components/paginas/Clubes";
 import Club from "./components/paginas/Club";
 import Posiciones from "./components/paginas/Posiciones";
+import Contacto from "./components/paginas/Contacto";
+import NuevoArticulo from "./components/paginas/NuevoArticulo";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -40,8 +44,18 @@ function App() {
                 element={<Club nombre={item.nombre} imagen={item.imagen} />}
               />
             ))}
+          {ARTICULOS &&
+            ARTICULOS.map((item) => (
+              <Route
+                key={item.id}
+                path={"noticias/" + item.titulo.replace(/ /g, "").toLowerCase()}
+                element={<Noticia titulo={item.titulo} img={item.img} />}
+              />
+            ))}
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/descargas" element={<Descargas />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/nuevo-articulo" element={<NuevoArticulo />} />
         </Routes>
       </BrowserRouter>
 

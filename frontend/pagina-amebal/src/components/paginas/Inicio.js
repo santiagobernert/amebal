@@ -2,7 +2,10 @@ import React from "react";
 import styles from "../../styles/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 
-import { Col } from "react-bootstrap";
+import ARTICULOS from "../../articulos.js"
+
+import { Row, Col, Button } from "react-bootstrap";
+import Noticia from "../otros/Noticia";
 
 
 export default function Inicio() {
@@ -22,25 +25,23 @@ export default function Inicio() {
         </Col>
       </div>
       <div className={styles.sector_articulos}>
-        <div className="row">
-          <div className="col">
-            <Articulo
-              titulo="Se inicia el Apertura 2022"
-              imagesrc="https://placedog.net/200/100"
-              principal={true}
-            />
-          </div>
-          <div className="col">
-            <Articulo
-              titulo="CentroSur de damas Juniors"
-              imagesrc="https://placedog.net/100/100"
-            />
-            <Articulo
-              titulo="Competencias de la CAH 2022"
-              imagesrc="https://placedog.net/100/100"
-            />
-          </div>
-        </div>
+        <Row>
+          <Col>
+            <Noticia principal={true} titulo="Inicios" img="https://placedog.net/200/100" cuerpo="En el marco de un generoso trabajo federal de formación y detección de talentos que lleva a cabo la Selección Juvenil a cargo de Rubén Busolín, del miércoles al sábado pasado concentraron en el CeNARD 29 jugadores de ocho afiliadas y siete provincias argentinas: Mendoza, Córdoba, San Luis, Chaco, Río Negro, Neuquén y Buenos Aires a través de Mar del Plata (Atlántica) y Los Toldos (AsAmBal). La nómina total de trabajo de este año incluye a 165 jugadores." />
+          </Col>
+          <Col>
+          <Row>
+            <a target="blank" href="/nuevo-articulo"><Button>Nuevo Articulo</Button></a>
+          </Row>
+          <Row>
+            {ARTICULOS &&
+              ARTICULOS.map((item) => (
+              <Articulo key={item.id} titulo={item.titulo} img={item.img} />
+            ))}
+          </Row>
+            
+          </Col>
+        </Row>
       </div>
     </div>
   );
