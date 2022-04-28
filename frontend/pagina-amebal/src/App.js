@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import IMGS_EQUIPOS from "./imgs/index.js";
 import ARTICULOS from "./articulos.js";
+import NACIONALES from "./articulos.js";
 
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";
@@ -20,6 +21,7 @@ import Club from "./components/paginas/Club";
 import Posiciones from "./components/paginas/Posiciones";
 import Contacto from "./components/paginas/Contacto";
 import NuevoArticulo from "./components/paginas/NuevoArticulo";
+import Login from "./components/paginas/Login";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -52,10 +54,19 @@ function App() {
                 element={<Noticia titulo={item.titulo} img={item.img} />}
               />
             ))}
+          {NACIONALES &&
+            NACIONALES.map((item) => (
+              <Route
+                key={item.id}
+                path={"nacionales/" + item.categoria.toLowerCase() + item.año.toLowerCase() + item.sede.toLowerCase() }
+                element={<Noticia titulo={item.titulo} img={item.img} />}
+              />
+            ))}
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/descargas" element={<Descargas />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nuevo-articulo" element={<NuevoArticulo />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
 

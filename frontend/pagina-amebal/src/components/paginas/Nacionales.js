@@ -52,13 +52,10 @@ export default function Nacionales() {
       </form>
       </div>
       <div className={styles.sector_nacionales}>
-        <Nacional nacional="Menores 2022" />
-        <Nacional nacional="Menores 2021" />
-        <Nacional nacional="Cadetes 2022" />
-        <Nacional nacional="Cadetes 2021s" />
-        <Nacional nacional="Cadetes 2021s" />
-        <Nacional nacional="Cadetes 2021s" />
-        <Nacional nacional="Cadetes 2021s" />
+      {NACIONALES &&
+            NACIONALES.map((item) => (
+              <button className={styles.btn_nacional}>{item.categoria + item.año + item.sede }</button>
+            ))}
       </div>
     </div>
   );
