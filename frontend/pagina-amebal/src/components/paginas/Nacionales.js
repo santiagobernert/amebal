@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "../../styles/Nacionales.module.css";
 
-import { MDBIcon } from "mdbreact";
+import NACIONALES from "../../nacionales.js";
 
-import Nacional from "../otros/Nacional";
 import Titulo from "../otros/Titulo";
 import { Dropdown, Form, Button } from "react-bootstrap";
 
@@ -13,7 +12,6 @@ export default function Nacionales() {
       <Titulo text="NACIONALES" />
       <div className="container inline-flex">
         <form className="form-inline mb-3 d-inline-flex">
-          <MDBIcon icon="search" />
           <input
             className="form-control form-control-sm ml-3 w-75"
             type="text"
@@ -49,13 +47,26 @@ export default function Nacionales() {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-      </form>
+        </form>
       </div>
       <div className={styles.sector_nacionales}>
-      {NACIONALES &&
-            NACIONALES.map((item) => (
-              <button className={styles.btn_nacional}>{item.categoria + item.año + item.sede }</button>
-            ))}
+        {NACIONALES &&
+          NACIONALES.map((item) => (
+            <a
+              target="blank"
+              href={
+                "nacionales/" +
+                item.categoria.toLowerCase() +
+                item.año.toLowerCase() +
+                item.sede.toLowerCase()
+              }
+            >
+              <Button
+                key={item.id}
+                className={styles.btn_nacional}
+              >{`${item.categoria} ${item.año} ${item.sede}`}</Button>
+            </a>
+          ))}
       </div>
     </div>
   );
