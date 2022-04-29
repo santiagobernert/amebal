@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import IMGS_EQUIPOS from "./imgs/index.js";
+import EQUIPOS from "./equipos.js";
 import ARTICULOS from "./articulos.js";
 import NACIONALES from "./nacionales.js";
 
@@ -23,6 +23,7 @@ import Contacto from "./components/paginas/Contacto";
 import NuevoArticulo from "./components/paginas/NuevoArticulo";
 import Login from "./components/paginas/Login";
 import Nacional from "./components/otros/Nacional";
+import Sistema from "./components/paginas/Sistema";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -39,8 +40,8 @@ function App() {
           <Route path="/fixture" element={<Fixture />} />
           <Route path="/nacionales" element={<Nacionales />} />
           <Route path="/clubes" element={<Clubes />} />
-          {IMGS_EQUIPOS &&
-            IMGS_EQUIPOS.map((item) => (
+          {EQUIPOS &&
+            EQUIPOS.map((item) => (
               <Route
                 key={item.id}
                 path={"clubes/" + item.nombre.replace(/ /g, "").toLowerCase()}
@@ -69,6 +70,7 @@ function App() {
               />
             ))}
           <Route path="/institucional" element={<Institucional />} />
+          <Route path="/sistema" element={<Sistema />} />
           <Route path="/descargas" element={<Descargas />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nuevo-articulo" element={<NuevoArticulo />} />

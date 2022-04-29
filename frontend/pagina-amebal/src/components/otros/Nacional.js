@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container } from "react-bootstrap";
 
 import NACIONALES from "../../nacionales.js";
+import EQUIPOS from "../../equipos.js";
 import Titulo from "./Titulo";
 import Noticia from "./Noticia";
 import Calendario from "./Calendario";
@@ -23,10 +24,30 @@ export default function Nacional({ id }) {
         />
         <h3>Partidos</h3>
         <div className={styles.div_partidos}>
-          <Partido />
-          <Partido />
-          <Partido />
-          <Partido />
+          <Partido
+            equipo1={EQUIPOS.find(
+              (x) => x.nombre === "Club Mendoza de Regatas"
+            )}
+            equipo2={EQUIPOS.find((x) => x.nombre === "Municipalidad de Maipu")}
+          />
+          <Partido
+            equipo1={EQUIPOS.find(
+              (x) => x.nombre === "Club Mendoza de Regatas"
+            )}
+            equipo2={EQUIPOS.find((x) => x.nombre === "Municipalidad de Maipu")}
+          />
+          <Partido
+            equipo1={EQUIPOS.find(
+              (x) => x.nombre === "Club Mendoza de Regatas"
+            )}
+            equipo2={EQUIPOS.find((x) => x.nombre === "Municipalidad de Maipu")}
+          />
+          <Partido
+            equipo1={EQUIPOS.find(
+              (x) => x.nombre === "Club Mendoza de Regatas"
+            )}
+            equipo2={EQUIPOS.find((x) => x.nombre === "Municipalidad de Maipu")}
+          />
         </div>
       </Container>
     </div>

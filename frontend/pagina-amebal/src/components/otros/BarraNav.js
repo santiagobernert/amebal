@@ -21,6 +21,7 @@ export default function BarraNav() {
             <Nav.Link href="/posiciones">Posiciones</Nav.Link>
             <Nav.Link href="/clubes">Clubes</Nav.Link>
             <Nav.Link href="/institucional">Institucional</Nav.Link>
+            <Nav.Link href="/sistema">Sistema</Nav.Link>
             <Nav.Link href="/descargas">Descargas</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
           </Nav>

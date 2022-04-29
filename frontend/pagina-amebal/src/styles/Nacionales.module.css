@@ -19,6 +19,13 @@
   border-radius: 1em;
 }
 
+.div_partidos {
+  max-width: 30rem;
+}
+.div_partidos img {
+  max-width: 8rem;
+}
+
 @media (max-width: 600px) {
   .btn_nacional {
     min-width: 50vw;
