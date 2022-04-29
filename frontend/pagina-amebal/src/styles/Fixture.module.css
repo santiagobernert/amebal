@@ -1,0 +1,14 @@
+.main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.div_calendario{
+    max-width: 50%;
+}
+.div_partidos{
+    display: block;
+}
+.cont_partidos{
+    padding: 1rem 2rem;
+}

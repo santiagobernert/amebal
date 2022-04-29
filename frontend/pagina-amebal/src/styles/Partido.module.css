@@ -2,6 +2,10 @@
   width: 100%;
   border: 1px solid rgb(168, 167, 167);
   border-radius: 1rem;
+  text-align: center;
+}
+.partido img{
+  max-width: 8rem;
 }
 .titulo {
   background-color: rgb(75, 75, 75);
@@ -11,8 +15,16 @@
   width: 100%;
   display: inline-flex;
   justify-content: space-around;
-  padding: 2rem;
+  padding: 1rem 2rem;
+}
+.detalles{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 .equipo {
   display: block;
+}
+.resultado{
+  align-self: center;
 }
