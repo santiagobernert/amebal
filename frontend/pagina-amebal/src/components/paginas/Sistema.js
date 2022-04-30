@@ -13,15 +13,21 @@ export default function Sistema() {
       <div className={styles.main}>
         <nav className={styles.nav}>
           <div className={styles.div_secciones}>
+            <button className={styles.btn_seccion}>Perfil</button>
             <button className={styles.btn_seccion}>Datos</button>
             <button className={styles.btn_seccion}>Carnet</button>
             <button className={styles.btn_seccion}>Archivos</button>
             <button className={styles.btn_seccion}>Fichas</button>
           </div>
           <div className={styles.div_salir}>
+            <h5 className="text-">HABILITADO</h5>
             <Button>SALIR</Button>
           </div>
         </nav>
+        <div className={styles.seccion} id="perfil">
+          <h4>Perfil</h4>
+
+        </div>
         <div className={styles.seccion} id="datos">
           <h4>datos</h4>
           <h4>Datos del Usuario</h4>
@@ -60,6 +66,14 @@ export default function Sistema() {
                   <FormControl type="date" aria-label="Fecha" />
                 </InputGroup>
 
+                <InputGroup>
+                  <InputGroup.Text>Sexo</InputGroup.Text>
+                  <Form.Select aria-label="Sexo">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                  </Form.Select>
+                </InputGroup>
+                <hr></hr>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Puesto de Juego</InputGroup.Text>
                   <FormControl type="date" aria-label="Fecha" />
@@ -73,13 +87,6 @@ export default function Sistema() {
                   </Form.Select>
                 </InputGroup>
 
-                <InputGroup>
-                  <InputGroup.Text>Sexo</InputGroup.Text>
-                  <Form.Select aria-label="Sexo">
-                    <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
-                  </Form.Select>
-                </InputGroup>
               </>
             </div>
             <div className={styles.columna_datos}>
@@ -213,18 +220,20 @@ export default function Sistema() {
           <div className={styles.seccion_datos}>
             <div className={styles.columna_datos}>
               <>
+                <Form.Label>Datos del Padre</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Apellido</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">Apellido y Nombre</InputGroup.Text>
                   <FormControl
                     placeholder=""
-                    aria-label="Apellido"
+                    aria-label="Apellido y Nombre del padre"
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Nombre</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
                   <FormControl
+                  type="number"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
@@ -232,109 +241,89 @@ export default function Sistema() {
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon3">DNI</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon3">E-mail</InputGroup.Text>
                   <FormControl
-                    type="number"
+                    type="e-mail"
                     id="basic-url"
                     aria-describedby="basic-addon3"
                   />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text>Fecha de Nacimiento</InputGroup.Text>
-                  <FormControl type="date" aria-label="Fecha" />
+                  <InputGroup.Text>Trabajo</InputGroup.Text>
+                  <FormControl aria-label="Trabajo del padre" />
                 </InputGroup>
 
-                <InputGroup>
-                  <InputGroup.Text>With textarea</InputGroup.Text>
-                  <FormControl as="textarea" aria-label="With textarea" />
-                </InputGroup>
               </>
             </div>
             <div className={styles.columna_datos}>
               <>
+              <Form.Label>Datos de la madre</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Apellido</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">Apellido y Nombre</InputGroup.Text>
                   <FormControl
                     placeholder=""
-                    aria-label="Apellido"
+                    aria-label="Apellido y Nombre de la madre"
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Nombre</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
                   <FormControl
+                  type="number"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
                   />
                 </InputGroup>
 
-                <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon3">
-                    https://example.com/users/
-                  </InputGroup.Text>
-                  <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                  <InputGroup.Text id="basic-addon3">E-mail</InputGroup.Text>
+                  <FormControl
+                    type="e-mail"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                  />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text>$</InputGroup.Text>
-                  <FormControl aria-label="Amount (to the nearest dollar)" />
-                  <InputGroup.Text>.00</InputGroup.Text>
-                </InputGroup>
-
-                <InputGroup>
-                  <InputGroup.Text>With textarea</InputGroup.Text>
-                  <FormControl as="textarea" aria-label="With textarea" />
+                  <InputGroup.Text>Trabajo</InputGroup.Text>
+                  <FormControl aria-label="Trabajo de la madre" />
                 </InputGroup>
               </>
             </div>
             <div className={styles.columna_datos}>
               <>
+                <Form.Label>Urgencias</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Apellido</InputGroup.Text>
-                  <FormControl
-                    placeholder=""
-                    aria-label="Apellido"
-                    aria-describedby="basic-addon1"
-                  />
+                <InputGroup.Text>Contacto de urgencia</InputGroup.Text>
+                <FormControl placeholder="Nombre y Apellido" aria-label="Contacto urgencia" />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                <InputGroup.Text>Tel/Cel</InputGroup.Text>
+                <FormControl type="number" aria-label="Celular" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Nombre</InputGroup.Text>
-                  <FormControl
-                    placeholder=""
-                    aria-label="Nombre"
-                    aria-describedby="basic-addon2"
-                  />
-                </InputGroup>
-
-                <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon3">
-                    https://example.com/users/
-                  </InputGroup.Text>
-                  <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                <InputGroup.Text>Médico</InputGroup.Text>
+                <FormControl aria-label="Médico" />
+                <InputGroup.Text>Tel/Cel</InputGroup.Text>
+                <FormControl type="number" aria-label="Celular" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                  <InputGroup.Text>$</InputGroup.Text>
-                  <FormControl aria-label="Amount (to the nearest dollar)" />
-                  <InputGroup.Text>.00</InputGroup.Text>
-                </InputGroup>
-
-                <InputGroup>
-                  <InputGroup.Text>With textarea</InputGroup.Text>
-                  <FormControl as="textarea" aria-label="With textarea" />
+                <InputGroup.Text>Obra Social</InputGroup.Text>
+                <FormControl aria-label="Obra Social" />
+                <InputGroup.Text>Nro. Carnet</InputGroup.Text>
+                <FormControl type="number" aria-label="Nro. Carnet" />
                 </InputGroup>
               </>
             </div>
           </div>
           <div className={styles.seccion_datos}>
             <div className={styles.columna_datos}>
-              <h4>Datos del Educativos</h4>
+              <h4>Datos Educativos</h4>
               <>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">

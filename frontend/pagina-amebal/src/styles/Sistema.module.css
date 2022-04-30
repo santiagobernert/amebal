@@ -3,7 +3,7 @@
 }
 .nav {
   width: 100%;
-  display: inline-flex;
+  display: inline-flex; 
   padding: 1rem 3rem;
 }
 .btn_seccion {
