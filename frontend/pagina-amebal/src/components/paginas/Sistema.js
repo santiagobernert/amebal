@@ -20,13 +20,125 @@ export default function Sistema() {
             <button className={styles.btn_seccion}>Fichas</button>
           </div>
           <div className={styles.div_salir}>
-            <h5 className="text-">HABILITADO</h5>
             <Button>SALIR</Button>
           </div>
         </nav>
+        <div className="container text-center">
+          <h5 className="text-danger">HABILITADO</h5>
+        </div>
         <div className={styles.seccion} id="perfil">
           <h4>Perfil</h4>
-
+          <div className="page-content page-container" id="page-content">
+            <div className={styles.padding}>
+              <div className="row container d-flex justify-content-center">
+                <div className="col-xl-6 col-md-12">
+                  <div className={`${styles.card} ${styles.user_card_full}`}>
+                    <div className={`row ${styles.m_l_0} ${styles.m_r_0}`}>
+                      <div
+                        className={`col-sm-4 ${styles.bg_c_lite_green} ${styles.user_profile}`}
+                      >
+                        <div
+                          className={`${styles.card_block} text-center text-white`}
+                        >
+                          <div className={styles.m_b_25}>
+                            <img
+                              src="https://img.icons8.com/bubbles/100/000000/user.png"
+                              className={styles.img_radius}
+                              alt="User-Profile-Image"
+                            />
+                          </div>
+                          <h6 className="f-w-600">Nombre Apellido</h6>
+                          <p>HABILITADO</p>
+                          <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" />
+                        </div>
+                      </div>
+                      <div className="col-sm-8">
+                        <div className="card-block">
+                          <h6 className="m-b-20 p-b-5 b-b-default f-w-600">
+                            Información
+                          </h6>
+                          <div className="row">
+                            <div className="col-sm-6">
+                              <p className="m-b-10 f-w-600">Club</p>
+                              <h6 className="text-muted f-w-400">
+                                Club Mendoza de Regatas
+                              </h6>
+                            </div>
+                            <div className="col-sm-6">
+                              <p className="m-b-10 f-w-600">Categoría</p>
+                              <h6 className="text-muted f-w-400">Juveniles</h6>
+                            </div>
+                          </div>
+                          <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                            Carnet
+                          </h6>
+                          <div className="row">
+                            <div className="col-sm-6">
+                              <p className="m-b-10 f-w-600">Nro Carnet</p>
+                              <h6 className="text-muted f-w-400">J-025224</h6>
+                            </div>
+                            <div className="col-sm-6">
+                              <p className="m-b-10 f-w-600">Most Viewed</p>
+                              <h6 className="text-muted f-w-400">
+                                Dinoter husainm
+                              </h6>
+                            </div>
+                          </div>
+                          <ul className="social-link list-unstyled m-t-40 m-b-10">
+                            <li>
+                              <a
+                                href="#!"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title
+                                data-original-title="facebook"
+                                data-abc="true"
+                              >
+                                <i
+                                  className="mdi mdi-facebook feather icon-facebook facebook"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            </li>
+                            <li>
+                              <a
+                                href="#!"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title
+                                data-original-title="twitter"
+                                data-abc="true"
+                              >
+                                <i
+                                  className="mdi mdi-twitter feather icon-twitter twitter"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            </li>
+                            <li>
+                              <a
+                                href="#!"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title
+                                data-original-title="instagram"
+                                data-abc="true"
+                              >
+                                <i
+                                  className="mdi mdi-instagram feather icon-instagram instagram"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className={styles.seccion} id="datos">
           <h4>datos</h4>
@@ -86,7 +198,6 @@ export default function Sistema() {
                     <option value="izquierda">Izquierda</option>
                   </Form.Select>
                 </InputGroup>
-
               </>
             </div>
             <div className={styles.columna_datos}>
@@ -222,7 +333,9 @@ export default function Sistema() {
               <>
                 <Form.Label>Datos del Padre</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Apellido y Nombre</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">
+                    Apellido y Nombre
+                  </InputGroup.Text>
                   <FormControl
                     placeholder=""
                     aria-label="Apellido y Nombre del padre"
@@ -233,7 +346,7 @@ export default function Sistema() {
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
                   <FormControl
-                  type="number"
+                    type="number"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
@@ -253,14 +366,15 @@ export default function Sistema() {
                   <InputGroup.Text>Trabajo</InputGroup.Text>
                   <FormControl aria-label="Trabajo del padre" />
                 </InputGroup>
-
               </>
             </div>
             <div className={styles.columna_datos}>
               <>
-              <Form.Label>Datos de la madre</Form.Label>
+                <Form.Label>Datos de la madre</Form.Label>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">Apellido y Nombre</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">
+                    Apellido y Nombre
+                  </InputGroup.Text>
                   <FormControl
                     placeholder=""
                     aria-label="Apellido y Nombre de la madre"
@@ -271,7 +385,7 @@ export default function Sistema() {
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
                   <FormControl
-                  type="number"
+                    type="number"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
@@ -297,26 +411,29 @@ export default function Sistema() {
               <>
                 <Form.Label>Urgencias</Form.Label>
                 <InputGroup className="mb-3">
-                <InputGroup.Text>Contacto de urgencia</InputGroup.Text>
-                <FormControl placeholder="Nombre y Apellido" aria-label="Contacto urgencia" />
+                  <InputGroup.Text>Contacto de urgencia</InputGroup.Text>
+                  <FormControl
+                    placeholder="Nombre y Apellido"
+                    aria-label="Contacto urgencia"
+                  />
                 </InputGroup>
                 <InputGroup className="mb-3">
-                <InputGroup.Text>Tel/Cel</InputGroup.Text>
-                <FormControl type="number" aria-label="Celular" />
-                </InputGroup>
-
-                <InputGroup className="mb-3">
-                <InputGroup.Text>Médico</InputGroup.Text>
-                <FormControl aria-label="Médico" />
-                <InputGroup.Text>Tel/Cel</InputGroup.Text>
-                <FormControl type="number" aria-label="Celular" />
+                  <InputGroup.Text>Tel/Cel</InputGroup.Text>
+                  <FormControl type="number" aria-label="Celular" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                <InputGroup.Text>Obra Social</InputGroup.Text>
-                <FormControl aria-label="Obra Social" />
-                <InputGroup.Text>Nro. Carnet</InputGroup.Text>
-                <FormControl type="number" aria-label="Nro. Carnet" />
+                  <InputGroup.Text>Médico</InputGroup.Text>
+                  <FormControl aria-label="Médico" />
+                  <InputGroup.Text>Tel/Cel</InputGroup.Text>
+                  <FormControl type="number" aria-label="Celular" />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                  <InputGroup.Text>Obra Social</InputGroup.Text>
+                  <FormControl aria-label="Obra Social" />
+                  <InputGroup.Text>Nro. Carnet</InputGroup.Text>
+                  <FormControl type="number" aria-label="Nro. Carnet" />
                 </InputGroup>
               </>
             </div>
