@@ -3,7 +3,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Form, Row, InputGroup } from "react-bootstrap";
 
-import EQUIPOS from "../../equipos.js";
+import EQUIPOS from "../../lists/equipos.js";
 
 import Calendario from "../otros/Calendario";
 import Partido from "../otros/Partido";

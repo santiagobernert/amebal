@@ -3,9 +3,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import EQUIPOS from "./equipos.js";
-import ARTICULOS from "./articulos.js";
-import NACIONALES from "./nacionales.js";
+import EQUIPOS from "./lists/equipos.js";
+import ARTICULOS from "./lists/articulos.js";
+import NACIONALES from "./lists/nacionales.js";
 
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";

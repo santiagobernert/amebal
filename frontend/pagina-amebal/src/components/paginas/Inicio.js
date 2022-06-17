@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 
-import ARTICULOS from "../../articulos.js"
+import ARTICULOS from "../../lists/articulos.js"
 
 import { Row, Col, Button } from "react-bootstrap";
 import Noticia from "../otros/Noticia";

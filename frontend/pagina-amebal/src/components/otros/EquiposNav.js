@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Navbar } from "react-bootstrap";
 import styles from "../../styles/EquiposNav.module.css";
 
-import EQUIPOS from "../../equipos.js";
+import EQUIPOS from "../../lists/equipos.js";
 
 export default function EquiposNav() {
   if (window.scrollY <= 10) {

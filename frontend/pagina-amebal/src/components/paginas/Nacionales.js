@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Nacionales.module.css";
 
-import NACIONALES from "../../nacionales.js";
+import NACIONALES from "../../lists/nacionales.js";
 
 import Titulo from "../otros/Titulo";
 import { Dropdown, Form, Button } from "react-bootstrap";

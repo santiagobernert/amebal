@@ -3,8 +3,8 @@ import styles from "../../styles/Nacionales.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container } from "react-bootstrap";
 
-import NACIONALES from "../../nacionales.js";
-import EQUIPOS from "../../equipos.js";
+import NACIONALES from "../../lists/nacionales.js";
+import EQUIPOS from "../../lists/equipos.js";
 import Titulo from "./Titulo";
 import Noticia from "./Noticia";
 import Calendario from "./Calendario";

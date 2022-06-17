@@ -3,7 +3,7 @@ import { CardGroup } from "react-bootstrap";
 import ClubCard from "../otros/ClubCard";
 //import styles from "../styles/Posiciones.module.css";
 import Titulo from "../otros/Titulo";
-import EQUIPOS from "../../equipos.js";
+import EQUIPOS from "../../lists/equipos.js";
 
 export default function Clubes() {
   return (
