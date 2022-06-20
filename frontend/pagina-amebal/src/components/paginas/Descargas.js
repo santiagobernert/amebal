@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Descargas.module.css";
+import styles from "../../styles/paginas/descargas/Descargas.module.css";
 import Titulo from "../otros/Titulo";
 import Archivo from "../otros/Archivo";
 import { Form, Col } from "react-bootstrap";

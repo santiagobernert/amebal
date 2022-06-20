@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACD,OAAO,EAAE,WAAW;EACpB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,MAAM;EAClB,aAAa,EAAE,KAAK;EACpB,cAAc,EAAE,GAAG;EACnB,WAAW,EAAE,MAAM;EACnB,gBAAgB,ECPL,OAAO;EDQlB,UAAU,EAAE,MAAM;CAMnB;;AAdH,AAUI,IAVA,CAUA,GAAG,CAAA;EACC,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,KAAK;CACvB",
+    "sources": [
+        "EquiposNav.module.scss",
+        "../../scss/_colors.scss"
+    ],
+    "names": [],
+    "file": "EquiposNav.module.css"
+}

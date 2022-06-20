@@ -1,5 +1,5 @@
 import React from "react";
-//import styles from "../styles/Posiciones.module.css";
+//import styles from "../styles/paginas/posiciones/Posiciones.module.css";
 import { Form, Table } from "react-bootstrap";
 import Titulo from "../otros/Titulo";
 

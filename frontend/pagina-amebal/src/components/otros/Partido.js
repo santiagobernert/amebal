@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../styles/Partido.module.css";
+import styles from "../../styles/otros/partido/Partido.module.css";
 
 export default function ({ equipo1, equipo2 }) {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Nacionales.module.css";
+import styles from "../../styles/paginas/nacionales/Nacionales.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container } from "react-bootstrap";
 

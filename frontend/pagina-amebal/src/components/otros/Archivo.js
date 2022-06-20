@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../styles/Archivo.module.css";
+import styles from "../../styles/otros/archivo/Archivo.module.css";
 
 export default function Archivo({ nombre }) {
   return (

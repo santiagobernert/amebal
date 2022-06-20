@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../styles/Sistema.module.css";
+import styles from "../../styles/paginas/sistema/Sistema.module.css";
 
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import Archivo from "../otros/Archivo";

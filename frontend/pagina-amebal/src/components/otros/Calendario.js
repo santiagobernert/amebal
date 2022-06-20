@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Calendario.module.css";
+import styles from "../../styles/otros/calendario/Calendario.module.css";
 
 import { Container, Table } from "react-bootstrap";
 

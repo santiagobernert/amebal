@@ -8,7 +8,7 @@ import EQUIPOS from "../../lists/equipos.js";
 import Calendario from "../otros/Calendario";
 import Partido from "../otros/Partido";
 import Titulo from "../otros/Titulo";
-import styles from "../../styles/Fixture.module.css";
+import styles from "../../styles/paginas/fixture/Fixture.module.css";
 
 export default function Fixture() {
   return (

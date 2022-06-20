@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Titulo.module.css";
+import styles from "../../styles/otros/titulo/Titulo.module.css";
 
 export default function Titulo({ text }) {
   return (

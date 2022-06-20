@@ -1,7 +1,7 @@
 import React from "react";
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import styles from "../../styles/Footer.module.css";
+import styles from "../../styles/otros/footer/Footer.module.css";
 
 import logocd from "../../imgs/logo-amebal-cd.png";
 import ubicacion from "../../imgs/ubicacion-logo.png";

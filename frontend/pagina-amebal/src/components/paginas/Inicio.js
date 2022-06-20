@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Inicio.module.css";
+import styles from "../../styles/paginas/inicio/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 
 import ARTICULOS from "../../lists/articulos.js"

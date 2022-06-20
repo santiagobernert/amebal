@@ -1,0 +1,17 @@
+@import '../../scss/colors';
+
+.nav {
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding-block: 0.8vh;
+    padding-inline: 2vw;
+    align-items: center;
+    background-color: $blanco_fondo;
+    text-align: center;
+
+    img{
+        max-width: 2rem;
+        margin-inline: .4rem;
+    }
+  }

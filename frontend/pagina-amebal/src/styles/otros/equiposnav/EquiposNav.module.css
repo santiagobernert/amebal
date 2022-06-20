@@ -1,11 +1,20 @@
 .nav {
-  display: block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   width: 100%;
-  padding-block-start: 0.8vh;
-  padding-block-end: 0.8vh;
-  background-color: rgb(245, 245, 245);
+  overflow-x: scroll;
+  padding-block: 0.8vh;
+  padding-inline: 2vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #F3F3F3;
   text-align: center;
 }
-.logo {
+
+.nav img {
   max-width: 2rem;
+  margin-inline: .4rem;
 }
+/*# sourceMappingURL=EquiposNav.module.css.map */

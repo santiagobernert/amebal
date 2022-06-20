@@ -1,31 +1,101 @@
 .barranav {
   width: 100%;
-  background-color: white;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 0.8rem;
-  padding-right: 1rem;
-}
-.nav_options {
-  display: flex;
-  justify-content: right;
-  flex-wrap: wrap;
-  flex-direction: row;
+  background-color: #30475E;
+  color: #fafafafa;
+  padding: 1rem;
 }
 
-@media (max-width: 600px) {
-  .barranav {
-    position: sticky;
-    z-index: 10;
-  }
-  .nav_options {
-    background-color: rgb(250, 250, 250);
-    justify-content: center;
-    padding-bottom: 0.5rem;
-    border-bottom: solid 1px grey;
-  }
-  .nav_options > * {
-    color: dodgerblue !important;
-    margin-inline: 0.9rem;
-  }
+.barranav img {
+  max-width: 12vw;
 }
+
+.barranav button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.barranav button .menu_btn {
+  width: 50px;
+  height: 6px;
+  background: #fafafafa;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+          box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+  -webkit-transition: all .5 ease-in-out;
+  transition: all .5 ease-in-out;
+  border: none;
+}
+
+.barranav button .menu_btn ::before, .barranav button .menu_btn ::after {
+  content: '';
+  width: 50px;
+  height: 6px;
+  background: #fafafafa;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+          box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+  -webkit-transition: all .5 ease-in-out;
+  transition: all .5 ease-in-out;
+}
+
+.barranav button .menu_btn ::before {
+  -webkit-transform: translateY(-16px);
+          transform: translateY(-16px);
+}
+
+.barranav button .menu_btn ::after {
+  -webkit-transform: translateY(16px);
+          transform: translateY(16px);
+}
+
+.nav_options {
+  display: block;
+  background-color: inherit;
+}
+
+.nav_options a {
+  color: inherit !important;
+  text-align: left;
+  font-size: 20px;
+  margin-block: .4rem;
+  -webkit-padding-start: 2rem !important;
+          padding-inline-start: 2rem !important;
+}
+
+.nav_options hr {
+  color: inherit;
+  width: 90%;
+  margin: auto;
+}
+
+/* @media (max-width: 600px) {
+    .barranav {
+      position: sticky;
+      z-index: 10;
+    }
+    .nav_options {
+      background-color: rgb(250, 250, 250);
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      border-bottom: solid 1px grey;
+    }
+    .nav_options > * {
+      color: dodgerblue !important;
+      margin-inline: 0.9rem;
+    }
+  }
+  */
+/*# sourceMappingURL=BarraNav.module.css.map */
