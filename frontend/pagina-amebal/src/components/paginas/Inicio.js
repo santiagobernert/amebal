@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../../styles/paginas/inicio/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 
@@ -8,6 +8,10 @@ import { Row, Col, Button } from "react-bootstrap";
 import Noticia from "../otros/Noticia";
 
 export default function Inicio() {
+  const [searchOpen, setOpen] = useState(false)
+  const open = () => {
+    setOpen(!searchOpen);
+  }
   return (
     <div>
       <div className={styles.blob}></div>
@@ -16,10 +20,10 @@ export default function Inicio() {
           <h1>Asociación Mendocina de Balonmano</h1>
           <h5>Fundada en 1974</h5>
         </div>
-        <Col xs={5}>
+        <div>
           <div className={styles.news}>
             <h4>Noticias</h4>
-            <div className={styles.search}>
+            <div className={`${styles.search} ${searchOpen ? styles.open : ''}`}>
               <form className="form-inline mb-3 d-inline-flex">
                 <input
                   className="form-control form-control-sm ml-3 w-75"
@@ -27,13 +31,11 @@ export default function Inicio() {
                   placeholder="Search"
                   aria-label="Search"
                 />
+              <button onClick={open} className={styles.btn_search}></button>
               </form>
-              <button className={styles.btn_search}>
-                <span className={styles.icon_search}></span>
-              </button>
             </div>
           </div>
-        </Col>
+        </div>
       </div>
       <div className={styles.sector_articulos}>
         <Row className={styles.principal}>
