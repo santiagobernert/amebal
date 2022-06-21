@@ -1,4 +1,4 @@
-@use 'colors.scss';
+@use "colors.scss";
 .barranav {
   position: -webkit-sticky;
   position: sticky;
@@ -68,8 +68,8 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
   .barranav .menu_btn .menu_btn_line1 {
     width: 45px;
@@ -78,8 +78,8 @@
     border-radius: 5px;
     -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
             box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border: none;
   }
   .barranav .menu_btn .menu_btn_line2 {
@@ -89,8 +89,8 @@
     border-radius: 5px;
     -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
             box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border: none;
   }
   .barranav .menu_btn .menu_btn_line3 {
@@ -100,12 +100,13 @@
     border-radius: 5px;
     -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
             box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border: none;
   }
-  .barranav .menu_btn .menu_btn_line1, .barranav .menu_btn .menu_btn_line3 {
-    content: '';
+  .barranav .menu_btn .menu_btn_line1,
+  .barranav .menu_btn .menu_btn_line3 {
+    content: "";
     display: inline-block;
     width: 45px;
     height: 5px;
@@ -113,8 +114,8 @@
     border-radius: 5px;
     -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
             box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
-    -webkit-transition: all .5 ease-in-out;
-    transition: all .5 ease-in-out;
+    -webkit-transition: all 0.5 ease-in-out;
+    transition: all 0.5 ease-in-out;
   }
   .barranav .menu_btn .menu_btn_line1 {
     -webkit-transform: translateY(-2px);
