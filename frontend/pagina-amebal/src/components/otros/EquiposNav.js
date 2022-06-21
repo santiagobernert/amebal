@@ -1,14 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar } from "react-bootstrap";
+
 import styles from "../../styles/otros/equiposnav/EquiposNav.module.css";
 
 import EQUIPOS from "../../lists/equipos.js";
 
 export default function EquiposNav() {
-  if (window.scrollY <= 10) {
     return (
-      <div>
+      <div className={styles.box}>
+       <div className={styles.shadow1}></div>
+       <div className={styles.shadow2}></div>
         <nav
           justify-content="space-evenly"
           className={styles.nav}
@@ -23,4 +24,4 @@ export default function EquiposNav() {
       </div>
     );
   }
-}
+

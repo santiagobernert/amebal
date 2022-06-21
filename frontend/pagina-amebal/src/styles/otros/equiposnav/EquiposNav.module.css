@@ -1,11 +1,38 @@
-.nav {
+.box {
+  position: relative;
+}
+
+.box .shadow1 {
+  position: absolute;
+  top: 0;
+  width: 25vw;
+  height: 7vh;
+  z-index: 1;
+  -webkit-box-shadow: inset 90px 0px 50px -45px #F3F3F3;
+          box-shadow: inset 90px 0px 50px -45px #F3F3F3;
+}
+
+.box .shadow2 {
+  position: relative;
+  top: 0;
+  width: 25vw;
+  height: 7vh;
+  z-index: 1;
+  margin-left: auto;
+  -webkit-box-shadow: inset -90px 0px 50px -45px #F3F3F3;
+          box-shadow: inset -90px 0px 50px -45px #F3F3F3;
+}
+
+.box .nav {
+  position: absolute;
+  top: 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   overflow-x: scroll;
   padding-block: 0.8vh;
-  padding-inline: 2vw;
+  padding-inline: 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -13,7 +40,7 @@
   text-align: center;
 }
 
-.nav img {
+.box .nav img {
   max-width: 2rem;
   margin-inline: .4rem;
 }

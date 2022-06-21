@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../App.css";
 import styles from "../../styles/otros/barranav/BarraNav.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -6,16 +6,22 @@ import { Navbar, Nav } from "react-bootstrap";
 import logo from "../../imgs/logo-amebal-cd.png";
 
 export default function BarraNav() {
+  const [menuOpen, setOpen] = useState(false)
+  const open = () => {
+    setOpen(!menuOpen);
+  }
   return (
     <div>
-      <Navbar className={styles.barranav} expand="md" collapseOnSelect>
+      <Navbar className={styles.barranav} expand="md">
         <Navbar.Brand>
           <img src={logo} alt="logo" />
         </Navbar.Brand>
-        <button>
-          <div className="menu-btn"></div>
+        <button className={menuOpen ? `${styles.menu_btn} ${styles._open}` : styles.menu_btn} onClick={open}>
+          <div className={styles.menu_btn_line1}></div>
+          <div className={styles.menu_btn_line2}></div>
+          <div className={styles.menu_btn_line3}></div>
         </button>
-        <Navbar.Collapse className="justify-content-end">
+        <div className={`${styles.navs} ${menuOpen ? styles.show : styles.collapse}`}>
           <Nav className={styles.nav_options}>
             <Nav.Link href="/">Inicio</Nav.Link>
             <hr></hr>
@@ -35,7 +41,7 @@ export default function BarraNav() {
             <hr></hr>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
           </Nav>
-        </Navbar.Collapse>
+        </div>
       </Navbar>
     </div>
   );

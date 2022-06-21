@@ -28,10 +28,9 @@ import Sistema from "./components/paginas/Sistema";
 //https://youtu.be/0ChpbdflTMY
 
 function App() {
-  window.scrollTo(0, 10);
   return (
     <div className="App">
-      <EquiposNav link="https://placedog.net/40/40" />
+      <EquiposNav />
       <BarraNav />
       <BrowserRouter>
         <Routes>
