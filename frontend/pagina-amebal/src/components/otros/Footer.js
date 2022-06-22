@@ -14,7 +14,8 @@ export default function Footer() {
     <div className={styles.footer}>
       <div className={styles.brand}>
         <img className={styles.logo_grande} src={logocd} alt="logo" />
-        <h4>Asociación Mendocina de Balonmano</h4>
+        <h5>Asociación Mendocina de Balonmano</h5>
+        <h6>San Juan 668, Capital, Mendoza</h6>
       </div>
       <div className={styles.nav_links}>
         <div className={styles.link}>

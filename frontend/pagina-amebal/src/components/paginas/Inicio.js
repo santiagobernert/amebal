@@ -27,7 +27,7 @@ export default function Inicio() {
           <h5>Fundada en 1974</h5>
         </div>
       </div>
-      <div>
+      <div className={styles.cont}>
         <div className="container">
           <div className={styles.news}>
             <h4>Noticias</h4>
@@ -96,8 +96,7 @@ export default function Inicio() {
                 PARTIDOS.map((item) => (
                   <Partido
                     key={item.id}
-                    equipo1={item.equipo1}
-                    equipo2={item.equipo2}
+                    {...item}
                   />
                 ))}
             </Row>

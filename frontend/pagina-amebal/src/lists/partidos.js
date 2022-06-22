@@ -8,6 +8,7 @@ const PARTIDOS = [
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",
+    torneo: "Apertura 2022",
     jornada: "Fecha 5",
     resultado: {
       total_str: "24 - 22",
@@ -25,6 +26,7 @@ const PARTIDOS = [
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",
+    torneo: "Apertura 2022",
     jornada: "Fecha 5",
     resultado: {
       total_str: "24 - 22",
@@ -42,6 +44,7 @@ const PARTIDOS = [
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",
+    torneo: "Apertura 2022",
     jornada: "Fecha 5",
     resultado: {
       total_str: "24 - 22",
@@ -59,6 +62,7 @@ const PARTIDOS = [
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",
+    torneo: "Apertura 2022",
     jornada: "Fecha 5",
     resultado: {
       total_str: "24 - 22",
@@ -76,6 +80,7 @@ const PARTIDOS = [
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",
+    torneo: "Apertura 2022",
     jornada: "Fecha 5",
     resultado: {
       total_str: "24 - 22",

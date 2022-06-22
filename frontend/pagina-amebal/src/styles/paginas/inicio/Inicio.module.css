@@ -30,14 +30,16 @@
 }
 
 @media (max-width: 768px) {
+  .cont {
+    padding: 3rem 0rem;
+  }
   .news,
   .matches {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
     width: 100%;
-    margin-top: 3rem;
-    padding: 1rem 0rem;
+    padding: 2rem 0 0 0;
   }
   .news h4,
   .matches h4 {
@@ -108,6 +110,7 @@
         flex-wrap: nowrap;
     overflow-x: scroll;
     padding-left: 1rem;
+    z-index: 1;
   }
 }
 /*# sourceMappingURL=Inicio.module.css.map */

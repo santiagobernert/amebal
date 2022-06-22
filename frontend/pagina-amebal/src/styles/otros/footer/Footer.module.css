@@ -1,22 +1,31 @@
+@use "colors.scss";
 .footer {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   padding: 0.5rem 0.5rem 0.5rem 2rem;
   position: static;
   bottom: 0;
-  background-color: rgb(230, 230, 230);
+  background-color: #E5E5E5;
 }
 
 .brand {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  color: rgb(107, 107, 107);
-  align-items: center;
+  color: #6b6b6b;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nav_links {
   width: 100%;
   display: inherit;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   justify-self: flex-end;
 }
 
@@ -32,24 +41,39 @@
   max-width: 5rem;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
   .footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    height: 20vh;
     padding: 0.5rem;
-    position: fixed;
-    max-height: 6vh;
+    position: relative;
+  }
+  .footer .brand {
+    display: inline-block;
+    text-align: center;
   }
   .logo_grande {
-    max-width: 3rem;
-  }
-  .brand {
-    font-size: 0.2em;
+    display: none;
   }
   .nav_links {
-    align-items: center;
-    justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
-  p,
-  h4 {
+  .footer p {
     display: none;
   }
 }
+/*# sourceMappingURL=Footer.module.css.map */

@@ -1,0 +1,62 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.footer {
+    display: inline-flex;
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    position: static;
+    bottom: 0;
+    background-color: $gris_claro;
+  }
+  
+  .brand {
+    display: inline-flex;
+    color: rgb(107, 107, 107);
+    align-items: center;
+  }
+  
+  .nav_links {
+    width: 100%;
+    display: inherit;
+    justify-content: flex-end;
+    justify-self: flex-end;
+  }
+  
+  .link {
+    display: inherit;
+  }
+  
+  .icon {
+    max-width: 1.7rem;
+  }
+  
+  .logo_grande {
+    max-width: 5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-evenly;
+        height: 20vh;
+      padding: 0.5rem;
+      position: relative;
+      .brand{
+        display: inline-block;
+        text-align: center;
+      }
+    }
+    .logo_grande {
+      display: none;
+    }
+    .nav_links {
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    .footer p {
+      display: none;
+    }
+  }
+  
