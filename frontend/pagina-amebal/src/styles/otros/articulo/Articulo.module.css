@@ -1,3 +1,4 @@
+@use "colors.scss";
 .articulo {
   overflow: hidden;
   height: -webkit-fit-content;
@@ -14,13 +15,15 @@
   margin: 0;
   padding: 0;
 }
+
 .articulo img {
   width: 19rem;
-  filter: brightness(50%);
+  -webkit-filter: brightness(50%);
+          filter: brightness(50%);
 }
 
 .articulo_title {
-  color: rgba(250, 250, 250, 0.9803921569);
+  color: #fafafafa;
   text-decoration: none;
 }
 
@@ -39,4 +42,5 @@
     max-height: 20vh;
     margin-right: 1rem;
   }
-}/*# sourceMappingURL=Articulo.module.css.map */
+}
+/*# sourceMappingURL=Articulo.module.css.map */

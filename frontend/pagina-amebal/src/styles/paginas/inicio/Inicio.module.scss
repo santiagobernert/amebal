@@ -23,12 +23,13 @@
   }
 }
 @media (max-width: 768px) {
-  .news {
+  .news,
+  .matches {
     display: inline-flex;
     width: 100%;
     margin-top: 3rem;
     padding: 1rem 0rem;
-    h4{
+    h4 {
       display: block;
       margin: 0;
       padding-left: 1rem;
@@ -36,40 +37,46 @@
     .search {
       justify-self: end;
       margin-left: auto;
+      padding-inline-end: 1rem;
       display: inline-flex;
-      button{
+      button {
         border: none;
         width: 30px;
         height: 30px;
-        background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png") no-repeat;
+        background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png")
+          no-repeat;
         background-size: contain;
       }
       form {
         justify-content: flex-end;
         margin: 0;
-        transition: all .5s ease;
-        input{
-          width: 0 !important;
-          transition: all .5s ease;}
-          .open{
-            justify-content: space-around;
-            input{
-              width: 75% !important;}
+        transition: all 0.5s ease;
+        input {
+          width: 0% !important;
+          visibility: collapse;
+          transition: all 0.5s ease;
+        }
+        .open {
+          justify-content: space-around;
+          width: 75% !important;
+          visibility: visible;
         }
       }
     }
   }
-  .sector_articulos {
+  .sector_articulos,
+  .sector_partidos {
     display: flex;
     flex-direction: column;
   }
   .principal {
     display: none;
   }
-  .articulos {
+  .articulos,
+  .partidos {
     display: inline-flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    padding-left: 3rem;
+    padding-left: 1rem;
   }
 }
