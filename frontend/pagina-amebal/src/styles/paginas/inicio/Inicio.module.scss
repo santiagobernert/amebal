@@ -23,9 +23,9 @@
   }
 }
 @media (max-width: 768px) {
-    .cont{
-        padding: 3rem 0rem;
-    }
+  .cont {
+    padding: 3rem 0rem;
+  }
   .news,
   .matches {
     display: inline-flex;
@@ -36,33 +36,33 @@
       margin: 0;
       padding-left: 1rem;
     }
-    .search {
-      justify-self: end;
-      margin-left: auto;
-      padding-inline-end: 1rem;
-      display: inline-flex;
-      button {
-        border: none;
-        width: 30px;
-        height: 30px;
-        background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png")
-          no-repeat;
-        background-size: contain;
-      }
-      form {
-        justify-content: flex-end;
-        margin: 0;
+  }
+  .search {
+    justify-self: end;
+    margin-left: auto;
+    padding-inline-end: 1rem;
+    display: inline-flex;
+    button {
+      border: none;
+      width: 30px;
+      height: 30px;
+      background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png")
+        no-repeat;
+      background-size: contain;
+    }
+    form {
+      justify-content: flex-end;
+      margin: 0;
+      transition: all 0.5s ease;
+      input {
+        width: 0% !important;
+        visibility: collapse;
         transition: all 0.5s ease;
-        input {
-          width: 0% !important;
-          visibility: collapse;
-          transition: all 0.5s ease;
-        }
-        .open {
-          justify-content: space-around;
-          width: 75% !important;
-          visibility: visible;
-        }
+      }
+      .open {
+        justify-content: space-around;
+        width: 75% !important;
+        visibility: visible;
       }
     }
   }

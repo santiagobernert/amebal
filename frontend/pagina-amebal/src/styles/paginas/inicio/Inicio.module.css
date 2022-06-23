@@ -47,8 +47,7 @@
     margin: 0;
     padding-left: 1rem;
   }
-  .news .search,
-  .matches .search {
+  .search {
     justify-self: end;
     margin-left: auto;
     -webkit-padding-end: 1rem;
@@ -57,16 +56,14 @@
     display: -ms-inline-flexbox;
     display: inline-flex;
   }
-  .news .search button,
-  .matches .search button {
+  .search button {
     border: none;
     width: 30px;
     height: 30px;
     background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png") no-repeat;
     background-size: contain;
   }
-  .news .search form,
-  .matches .search form {
+  .search form {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
@@ -74,15 +71,13 @@
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
-  .news .search form input,
-  .matches .search form input {
+  .search form input {
     width: 0% !important;
     visibility: collapse;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
-  .news .search form .open,
-  .matches .search form .open {
+  .search form .open {
     -ms-flex-pack: distribute;
         justify-content: space-around;
     width: 75% !important;

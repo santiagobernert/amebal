@@ -1,0 +1,47 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 7rem;
+  background-color: $azul_fondo;
+  border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
+}
+
+.dropdown {
+  button {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    color: $blanco;
+  }
+}
+
+@media (max-width: 768px) {
+  .sector_nacionales {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0rem 3rem 1rem;
+    a {
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+      width: 100%;
+      button {
+        width: 100%;
+        height: 10vh;
+        background-color: $oro;
+        border: none;
+        border-radius: 0.4rem;
+      }
+      button:focus,
+      button:active {
+        background-color: darken($oro, 5%);
+        box-shadow: 0 0 0 0.25rem rgba(105, 86, 0, 0.322);
+      }
+    }
+  }
+}

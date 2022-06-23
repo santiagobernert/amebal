@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AEAA,IAAI,CAAJ,aAAI;AFGJ,AAAA,YAAY,CAAC;EACX,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,WAAW;EACnB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,cAAc;EACvB,KAAK,ECAE,SAAS;EDChB,UAAU,ECTC,OAAO;CDenB;;AAZD,AAQE,YARU,CAQV,OAAO,CAAC;EACN,SAAS,EAAE,KAAK;EAChB,WAAW,EAAE,GAAG;CACjB",
+    "sources": [
+        "Titulo.module.scss",
+        "../../scss/_colors.scss",
+        "../../scss/_mixins.scss"
+    ],
+    "names": [],
+    "file": "Titulo.module.css"
+}

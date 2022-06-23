@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../styles/paginas/inicio/Inicio.module.css";
 import Articulo from "../otros/Articulo";
 import Partido from "../otros/Partido";
+import Buscar from "../otros/Buscar";
+import Noticia from "../otros/Noticia";
 
 import ARTICULOS from "../../lists/articulos.js";
 import PARTIDOS from "../../lists/partidos.js";
 
 import { Row, Col, Button } from "react-bootstrap";
-import Noticia from "../otros/Noticia";
 
 export default function Inicio() {
-  const [search1Open, setOpen1] = useState(false);
-  const opens1 = () => {
-    setOpen1(!search1Open);
-  };
-  const [search2Open, setOpen2] = useState(false);
-  const opens2 = () => {
-    setOpen2(!search2Open);
-  };
   return (
     <div>
       <div className={styles.blob}></div>
@@ -31,21 +24,7 @@ export default function Inicio() {
         <div className="container">
           <div className={styles.news}>
             <h4>Noticias</h4>
-            <div
-              className={`${styles.search} ${search1Open ? styles.open : ""}`}
-            >
-              <form className="form-inline mb-3 d-inline-flex">
-                <input
-                  className={`form-control form-control-sm ml-3 w-75 ${
-                    search1Open ? styles.open : ""
-                  }`}
-                  type="text"
-                  placeholder="Buscar"
-                  aria-label="Search"
-                />
-              </form>
-              <button type="" onClick={opens1}></button>
-            </div>
+            <Buscar />
           </div>
           <div className={styles.sector_articulos}>
             <Row className={styles.principal}>
@@ -74,31 +53,12 @@ export default function Inicio() {
           </div>
           <div className={styles.matches}>
             <h4>Partidos</h4>
-            <div
-              className={`${styles.search} ${search2Open ? styles.open : ""}`}
-            >
-              <form className="form-inline mb-3 d-inline-flex">
-                <input
-                  className={`form-control form-control-sm ml-3 w-75 ${
-                    search2Open ? styles.open : ""
-                  }`}
-                  type="text"
-                  placeholder="Buscar"
-                  aria-label="Search"
-                />
-              </form>
-              <button type="" onClick={opens2}></button>
-            </div>
+            <Buscar />
           </div>
           <div className={styles.sector_partidos}>
             <Row className={styles.partidos}>
               {PARTIDOS &&
-                PARTIDOS.map((item) => (
-                  <Partido
-                    key={item.id}
-                    {...item}
-                  />
-                ))}
+                PARTIDOS.map((item) => <Partido key={item.id} {...item} />)}
             </Row>
           </div>
         </div>

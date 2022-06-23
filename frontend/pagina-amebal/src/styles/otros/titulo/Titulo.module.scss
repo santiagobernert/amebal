@@ -1,0 +1,16 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.cont_titulo {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 2vh 0 3vh 10vw;
+  color: $blanco;
+  background: $azul_fondo;
+
+  .titulo {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+}
