@@ -1,5 +1,13 @@
 @use "colors.scss";
 
+@function set-color($color) {
+  @if (lightness($color) > 40) {
+    @return $negro;
+  } @else {
+    @return $blanco;
+  }
+}
+
 @mixin titulo {
   background-color: $azul-fondo;
   color: $blanco;
