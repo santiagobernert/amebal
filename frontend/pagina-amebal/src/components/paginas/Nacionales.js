@@ -59,7 +59,7 @@ export default function Nacionales() {
                 "nacionales/" +
                 item.categoria.toLowerCase() +
                 item.año.toLowerCase() +
-                item.sede.toLowerCase()
+                item.sede.replace(" ", "").toLowerCase()
               }
             >
               <Button

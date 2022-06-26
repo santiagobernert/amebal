@@ -1,0 +1,94 @@
+.titulo div {
+  padding-top: 3vh;
+  background-color: #fafafafa !important;
+  color: #121212 !important;
+}
+
+.sector_podios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: .5rem 0;
+}
+
+.sector_podios .podio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  padding: 1rem 3rem;
+}
+
+.sector_podios .podio h4 {
+  margin-bottom: .8rem;
+}
+
+.sector_podios .podio .equipo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sector_podios .podio .equipo h5 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .transmisiones {
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .transmisiones iframe {
+    display: none;
+  }
+  .transmisiones .links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .transmisiones .links a {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .sector_partidos {
+    text-align: center;
+    padding: 1rem 2rem;
+  }
+  .sector_partidos .div_partidos {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: max-content;
+        grid-template-rows: -webkit-max-content;
+        grid-template-rows: max-content;
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+    row-gap: .5rem;
+  }
+  .sector_partidos .div_partidos div img {
+    max-width: 4rem;
+  }
+}
+
+.subtitulo_azul {
+  color: #30475E;
+}
+/*# sourceMappingURL=Nacional.module.css.map */
