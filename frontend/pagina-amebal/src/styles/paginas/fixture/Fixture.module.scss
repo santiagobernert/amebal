@@ -1,0 +1,37 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob {
+  @include blob;
+}
+.main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+select {
+  @include select;
+}
+
+.div_calendario {
+  max-width: 50%;
+}
+.div_partidos {
+  display: block;
+  padding: 1rem 2rem;
+}
+.cont_partidos {
+  @include scroller;
+}
+@media (max-width: 768px) {
+  .div_calendario {
+    max-width: 100%;
+  }
+  .selects_row {
+    max-width: 90vw !important;
+    * {
+      width: auto !important;
+    }
+  }
+}

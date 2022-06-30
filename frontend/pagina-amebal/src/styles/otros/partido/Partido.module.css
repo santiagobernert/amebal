@@ -1,7 +1,9 @@
 @use "colors.scss";
 .partido {
   width: 100%;
+  max-width: 30rem;
   padding: 0;
+  background-color: #fafafafa;
   border: 1px solid #B3B3B3;
   border-radius: 1rem;
   text-align: center;
@@ -38,7 +40,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .partido .info .detalles {

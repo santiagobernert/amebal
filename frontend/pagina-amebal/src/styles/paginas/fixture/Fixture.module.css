@@ -1,14 +1,61 @@
-.main{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+@use "colors.scss";
+.blob {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 13rem;
+  background-color: #30475E;
+  border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
 }
-.div_calendario{
-    max-width: 50%;
+
+.main {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
-.div_partidos{
-    display: block;
+
+select {
+  background-color: transparent !important;
+  color: #fafafafa !important;
+  border: none !important;
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><path fill=%27none%27 stroke=%27%23fefefe%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></svg>") !important;
+  font-weight: 500 !important;
 }
-.cont_partidos{
-    padding: 1rem 2rem;
+
+.div_calendario {
+  max-width: 50%;
 }
+
+.div_partidos {
+  display: block;
+  padding: 1rem 2rem;
+}
+
+.cont_partidos {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.cont_partidos div {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .div_calendario {
+    max-width: 100%;
+  }
+  .selects_row {
+    max-width: 90vw !important;
+  }
+  .selects_row * {
+    width: auto !important;
+  }
+}
+/*# sourceMappingURL=Fixture.module.css.map */

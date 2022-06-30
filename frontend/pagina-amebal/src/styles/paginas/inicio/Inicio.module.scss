@@ -2,12 +2,7 @@
 @import "../../scss/mixins";
 
 .blob {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 13rem;
-  background-color: $azul_fondo;
-  border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
+  @include blob;
 }
 .headers {
   padding: 3rem 1rem;

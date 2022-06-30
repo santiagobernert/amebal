@@ -15,7 +15,9 @@ export default function Nacional({ id }) {
   return (
     <div>
       <div className={styles.titulo}>
-        <Titulo text={`${nacional.categoria} ${nacional.año} ${nacional.sede}`} />
+        <Titulo
+          text={`${nacional.categoria} ${nacional.año} ${nacional.sede}`}
+        />
       </div>
       <Container>
         <Noticia
@@ -24,22 +26,31 @@ export default function Nacional({ id }) {
           img={nacional.img}
           cuerpo={nacional.cuerpo}
         />
-        
+
         <div className={styles.sector_podios}>
           <div className={styles.podio}>
             <h4 className={styles.subtitulo_azul}>Masculino</h4>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.primero.img} alt={nacional.podio.masculino.primero.nombre} />
+              <img
+                src={nacional.podio.masculino.primero.img}
+                alt={nacional.podio.masculino.primero.nombre}
+              />
               <h5>{nacional.podio.masculino.primero.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Primer Puesto" />
             </div>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.segundo.img} alt={nacional.podio.masculino.segundo.nombre} />
+              <img
+                src={nacional.podio.masculino.segundo.img}
+                alt={nacional.podio.masculino.segundo.nombre}
+              />
               <h5>{nacional.podio.masculino.segundo.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Segundo Puesto" />
             </div>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.tercero.img} alt={nacional.podio.masculino.tercero.nombre} />
+              <img
+                src={nacional.podio.masculino.tercero.img}
+                alt={nacional.podio.masculino.tercero.nombre}
+              />
               <h5>{nacional.podio.masculino.tercero.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Tercer Puesto" />
             </div>
@@ -47,52 +58,81 @@ export default function Nacional({ id }) {
           <div className={styles.podio}>
             <h4 className={styles.subtitulo_azul}>Femenino</h4>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.tercero.img} alt={nacional.podio.masculino.tercero.nombre} />
+              <img
+                src={nacional.podio.masculino.tercero.img}
+                alt={nacional.podio.masculino.tercero.nombre}
+              />
               <h5>{nacional.podio.masculino.tercero.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Primer Puesto" />
             </div>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.tercero.img} alt={nacional.podio.masculino.tercero.nombre} />
+              <img
+                src={nacional.podio.masculino.tercero.img}
+                alt={nacional.podio.masculino.tercero.nombre}
+              />
               <h5>{nacional.podio.masculino.tercero.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Primer Puesto" />
             </div>
             <div className={styles.equipo}>
-              <img src={nacional.podio.masculino.tercero.img} alt={nacional.podio.masculino.tercero.nombre} />
+              <img
+                src={nacional.podio.masculino.tercero.img}
+                alt={nacional.podio.masculino.tercero.nombre}
+              />
               <h5>{nacional.podio.masculino.tercero.nombre}</h5>
               <img src="https://placedog.net/30/30" alt="Primer Puesto" />
             </div>
-          </div>
-        </div>
-        
-        <div className={styles.transmisiones}>
-          <iframe className={styles.video} />
-            <h5>Links</h5>
-          <div className={styles.links}>
-            <a target="blank" href="https://youtube.com">{`Final Masculina ${nacional.partidos.masculino.final.equipo1} - ${nacional.partidos.masculino.final.equipo2}`}</a>
-            <a target="blank" href="https://youtube.com">{`Final Femenina ${nacional.partidos.femenino.final.equipo1} - ${nacional.partidos.femenino.final.equipo2}`}</a>
-            <a target="blank" href="https://youtube.com">{`Semifinal Masculina ${nacional.partidos.masculino.semifinalA.equipo1} - ${nacional.partidos.masculino.semifinalA.equipo2}`}</a>
-            <a target="blank" href="https://youtube.com">{`Semifinal Masculina ${nacional.partidos.masculino.semifinalB.equipo1} - ${nacional.partidos.masculino.semifinalB.equipo2}`}</a>
-            <a target="blank" href="https://youtube.com">{`Semifinal Femenina ${nacional.partidos.femenino.semifinalA.equipo1} - ${nacional.partidos.femenino.semifinalA.equipo2}`}</a>
-            <a target="blank" href="https://youtube.com">{`Semifinal Femenina ${nacional.partidos.femenino.semifinalB.equipo1} - ${nacional.partidos.femenino.semifinalB.equipo2}`}</a>
           </div>
         </div>
 
+        <div className={styles.transmisiones}>
+          <iframe className={styles.video} />
+          <h5>Links</h5>
+          <div className={styles.links}>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Final Masculina ${nacional.partidos.masculino.final.equipo1} - ${nacional.partidos.masculino.final.equipo2}`}</a>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Final Femenina ${nacional.partidos.femenino.final.equipo1} - ${nacional.partidos.femenino.final.equipo2}`}</a>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Semifinal Masculina ${nacional.partidos.masculino.semifinalA.equipo1} - ${nacional.partidos.masculino.semifinalA.equipo2}`}</a>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Semifinal Masculina ${nacional.partidos.masculino.semifinalB.equipo1} - ${nacional.partidos.masculino.semifinalB.equipo2}`}</a>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Semifinal Femenina ${nacional.partidos.femenino.semifinalA.equipo1} - ${nacional.partidos.femenino.semifinalA.equipo2}`}</a>
+            <a
+              target="blank"
+              href="https://youtube.com"
+            >{`Semifinal Femenina ${nacional.partidos.femenino.semifinalB.equipo1} - ${nacional.partidos.femenino.semifinalB.equipo2}`}</a>
+          </div>
+        </div>
 
         <div className={styles.sector_partidos}>
           <h3>Partidos</h3>
+          <h4 className={styles.subtitulo_azul}>Masculino</h4>
           <div className={styles.div_partidos}>
-            <h4 className={styles.subtitulo_azul}>Masculino</h4>
-            <h4 className={styles.subtitulo_azul}>Femenino</h4>
-            {PARTIDOS && PARTIDOS.map((item) => 
-              //{if (item.torneo === nacional.nombre){
-                <Partido key={item.id} {...item} />
-              //}else{
-              //  return <div></div>
-              //}}
-            )}
+            {PARTIDOS &&
+              PARTIDOS.map(
+                (item) => (
+                  //{if (item.torneo === nacional.nombre){
+                  <Partido key={item.id} {...item} />
+                )
+                //}else{
+                //  return <div></div>
+                //}}
+              )}
           </div>
+          <h4 className={styles.subtitulo_azul}>Femenino</h4>
         </div>
-        
+
         <Calendario />
       </Container>
     </div>

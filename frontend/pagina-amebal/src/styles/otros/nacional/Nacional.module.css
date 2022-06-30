@@ -15,7 +15,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 }
 
 .sector_podios .podio {
@@ -31,7 +31,7 @@
 }
 
 .sector_podios .podio h4 {
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
 .sector_podios .podio .equipo {
@@ -70,18 +70,22 @@
     margin-bottom: 0.3rem;
   }
   .sector_partidos {
-    text-align: center;
     padding: 1rem 2rem;
   }
+  .sector_partidos h3 {
+    text-align: center;
+  }
   .sector_partidos .div_partidos {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-rows: max-content;
-        grid-template-rows: -webkit-max-content;
-        grid-template-rows: max-content;
-    -ms-grid-columns: auto;
-        grid-template-columns: auto;
-    row-gap: .5rem;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+    margin: 0.5rem 0 1rem 0;
+  }
+  .sector_partidos .div_partidos div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
   .sector_partidos .div_partidos div img {
     max-width: 4rem;
