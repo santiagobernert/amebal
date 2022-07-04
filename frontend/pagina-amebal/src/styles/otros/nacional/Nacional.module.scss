@@ -1,4 +1,5 @@
 @import "../../scss/colors";
+@import "../../scss/mixins";
 
 .titulo {
   div {
@@ -40,15 +41,16 @@
       display: none;
     }
     .links {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
+      width: 100%;
+      overflow-x: hidden;
       a {
-        display: inline-flex;
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
+        display: block;
+        flex-shrink: 0;
+        margin: .3rem 1rem;
+        font-size: .5em !important;
         img{
-          width: 2rem;
-          margin-right: 1rem;
+          width: 4rem;
         }
       }
     }
@@ -59,7 +61,7 @@
       text-align: center;
     }
     .div_partidos {
-      @include scroller;
+      @include scroller ;
       margin: 0.5rem 0 1rem 0;
       div {
         flex-shrink: 0;

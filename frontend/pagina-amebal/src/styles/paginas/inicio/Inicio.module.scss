@@ -65,16 +65,17 @@
   .sector_partidos {
     display: flex;
     flex-direction: column;
+    h4{
+      padding: .5rem 1rem 0 0; 
+      text-align: right;
+    }
   }
   .principal {
     display: none;
   }
   .articulos,
   .partidos {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
+    @include scroller ;
     padding-left: 1rem;
-    z-index: 1;
   }
 }

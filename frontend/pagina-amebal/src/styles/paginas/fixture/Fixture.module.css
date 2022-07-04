@@ -61,6 +61,8 @@ select {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     width: 100%;
     overflow-x: scroll;
     padding-left: 2rem;

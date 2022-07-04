@@ -26,3 +26,8 @@ a {
 .titulo-blanco{
   color: #fafafa;
 }
+
+.link{
+  color: rgb(7, 135, 255);
+  font-weight: 600;
+}

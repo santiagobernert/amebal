@@ -1,3 +1,4 @@
+@use "colors.scss";
 .titulo div {
   padding-top: 3vh;
   background-color: #fafafafa !important;
@@ -57,23 +58,21 @@
     display: none;
   }
   .transmisiones .links {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .transmisiones .links a {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .transmisiones .links a {
+    display: block;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    margin: .3rem 1rem;
+    font-size: .5em !important;
   }
   .transmisiones .links a img {
-    width: 2rem;
+    width: 4rem;
   }
   .sector_partidos {
     padding: 1rem 2rem;
@@ -82,7 +81,18 @@
     text-align: center;
   }
   .sector_partidos .div_partidos {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: scroll;
     margin: 0.5rem 0 1rem 0;
+  }
+  .sector_partidos .div_partidos div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
   .sector_partidos .div_partidos div {
     -ms-flex-negative: 0;

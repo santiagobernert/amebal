@@ -93,6 +93,11 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  .sector_articulos h4,
+  .sector_partidos h4 {
+    padding: .5rem 1rem 0 0;
+    text-align: right;
+  }
   .principal {
     display: none;
   }
@@ -103,9 +108,14 @@
     display: inline-flex;
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
+    width: 100%;
     overflow-x: scroll;
     padding-left: 1rem;
-    z-index: 1;
+  }
+  .articulos div,
+  .partidos div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
 }
 /*# sourceMappingURL=Inicio.module.css.map */

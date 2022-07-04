@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/paginas/inicio/Inicio.module.css";
+import "../../App.css"
 import Articulo from "../otros/Articulo";
 import Partido from "../otros/Partido";
 import Buscar from "../otros/Buscar";
@@ -50,6 +51,7 @@ export default function Inicio() {
                   <Articulo key={item.id} titulo={item.titulo} img={item.img} />
                 ))}
             </Row>
+              <a href="noticias"><h4 className="link">Ver más</h4></a>
           </div>
           <div className={styles.matches}>
             <h4>Partidos</h4>
@@ -60,6 +62,7 @@ export default function Inicio() {
               {PARTIDOS &&
                 PARTIDOS.map((item) => <Partido key={item.id} {...item} />)}
             </Row>
+            <a href="fixture"><h4 className="link">Ver más</h4></a>
           </div>
         </div>
       </div>
