@@ -61,6 +61,12 @@
     display: inline-block;
     text-align: center;
   }
+  .footer .brand h5 {
+    font-size: 1rem;
+  }
+  .footer .brand h6 {
+    font-size: .8rem;
+  }
   .logo_grande {
     display: none;
   }

@@ -6,23 +6,23 @@ import { Container, Table } from "react-bootstrap";
 export default function Calendario() {
   return (
     <div>
-      <Container>
+      <Container className={styles.container}>
         <div className={styles.calendar}>
           <header>
-            <h2>September</h2>
-            <a className={styles.btn_prev} href="#" />
-            <a className={styles.btn_next} href="#" />
+            <h2>Noviembre 2021</h2>
+            <a className={styles.btn_prev} href="#"></a> 
+            <a className={styles.btn_next} href="#"></a>
           </header>
           <Table>
             <thead>
               <tr>
-                <td>Mo</td>
-                <td>Tu</td>
-                <td>We</td>
-                <td>Th</td>
-                <td>Fr</td>
-                <td>Sa</td>
-                <td>Su</td>
+                <td>L</td>
+                <td>M</td>
+                <td>M</td>
+                <td>J</td>
+                <td>V</td>
+                <td>S</td>
+                <td>D</td>
               </tr>
             </thead>
             <tbody>

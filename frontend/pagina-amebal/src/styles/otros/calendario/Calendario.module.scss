@@ -64,7 +64,7 @@ table {
 }
 
 .calendar tbody td:hover {
-  border: 2px solid #00addf;
+  border: 2px solid $azul_fondo;
 }
 
 .calendar td {
@@ -89,7 +89,8 @@ table {
 
 .current_day {
   background: #00addf;
-  color: #f9f9f9;
+  color: $azul_fondo;
+  font-weight: 750;
 }
 
 .event {
@@ -98,7 +99,7 @@ table {
 }
 
 .event:after {
-  background: #00addf;
+  background: $azul_transparente;
   border-radius: 50%;
   bottom: 0.5em;
   display: block;
@@ -111,14 +112,11 @@ table {
 }
 
 .event.current_day:after {
-  background: #f9f9f9;
+  background: $azul_transparente;
 }
 
 .btn_prev,
 .btn_next {
-  border: 2px solid #cbd1d2;
-  border-radius: 50%;
-  color: #cbd1d2;
   height: 2em;
   font-size: 0.75em;
   line-height: 2em;
@@ -126,6 +124,13 @@ table {
   position: absolute;
   top: 50%;
   width: 2em;
+  ;
+}
+.btn_prev{
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+}
+.btn_next{
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
 }
 
 .btn_prev:hover,
@@ -144,13 +149,42 @@ table {
 
 @media (max-width: 768px) {
   .container {
-    display: flex;
-    width: 50vw;
+    width: 100%;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
   }
-  table {
-    max-width: 90vw;
-    td {
-      max-width: 3em;
+    .calendar{
+      background-color: #fff;
+      border-radius: 1rem;
+    }
+  header{
+    display: flex;
+    justify-content: center;
+    h2{
+    color: $azul_fondo;
+    font-size: 1em;
     }
   }
-}
+  }
+  table {
+    max-width: 80vw;
+    width: max-content;
+    thead{
+      background-color: $azul_fondo;
+      color: $blanco;
+    }
+    tr{
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+    td {
+      width: 2.5em !important;
+      height: auto !important;
+      line-height: 1em !important;
+    }
+    .event:after {
+      bottom: -0.2em;
+    }
+  }
+

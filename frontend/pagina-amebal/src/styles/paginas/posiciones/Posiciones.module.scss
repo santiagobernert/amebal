@@ -1,0 +1,17 @@
+@import '../../scss/colors';
+@import '../../scss/mixins';
+
+.blob {
+    @include blob;
+  }
+
+  @media (max-width: 768px) {
+    .selects_row {
+        display: inline-flex;
+      max-width: 90vw !important;
+      margin-bottom: 1rem;
+      * {
+        width: auto !important;
+      }
+    }
+}

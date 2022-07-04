@@ -1,18 +1,19 @@
 import React from "react";
-//import styles from "../styles/paginas/posiciones/Posiciones.module.css";
+import styles from "../../styles/paginas/posiciones/Posiciones.module.css";
 import { Form, Table } from "react-bootstrap";
 import Titulo from "../otros/Titulo";
+import "../../App.css"
 
 export default function Posiciones() {
   return (
     <div>
-      <Titulo text="POSICIONES" />
-      <div className="row">
+      <Titulo text="Posiciones" />
+      <div className={styles.blob}></div>
+      <div className="container row">
         <div className="col">
-          <h3>Categoría</h3>
-          <div>
+          <div className={styles.selects_row}>
             <Form.Select aria-label="Default select example">
-              <option selected value="liga">Liga</option>
+              <option value="liga">Liga</option>
               <option value="1">Mayores</option>
               <option value="1">Junior</option>
               <option value="2">Juvenil</option>
@@ -21,8 +22,13 @@ export default function Posiciones() {
               <option value="3">Infantiles</option>
             </Form.Select>
             <Form.Select aria-label="Default select example">
-              <option selected value="masculino">Masculino</option>
+              <option value="masculino">Masculino</option>
               <option value="femenino">Femenino</option>
+            </Form.Select>
+            <Form.Select readOnly aria-label="Default select example">
+              <option value="año">Año</option>
+              <option value="liga">2022</option>
+              <option value="1">2021</option>
             </Form.Select>
           </div>
           <div>

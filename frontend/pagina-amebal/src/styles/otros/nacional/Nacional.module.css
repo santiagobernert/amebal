@@ -66,8 +66,14 @@
             flex-direction: column;
   }
   .transmisiones .links a {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
+  }
+  .transmisiones .links a img {
+    width: 2rem;
   }
   .sector_partidos {
     padding: 1rem 2rem;
@@ -76,11 +82,6 @@
     text-align: center;
   }
   .sector_partidos .div_partidos {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    width: 100%;
-    overflow-x: scroll;
     margin: 0.5rem 0 1rem 0;
   }
   .sector_partidos .div_partidos div {

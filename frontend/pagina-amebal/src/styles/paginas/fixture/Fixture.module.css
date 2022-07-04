@@ -31,31 +31,53 @@ select {
 
 .div_partidos {
   display: block;
-  padding: 1rem 2rem;
-}
-
-.cont_partidos {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  width: 100%;
-  overflow-x: scroll;
-}
-
-.cont_partidos div {
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  padding: 1rem 0;
 }
 
 @media (max-width: 768px) {
   .div_calendario {
     max-width: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  .selects_row {
+  .div_partidos .selects_row {
+    padding-left: 2rem;
     max-width: 90vw !important;
+    margin: 0 0 1rem 0;
   }
-  .selects_row * {
+  .div_partidos .selects_row * {
     width: auto !important;
+  }
+  .div_partidos h4 {
+    padding-left: 2.7rem;
+    color: #fafafafa;
+  }
+  .div_partidos .cont_partidos {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding-left: 2rem;
+  }
+  .div_partidos .cont_partidos div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .div_partidos .cont_partidos div {
+    max-width: 70vw;
+  }
+  .div_partidos .cont_partidos div h4 {
+    padding: 0;
+    color: currentColor;
+  }
+  .div_partidos .cont_partidos div img {
+    max-width: 4rem;
   }
 }
 /*# sourceMappingURL=Fixture.module.css.map */

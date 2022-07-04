@@ -91,27 +91,45 @@ export default function Nacional({ id }) {
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Final Masculina ${nacional.partidos.masculino.final.equipo1} - ${nacional.partidos.masculino.final.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Final Masculina ${nacional.partidos.masculino.final.equipo1} - ${nacional.partidos.masculino.final.equipo2}`}</h5>
+            </a>
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Final Femenina ${nacional.partidos.femenino.final.equipo1} - ${nacional.partidos.femenino.final.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Final Femenina ${nacional.partidos.femenino.final.equipo1} - ${nacional.partidos.femenino.final.equipo2}`}</h5>
+            </a>
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Semifinal Masculina ${nacional.partidos.masculino.semifinalA.equipo1} - ${nacional.partidos.masculino.semifinalA.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Semifinal Masculina ${nacional.partidos.masculino.semifinalA.equipo1} - ${nacional.partidos.masculino.semifinalA.equipo2}`}</h5>
+            </a>
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Semifinal Masculina ${nacional.partidos.masculino.semifinalB.equipo1} - ${nacional.partidos.masculino.semifinalB.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Semifinal Masculina ${nacional.partidos.masculino.semifinalB.equipo1} - ${nacional.partidos.masculino.semifinalB.equipo2}`}</h5>
+            </a>
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Semifinal Femenina ${nacional.partidos.femenino.semifinalA.equipo1} - ${nacional.partidos.femenino.semifinalA.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Semifinal Femenina ${nacional.partidos.femenino.semifinalA.equipo1} - ${nacional.partidos.femenino.semifinalA.equipo2}`}</h5>
+            </a>
             <a
               target="blank"
               href="https://youtube.com"
-            >{`Semifinal Femenina ${nacional.partidos.femenino.semifinalB.equipo1} - ${nacional.partidos.femenino.semifinalB.equipo2}`}</a>
+            >
+              <img src="https://cdn-0.smartandroid.fr/wp-content/uploads/2020/10/mettre-youtube-arriere-plan-youtube10.png?ezimgfmt=rs:256x256/rscb9/ng:webp/ngcb9" />
+              <h5>{`Semifinal Femenina ${nacional.partidos.femenino.semifinalB.equipo1} - ${nacional.partidos.femenino.semifinalB.equipo2}`}</h5>
+            </a>
           </div>
         </div>
 

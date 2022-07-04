@@ -19,19 +19,42 @@ select {
 }
 .div_partidos {
   display: block;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
 }
-.cont_partidos {
-  @include scroller;
-}
+
 @media (max-width: 768px) {
   .div_calendario {
     max-width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
+  .div_partidos{
   .selects_row {
+    padding-left: 2rem;
     max-width: 90vw !important;
     * {
       width: auto !important;
     }
+    margin: 0 0 1rem 0;
   }
+  h4{
+    padding-left: 2.7rem;
+    color: $blanco;
+  }
+  .cont_partidos{
+    @include scroller;
+    padding-left: 2rem;
+    div{
+      max-width: 70vw;
+      h4{
+        padding: 0;
+        color: currentColor;
+      }
+      img{
+        max-width: 4rem;
+      }
+    }
+  }
+}
 }
