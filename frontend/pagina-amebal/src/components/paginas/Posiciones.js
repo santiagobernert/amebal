@@ -32,7 +32,7 @@ export default function Posiciones() {
             </Form.Select>
           </div>
           <div>
-          <Table striped bordered hover>
+          <Table className={styles.tabla} striped bordered hover>
               <thead>
                 <tr>
                   <th>#</th>

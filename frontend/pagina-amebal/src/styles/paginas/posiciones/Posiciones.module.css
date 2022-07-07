@@ -19,5 +19,8 @@
   .selects_row * {
     width: auto !important;
   }
+  .tabla {
+    border: none;
+  }
 }
 /*# sourceMappingURL=Posiciones.module.css.map */

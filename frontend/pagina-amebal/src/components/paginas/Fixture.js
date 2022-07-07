@@ -32,7 +32,7 @@ export default function Fixture() {
               <option value="liga">2022</option>
               <option value="1">2021</option>
             </Form.Select>
-            <Form.Select readOnly aria-label="Default select example">
+            <Form.Select className={styles.club_select} readOnly aria-label="Default select example">
               <option value="todos">Club</option>
               {EQUIPOS &&
                 EQUIPOS.map((item) => (

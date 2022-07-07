@@ -8,6 +8,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center
 }
 
 select {
@@ -33,20 +34,27 @@ select {
   .selects_row {
     padding-left: 2rem;
     max-width: 90vw !important;
+    margin: 0 0 1rem 0;
     * {
       width: auto !important;
     }
-    margin: 0 0 1rem 0;
+    .club_select{
+      max-width: 7rem;
+    }
   }
   h4{
     padding-left: 2.7rem;
     color: $blanco;
   }
   .cont_partidos{
-    @include scroller;
-    padding-left: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
     div{
-      max-width: 70vw;
+      max-width: 80vw;
       h4{
         padding: 0;
         color: currentColor;
