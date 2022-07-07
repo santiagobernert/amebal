@@ -16,7 +16,7 @@ export default function Nacionales() {
         <div className="form-inline w-100 d-inline-flex justify-content-between">
           <form className="form-inline py-1 d-inline-flex">
             <input
-              className="form-control form-control-sm ml-3 w-75"
+              className="form-control form-control-sm ml-3"
               type="text"
               placeholder="Buscar"
               aria-label="Search"

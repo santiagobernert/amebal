@@ -44,24 +44,47 @@
       display: inline-flex;
       width: 100%;
       overflow-x: hidden;
+      .btn_prev,
+      .btn_next {
+        height: 2em;
+        font-size: 0.75em;
+        line-height: 2em;
+        margin: -1em;
+        position: absolute;
+        width: 2em;
+      }
+      .btn_prev {
+        background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+        left: 10%;
+      }
+      .btn_next {
+        background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+        right: 10%;
+      }
       a {
+        position: absolute;
         display: block;
         flex-shrink: 0;
-        margin: .3rem 1rem;
-        font-size: .5em !important;
-        img{
+        font-size: 0.5em !important;
+        img {
           width: 4rem;
+        }
+      }
+      @for $i from 1 through 7 {
+        #link#{$i} {
+          left: #{($i - 1) * 100%};
+          width: 100%;
         }
       }
     }
   }
   .sector_partidos {
-    padding: 1rem 2rem;
+    padding: 5rem 2rem 1rem;
     h3 {
       text-align: center;
     }
     .div_partidos {
-      @include scroller ;
+      @include scroller;
       margin: 0.5rem 0 1rem 0;
       div {
         flex-shrink: 0;

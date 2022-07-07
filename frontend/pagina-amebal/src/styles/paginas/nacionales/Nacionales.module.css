@@ -17,6 +17,12 @@
 }
 
 @media (max-width: 768px) {
+  form {
+    width: 55vw;
+  }
+  form input {
+    width: 90% !important;
+  }
   .sector_nacionales {
     display: -webkit-box;
     display: -ms-flexbox;

@@ -64,18 +64,63 @@
     width: 100%;
     overflow-x: hidden;
   }
+  .transmisiones .links .btn_prev,
+  .transmisiones .links .btn_next {
+    height: 2em;
+    font-size: 0.75em;
+    line-height: 2em;
+    margin: -1em;
+    position: absolute;
+    width: 2em;
+  }
+  .transmisiones .links .btn_prev {
+    background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+    left: 10%;
+  }
+  .transmisiones .links .btn_next {
+    background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+    right: 10%;
+  }
   .transmisiones .links a {
+    position: absolute;
     display: block;
     -ms-flex-negative: 0;
         flex-shrink: 0;
-    margin: .3rem 1rem;
-    font-size: .5em !important;
+    font-size: 0.5em !important;
   }
   .transmisiones .links a img {
     width: 4rem;
   }
+  .transmisiones .links #link1 {
+    left: 0%;
+    width: 100%;
+  }
+  .transmisiones .links #link2 {
+    left: 100%;
+    width: 100%;
+  }
+  .transmisiones .links #link3 {
+    left: 200%;
+    width: 100%;
+  }
+  .transmisiones .links #link4 {
+    left: 300%;
+    width: 100%;
+  }
+  .transmisiones .links #link5 {
+    left: 400%;
+    width: 100%;
+  }
+  .transmisiones .links #link6 {
+    left: 500%;
+    width: 100%;
+  }
+  .transmisiones .links #link7 {
+    left: 600%;
+    width: 100%;
+  }
   .sector_partidos {
-    padding: 1rem 2rem;
+    padding: 5rem 2rem 1rem;
   }
   .sector_partidos h3 {
     text-align: center;
