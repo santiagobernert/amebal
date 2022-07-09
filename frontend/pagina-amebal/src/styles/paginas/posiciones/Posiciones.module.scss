@@ -3,6 +3,7 @@
 
 .blob {
     @include blob;
+    height: 4rem;
   }
 
   @media (max-width: 768px) {
@@ -15,6 +16,40 @@
       }
     }
     .tabla{
-      border: none;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      justify-content: space-evenly;
+      width: 100%;
+      max-width: 100%;
+      overflow: scroll;
+      border: none !important;
+      border-radius: .5rem;
+      box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+      background-color: $blanco;
+      color: $negro;
+      *{border-width: 0 !important;}
+      thead{
+        display: table;
+        background-color: $azul_fondo;
+        color: $blanco;
+        th{
+          width: 3.1rem;
+          text-align: center;
+        }
+      }
+      tbody{
+        tr{
+        padding: .3rem 0;
+        width: auto;
+        td{
+          width: 3.1rem !important;
+          text-align: center ;
+        }
+      }
+    }
+    .goles{
+        width: auto !important;
+    }
     }
 }

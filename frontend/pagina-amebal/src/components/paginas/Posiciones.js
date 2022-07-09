@@ -9,8 +9,7 @@ export default function Posiciones() {
     <div>
       <Titulo text="Posiciones" />
       <div className={styles.blob}></div>
-      <div className="container row">
-        <div className="col">
+      <div className="container">
           <div className={styles.selects_row}>
             <Form.Select aria-label="Default select example">
               <option value="liga">Liga</option>
@@ -31,27 +30,25 @@ export default function Posiciones() {
               <option value="1">2021</option>
             </Form.Select>
           </div>
-          <div>
           <Table className={styles.tabla} striped bordered hover>
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>_</th>
-                  <th>Club</th>
-                  <th>Partidos</th>
-                  <th>Ganados</th>
-                  <th>Perdidos</th>
+                  <th style={{width: '6.2rem'}}>Club</th>
+                  <th>PJ</th>
+                  <th>G</th>
+                  <th>P</th>
                   <th>GF</th>
                   <th>GC</th>
                   <th>DG</th>
-                  <th>Puntos</th>
+                  <th>PTS</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
                   <td>[]</td>
-                  <td>Regatas</td>
+                  <td>CMR</td>
                   <td>9</td>
                   <td>9</td>
                   <td>0</td>
@@ -63,7 +60,7 @@ export default function Posiciones() {
                 <tr>
                   <td>2</td>
                   <td>[]</td>
-                  <td>Regatas</td>
+                  <td>CMR</td>
                   <td>9</td>
                   <td>9</td>
                   <td>0</td>
@@ -75,7 +72,7 @@ export default function Posiciones() {
                 <tr>
                   <td>3</td>
                   <td>[]</td>
-                  <td>Regatas</td>
+                  <td>CMR</td>
                   <td>9</td>
                   <td>9</td>
                   <td>0</td>
@@ -86,29 +83,27 @@ export default function Posiciones() {
                 </tr>
               </tbody>
             </Table>
-          </div>
-        </div>
-        <div className="col">
-          <h3>Goleadores</h3>
-          <Table>
+          <h5>Goleadores</h5>
+          <Table className={styles.tabla}>
           <thead>
                 <tr>
-                  <th>#</th>
-                  <th>_</th>
-                  <th>Nombre</th>
-                  <th>Goles</th>
+                  <th className={styles.goles}>#</th>
+                  <th className={styles.goles}>Equipo</th>
+                  <th style={{color: 'transparent'}} className={styles.goles}>___</th>
+                  <th className={styles.goles}>Nombre</th>
+                  <th className={styles.goles}>Goles</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>[]</td>
-                  <td>Regatas</td>
-                  <td>9</td>
+                <tr style={{width: '100%'}}>
+                  <td className={styles.goles}>1</td>
+                  <td className={styles.goles}>[]</td>
+                  <td className={styles.goles}>CMR</td>
+                  <td className={styles.goles}>Gringo Gringo</td>
+                  <td className={styles.goles}>9</td>
                 </tr>
               </tbody>
           </Table>
-        </div>
       </div>
     </div>
   );
