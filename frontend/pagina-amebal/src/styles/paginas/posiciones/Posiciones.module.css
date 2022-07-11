@@ -37,7 +37,7 @@
     max-width: 100%;
     overflow: scroll;
     border: none !important;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     -webkit-box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
             box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
     background-color: #fafafafa;
@@ -56,10 +56,10 @@
     text-align: center;
   }
   .tabla tbody tr {
-    padding: .3rem 0;
     width: auto;
   }
   .tabla tbody tr td {
+    padding: 0.8rem 0.5rem;
     width: 3.1rem !important;
     text-align: center;
   }

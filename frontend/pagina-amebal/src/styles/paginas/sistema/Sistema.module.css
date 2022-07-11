@@ -1,28 +1,40 @@
+@use "colors.scss";
 .main {
   width: 100%;
 }
+
 .nav {
   width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 1rem 3rem;
 }
+
 .btn_seccion {
   border: none;
   text-decoration: underline;
-  color: rgb(83, 83, 255);
+  color: #5353ff;
 }
+
 .div_secciones * {
   margin-right: 0.5rem;
 }
+
 .div_salir {
   margin-left: auto;
 }
+
 .seccion {
   padding: 1rem 5rem;
 }
+
 .seccion_datos {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .columna_datos {
   display: block;
   padding: 0 1rem;
@@ -55,17 +67,6 @@
 
 .user_card_full .user_profile {
   border-radius: 5px 0 0 5px;
-}
-
-.bg_c_lite_green {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#f29263),
-    to(#ee5a6f)
-  );
-  background: linear-gradient(to right, #ee5a6f, #f29263);
 }
 
 .user_profile {
@@ -164,3 +165,62 @@ h6 {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+
+@media (max-width: 768px) {
+  .div_salir {
+    position: absolute;
+    right: 2rem;
+    top: 10.5rem;
+  }
+  .div_salir * {
+    border-radius: 0.7rem;
+  }
+  .main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .main .nav {
+    padding: 0 1rem;
+    background-color: #30475E;
+    color: #fafafafa;
+  }
+  .main .nav .div_secciones {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .main .nav .div_secciones .btn_seccion {
+    background-color: #30475E;
+    color: #fafafafa;
+    padding: 1rem 0;
+    text-decoration: none;
+    text-align: start;
+  }
+  .main .seccion {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    padding: 2rem 0;
+  }
+  .main .card {
+    width: 60vw;
+  }
+}
+/*# sourceMappingURL=Sistema.module.css.map */

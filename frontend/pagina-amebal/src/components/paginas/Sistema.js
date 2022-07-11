@@ -10,32 +10,27 @@ export default function Sistema() {
   return (
     <div>
       <Titulo text="Sistema" />
+      <div className={styles.div_salir}>
+        <Button>SALIR</Button>
+      </div>
       <div className={styles.main}>
         <nav className={styles.nav}>
           <div className={styles.div_secciones}>
             <button className={styles.btn_seccion}>Perfil</button>
             <button className={styles.btn_seccion}>Datos</button>
             <button className={styles.btn_seccion}>Carnet</button>
-            <button className={styles.btn_seccion}>Archivos</button>
-            <button className={styles.btn_seccion}>Fichas</button>
-          </div>
-          <div className={styles.div_salir}>
-            <Button>SALIR</Button>
+            <button className={styles.btn_seccion}>Subir archivos</button>
+            <button className={styles.btn_seccion}>Descargar archivos</button>
           </div>
         </nav>
-        <div className="container text-center">
-          <h5 className="text-danger">HABILITADO</h5>
-        </div>
         <div className={styles.seccion} id="perfil">
-          <h4>Perfil</h4>
           <div className="page-content page-container" id="page-content">
-            <div className={styles.padding}>
               <div className="row container d-flex justify-content-center">
                 <div className="col-xl-6 col-md-12">
                   <div className={`${styles.card} ${styles.user_card_full}`}>
                     <div className={`row ${styles.m_l_0} ${styles.m_r_0}`}>
                       <div
-                        className={`col-sm-4 ${styles.bg_c_lite_green} ${styles.user_profile}`}
+                        className={`col-sm-4 ${styles.user_profile}`}
                       >
                         <div
                           className={`${styles.card_block} text-center text-white`}
@@ -49,6 +44,9 @@ export default function Sistema() {
                           </div>
                           <h6 className="f-w-600">Nombre Apellido</h6>
                           <p>HABILITADO</p>
+                          <div className="container text-center">
+                            <h5 className="text-danger">HABILITADO</h5>
+                          </div>
                           <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" />
                         </div>
                       </div>
@@ -134,7 +132,6 @@ export default function Sistema() {
                         </div>
                       </div>
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
