@@ -19,7 +19,7 @@ export default function Fixture() {
       <div className={styles.main}>
         <div className={styles.div_partidos}>
           <Row className={styles.selects_row}>
-            <Form.Select readOnly aria-label="Default select example">
+            <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="todos">Fecha</option>
               <option value="1">Fecha 1</option>
               <option value="1">Fecha 2</option>
@@ -27,12 +27,12 @@ export default function Fixture() {
               <option value="3">Fecha 4</option>
               <option value="3">Fecha 5</option>
             </Form.Select>
-            <Form.Select readOnly aria-label="Default select example">
+            <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="año">Año</option>
               <option value="liga">2022</option>
               <option value="1">2021</option>
             </Form.Select>
-            <Form.Select className={styles.club_select} readOnly aria-label="Default select example">
+            <Form.Select className={`${styles.select} ${styles.club_select}`} readOnly aria-label="Default select example">
               <option value="todos">Club</option>
               {EQUIPOS &&
                 EQUIPOS.map((item) => (
@@ -41,7 +41,7 @@ export default function Fixture() {
                   </option>
                 ))}
             </Form.Select>
-            <Form.Select readOnly aria-label="Default select example">
+            <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="todos">Categoría</option>
               <option value="liga">Liga</option>
               <option value="1">Mayores</option>
@@ -51,7 +51,7 @@ export default function Fixture() {
               <option value="3">Menores</option>
               <option value="3">Infantiles</option>
             </Form.Select>
-            <Form.Select readOnly aria-label="Default select example">
+            <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="masculino">Masculino</option>
               <option value="femenino">Femenino</option>
             </Form.Select>

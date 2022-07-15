@@ -33,11 +33,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .columna_datos {
   display: block;
-  padding: 0 1rem;
+  padding: .5rem 1rem;
 }
 
 /* PERFIL */
@@ -170,7 +172,8 @@ h6 {
   .div_salir {
     position: absolute;
     right: 2rem;
-    top: 10.5rem;
+    top: 2vh;
+    text-align: right;
   }
   .div_salir * {
     border-radius: 0.7rem;
@@ -185,7 +188,8 @@ h6 {
             flex-direction: row;
   }
   .main .nav {
-    padding: 0 1rem;
+    position: relative;
+    padding: 0 2vw;
     background-color: #30475E;
     color: #fafafafa;
   }
@@ -208,6 +212,17 @@ h6 {
     text-decoration: none;
     text-align: start;
   }
+  .main .nav .selector {
+    height: 3.6rem;
+    width: 4px;
+    background: #F3F3F3;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 3.6rem;
+    -webkit-transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
+  }
   .main .seccion {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -216,11 +231,22 @@ h6 {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    overflow-x: scroll;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
     width: 100%;
-    padding: 2rem 0;
+    max-width: 72vw;
+    padding: 2rem 2vw;
   }
   .main .card {
     width: 60vw;
+  }
+  .main .card h5 {
+    color: #30475E;
+    margin: 1.5rem 0;
+  }
+  .main .columna_datos {
+    max-width: 70vw;
   }
 }
 /*# sourceMappingURL=Sistema.module.css.map */

@@ -1,39 +1,50 @@
 import React from "react";
 
+import {useRef} from "react";
+
 import styles from "../../styles/paginas/sistema/Sistema.module.css";
 
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, Table } from "react-bootstrap";
 import Archivo from "../otros/Archivo";
 import Titulo from "../otros/Titulo";
 
 export default function Sistema() {
+  let height = 3.8;
+  const selector = useRef();
+  const selectorPos = (t, h) => {
+    //selector.current.style.top = t + 'rem';
+    //selector.current.style.height = height*h + 'rem';
+  };
   return (
     <div>
-      <Titulo text="Sistema" />
-      <div className={styles.div_salir}>
-        <Button>SALIR</Button>
+      <div className="row position-relative">
+        <Titulo text="Sistema" />
+        <div className={styles.div_salir}>
+          <Button>SALIR</Button>
+        </div>
       </div>
       <div className={styles.main}>
         <nav className={styles.nav}>
+          <div className={styles.selector}></div>
           <div className={styles.div_secciones}>
-            <button className={styles.btn_seccion}>Perfil</button>
-            <button className={styles.btn_seccion}>Datos</button>
-            <button className={styles.btn_seccion}>Carnet</button>
-            <button className={styles.btn_seccion}>Subir archivos</button>
-            <button className={styles.btn_seccion}>Descargar archivos</button>
+            <button  className={styles.btn_seccion}>Perfil</button>
+            <button  className={styles.btn_seccion}>Datos</button>
+            <button  className={styles.btn_seccion}>Carnet</button>
+            <button  className={styles.btn_seccion}>Subir archivos</button>
+            <button  className={styles.btn_seccion}>Descargar archivos</button>
           </div>
         </nav>
         <div className={styles.seccion} id="perfil">
           <div className="page-content page-container" id="page-content">
-              <div className="row container d-flex justify-content-center">
-                <div className="col-xl-6 col-md-12">
+              <div className="row d-flex justify-content-center">
+                <div className="col-xl-6 col-md-12 justify-content-center">
                   <div className={`${styles.card} ${styles.user_card_full}`}>
                     <div className={`row ${styles.m_l_0} ${styles.m_r_0}`}>
                       <div
                         className={`col-sm-4 ${styles.user_profile}`}
                       >
                         <div
-                          className={`${styles.card_block} text-center text-white`}
+                          className={`${styles.card_block} text-center`}
                         >
                           <div className={styles.m_b_25}>
                             <img
@@ -42,93 +53,35 @@ export default function Sistema() {
                               alt="User-Profile-Image"
                             />
                           </div>
-                          <h6 className="f-w-600">Nombre Apellido</h6>
-                          <p>HABILITADO</p>
-                          <div className="container text-center">
-                            <h5 className="text-danger">HABILITADO</h5>
-                          </div>
+                          <h6 className="fw-bold fs-5">Nombre Apellido</h6>
                           <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" />
                         </div>
                       </div>
                       <div className="col-sm-8">
                         <div className="card-block">
-                          <h6 className="m-b-20 p-b-5 b-b-default f-w-600">
-                            Información
-                          </h6>
                           <div className="row">
                             <div className="col-sm-6">
-                              <p className="m-b-10 f-w-600">Club</p>
                               <h6 className="text-muted f-w-400">
                                 Club Mendoza de Regatas
                               </h6>
                             </div>
                             <div className="col-sm-6">
-                              <p className="m-b-10 f-w-600">Categoría</p>
-                              <h6 className="text-muted f-w-400">Juveniles</h6>
+                              <h6 className="text-muted f-w-400">Juvenil</h6>
                             </div>
                           </div>
-                          <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
-                            Carnet
-                          </h6>
-                          <div className="row">
-                            <div className="col-sm-6">
-                              <p className="m-b-10 f-w-600">Nro Carnet</p>
-                              <h6 className="text-muted f-w-400">J-025224</h6>
-                            </div>
-                            <div className="col-sm-6">
-                              <p className="m-b-10 f-w-600">Most Viewed</p>
-                              <h6 className="text-muted f-w-400">
-                                Dinoter husainm
+                          <div className="row d-flex justify-content-between">
+                            <div className="col">
+                              <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                                N° Carnet
                               </h6>
                             </div>
+                            <div className="col">
+                              <h6 className="text-muted f-w-400">J-025224</h6>
+                            </div>
                           </div>
-                          <ul className="social-link list-unstyled m-t-40 m-b-10">
-                            <li>
-                              <a
-                                href="#!"
-                                data-toggle="tooltip"
-                                data-placement="bottom"
-                                title
-                                data-original-title="facebook"
-                                data-abc="true"
-                              >
-                                <i
-                                  className="mdi mdi-facebook feather icon-facebook facebook"
-                                  aria-hidden="true"
-                                />
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="#!"
-                                data-toggle="tooltip"
-                                data-placement="bottom"
-                                title
-                                data-original-title="twitter"
-                                data-abc="true"
-                              >
-                                <i
-                                  className="mdi mdi-twitter feather icon-twitter twitter"
-                                  aria-hidden="true"
-                                />
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="#!"
-                                data-toggle="tooltip"
-                                data-placement="bottom"
-                                title
-                                data-original-title="instagram"
-                                data-abc="true"
-                              >
-                                <i
-                                  className="mdi mdi-instagram feather icon-instagram instagram"
-                                  aria-hidden="true"
-                                />
-                              </a>
-                            </li>
-                          </ul>
+                          <div className="container text-center">
+                            <h5 className="fw-bold fs-3">HABILITADO</h5>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -138,14 +91,13 @@ export default function Sistema() {
           </div>
         </div>
         <div className={styles.seccion} id="datos">
-          <h4>datos</h4>
           <h4>Datos del Usuario</h4>
           <div className={styles.seccion_datos}>
             <div className={styles.columna_datos}>
               <>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Apellido</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Apellido"
                     aria-describedby="basic-addon1"
@@ -154,7 +106,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Nombre</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
@@ -163,7 +115,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">DNI</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     id="basic-url"
                     aria-describedby="basic-addon3"
@@ -172,12 +124,12 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Fecha de Nacimiento</InputGroup.Text>
-                  <FormControl type="date" aria-label="Fecha" />
+                  <FormControl className="min-vw-30" type="date" aria-label="Fecha" />
                 </InputGroup>
 
                 <InputGroup>
                   <InputGroup.Text>Sexo</InputGroup.Text>
-                  <Form.Select aria-label="Sexo">
+                  <Form.Select className="min-vw-30" aria-label="Sexo">
                     <option value="masculino">Masculino</option>
                     <option value="femenino">Femenino</option>
                   </Form.Select>
@@ -185,12 +137,12 @@ export default function Sistema() {
                 <hr></hr>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Puesto de Juego</InputGroup.Text>
-                  <FormControl type="date" aria-label="Fecha" />
+                  <FormControl className="min-vw-30" type="date" aria-label="Fecha" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Mano Hábil</InputGroup.Text>
-                  <Form.Select aria-label="Sexo">
+                  <Form.Select className="min-vw-30" aria-label="Sexo">
                     <option value="derecha">Derecha</option>
                     <option value="izquierda">Izquierda</option>
                   </Form.Select>
@@ -201,7 +153,7 @@ export default function Sistema() {
               <>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Provincia</InputGroup.Text>
-                  <Form.Select aria-label="Provincia">
+                  <Form.Select className="min-vw-30" aria-label="Provincia">
                     <option>Seleccionar</option>
                     <option value="1">CABA</option>
                     <option value="2">Buenos Aires</option>
@@ -234,7 +186,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Departamento
                   </InputGroup.Text>
-                  <Form.Select aria-label="Provincia">
+                  <Form.Select className="min-vw-30" aria-label="Provincia">
                     <option>Seleccionar</option>
                     <option value="50007">Capital</option>
                     <option value="50014">General Alvear</option>
@@ -259,12 +211,12 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">Localidad</InputGroup.Text>
-                  <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                  <FormControl className="min-vw-30" id="basic-url" aria-describedby="basic-addon3" />
                 </InputGroup>
 
                 <InputGroup>
                   <InputGroup.Text>Domicilio</InputGroup.Text>
-                  <FormControl aria-label="With textarea" />
+                  <FormControl className="min-vw-30" aria-label="With textarea" />
                 </InputGroup>
               </>
             </div>
@@ -272,7 +224,7 @@ export default function Sistema() {
               <>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Teléfono</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     placeholder=""
                     aria-label="Apellido"
@@ -282,7 +234,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">E-mail</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="mail"
                     placeholder=""
                     aria-label="Nombre"
@@ -292,7 +244,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">Altura</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     id="basic-url"
                     aria-describedby="basic-addon3"
@@ -301,7 +253,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Peso</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     aria-label="Amount (to the nearest dollar)"
                   />
@@ -309,7 +261,7 @@ export default function Sistema() {
 
                 <InputGroup>
                   <InputGroup.Text>Grupo Sanguíneo</InputGroup.Text>
-                  <Form.Select aria-label="Provincia">
+                  <Form.Select className="min-vw-30" aria-label="Provincia">
                     <option>Seleccionar</option>
                     <option value="A Factor RH +">A Factor RH +</option>
                     <option value="A Factor RH -">A Factor RH -</option>
@@ -333,7 +285,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Apellido y Nombre
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Apellido y Nombre del padre"
                     aria-describedby="basic-addon1"
@@ -342,7 +294,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     placeholder=""
                     aria-label="Nombre"
@@ -352,7 +304,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">E-mail</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="e-mail"
                     id="basic-url"
                     aria-describedby="basic-addon3"
@@ -361,7 +313,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Trabajo</InputGroup.Text>
-                  <FormControl aria-label="Trabajo del padre" />
+                  <FormControl className="min-vw-30" aria-label="Trabajo del padre" />
                 </InputGroup>
               </>
             </div>
@@ -372,7 +324,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Apellido y Nombre
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Apellido y Nombre de la madre"
                     aria-describedby="basic-addon1"
@@ -381,7 +333,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Tel/Cel</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     placeholder=""
                     aria-label="Nombre"
@@ -391,7 +343,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">E-mail</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="e-mail"
                     id="basic-url"
                     aria-describedby="basic-addon3"
@@ -400,7 +352,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Trabajo</InputGroup.Text>
-                  <FormControl aria-label="Trabajo de la madre" />
+                  <FormControl className="min-vw-30" aria-label="Trabajo de la madre" />
                 </InputGroup>
               </>
             </div>
@@ -409,28 +361,28 @@ export default function Sistema() {
                 <Form.Label>Urgencias</Form.Label>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Contacto de urgencia</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder="Nombre y Apellido"
                     aria-label="Contacto urgencia"
                   />
                 </InputGroup>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Tel/Cel</InputGroup.Text>
-                  <FormControl type="number" aria-label="Celular" />
+                  <FormControl className="min-vw-30" type="number" aria-label="Celular" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Médico</InputGroup.Text>
-                  <FormControl aria-label="Médico" />
+                  <FormControl className="min-vw-30" aria-label="Médico" />
                   <InputGroup.Text>Tel/Cel</InputGroup.Text>
-                  <FormControl type="number" aria-label="Celular" />
+                  <FormControl className="min-vw-30" type="number" aria-label="Celular" />
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text>Obra Social</InputGroup.Text>
-                  <FormControl aria-label="Obra Social" />
+                  <FormControl className="min-vw-30" aria-label="Obra Social" />
                   <InputGroup.Text>Nro. Carnet</InputGroup.Text>
-                  <FormControl type="number" aria-label="Nro. Carnet" />
+                  <FormControl className="min-vw-30" type="number" aria-label="Nro. Carnet" />
                 </InputGroup>
               </>
             </div>
@@ -443,7 +395,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Institución en la que estudia
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Apellido"
                     aria-describedby="basic-addon1"
@@ -452,7 +404,7 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">Carrera</InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Nombre"
                     aria-describedby="basic-addon2"
@@ -463,7 +415,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon3">
                     Año de cursado
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     id="basic-url"
                     aria-describedby="basic-addon3"
@@ -478,7 +430,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Institución
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     placeholder=""
                     aria-label="Apellido"
                     aria-describedby="basic-addon1"
@@ -489,7 +441,7 @@ export default function Sistema() {
                   <InputGroup.Text id="basic-addon1">
                     Número de Socio
                   </InputGroup.Text>
-                  <FormControl
+                  <FormControl className="min-vw-30"
                     type="number"
                     placeholder=""
                     aria-label="Nombre"
@@ -499,43 +451,78 @@ export default function Sistema() {
 
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon3">Categoría</InputGroup.Text>
-                  <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                  <FormControl className="min-vw-30" id="basic-url" aria-describedby="basic-addon3" />
                 </InputGroup>
               </>
             </div>
           </div>
         </div>
         <div className={styles.seccion} id="carnet">
-          <h4>carnet</h4>
-          <img src="" alt="carnet" />
-          <Archivo />
-          <Archivo />
+          <h4>Carnet</h4>
+          <img src="https://placedog.net/100/60" alt="carnet" />
+          <div className="w-100 d-flex p-3 justify-content-center">
+            <Archivo />
+          </div>
+            
         </div>
         <div className={styles.seccion} id="archivos">
           <h4>Adjuntar archivos</h4>
-          <Form.Group controlId="formFile" className="mb-3">
+          <div>
+            <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>DNI</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control className="w-auto" type="file" />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>Ficha Médica</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control className="w-auto" type="file" />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>Estudio Médico</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control className="w-auto" type="file" />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>Pagos</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control className="w-auto" type="file" />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Autorizacin</Form.Label>
-            <Form.Control type="file" />
+            <Form.Label>Autorización</Form.Label>
+            <Form.Control className="w-auto" type="file" />
           </Form.Group>
-        </div>
-        <div className={styles.seccion} id="fichas">
-          <h3>Fichas</h3>
+          </div>
+          <Button className="mb-2">Subir</Button>
+          <h5>Pagos</h5>
+          <div className="d-inline-flex w-100">
+            <Table>
+              <thead className="bg-gray">
+                <tr>
+                  <th>Cuota</th>
+                  <th>Fecha</th>
+                  <th>Importe</th>
+                  <th>Archivo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="w-auto">1</td>
+                  <td className="w-auto">03-04-2022</td>
+                  <td className="w-auto">1500</td>
+                  <td className="w-auto">archivo.pdf</td>
+                </tr>
+                <tr>
+                  <td className="w-auto">2</td>
+                  <td className="w-auto">03-05-2022</td>
+                  <td className="w-auto">1500</td>
+                  <td className="w-auto">archivo.pdf</td>
+                </tr>
+                <tr>
+                  <td className="w-auto">3</td>
+                  <td className="w-auto">03-06-2022</td>
+                  <td className="w-auto">1500</td>
+                  <td className="w-auto">archivo.pdf</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </div>
       </div>
     </div>

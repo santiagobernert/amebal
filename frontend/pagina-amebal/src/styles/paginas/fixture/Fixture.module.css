@@ -20,7 +20,7 @@
           justify-content: center;
 }
 
-select {
+.select {
   background-color: transparent !important;
   color: #fafafafa !important;
   border: none !important;

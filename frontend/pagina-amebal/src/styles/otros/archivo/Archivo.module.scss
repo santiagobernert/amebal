@@ -1,0 +1,33 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.archivo{
+    width: min-content;
+    padding: .6rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $gris_claro;
+    border: solid $gris 0.5px;
+    border-radius: .6rem;
+    img{
+        padding: 0 1.5rem .2rem;
+    }
+    h4{
+        width: 100%;
+        max-width: 40vw;
+    }
+}
+.descargar{
+    width: 100%;
+    border: none;
+    border-radius: 0 0 .6rem .6rem;
+    background-color: #0d6efd;
+    color: white;
+    height: 2.4rem;
+}
+.descargar :hover{
+    cursor: pointer;
+    background-color: #054ebb;
+}
