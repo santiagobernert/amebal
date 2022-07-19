@@ -13,5 +13,6 @@
 .cont_titulo .titulo {
   font-size: 1.5em;
   font-weight: 700;
+  max-width: 70vw;
 }
 /*# sourceMappingURL=Titulo.module.css.map */

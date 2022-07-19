@@ -1,0 +1,24 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob{
+    @include blob(28vh);
+}
+
+.descripcion{
+    color: $blanco;
+    padding: 0 8vw 6vh;
+    h6{
+        font-weight: 500;
+        font-size: .85em;
+    }
+}
+
+@media(max-width: 768px){
+    .div_clubes{
+        background-color: transparent;
+        img{
+            max-width: 30vw;
+        }
+    }
+}

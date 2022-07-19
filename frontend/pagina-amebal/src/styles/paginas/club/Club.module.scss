@@ -1,22 +1,17 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
 
-.blob {
-  @include blob(0);
-  height: 4rem;
+.blob{
+    @include blob(26vh);
 }
 
-@media (max-width: 768px) {
-  .selects_row {
-    display: inline-flex;
-    max-width: 90vw !important;
+.logo{
+    max-width: 10vw;
     margin-bottom: 1rem;
-    select {
-      width: auto !important;
-      @include select;
-    }
-  }
-  .tabla {
+}
+        
+
+.tabla {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -51,8 +46,23 @@
         }
       }
     }
-    .goles {
-      width: auto !important;
-    }
   }
+
+.cont_partidos{
+width: 100%;
+display: flex;
+flex-direction: column;
+padding-top: 1rem;
+align-items: center;
+justify-content: space-evenly;
+div{
+    max-width: 80vw;
+    h4{
+    padding: 0;
+    color: currentColor;
+    }
+    img{
+    max-width: 4rem;
+    }
+}
 }
