@@ -7,10 +7,10 @@ export default function Articulo({ titulo, img, principal }) {
   const p = principal;
   return (
     <div className={`${styles.articulo} ${p ? styles.principal : ""}`}>
-      <Card className="col">
+      <Card className="col bg-transparent mh-20vh">
         <a href={"noticias/" + titulo.replace(/ /g, "").toLowerCase()}>
           <Card.Img src={img} alt={titulo} />
-          <Card.ImgOverlay>
+          <Card.ImgOverlay className="d-flex align-items-end">
             <Card.Title className={styles.articulo_title}>{titulo}</Card.Title>
           </Card.ImgOverlay>
         </a>

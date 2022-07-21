@@ -14,6 +14,8 @@
   border: none;
   margin: 0;
   padding: 0;
+  -webkit-box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.4);
+          box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.4);
 }
 
 .articulo img {
@@ -25,6 +27,8 @@
 .articulo_title {
   color: #fafafafa;
   text-decoration: none;
+  -ms-flex-negative: 1 !important;
+      flex-shrink: 1 !important;
 }
 
 .principal {
@@ -41,6 +45,10 @@
     max-width: 60vw;
     max-height: 20vh;
     margin-right: 1rem;
+  }
+  .articulo img {
+    width: 60vw;
+    height: 20vh;
   }
 }
 /*# sourceMappingURL=Articulo.module.css.map */

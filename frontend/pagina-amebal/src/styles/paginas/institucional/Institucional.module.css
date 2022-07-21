@@ -1,0 +1,43 @@
+@use "colors.scss";
+.blob {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 27vh;
+  background-color: #30475E;
+  border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
+}
+
+.sector_articulos {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .sector_articulos {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 1rem 0 1rem  2rem;
+  }
+  .sector_articulos div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  h4 {
+    color: #30475E;
+  }
+  .cuerpo {
+    padding: 1rem 1rem;
+    text-align: justify;
+  }
+  .cuerpo p {
+    font-size: .8em;
+  }
+}
+/*# sourceMappingURL=Institucional.module.css.map */

@@ -18,7 +18,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #E5E5E5;
-  border: solid #B3B3B3 0.5px;
+  border: solid hwb(0 70% 30%) 0.5px;
   border-radius: .6rem;
 }
 

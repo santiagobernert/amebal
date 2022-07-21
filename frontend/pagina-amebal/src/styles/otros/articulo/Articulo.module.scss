@@ -3,11 +3,13 @@
 
 .articulo {
   @include card;
+  box-shadow: .3rem .3rem .6rem 0px rgba(0,0,0,0.4);
 }
 
 .articulo_title {
   color: $blanco;
   text-decoration: none;
+  flex-shrink: 1 !important;
 }
 
 .principal {
@@ -23,5 +25,9 @@
     max-width: 60vw;
     max-height: 20vh;
     margin-right: 1rem;
+    img{
+      width: 60vw;
+      height: 20vh;
+    }
   }
 }

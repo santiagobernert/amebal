@@ -1,23 +1,29 @@
 import React from 'react'
 import { Form, Container, Button, FormControl, FormGroup } from 'react-bootstrap'
+import styles from '../../styles/otros/login/Login.module.css'
+
+import logo from "../../imgs/logo-amebal-cd.png";
+
 
 export default function Login() {
   return (
     <div>
-        <Container>
-            <Form>
-                <h3>Log in</h3>
-                <FormGroup>
-                    <Form.Label>Usuario</Form.Label>
-                    <FormControl placeholder="Nombre de usuario..." />
-                </FormGroup>
-                <FormGroup>
-                    <Form.Label>Contraseña</Form.Label>
-                    <input className="form-control" type="password" placeholder="Nombre de usuario..." />
-                </FormGroup>
-                <Button type="submit" variant="primary" >Login</Button>
-            </Form>
-        </Container>
+        <div className={styles.blob}></div>
+        <div className="pt-5">
+            <Container className={styles.login}>
+                <img src={logo} />
+                <h4>Login</h4>
+                <Form>
+                    <FormGroup>
+                        <FormControl placeholder="Usuario" />
+                        <FormControl type="password" placeholder="Contraseña" />
+                        <a href="">Olvidé mi clave</a>
+                    </FormGroup>
+                    <Button type="submit" variant="primary" >Ingresar</Button>
+                </Form>
+            </Container>
+        </div>
+        
     </div>
   )
 }
