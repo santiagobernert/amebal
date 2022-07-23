@@ -31,3 +31,10 @@ a {
   color: rgb(7, 135, 255);
   font-weight: 600;
 }
+
+.bold{
+  font-weight: bold;
+}
+.light{
+  font-weight: lighter;
+}

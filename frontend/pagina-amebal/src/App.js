@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EQUIPOS from "./lists/equipos.js";
 import ARTICULOS from "./lists/articulos.js";
 import NACIONALES from "./lists/nacionales.js";
+import PARTIDOS from "./lists/partidos.js";
 
 import EquiposNav from "./components/otros/EquiposNav";
 import BarraNav from "./components/otros/BarraNav";
@@ -24,6 +25,7 @@ import NuevoArticulo from "./components/paginas/NuevoArticulo";
 import Login from "./components/paginas/Login";
 import Nacional from "./components/otros/Nacional";
 import Sistema from "./components/paginas/Sistema";
+import PagPartido from "./components/paginas/PagPartido";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -63,9 +65,23 @@ function App() {
                   "nacionales/" +
                   item.categoria.toLowerCase() +
                   item.año.toLowerCase() +
-                  item.sede.replace(" ", "").toLowerCase()
+                  item.sede.replace(/ /g, "").toLowerCase()
                 }
                 element={<Nacional id={item.id} />}
+              />
+            ))}
+          {PARTIDOS &&
+            PARTIDOS.map((item) => (
+              <Route
+                key={item.id}
+                path={
+                  "partidos/" +
+                  item.torneo.replace(/ /g, "").toLowerCase() +
+                  item.jornada.replace(/ /g, "").toLowerCase() +
+                  item.categoria.replace(/ /g, "").toLowerCase() +
+                  item.titulo.replace(/ /g, "").toLowerCase()
+                }
+                element={<PagPartido {...item} />}
               />
             ))}
           <Route path="/institucional" element={<Institucional />} />

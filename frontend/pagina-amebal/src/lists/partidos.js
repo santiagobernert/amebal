@@ -2,7 +2,7 @@ import EQUIPOS from "./equipos";
 const PARTIDOS = [
   {
     id: 1,
-    titulo: "CentroSur de Damas Juniors",
+    titulo: "Regatas vs Uncuyo",
     equipo1: EQUIPOS.find((eq) => eq.nombre === "Club Mendoza de Regatas"),
     equipo2: EQUIPOS.find((eq) => eq.nombre === "Universidad Nacional de Cuyo"),
     categoria: "Juvenil Masculino",
@@ -20,7 +20,7 @@ const PARTIDOS = [
   },
   {
     id: 2,
-    titulo: "Competencias de la CAH",
+    titulo: "Regatas vs Uncuyo",
     equipo1: EQUIPOS.find((eq) => eq.nombre === "Club Mendoza de Regatas"),
     equipo2: EQUIPOS.find((eq) => eq.nombre === "Universidad Nacional de Cuyo"),
     categoria: "Juvenil Masculino",
@@ -38,7 +38,7 @@ const PARTIDOS = [
   },
   {
     id: 3,
-    titulo: "Convocados Preseleccion Juveniles",
+    titulo: "Regatas vs Uncuyo",
     equipo1: EQUIPOS.find((eq) => eq.nombre === "Club Mendoza de Regatas"),
     equipo2: EQUIPOS.find((eq) => eq.nombre === "Universidad Nacional de Cuyo"),
     categoria: "Juvenil Masculino",
@@ -56,7 +56,7 @@ const PARTIDOS = [
   },
   {
     id: 4,
-    titulo: "5ta Fecha Apertura",
+    titulo: "Regatas vs Uncuyo",
     equipo1: EQUIPOS.find((eq) => eq.nombre === "Club Mendoza de Regatas"),
     equipo2: EQUIPOS.find((eq) => eq.nombre === "Universidad Nacional de Cuyo"),
     categoria: "Juvenil Masculino",
@@ -74,9 +74,9 @@ const PARTIDOS = [
   },
   {
     id: 5,
-    titulo: "Jugadoras de Maipu en la seleccion",
-    equipo1: "Regatas",
-    equipo2: "",
+    titulo: "Regatas vs Uncuyo",
+    equipo1: EQUIPOS.find((eq) => eq.nombre === "Club Mendoza de Regatas"),
+    equipo2: EQUIPOS.find((eq) => eq.nombre === "Universidad Nacional de Cuyo"),
     categoria: "Juvenil Masculino",
     sede: "Polideportivo Ribosqui",
     fecha: "Domingo 14 de mayo",

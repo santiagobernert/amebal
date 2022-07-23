@@ -33,6 +33,10 @@
   padding: 0;
 }
 
+.partido .fecha a {
+  color: #fafafafa;
+}
+
 .partido .info {
   width: 100%;
   display: -webkit-inline-box;

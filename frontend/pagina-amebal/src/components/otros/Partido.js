@@ -10,23 +10,25 @@ export default function ({ titulo,
   fecha,
   torneo,
   jornada,
-  resultado, }) {
+  resultado }) {
   return (
     <div className={styles.partido}>
       <div className={styles.fecha}>
-        <h4>{jornada}</h4>
+        <a href={`partidos/${torneo.replace(/ /g, "").toLowerCase()}${jornada.replace(/ /g, "").toLowerCase()}`}><h4>{jornada}</h4></a>
       </div>
       <div  className={styles.info}>
-        <img src={equipo1.imagen} alt={equipo1.abv} />
+        <a href={`clubes/${equipo1}`}><img src={equipo1.imagen} alt={equipo1.abv} /></a>
           <div className={styles.detalles}>
             <h6 className={styles.torneo}>{torneo}</h6>
             <h6 className={styles.categoria}>{categoria}</h6>
             <h4 className={styles.resultado}>{resultado.total_str}</h4>
           </div>  
-        <img src={equipo2.imagen} alt={equipo2.abv} />
+        <a href={`clubes/${equipo2}`}><img src={equipo2.imagen} alt={equipo2.abv} /></a>
       </div>
       <div className={styles.titulo}>
-        <h3>{`${equipo1.abv} vs ${equipo2.abv}`}</h3>
+        <a href={`partidos/${torneo.replace(/ /g, "").toLowerCase()}${jornada.replace(/ /g, "").toLowerCase()}${categoria.replace(/ /g, "").toLowerCase()}${titulo.replace(/ /g, "").toLowerCase()}`}>
+          <h3>{`${equipo1.abv} vs ${equipo2.abv}`}</h3>
+        </a>
       </div> 
     </div>
   );

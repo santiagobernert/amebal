@@ -1,0 +1,103 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.div_titulo{
+    padding: calc(.5vh + .5vw) calc(2vh + 2vw);
+    h2{
+        font-weight: bold;
+    }
+}
+.info{
+    padding: calc(.5vh + .5vw) calc(2vh + 2vw);
+    a{
+        background-color: $azul_fondo;
+        color: $blanco;
+        border-radius: .2rem;
+        border: none;
+        padding: .3rem .5rem;
+        margin-right: .6rem;
+        font-style: italic;
+    }
+    .static{
+        display: flex;
+        flex-direction: column;
+        padding: calc(1.5vh + 1.5vw) 0;
+        div{
+            display: inline-flex;
+            h5{
+                margin-right: 1rem;
+                font-size: 1em;
+            }
+        }
+    }
+}
+.resultado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 1rem 2rem;
+    img{
+            max-width: 5rem;
+        }
+    .detalles{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        text-align: center;
+        div{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
+}
+.tabla, .planilla{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+    tr{
+        border: 0.5px solid $gris_claro
+    }
+    td{
+        padding: .7rem .5rem;
+        width: auto !important;
+    }
+}
+.planilla{
+    padding: 1rem 1rem;
+    table{
+        max-width: 100%;
+    }
+    thead{
+        background-color: $gris_claro;
+        color: $negro;
+    }
+    tbody{
+        position: relative;
+        font-size: .7em;
+        border: 0.5px solid $gris_claro;
+        tr{
+            border: none;
+        }
+        td{
+            padding: .4rem .25rem;
+        }
+    }
+    img{
+        margin: 1rem;
+    }
+}
+.planilla tbody ::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 51%;
+    width: 0.1;
+    height: 100%;
+    background: $gris_claro;
+}
