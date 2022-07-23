@@ -3,7 +3,7 @@
   position: absolute;
   z-index: -1;
   width: 100%;
-  height: 13rem;
+  height: 25vh;
   background-color: #30475E;
   border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
 }
@@ -48,40 +48,55 @@
     padding-left: 1rem;
   }
   .search {
-    justify-self: end;
+    -ms-grid-column-align: end;
+        justify-self: end;
     margin-left: auto;
     -webkit-padding-end: 1rem;
             padding-inline-end: 1rem;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
+    display: block;
+    position: relative;
   }
-  .search button {
+  .search .searchbtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    background-color: #30475E;
+    z-index: 10;
+  }
+  .search .searchbtn button {
     border: none;
     width: 30px;
     height: 30px;
     background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png") no-repeat;
     background-size: contain;
   }
-  .search form {
+  .search .searchbar {
+    position: absolute;
+    z-index: 5;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    top: 1%;
+  }
+  .search .searchbar form {
+    visibility: collapse;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
     margin: 0;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
   }
-  .search form input {
-    width: 0% !important;
-    visibility: collapse;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-  }
-  .search form .open {
+  .search .searchbar .open {
+    visibility: visible;
     -ms-flex-pack: distribute;
         justify-content: space-around;
-    width: 75% !important;
-    visibility: visible;
+    top: 100%;
   }
   .sector_articulos,
   .sector_partidos {

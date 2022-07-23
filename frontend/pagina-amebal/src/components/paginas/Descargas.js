@@ -1,15 +1,23 @@
 import React from "react";
 import styles from "../../styles/paginas/descargas/Descargas.module.css";
 import Titulo from "../otros/Titulo";
+import Buscar from "../otros/Buscar";
 import Archivo from "../otros/Archivo";
 import { Form, Col } from "react-bootstrap";
 
 export default function Descargas() {
   return (
     <div>
-      <Titulo text="DESCARGAS" />
+      <div className={styles.blob}></div>
+      <div className="position-relative">
+        <Titulo text="Descargas" />
+        <div className="position-absolute mt-4 top-0 end-0">
+          <Buscar blanco={true}/>
+        </div>
+          
+      </div>
+      
       <div className="container">
-        <h3>Archivos</h3>
         <Col sm={2}>
           <Form.Select aria-label="Default select example">
             <option selected value="liga">

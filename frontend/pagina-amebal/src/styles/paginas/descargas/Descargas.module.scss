@@ -1,0 +1,22 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob{
+    @include blob(28vh);
+}
+
+.seccion_archivos {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
+    height: max-content;
+}
+
+select{
+    @include select;
+    max-width: 40vw;
+}
+  

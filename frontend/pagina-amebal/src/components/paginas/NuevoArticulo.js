@@ -4,18 +4,19 @@ import { Container, InputGroup, FormControl } from 'react-bootstrap'
 export default function NuevoArticulo() {
   return (
     <div>
-        <Container>
-            <InputGroup>
+        <Container className="p-4">
+            <InputGroup className="d-block">
                 <InputGroup.Text>Imagen del articulo</InputGroup.Text>
-                <input type="file" accept="image/*" />
-            </InputGroup>
-            <InputGroup>
+                <input className="mb-3" type="file" accept="image/*" />
+
                 <InputGroup.Text>Titulo del articulo</InputGroup.Text>
-                <FormControl placeholder="Titulo de la Noticia" />
-            </InputGroup>
-            <InputGroup>
+                <FormControl className="mb-3 w-100" placeholder="Titulo" />
+
                 <InputGroup.Text>Cuerpo del articulo</InputGroup.Text>
-                <FormControl placeholder="Cuerpo de la noticia" />
+                <FormControl className="mb-3 w-100" placeholder="Cuerpo" />
+
+                <InputGroup.Text>Cargar desde Word</InputGroup.Text>
+                <input className="mb-3" type="file" />
             </InputGroup>
         </Container>
     </div>
