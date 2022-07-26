@@ -1,0 +1,68 @@
+@use "colors.scss";
+.cont_titulo {
+  padding-left: 1rem;
+}
+
+.eventos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem;
+  width: -webkit-fill-available;
+}
+
+.eventos .evento {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fafafafa;
+  margin: .7rem;
+  border-radius: .5rem;
+}
+
+.eventos .evento * {
+  margin: 0;
+}
+
+.eventos .evento .titulo {
+  font-weight: bold;
+  font-size: 1em;
+  color: #121212;
+  padding: .8rem .8rem .8rem .5rem;
+  width: 100%;
+}
+
+.eventos .evento .tag {
+  color: #30475E;
+  font-size: .6em;
+  max-width: 6rem;
+}
+
+.eventos .evento .type {
+  background-color: #30475E;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0 .5rem .5rem 0;
+  height: 100%;
+}
+
+.eventos .evento .type h5 {
+  text-align: center;
+  font-size: .8em;
+  color: #fafafafa;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: .5rem;
+}
+/*# sourceMappingURL=Eventos.module.css.map */

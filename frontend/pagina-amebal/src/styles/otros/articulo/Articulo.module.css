@@ -44,7 +44,7 @@
   .articulo {
     max-width: 60vw;
     max-height: 20vh;
-    margin-right: 1rem;
+    margin: 1rem;
   }
   .articulo img {
     width: 60vw;

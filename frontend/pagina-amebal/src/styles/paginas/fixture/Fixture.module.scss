@@ -2,7 +2,7 @@
 @import "../../scss/mixins";
 
 .blob {
-  @include blob;
+  @include blob(25vh);
 }
 .main {
   width: 100%;
@@ -32,7 +32,6 @@
   }
   .div_partidos{
   .selects_row {
-    padding-left: 2rem;
     max-width: 90vw !important;
     margin: 0 0 1rem 0;
     * {
@@ -43,7 +42,7 @@
     }
   }
   h4{
-    padding-left: 2.7rem;
+    padding-left: .7rem;
     color: $blanco;
   }
   .cont_partidos{

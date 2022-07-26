@@ -26,6 +26,8 @@ import Login from "./components/paginas/Login";
 import Nacional from "./components/otros/Nacional";
 import Sistema from "./components/paginas/Sistema";
 import PagPartido from "./components/paginas/PagPartido";
+import Noticias from "./components/paginas/Noticias";
+import Eventos from "./components/paginas/Eventos";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -90,6 +92,8 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nuevo-articulo" element={<NuevoArticulo />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/eventos" element={<Eventos />} />
         </Routes>
       </BrowserRouter>
 
