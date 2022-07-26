@@ -1,41 +1,41 @@
-@import '../../scss/colors';
+@import "../../scss/colors";
 
+.box {
+  position: relative;
+  .shadow1 {
+    position: absolute;
+    top: 0;
+    width: 25vw;
+    height: 7vh;
+    z-index: 1;
+    box-shadow: inset 90px 0px 50px -45px $blanco_fondo;
+  }
+  .shadow2 {
+    position: absolute;
+    top: 0;
+    width: 25vw;
+    height: 7vh;
+    z-index: 1;
+    right: 0;
+    box-shadow: inset -90px 0px 50px -45px $blanco_fondo;
+  }
 
-.box{
+  .nav {
     position: relative;
-    .shadow1{
-        position: absolute;
-        top: 0;
-        width: 25vw;
-        height: 7vh;
-        z-index: 1;
-        box-shadow: inset 90px 0px 50px -45px $blanco_fondo;
+    top: 0;
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding-block: 0.8vh;
+    padding-inline: 10vw;
+    align-items: center;
+    justify-content: center;
+    background-color: $blanco_fondo;
+    text-align: center;
+
+    img {
+      max-width: 2rem;
+      margin-inline: 0.4rem;
     }
-    .shadow2{
-        position: relative;
-        top: 0;
-        width: 25vw;
-        height: 7vh;
-        z-index: 1;
-        margin-left: auto;
-        box-shadow: inset -90px 0px 50px -45px $blanco_fondo;
-    }
-    
-    .nav {
-        position: absolute;
-        top: 0;
-        display: inline-flex;
-        width: 100%;
-        overflow-x: scroll;
-        padding-block: 0.8vh;
-        padding-inline: 10vw;
-        align-items: center;
-        background-color: $blanco_fondo;
-        text-align: center;
-    
-        img{
-            max-width: 2rem;
-            margin-inline: .4rem;
-        }
-      }
-    }
+  }
+}
