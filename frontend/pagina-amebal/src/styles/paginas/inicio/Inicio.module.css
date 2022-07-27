@@ -29,6 +29,29 @@
   line-height: 18px;
 }
 
+.equipos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 8rem;
+}
+
+.equipos img {
+  width: 5rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1rem;
+}
+
 .news,
 .matches {
   display: -webkit-inline-box;
@@ -62,20 +85,20 @@
 
 .news .search .searchbtn button,
 .matches .search .searchbtn button {
-  height: 100%;
+  width: 30px;
+  height: 30px;
   border: none;
   background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png") no-repeat;
-}
-
-.partidos {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  background-size: contain;
+  margin-left: 1rem;
 }
 
 @media (max-width: 768px) {
   .cont {
     padding: 3rem 0rem;
+  }
+  .equipos {
+    display: none;
   }
   .news h4,
   .matches h4 {
@@ -146,7 +169,7 @@
   .sector_articulos h4,
   .sector_partidos h4 {
     padding: .5rem 1rem 0 0;
-    text-align: right;
+    text-align: right !important;
   }
   .principal {
     display: none;

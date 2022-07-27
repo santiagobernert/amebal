@@ -17,6 +17,18 @@
     line-height: 18px;
   }
 }
+.equipos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8rem;
+  img{
+    width: 5rem;
+    height: fit-content;
+    margin: 1rem;
+  }
+}
 .news,
 .matches {
   display: inline-flex;
@@ -34,20 +46,24 @@
     }
     .searchbtn{
       button{
-        height: 100%;
+        width: 30px;
+        height: 30px;
         border: none;
         background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png")
         no-repeat;
+        background-size: contain;
+        margin-left: 1rem;
       }
     }
   }
 }
-.partidos{
-  justify-content: space-between;
-}
+
 @media (max-width: 768px) {
   .cont {
     padding: 3rem 0rem;
+  }
+  .equipos{
+    display: none;
   }
   .news,
   .matches {
@@ -103,7 +119,7 @@
     flex-direction: column;
     h4{
       padding: .5rem 1rem 0 0; 
-      text-align: right;
+      text-align: right !important;
     }
   }
   .principal {

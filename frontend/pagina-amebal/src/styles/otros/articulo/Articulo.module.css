@@ -16,6 +16,7 @@
   padding: 0;
   -webkit-box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.4);
           box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0, 0, 0, 0.4);
+  margin: 1rem;
 }
 
 .articulo img {
@@ -44,7 +45,6 @@
   .articulo {
     max-width: 60vw;
     max-height: 20vh;
-    margin: 1rem;
   }
   .articulo img {
     width: 60vw;

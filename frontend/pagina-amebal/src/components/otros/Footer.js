@@ -12,9 +12,26 @@ import twitter from "../../imgs/twitter-logo.png";
 export default function Footer() {
   return (
     <div className={styles.footer}>
-      <div className={styles.brand}>
-        <img className={styles.logo_grande} src={logocd} alt="logo" />
-        <h5>Asociación Mendocina de Balonmano</h5>
+      <div className={styles.nav_links}>
+        <h4>Contacto</h4>
+        <div className={styles.link}>
+          <a href="/">
+            <img className={styles.icon} src={instagram} alt="instagram" />
+            <p>@balonamebal</p>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="/">
+            <img className={styles.icon} src={twitter} alt="twitter" />
+            <p>@Amebal0</p>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="/">
+            <img className={styles.icon} src={facebook} alt="facebook" />
+            <p>Amebalmendoza</p>
+          </a>
+        </div>
       </div>
       <div className={styles.nav_links}>
         <h4>Ubicación</h4>
@@ -24,29 +41,12 @@ export default function Footer() {
             <p>San Juan 816, Capital, Mendoza</p>
           </a>
         </div>
-        <a style={{ marginLeft: "2.3rem" }} href="/contacto">Horarios de atención</a>
+        <a style={{ marginLeft: "2.3rem" }} href="/contacto"><p>Horarios de atención</p></a>
         </div>
-        <div className={styles.nav_links}>
-          <h4>Contacto</h4>
-          <div className={styles.link}>
-            <a href="/">
-              <img className={styles.icon} src={instagram} alt="instagram" />
-              <p>@balonamebal</p>
-            </a>
-          </div>
-          <div className={styles.link}>
-            <a href="/">
-              <img className={styles.icon} src={twitter} alt="twitter" />
-              <p>@Amebal0</p>
-            </a>
-          </div>
-          <div className={styles.link}>
-            <a href="/">
-              <img className={styles.icon} src={facebook} alt="facebook" />
-              <p>Amebalmendoza</p>
-            </a>
-          </div>
-        </div>
+      <div className={styles.brand}>
+        <img className={styles.logo_grande} src={logocd} alt="logo" />
+        <h5>Asociación Mendocina de Balonmano</h5>
+      </div>
         </div>
   );
 }

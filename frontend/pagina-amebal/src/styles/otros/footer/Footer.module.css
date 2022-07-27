@@ -3,11 +3,16 @@
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
   padding: 2.5rem 4rem;
+  margin-top: 2rem;
   position: static;
   bottom: 0;
   background-color: #E5E5E5;
@@ -95,23 +100,39 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 20vh;
     padding: 0.5rem;
+    padding-bottom: 1rem;
     position: relative;
   }
+  .footer h4, .footer p {
+    display: none;
+  }
   .footer .brand {
-    display: inline-block;
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 1rem;
     text-align: center;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
   .footer .brand h5 {
     font-size: 1rem;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
   .footer .brand h6 {
     font-size: .8rem;
@@ -120,12 +141,23 @@
     display: none;
   }
   .nav_links {
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    width: auto;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
+    margin: 0;
   }
   .footer p {
     display: none;

@@ -24,12 +24,12 @@
 .partido .fecha {
   border-radius: 0.5rem 0.5rem 0 0;
   background-color: #555555;
-  color: #fafafafa;
 }
 
 .partido .fecha h4 {
+  color: #fafafafa !important;
   font-size: 1.1em;
-  text-align: center;
+  text-align: center !important;
   padding: 0;
 }
 

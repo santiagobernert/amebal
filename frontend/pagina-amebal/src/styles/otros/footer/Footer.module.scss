@@ -3,9 +3,11 @@
 
 .footer {
     display: inline-flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     width: 100%;
     padding: 2.5rem 4rem;
+    margin-top: 2rem;
     position: static;
     bottom: 0;
     background-color: $gris_claro;
@@ -63,17 +65,26 @@
   
   @media (max-width: 768px) {
     .footer {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: space-evenly;
-        height: 20vh;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      height: 20vh;
       padding: 0.5rem;
+      padding-bottom: 1rem;
       position: relative;
+      h4, p{
+        display: none;
+      }
       .brand{
-        display: inline-block;
+        max-width: fit-content;
+        width: fit-content;
+        margin: 0 1rem;
         text-align: center;
+        flex-shrink: 0;
         h5{
           font-size: 1rem;
+          flex-shrink: 0;
         }
         h6{
           font-size: .8rem;
@@ -84,8 +95,13 @@
       display: none;
     }
     .nav_links {
+      max-width: fit-content;
+      width: auto;
+      flex-shrink: 0;
+      flex-direction: row;
       align-items: center;
       justify-content: space-evenly;
+      margin: 0;
     }
     .footer p {
       display: none;

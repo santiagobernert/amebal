@@ -20,10 +20,10 @@
   .fecha {
     border-radius: 0.5rem 0.5rem 0 0;
     background-color: $gris_oscuro;
-    color: $blanco;
     h4 {
+      color: $blanco !important;
       font-size: 1.1em;
-      text-align: center;
+      text-align: center !important;
       padding: 0;
     }
     a{
