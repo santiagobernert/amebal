@@ -25,7 +25,6 @@
     top: 0;
     display: inline-flex;
     width: 100%;
-    overflow-x: scroll;
     padding-block: 0.8vh;
     padding-inline: 10vw;
     align-items: center;
@@ -37,5 +36,11 @@
       max-width: 2rem;
       margin-inline: 0.4rem;
     }
+  }
+}
+
+@media (max-width: 768px){
+  .nav{
+    overflow-x: scroll;
   }
 }

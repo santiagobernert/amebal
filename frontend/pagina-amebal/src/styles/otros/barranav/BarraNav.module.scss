@@ -23,8 +23,10 @@
       color: inherit !important;
       text-align: left;
       font-size: 20px;
-      margin-block: 0.4rem;
-      padding-inline-start: 2rem !important;
+      padding-inline: 1rem !important;
+    }
+    a:focus{
+      outline: none;
     }
     hr {
       color: inherit;

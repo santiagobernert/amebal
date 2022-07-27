@@ -3,11 +3,18 @@
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  padding: 2.5rem 4rem;
   position: static;
   bottom: 0;
   background-color: #E5E5E5;
+}
+
+.footer h4 {
+  color: #454545;
 }
 
 .brand {
@@ -18,27 +25,69 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 20%;
+  margin-right: 5rem;
+}
+
+.brand h5 {
+  font-size: 1em;
 }
 
 .nav_links {
-  width: 100%;
-  display: inherit;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  justify-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  max-width: 20%;
+  margin-right: 5rem;
 }
 
 .link {
-  display: inherit;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 1rem 0;
+}
+
+.link a {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.link a * {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.link a p {
+  color: #454545;
+  font-weight: 500;
+  margin-bottom: .2rem;
 }
 
 .icon {
   max-width: 1.7rem;
+  margin-right: .5rem;
 }
 
 .logo_grande {
-  max-width: 5rem;
+  max-width: 4rem;
+  margin-right: 1rem;
 }
 
 @media (max-width: 768px) {
