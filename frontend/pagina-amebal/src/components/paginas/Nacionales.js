@@ -12,7 +12,7 @@ export default function Nacionales() {
     <div>
       <Titulo text="Nacionales" />
       <div className={styles.blob}></div>
-      <div className="container inline-flex px-5 justify-content-between align-items-center">
+      <div className="container inline-flex px-4 justify-content-between align-items-center">
         <div className="form-inline w-100 d-inline-flex justify-content-between">
           <form className="form-inline py-1 d-inline-flex">
             <input
@@ -62,10 +62,9 @@ export default function Nacionales() {
                 item.sede.replace(" ", "").toLowerCase()
               }
             >
-              <Button
-                key={item.id}
-                className={styles.btn_nacional}
-              >{`${item.categoria} ${item.año} ${item.sede}`}</Button>
+              <div key={item.id} className={styles.btn_nacional}>
+                <h5>{`${item.categoria} ${item.año} ${item.sede}`}</h5>
+              </div>
             </a>
           ))}
       </div>

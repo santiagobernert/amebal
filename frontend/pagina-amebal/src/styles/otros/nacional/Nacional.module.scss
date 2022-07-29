@@ -1,6 +1,10 @@
 @import "../../scss/colors";
 @import "../../scss/mixins";
 
+.espacio {
+  height: 2rem;
+}
+
 .titulo {
   div {
     padding-top: 3vh;
@@ -18,68 +22,112 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-color: #fff;
+    border-radius: 1rem;
     padding: 1rem 3rem;
+    margin: 1rem;
     h4 {
       margin-bottom: 0.8rem;
     }
     .equipo {
       display: flex;
-      justify-content: space-between;
+      justify-content: start;
+      align-items: center;
+      padding: 1rem;
       h5 {
+        margin: 0;
+        margin-left: 1rem;
         font-size: 1rem;
         font-weight: 400;
+      }
+      .img_puesto {
+        margin-left: auto;
+      }
+    }
+  }
+}
+.mb {
+  display: none;
+}
+
+.transmisiones {
+  position: relative;
+  text-align: center;
+  padding: 1rem 0;
+  .links {
+    display: inline-flex;
+    width: 100%;
+    overflow-x: hidden;
+    iframe {
+      max-width: 700px;
+      max-height: 375px;
+    }
+    .btn_prev,
+    .btn_next {
+      border: none;
+      border-radius: 0.6rem;
+      height: 2em;
+      font-size: 0.75em;
+      line-height: 2em;
+      margin: -1em;
+      position: absolute;
+      width: 2em;
+    }
+    .btn_prev {
+      background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+      left: 5%;
+      top: 50%;
+    }
+    .btn_next {
+      background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+      right: 5%;
+      top: 50%;
+    }
+    a {
+      text-align: center;
+      font-size: 0.5em !important;
+      img {
+        width: 4rem;
+      }
+    }
+    @for $i from 1 through 7 {
+      #link#{$i} {
+        flex-shrink: 0;
+        left: #{($i - 1) * 100%};
+        width: 100%;
       }
     }
   }
 }
 
+.sector_partidos {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  .div_partidos {
+    display: inherit;
+    flex-direction: inherit;
+    text-align: inherit;
+    align-items: center;
+  }
+}
+
+.sector_calendario {
+  div {
+    max-width: 33vw !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .transmisiones {
-    text-align: center;
-    padding: 1rem 0;
-    iframe {
-      display: none;
-    }
-    .links {
-      display: inline-flex;
-      width: 100%;
-      overflow-x: hidden;
-      .btn_prev,
-      .btn_next {
-        height: 2em;
-        font-size: 0.75em;
-        line-height: 2em;
-        margin: -1em;
-        position: absolute;
-        width: 2em;
-      }
-      .btn_prev {
-        background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
-        left: 10%;
-      }
-      .btn_next {
-        background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
-        right: 10%;
-      }
-      a {
-        position: absolute;
-        display: block;
-        flex-shrink: 0;
-        font-size: 0.5em !important;
-        img {
-          width: 4rem;
-        }
-      }
-      @for $i from 1 through 7 {
-        #link#{$i} {
-          left: #{($i - 1) * 100%};
-          width: 100%;
-        }
-      }
-    }
+  .dk {
+    display: none;
+  }
+  .espacio {
+    display: none;
   }
   .sector_partidos {
-    padding: 5rem 2rem 1rem;
+    padding: 3rem 2rem 1rem;
     h3 {
       text-align: center;
     }
@@ -93,6 +141,10 @@
         }
       }
     }
+  }
+  .video {
+    max-width: 80vw;
+    height: auto;
   }
 }
 

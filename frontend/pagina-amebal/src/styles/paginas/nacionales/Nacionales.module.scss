@@ -37,15 +37,19 @@ form {
     margin-top: 1rem;
     margin-bottom: 0.3rem;
     width: 40%;
-    button {
+    div {
+      display: flex;
+      align-items: end;
       width: 100%;
-      height: 20vh;
+      height: 10rem;
       background-color: $oro;
       border: none;
-      border-radius: 0.4rem;
+      border-radius: 0.1rem;
+      color: $blanco;
+      font-weight: 500;
+      padding: 1rem;
     }
-    button:focus,
-    button:active {
+    div:focus {
       background-color: darken($oro, 5%);
       box-shadow: 0 0 0 0.25rem rgba(105, 86, 0, 0.322);
     }
@@ -55,21 +59,14 @@ form {
 @media (max-width: 768px) {
   form {
     width: 55vw;
-    input {
-      width: 90% !important;
-    }
   }
   .sector_nacionales {
     display: flex;
     flex-direction: column-reverse;
     a {
+      width: 100%;
       button {
-        height: 10vh;
-      }
-      button:focus,
-      button:active {
-        background-color: darken($oro, 5%);
-        box-shadow: 0 0 0 0.25rem rgba(105, 86, 0, 0.322);
+        height: 10rem;
       }
     }
   }
