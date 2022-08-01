@@ -2,7 +2,7 @@
 @import "../../scss/mixins";
 
 .blob {
-  @include blob(25vh);
+  @include blob(60vh);
 }
 .headers {
   padding: 3rem 1rem;

@@ -141,6 +141,7 @@
 }
 
 @mixin select {
+  width: auto;
   background-color: transparent !important;
   color: $blanco !important;
   border: none !important;
