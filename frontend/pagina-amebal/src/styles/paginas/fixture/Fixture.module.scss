@@ -8,35 +8,35 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center
+  justify-content: center;
 }
 
 .select {
   @include select;
-  max-width: 8rem
+  max-width: 8rem;
 }
 
-.selects_row{
+.selects_row {
   padding-left: 2.5rem;
   min-width: 90vw;
-  }
+}
 
 .div_calendario {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem 3rem;
+  padding: 7rem 3rem;
   max-width: 40%;
 }
 .div_partidos {
   width: 60%;
   display: block;
   padding: 3rem;
-  .cont_partidos{
+  .cont_partidos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -45,39 +45,39 @@
     max-width: 100%;
     width: 100%;
   }
-  .div_partidos{
+  .div_partidos {
     width: 100%;
-  .selects_row {
-    max-width: 90vw !important;
-    margin: 0 0 1rem 0;
-    * {
-      width: auto !important;
-    }
-    .club_select{
-      max-width: 7rem;
-    }
-  }
-  h4{
-    padding-left: .7rem;
-    color: $blanco;
-  }
-  .cont_partidos{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-    align-items: center;
-    justify-content: space-evenly;
-    div{
-      max-width: 80vw;
-      h4{
-        padding: 0;
-        color: currentColor;
+    .selects_row {
+      max-width: 90vw !important;
+      margin: 0 0 1rem 0;
+      * {
+        width: auto !important;
       }
-      img{
-        max-width: 4rem;
+      .club_select {
+        max-width: 7rem;
       }
     }
+    h4 {
+      padding-left: 0.7rem;
+      color: $blanco;
+    }
+    .cont_partidos {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 1rem;
+      align-items: center;
+      justify-content: space-evenly;
+      div {
+        max-width: 80vw;
+        h4 {
+          padding: 0;
+          color: currentColor;
+        }
+        img {
+          max-width: 4rem;
+        }
+      }
+    }
   }
-}
 }
