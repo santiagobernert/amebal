@@ -29,7 +29,7 @@
     border: none;
     position: absolute;
     left: 26rem;
-    top: 15.25rem;
+    top: 38vh;
     transition: 0.5s ease-out;
   }
 }
@@ -86,8 +86,13 @@
   margin-bottom: 30px;
   .perfil_datos {
     display: flex;
+    flex-direction: row-reverse;
+    flex-shrink: 0;
+    justify-content: space-between;
     width: 100%;
-    justify-content: right;
+    *{
+      flex-shrink: 0;
+    }
   }
 }
 
@@ -110,14 +115,16 @@
 .card_block {
   display: flex;
   align-items: baseline;
-  padding: 1.25rem;
+  padding: 0 1.25rem;
   h6 {
     margin-left: 3rem;
   }
 }
 
-.m_b_25 {
-  margin-bottom: 25px;
+.archivos{
+  display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .img_radius {
@@ -263,6 +270,12 @@ h6 {
         h6 {
           margin: 0;
         }
+        img{
+          margin-bottom: 2rem;
+        }
+      }
+      .perfil_datos{
+        display: block;
       }
     }
     .columna_datos {

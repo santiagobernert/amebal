@@ -38,12 +38,12 @@ export default function Sistema() {
           <div className={styles.seccion} id="perfil">
             <div className="page-content page-container" id="page-content">
               <div className="row d-flex justify-content-center">
-                <div className="justify-content-center">
+                <div className="d-flex justify-content-center">
                   <div className={`${styles.card} ${styles.user_card_full}`}>
                     <div className={`row ${styles.m_l_0} ${styles.m_r_0}`}>
                       <div className={styles.user_profile}>
                         <div className={`${styles.card_block} text-center`}>
-                          <div className={styles.m_b_25}>
+                          <div>
                             <img
                               src="https://img.icons8.com/bubbles/100/000000/user.png"
                               className={styles.img_radius}
@@ -56,27 +56,27 @@ export default function Sistema() {
                       </div>
                       <div>
                         <div className={styles.perfil_datos}>
-                          <div className="row">
-                            <div className="col-sm-6">
+                          <div>
+                            <div>
                               <h6 className="text-muted f-w-400">
                                 Club Mendoza de Regatas
                               </h6>
                             </div>
-                            <div className="col-sm-6">
+                            <div>
                               <h6 className="text-muted f-w-400">Juvenil</h6>
                             </div>
                           </div>
-                          <div className="row d-flex justify-content-between">
-                            <div className="col">
+                          <div>
+                            <div>
                               <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
                                 N° Carnet
                               </h6>
                             </div>
-                            <div className="col">
+                            <div>
                               <h6 className="text-muted f-w-400">J-025224</h6>
                             </div>
                           </div>
-                          <div className="container text-center">
+                          <div className="m-3 text-center">
                             <h5 className="fw-bold fs-3">HABILITADO</h5>
                           </div>
                         </div>
@@ -532,24 +532,24 @@ export default function Sistema() {
           </div>
           <div className={styles.seccion} id="archivos">
             <h4>Adjuntar archivos</h4>
-            <div>
-              <Form.Group controlId="formFile" className="mb-3">
+            <div className={styles.archivos}>
+              <Form.Group controlId="formFile" className="mb-3 me-5">
                 <Form.Label>DNI</Form.Label>
                 <Form.Control className="w-auto" type="file" />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3 me-5">
                 <Form.Label>Ficha Médica</Form.Label>
                 <Form.Control className="w-auto" type="file" />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3 me-5">
                 <Form.Label>Estudio Médico</Form.Label>
                 <Form.Control className="w-auto" type="file" />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3 me-5">
                 <Form.Label>Pagos</Form.Label>
                 <Form.Control className="w-auto" type="file" />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3 me-5">
                 <Form.Label>Autorización</Form.Label>
                 <Form.Control className="w-auto" type="file" />
               </Form.Group>
