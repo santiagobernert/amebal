@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useRef } from "react";
+import { useState } from "react";
 
 import styles from "../../styles/paginas/sistema/Sistema.module.css";
 
@@ -9,12 +9,26 @@ import Archivo from "../otros/Archivo";
 import Titulo from "../otros/Titulo";
 
 export default function Sistema() {
-  let height = 3.8;
-  const selector = useRef();
-  const selectorPos = (t, h) => {
-    //selector.current.style.top = t + 'rem';
-    //selector.current.style.height = height*h + 'rem';
-  };
+  const [left, setLeft] = useState(1);
+  let height;
+  switch (left) {
+    case 1:
+      height = '40vh';
+      break;
+    case 2:
+      height = '270vh';
+      break;
+    case 3:
+      height = '70vh';
+      break;
+    case 4:
+      height = '120vh';
+      break;
+  
+    default:
+      height = '100vh';
+      break;
+  }
   return (
     <div>
       <div className="row position-relative">
@@ -27,15 +41,15 @@ export default function Sistema() {
         <nav className={styles.nav}>
           <div className={styles.selector}></div>
           <div className={styles.div_secciones}>
-            <button className={styles.btn_seccion}>Perfil</button>
-            <button className={styles.btn_seccion}>Datos</button>
-            <button className={styles.btn_seccion}>Carnet</button>
-            <button className={styles.btn_seccion}>Subir archivos</button>
-            <button className={styles.btn_seccion}>Descargar archivos</button>
+            <button onClick={() => setLeft(1)} className={styles.btn_seccion}>Perfil</button>
+            <button onClick={() => setLeft(2)} className={styles.btn_seccion}>Datos</button>
+            <button onClick={() => setLeft(3)} className={styles.btn_seccion}>Carnet</button>
+            <button onClick={() => setLeft(4)} className={styles.btn_seccion}>Subir archivos</button>
+            <button className={styles.btn_seccion}> <a href="/descargas">Descargar archivos</a> </button>
           </div>
         </nav>
-        <div className={styles.secciones}>
-          <div className={styles.seccion} id="perfil">
+        <div className={styles.secciones} style={{height:{height}}}>
+          <div className={styles.seccion} id="s1" style={{left:{left}}}>
             <div className="page-content page-container" id="page-content">
               <div className="row d-flex justify-content-center">
                 <div className="d-flex justify-content-center">
@@ -87,7 +101,7 @@ export default function Sistema() {
               </div>
             </div>
           </div>
-          <div className={styles.seccion} id="datos">
+          <div className={styles.seccion} id="s2" style={{left:{left}}}>
             <h4>Datos del Usuario</h4>
             <div className={styles.seccion_datos}>
               <div className={styles.columna_datos}>
@@ -523,14 +537,14 @@ export default function Sistema() {
               </div>
             </div>
           </div>
-          <div className={styles.seccion} id="carnet">
+          <div className={styles.seccion} id="s3" style={{left:{left}}}>
             <h4>Carnet</h4>
             <img src="https://placedog.net/100/60" alt="carnet" />
             <div className="w-100 d-flex p-3 justify-content-center">
               <Archivo />
             </div>
           </div>
-          <div className={styles.seccion} id="archivos">
+          <div className={styles.seccion} id="s4" style={{left:{left}}}>
             <h4>Adjuntar archivos</h4>
             <div className={styles.archivos}>
               <Form.Group controlId="formFile" className="mb-3 me-5">

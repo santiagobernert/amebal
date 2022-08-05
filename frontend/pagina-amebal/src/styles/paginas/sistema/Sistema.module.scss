@@ -50,11 +50,15 @@
 }
 .secciones {
   display: flex;
+  position: relative;
 }
 .seccion {
+  position: absolute;
+  top: 0;
   width: 100vw;
   flex-shrink: 0;
   padding: 1rem 5rem;
+  transition: all 0.5s ease-out;
 }
 .seccion_datos {
   display: flex;
