@@ -9,24 +9,58 @@ import Archivo from "../otros/Archivo";
 import Titulo from "../otros/Titulo";
 
 export default function Sistema() {
-  const [left, setLeft] = useState(1);
-  let height;
-  switch (left) {
+  const [pos, setPos] = useState(0);
+  let seccionHeight;
+  switch (pos) {
+    case 0:
+      seccionHeight = '40vh';
+      break;
     case 1:
-      height = '40vh';
+      seccionHeight = '270vh';
       break;
     case 2:
-      height = '270vh';
+      seccionHeight = '70vh';
       break;
     case 3:
-      height = '70vh';
-      break;
-    case 4:
-      height = '120vh';
+      seccionHeight = '120vh';
       break;
   
     default:
-      height = '100vh';
+      seccionHeight = '100vh';
+      break;
+  };
+  let right1, right2, right3, right4;
+  switch (pos) {
+    case 0:
+      right1 = '0';
+      right2 = '-100%';
+      right3 = '-200%';
+      right4 = '-300%';
+      break;
+    case 1:
+      right1 = '100%';
+      right2 = '0';
+      right3 = '-100%';
+      right4 = '-200%';
+      break;
+    case 2:
+      right1 = '200%';
+      right2 = '100%';
+      right3 = '0';
+      right4 = '-100%';
+      break;
+    case 3:
+      right1 = '300%';
+      right2 = '200%';
+      right3 = '100%';
+      right4 = '0';
+      break;
+  
+    default:
+      right1 = '0';
+      right2 = '-100%';
+      right3 = '-200%';
+      right4 = '-300%';
       break;
   }
   return (
@@ -41,15 +75,15 @@ export default function Sistema() {
         <nav className={styles.nav}>
           <div className={styles.selector}></div>
           <div className={styles.div_secciones}>
-            <button onClick={() => setLeft(1)} className={styles.btn_seccion}>Perfil</button>
-            <button onClick={() => setLeft(2)} className={styles.btn_seccion}>Datos</button>
-            <button onClick={() => setLeft(3)} className={styles.btn_seccion}>Carnet</button>
-            <button onClick={() => setLeft(4)} className={styles.btn_seccion}>Subir archivos</button>
+            <button onClick={() => setPos(0)} className={styles.btn_seccion}>Perfil</button>
+            <button onClick={() => setPos(1)} className={styles.btn_seccion}>Datos</button>
+            <button onClick={() => setPos(2)} className={styles.btn_seccion}>Carnet</button>
+            <button onClick={() => setPos(3)} className={styles.btn_seccion}>Subir archivos</button>
             <button className={styles.btn_seccion}> <a href="/descargas">Descargar archivos</a> </button>
           </div>
         </nav>
-        <div className={styles.secciones} style={{height:{height}}}>
-          <div className={styles.seccion} id="s1" style={{left:{left}}}>
+        <div className={styles.secciones} style={{height: seccionHeight}}>
+          <div className={styles.seccion} id="s1" style={{right:right1}}>
             <div className="page-content page-container" id="page-content">
               <div className="row d-flex justify-content-center">
                 <div className="d-flex justify-content-center">
@@ -101,7 +135,7 @@ export default function Sistema() {
               </div>
             </div>
           </div>
-          <div className={styles.seccion} id="s2" style={{left:{left}}}>
+          <div className={styles.seccion} id="s2" style={{right:right2}}>
             <h4>Datos del Usuario</h4>
             <div className={styles.seccion_datos}>
               <div className={styles.columna_datos}>
@@ -537,14 +571,14 @@ export default function Sistema() {
               </div>
             </div>
           </div>
-          <div className={styles.seccion} id="s3" style={{left:{left}}}>
+          <div className={styles.seccion} id="s3" style={{right:right3}}>
             <h4>Carnet</h4>
             <img src="https://placedog.net/100/60" alt="carnet" />
             <div className="w-100 d-flex p-3 justify-content-center">
               <Archivo />
             </div>
           </div>
-          <div className={styles.seccion} id="s4" style={{left:{left}}}>
+          <div className={styles.seccion} id="s4" style={{right:right4}}>
             <h4>Adjuntar archivos</h4>
             <div className={styles.archivos}>
               <Form.Group controlId="formFile" className="mb-3 me-5">
