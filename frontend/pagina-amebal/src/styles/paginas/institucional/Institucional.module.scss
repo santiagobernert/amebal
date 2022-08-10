@@ -11,6 +11,7 @@
 
 @media(max-width:768px){
     .sector_articulos{
+        justify-content: start;
         @include scroller;
         padding: 1rem 0 1rem  2rem;
     }

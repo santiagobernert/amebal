@@ -10,7 +10,7 @@ export default function Institucional() {
     <div>
       <Titulo text="Institucional" />
       <div className={styles.blob}></div>
-      <div className={`container ${styles.sector_articulos}`}>
+      <div className={`container-fluid justify-content-center ${styles.sector_articulos}`}>
         <Row className="justify-content-md-center">
             <Articulo
               titulo="Escuela de Entrenadores"

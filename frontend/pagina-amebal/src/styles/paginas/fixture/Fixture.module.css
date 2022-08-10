@@ -21,32 +21,62 @@
 }
 
 .select {
+  width: auto;
   background-color: transparent !important;
   color: #fafafafa !important;
   border: none !important;
   background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><path fill=%27none%27 stroke=%27%23fefefe%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></svg>") !important;
   font-weight: 500 !important;
+  max-width: 8rem;
+}
+
+.selects_row {
+  padding-left: 2.5rem;
+  min-width: 90vw;
 }
 
 .div_calendario {
-  max-width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 7rem 3rem;
+  max-width: 40%;
 }
 
 .div_partidos {
+  width: 60%;
   display: block;
-  padding: 1rem 0;
+  padding: 3rem;
+}
+
+.div_partidos .cont_partidos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (max-width: 768px) {
   .div_calendario {
+    padding: 1rem 2rem;
     max-width: 100%;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+  }
+  .div_partidos {
+    width: 100%;
   }
   .div_partidos .selects_row {
     max-width: 90vw !important;
@@ -59,7 +89,7 @@
     max-width: 7rem;
   }
   .div_partidos h4 {
-    padding-left: .7rem;
+    padding-left: 0.7rem;
     color: #fafafafa;
   }
   .div_partidos .cont_partidos {

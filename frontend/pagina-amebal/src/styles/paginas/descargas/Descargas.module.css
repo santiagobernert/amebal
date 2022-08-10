@@ -28,6 +28,7 @@
 }
 
 select {
+  width: auto;
   background-color: transparent !important;
   color: #fafafafa !important;
   border: none !important;

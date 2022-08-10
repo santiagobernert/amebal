@@ -5,14 +5,20 @@
     @include blob(28vh);
 }
 
-.descripcion{
+.descripcion {
     color: $blanco;
     padding: 0 8vw 6vh;
-    h6{
-        font-weight: 500;
-        font-size: .85em;
+    max-width: 50rem;
+    h6 {
+      font-weight: 500;
+      font-size: 0.85em;
     }
-}
+  }
+  
+  .div_clubes {
+    justify-content: center;
+    padding: 1rem 3rem;
+  }
 
 @media(max-width: 768px){
     .div_clubes{

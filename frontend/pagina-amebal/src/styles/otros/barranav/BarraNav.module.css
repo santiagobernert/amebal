@@ -6,14 +6,14 @@
   width: 100%;
   background-color: #30475E;
   color: #fafafafa;
-  padding: 1rem 1.5rem;
+  padding: .5rem 1.5rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
 .barranav img {
-  width: 5rem;
+  width: 3rem;
 }
 
 .barranav button {

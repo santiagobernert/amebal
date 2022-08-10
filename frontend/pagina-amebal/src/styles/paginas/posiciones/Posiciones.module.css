@@ -3,10 +3,23 @@
   position: absolute;
   z-index: -1;
   width: 100%;
-  height: 0;
+  height: 30vh;
   background-color: #30475E;
   border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
   height: 4rem;
+}
+
+.selects_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+}
+
+.selects_row select {
+  width: auto !important;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -19,6 +32,7 @@
   }
   .selects_row select {
     width: auto !important;
+    width: auto;
     background-color: transparent !important;
     color: #fafafafa !important;
     border: none !important;
