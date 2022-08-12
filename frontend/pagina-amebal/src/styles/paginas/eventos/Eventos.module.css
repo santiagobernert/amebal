@@ -3,14 +3,25 @@
   padding-left: 1rem;
 }
 
+.principal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .eventos {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 1rem;
-  width: -webkit-fill-available;
+  padding: 3rem;
+  width: 50vw;
 }
 
 .eventos .evento {
@@ -30,6 +41,7 @@
 }
 
 .eventos .evento .titulo {
+  width: 90%;
   font-weight: bold;
   font-size: 1em;
   color: #121212;
@@ -64,5 +76,21 @@
           writing-mode: vertical-rl;
   text-orientation: mixed;
   padding: .5rem;
+}
+
+.div_calendario {
+  max-width: 40vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .eventos {
+    width: 100%;
+  }
+  .div_calendario {
+    max-width: 80vw;
+  }
 }
 /*# sourceMappingURL=Eventos.module.css.map */

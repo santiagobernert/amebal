@@ -1,6 +1,6 @@
 @use "colors.scss";
 .div_titulo {
-  padding: calc(.5vh + .5vw) calc(2vh + 2vw);
+  padding: calc(0.5vh + 0.5vw) calc(2vh + 2vw);
 }
 
 .div_titulo h2 {
@@ -8,27 +8,23 @@
 }
 
 .info {
-  padding: calc(.5vh + .5vw) calc(2vh + 2vw);
+  padding: calc(0.5vh + 0.5vw) calc(2vh + 2vw);
 }
 
 .info a {
   background-color: #30475E;
   color: #fafafafa;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   border: none;
-  padding: .3rem .5rem;
-  margin-right: .6rem;
-  font-style: italic;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.6rem;
+  font-style: bold;
 }
 
 .info .static {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   padding: calc(1.5vh + 1.5vw) 0;
 }
 
@@ -58,7 +54,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 1rem 2rem;
+  padding: 2rem 10rem;
 }
 
 .resultado img {
@@ -91,7 +87,8 @@
           justify-content: space-evenly;
 }
 
-.tabla, .planilla {
+.tabla,
+.planilla {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,12 +101,20 @@
   padding: 1rem 0;
 }
 
-.tabla tr, .planilla tr {
+.tabla table,
+.planilla table {
+  width: 100%;
+  max-width: 65vw;
+}
+
+.tabla tr,
+.planilla tr {
   border: 0.5px solid #E5E5E5;
 }
 
-.tabla td, .planilla td {
-  padding: .7rem .5rem;
+.tabla td,
+.planilla td {
+  padding: 0.7rem 0.5rem;
   width: auto !important;
 }
 
@@ -126,9 +131,13 @@
   color: #121212;
 }
 
+.planilla thead td {
+  text-align: center;
+}
+
 .planilla tbody {
   position: relative;
-  font-size: .7em;
+  font-size: 0.7em;
   border: 0.5px solid #E5E5E5;
 }
 
@@ -137,7 +146,7 @@
 }
 
 .planilla tbody td {
-  padding: .4rem .25rem;
+  padding: 0.4rem 0.25rem;
 }
 
 .planilla img {
@@ -152,5 +161,20 @@
   width: 0.1;
   height: 100%;
   background: #E5E5E5;
+}
+
+@media (max-width: 768px) {
+  .tabla table {
+    max-width: 80vw;
+  }
+  .static {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .resultado {
+    padding: 1rem 2rem;
+  }
 }
 /*# sourceMappingURL=PagPartido.module.css.map */

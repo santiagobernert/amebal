@@ -22,6 +22,25 @@
   margin: 0;
 }
 
+.tabla {
+  border: none !important;
+  border-width: 0 0 !important;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+          box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+  background-color: #fafafafa;
+  color: #121212;
+}
+
+.tabla td {
+  width: 100% !important;
+}
+
+.tabla td,
+.tabla th {
+  border-width: 0 0;
+}
+
 @media (max-width: 768px) {
   .selects_row {
     display: -webkit-inline-box;

@@ -8,9 +8,28 @@
   border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
 }
 
+.mobile {
+  display: none;
+}
+
+.ubicacion {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .logo {
-  max-width: 10vw;
+  max-width: 3rem;
   margin-bottom: 1rem;
+}
+
+.redes {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 2rem;
 }
 
 .tabla {
@@ -28,7 +47,7 @@
           justify-content: space-evenly;
   width: 100%;
   max-width: 100%;
-  overflow: scroll;
+  overflow: hidden;
   border: none !important;
   border-radius: 0.5rem;
   -webkit-box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
@@ -91,5 +110,21 @@
 
 .cont_partidos div img {
   max-width: 4rem;
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .redes {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=Club.module.css.map */

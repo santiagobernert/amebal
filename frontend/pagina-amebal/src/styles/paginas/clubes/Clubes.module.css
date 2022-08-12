@@ -11,11 +11,19 @@
 .descripcion {
   color: #fafafafa;
   padding: 0 8vw 6vh;
+  max-width: 50rem;
 }
 
 .descripcion h6 {
   font-weight: 500;
-  font-size: .85em;
+  font-size: 0.85em;
+}
+
+.div_clubes {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1rem 3rem;
 }
 
 @media (max-width: 768px) {
