@@ -4,10 +4,18 @@ import { Card } from "react-bootstrap";
 export default function ClubCard({ img, titulo }) {
   return (
     <div>
-      <Card>
-        <a href={"clubes/" + titulo.replace(/ /g, "").toLowerCase()}>
-          <Card.Img src={img} alt={titulo} style={{ width: "15rem" }} />
-          <Card.Title>{titulo}</Card.Title>
+      <Card className="bg-transparent border-0 text-center m-5">
+        <a
+          className="text-dark"
+          href={"clubes/" + titulo.replace(/ /g, "").toLowerCase()}
+        >
+          <Card.Img
+            className="max-vw-30"
+            src={img}
+            alt={titulo}
+            style={{ width: "10rem" }}
+          />
+          <Card.Title className="h6">{titulo}</Card.Title>
         </a>
       </Card>
     </div>

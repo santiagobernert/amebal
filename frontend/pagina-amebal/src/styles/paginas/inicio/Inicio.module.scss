@@ -1,0 +1,133 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob {
+  @include blob(60vh);
+}
+.headers {
+  padding: 3rem 1rem;
+  h1 {
+    @include titulo-mobile;
+  }
+  h5 {
+    background-color: $azul-fondo;
+    color: $blanco;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+.equipos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8rem;
+  img{
+    width: 5rem;
+    height: fit-content;
+    margin: 1rem;
+  }
+}
+.news,
+.matches {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 0 0 0;
+  .search{  
+    display: inline-flex;
+    padding-right: 1rem;
+    .searchbar{
+      width: 20vw;
+      form, input{
+        width: 100% !important;
+      }
+    }
+    .searchbtn{
+      button{
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: url("https://pngroyale.com/wp-content/uploads/2022/02/search-very-basic-icon-ios-iconset-icons-.png")
+        no-repeat;
+        background-size: contain;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cont {
+    padding: 3rem 0rem;
+  }
+  .equipos{
+    display: none;
+  }
+  .news,
+  .matches {
+    h4 {
+      display: block;
+      margin: 0;
+      padding-left: 1rem;
+    }
+  }
+  .search {
+    justify-self: end;
+    margin-left: auto;
+    padding-inline-end: 1rem;
+    display: block;
+    position: relative;
+    .searchbtn{
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      z-index: 10;
+      button {
+        border: none;
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+      }
+    }
+    .searchbar{
+      position: absolute;
+      z-index: 5;
+      transition: all 0.5s ease;
+      top: 1% ;
+      form {
+        visibility: collapse;
+        justify-content: flex-end;
+        margin: 0;
+      }
+      .open {
+        visibility: visible;
+        justify-content: space-around;
+        top: 100% ;
+      }
+    }
+  }
+  .sector_articulos,
+  .sector_partidos {
+    display: flex;
+    flex-direction: column;
+    h4{
+      padding: .5rem 1rem 0 0; 
+      text-align: right !important;
+    }
+  }
+  .principal {
+    display: none;
+  }
+  .articulos,
+  .partidos {
+    @include scroller ;
+    padding-left: 1rem;
+  }
+}

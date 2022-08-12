@@ -1,31 +1,35 @@
 import React from "react";
 
-import styles from "../../styles/Partido.module.css";
+import styles from "../../styles/otros/partido/Partido.module.css";
 
-export default function ({ equipo1, equipo2 }) {
+export default function ({ titulo,
+  equipo1,
+  equipo2,
+  categoria,
+  sede,
+  fecha,
+  torneo,
+  jornada,
+  resultado }) {
   return (
     <div className={styles.partido}>
+      <div className={styles.fecha}>
+        <a href={`partidos/${torneo.replace(/ /g, "").toLowerCase()}${jornada.replace(/ /g, "").toLowerCase()}`}><h4>{jornada}</h4></a>
+      </div>
+      <div  className={styles.info}>
+        <a href={`clubes/${equipo1}`}><img src={equipo1.imagen} alt={equipo1.abv} /></a>
+          <div className={styles.detalles}>
+            <h6 className={styles.torneo}>{torneo}</h6>
+            <h6 className={styles.categoria}>{categoria}</h6>
+            <h4 className={styles.resultado}>{resultado.total_str}</h4>
+          </div>  
+        <a href={`clubes/${equipo2}`}><img src={equipo2.imagen} alt={equipo2.abv} /></a>
+      </div>
       <div className={styles.titulo}>
-        <h4>{`${equipo1.nombre} vs ${equipo2.nombre}`}</h4>
-      </div>
-        <div className={styles.detalles}>
-          <h6>Fecha 1</h6>
-          <h6>18 de Marzo 2022</h6>
-          <h6>Polideportivo JD Ribosqui</h6>
-        </div>
-      <div className={styles.info}>
-        <div className={styles.equipo}>
-          <h4>{equipo1.abv}</h4>
-          <img src={equipo1.imagen} alt={equipo1.abv} />
-        </div>
-        <div className={styles.resultado}>
-          <h4>38 - 37</h4>
-        </div>
-        <div className={styles.equipo}>
-          <h4>{equipo2.abv}</h4>
-          <img src={equipo2.imagen} alt={equipo2.abv} />
-        </div>
-      </div>
+        <a href={`partidos/${torneo.replace(/ /g, "").toLowerCase()}${jornada.replace(/ /g, "").toLowerCase()}${categoria.replace(/ /g, "").toLowerCase()}${titulo.replace(/ /g, "").toLowerCase()}`}>
+          <h3>{`${equipo1.abv} vs ${equipo2.abv}`}</h3>
+        </a>
+      </div> 
     </div>
   );
 }

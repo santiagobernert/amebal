@@ -1,7 +1,5 @@
-@use postcss-preset-env;
-
 @import url(https://weloveiconfonts.com/api/?family=fontawesome);
-
+@use "colors.scss";
 *[class*="fontawesome_"]:before {
   font-family: "FontAwesome", sans-serif;
 }
@@ -9,6 +7,7 @@
 body {
   background: #f9f9f9;
   color: #0e171c;
+  display: -ms-grid;
   display: grid;
   font: 300 100%/1.5em "Lato", sans-serif;
   margin: 0;
@@ -38,7 +37,7 @@ table {
 }
 
 .container {
-  width: 510px;
+  width: auto;
 }
 
 .calendar {
@@ -63,7 +62,7 @@ table {
 }
 
 .calendar tbody td:hover {
-  border: 2px solid #00addf;
+  border: 2px solid #30475E;
 }
 
 .calendar td {
@@ -88,7 +87,8 @@ table {
 
 .current_day {
   background: #00addf;
-  color: #f9f9f9;
+  color: #30475E;
+  font-weight: 750;
 }
 
 .event {
@@ -97,7 +97,7 @@ table {
 }
 
 .event:after {
-  background: #00addf;
+  background: #30475ed9;
   border-radius: 50%;
   bottom: 0.5em;
   display: block;
@@ -110,14 +110,11 @@ table {
 }
 
 .event.current_day:after {
-  background: #f9f9f9;
+  background: #30475ed9;
 }
 
 .btn_prev,
 .btn_next {
-  border: 2px solid #cbd1d2;
-  border-radius: 50%;
-  color: #cbd1d2;
   height: 2em;
   font-size: 0.75em;
   line-height: 2em;
@@ -125,6 +122,14 @@ table {
   position: absolute;
   top: 50%;
   width: 2em;
+}
+
+.btn_prev {
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(90), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
+}
+
+.btn_next {
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><g transform-origin=%27center center%27 transform=%27rotate(270), scale(0.7)%27 ><path fill=%27none%27 stroke=%27%23888888%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></g></svg>");
 }
 
 .btn_prev:hover,
@@ -140,3 +145,60 @@ table {
 .btn_next {
   right: 6em;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+  }
+  .calendar {
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header h2 {
+    color: #30475E;
+    font-size: 1em;
+  }
+}
+
+table {
+  max-width: 80vw;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+table thead {
+  background-color: #30475E;
+  color: #fafafafa;
+}
+
+table tr {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+table td {
+  width: 2.5em !important;
+  height: auto !important;
+  line-height: 1em !important;
+}
+
+table .event:after {
+  bottom: -0.2em;
+}
+/*# sourceMappingURL=Calendario.module.css.map */

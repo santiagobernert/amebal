@@ -1,0 +1,33 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.articulo {
+  @include card;
+  box-shadow: .3rem .3rem .6rem 0px rgba(0,0,0,0.4);
+  margin: 1rem;
+}
+
+.articulo_title {
+  color: $blanco;
+  text-decoration: none;
+  flex-shrink: 1 !important;
+}
+
+.principal {
+  font-size: 3em;
+  margin-right: 1rem;
+}
+.principal img {
+  width: 20rem;
+}
+
+@media (max-width: 768px) {
+  .articulo {
+    max-width: 60vw;
+    max-height: 20vh;
+    img{
+      width: 60vw;
+      height: 20vh;
+    }
+  }
+}

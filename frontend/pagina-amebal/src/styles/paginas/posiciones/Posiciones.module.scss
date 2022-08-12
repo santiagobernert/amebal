@@ -1,0 +1,85 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob {
+  @include blob(30vh);
+  height: 4rem;
+}
+
+.selects_row{
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  select{
+    width: auto !important;
+    margin: 0;
+  }
+}
+
+.tabla {
+  border: none !important;
+  border-width: 0 0 !important;
+  border-radius: 0.5rem;
+  box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+  background-color: $blanco;
+  color: $negro;
+
+  td {
+    width: 100% !important;
+  }
+  td,
+  th {
+    border-width: 0 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .selects_row {
+    display: inline-flex;
+    max-width: 90vw !important;
+    margin-bottom: 1rem;
+    select {
+      width: auto !important;
+      @include select;
+    }
+  }
+  .tabla {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 100%;
+    overflow: scroll;
+    border: none !important;
+    border-radius: 0.5rem;
+    box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+    background-color: $blanco;
+    color: $negro;
+    * {
+      border-width: 0 !important;
+    }
+    thead {
+      display: table;
+      background-color: $azul_fondo;
+      color: $blanco;
+      th {
+        width: 3.1rem;
+        text-align: center;
+      }
+    }
+    tbody {
+      tr {
+        width: auto;
+        td {
+          padding: 0.8rem 0.5rem;
+          width: 3.1rem !important;
+          text-align: center;
+        }
+      }
+    }
+    .goles {
+      width: auto !important;
+    }
+  }
+}

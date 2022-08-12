@@ -1,31 +1,189 @@
+@use "colors.scss";
 .barranav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   width: 100%;
-  background-color: white;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 0.8rem;
-  padding-right: 1rem;
-}
-.nav_options {
-  display: flex;
-  justify-content: right;
-  flex-wrap: wrap;
-  flex-direction: row;
+  background-color: #30475E;
+  color: #fafafafa;
+  padding: .5rem 1.5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-@media (max-width: 600px) {
+.barranav img {
+  width: 3rem;
+}
+
+.barranav button {
+  display: none;
+}
+
+.barranav .nav_options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-self: end;
+  background-color: inherit;
+}
+
+.barranav .nav_options a {
+  color: inherit !important;
+  text-align: left;
+  font-size: 20px;
+  padding-inline: 1rem !important;
+}
+
+.barranav .nav_options a:focus {
+  outline: none;
+}
+
+.barranav .nav_options hr {
+  color: inherit;
+  width: 90%;
+  margin: auto;
+}
+
+@media (min-width: 1200px) {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+@media (max-width: 1200px) {
   .barranav {
-    position: sticky;
-    z-index: 10;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .barranav img {
+    width: 3rem;
+  }
+  .barranav .menu_btn {
+    position: relative;
+    display: inline-block;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  .barranav .menu_btn .menu_btn_line1 {
+    width: 45px;
+    height: 5px;
+    background: #fafafafa;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+            box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    border: none;
+  }
+  .barranav .menu_btn .menu_btn_line2 {
+    width: 45px;
+    height: 5px;
+    background: #fafafafa;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+            box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    border: none;
+  }
+  .barranav .menu_btn .menu_btn_line3 {
+    width: 45px;
+    height: 5px;
+    background: #fafafafa;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+            box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    border: none;
+  }
+  .barranav .menu_btn .menu_btn_line1,
+  .barranav .menu_btn .menu_btn_line3 {
+    content: "";
+    display: inline-block;
+    width: 45px;
+    height: 5px;
+    background: #fafafafa;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+            box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+    -webkit-transition: all 0.5 ease-in-out;
+    transition: all 0.5 ease-in-out;
+  }
+  .barranav .menu_btn .menu_btn_line1 {
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+  }
+  .barranav .menu_btn .menu_btn_line3 {
+    -webkit-transform: translateY(-4px);
+            transform: translateY(-4px);
+  }
+  .barranav .menu_btn._open .menu_btn_line2 {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+    background: transparent;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .barranav .menu_btn._open .menu_btn_line1 {
+    -webkit-transform: rotate(45deg) translate(20px) translateX(-10px);
+            transform: rotate(45deg) translate(20px) translateX(-10px);
+  }
+  .barranav .menu_btn._open .menu_btn_line3 {
+    -webkit-transform: rotate(-45deg) translate(20px) translateY(-10px);
+            transform: rotate(-45deg) translate(20px) translateY(-10px);
+  }
+  .navs {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 10vh;
+    display: block;
+    background-color: #30475E;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+  }
+  .collapse {
+    left: 100%;
+  }
+  .show {
+    left: 0;
   }
   .nav_options {
-    background-color: rgb(250, 250, 250);
-    justify-content: center;
+    background-color: #fafafa;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     padding-bottom: 0.5rem;
     border-bottom: solid 1px grey;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
   }
   .nav_options > * {
     color: dodgerblue !important;
     margin-inline: 0.9rem;
   }
 }
+/*# sourceMappingURL=BarraNav.module.css.map */

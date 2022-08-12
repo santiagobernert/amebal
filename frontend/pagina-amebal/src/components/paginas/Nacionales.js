@@ -1,24 +1,28 @@
 import React from "react";
-import styles from "../../styles/Nacionales.module.css";
+import styles from "../../styles/paginas/nacionales/Nacionales.module.css";
 
 import NACIONALES from "../../lists/nacionales.js";
 
 import Titulo from "../otros/Titulo";
+import Buscar from "../otros/Buscar";
 import { Dropdown, Form, Button } from "react-bootstrap";
 
 export default function Nacionales() {
   return (
     <div>
-      <Titulo text="NACIONALES" />
-      <div className="container inline-flex">
-        <form className="form-inline mb-3 d-inline-flex">
-          <input
-            className="form-control form-control-sm ml-3 w-75"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <Dropdown>
+      <Titulo text="Nacionales" />
+      <div className={styles.blob}></div>
+      <div className="container inline-flex px-4 justify-content-between align-items-center">
+        <div className="form-inline w-100 d-inline-flex justify-content-between">
+          <form className="form-inline py-1 d-inline-flex">
+            <input
+              className="form-control form-control-sm ml-3"
+              type="text"
+              placeholder="Buscar"
+              aria-label="Search"
+            />
+          </form>
+          <Dropdown className={styles.dropdown}>
             <Dropdown.Toggle>Año</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="">
@@ -44,10 +48,7 @@ export default function Nacionales() {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </form>
+        </div>
       </div>
       <div className={styles.sector_nacionales}>
         {NACIONALES &&
@@ -58,13 +59,12 @@ export default function Nacionales() {
                 "nacionales/" +
                 item.categoria.toLowerCase() +
                 item.año.toLowerCase() +
-                item.sede.toLowerCase()
+                item.sede.replace(" ", "").toLowerCase()
               }
             >
-              <Button
-                key={item.id}
-                className={styles.btn_nacional}
-              >{`${item.categoria} ${item.año} ${item.sede}`}</Button>
+              <div key={item.id} className={styles.btn_nacional}>
+                <h5>{`${item.categoria} ${item.año} ${item.sede}`}</h5>
+              </div>
             </a>
           ))}
       </div>

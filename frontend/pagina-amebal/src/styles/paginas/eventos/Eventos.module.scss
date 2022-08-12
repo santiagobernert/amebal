@@ -1,0 +1,70 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.cont_titulo{
+    padding-left: 1rem;
+}
+
+.principal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.eventos{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem;
+    width: 50vw;
+    .evento{
+        display: flex;
+        align-items: center;
+        background-color: $blanco;
+        margin: .7rem;
+        border-radius: .5rem;
+        *{
+            margin: 0;
+        }
+        .titulo{
+            width: 90%;
+            font-weight: bold;
+            font-size: 1em;
+            color: $negro;
+            padding: .8rem .8rem .8rem .5rem;
+            width: 100%;
+        }
+        .tag{
+            color: $azul_fondo;
+            font-size: .6em;
+            max-width: 6rem;
+        }
+        .type{
+            background-color: $azul_fondo;
+            display: flex;
+            justify-content: center;
+            border-radius: 0 .5rem .5rem 0;
+            height: 100%;
+            h5{
+                text-align: center;
+                font-size: .8em;
+                color: $blanco;
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                padding: .5rem;
+            }
+        }
+    }
+}
+.div_calendario{
+    max-width: 40vw;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+    .eventos{
+        width: 100%;
+    }
+    .div_calendario{
+        max-width: 80vw;
+    }
+}

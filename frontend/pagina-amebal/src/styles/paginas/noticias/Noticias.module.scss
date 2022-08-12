@@ -1,0 +1,13 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob{
+    @include blob(28vh); 
+}
+
+.principal, .articulos{
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

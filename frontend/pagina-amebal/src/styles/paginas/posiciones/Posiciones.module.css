@@ -1,0 +1,108 @@
+@use "colors.scss";
+.blob {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 30vh;
+  background-color: #30475E;
+  border-radius: 0% 0% 100% 0% / 10% 10% 45% 48%;
+  height: 4rem;
+}
+
+.selects_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+}
+
+.selects_row select {
+  width: auto !important;
+  margin: 0;
+}
+
+.tabla {
+  border: none !important;
+  border-width: 0 0 !important;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+          box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+  background-color: #fafafafa;
+  color: #121212;
+}
+
+.tabla td {
+  width: 100% !important;
+}
+
+.tabla td,
+.tabla th {
+  border-width: 0 0;
+}
+
+@media (max-width: 768px) {
+  .selects_row {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    max-width: 90vw !important;
+    margin-bottom: 1rem;
+  }
+  .selects_row select {
+    width: auto !important;
+    width: auto;
+    background-color: transparent !important;
+    color: #fafafafa !important;
+    border: none !important;
+    background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27><path fill=%27none%27 stroke=%27%23fefefe%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M2 5l6 6 6-6%27/></svg>") !important;
+    font-weight: 500 !important;
+  }
+  .tabla {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 100%;
+    max-width: 100%;
+    overflow: scroll;
+    border: none !important;
+    border-radius: 0.5rem;
+    -webkit-box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+            box-shadow: -0.1rem -0.1rem 0.3rem 0.3rem rgba(46, 46, 46, 0.103);
+    background-color: #fafafafa;
+    color: #121212;
+  }
+  .tabla * {
+    border-width: 0 !important;
+  }
+  .tabla thead {
+    display: table;
+    background-color: #30475E;
+    color: #fafafafa;
+  }
+  .tabla thead th {
+    width: 3.1rem;
+    text-align: center;
+  }
+  .tabla tbody tr {
+    width: auto;
+  }
+  .tabla tbody tr td {
+    padding: 0.8rem 0.5rem;
+    width: 3.1rem !important;
+    text-align: center;
+  }
+  .tabla .goles {
+    width: auto !important;
+  }
+}
+/*# sourceMappingURL=Posiciones.module.css.map */

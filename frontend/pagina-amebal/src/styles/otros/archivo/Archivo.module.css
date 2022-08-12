@@ -1,23 +1,46 @@
-.archivo{
-    width: 100%;
-    align-items: center;
-    padding-inline-start: 2rem;
-    padding-inline-end: 0rem;
-    display: inline-flex;
-    border: solid grey 0.5px;
-    border-radius: .6rem;
-    justify-content: space-between;
+@use "colors.scss";
+.archivo {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding: .6rem 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #E5E5E5;
+  border-radius: .3rem;
 }
-.descargar{
-    float: inline-end;
-    border: none;
-    border-radius: .6rem;
-    background-color: #0d6efd;
-    color: white;
-    height: 8rem;
-    width: 4rem;
+
+.archivo img {
+  padding: 0 2.2rem .2rem;
 }
-.descargar :hover{
-    cursor: pointer;
-    background-color: #054ebb;
+
+.archivo h4 {
+  width: 100%;
+  max-width: 40vw;
 }
+
+.descargar {
+  width: 100%;
+  border: none;
+  border-radius: 0 0 .3rem .3rem;
+  background-color: #0d6efd;
+  color: white;
+  height: 2.4rem;
+}
+
+.descargar :hover {
+  cursor: pointer;
+  background-color: #054ebb;
+}
+/*# sourceMappingURL=Archivo.module.css.map */

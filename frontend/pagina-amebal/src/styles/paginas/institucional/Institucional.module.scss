@@ -1,0 +1,28 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.blob{
+    @include blob(27vh);
+}
+
+.sector_articulos{
+    display:inline-flex;
+}
+
+@media(max-width:768px){
+    .sector_articulos{
+        justify-content: start;
+        @include scroller;
+        padding: 1rem 0 1rem  2rem;
+    }
+    h4{
+        color: $azul_fondo;
+    }
+    .cuerpo{
+        padding: 1rem 1rem;
+        text-align: justify;
+        p{
+            font-size: .8em;
+        }
+    }
+}

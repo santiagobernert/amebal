@@ -1,0 +1,79 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.barranav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: $azul_fondo;
+  color: $blanco;
+  padding: .5rem 1.5rem;
+  justify-content: space-between;
+  img {
+    width: 3rem;
+  }
+  button {
+    display: none;
+  }
+  .nav_options {
+    display: flex;
+    justify-self: end;
+    background-color: inherit;
+    a {
+      color: inherit !important;
+      text-align: left;
+      font-size: 20px;
+      padding-inline: 1rem !important;
+    }
+    a:focus{
+      outline: none;
+    }
+    hr {
+      color: inherit;
+      width: 90%;
+      margin: auto;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  flex-wrap: nowrap;
+}
+@media (max-width: 1200px) {
+  .barranav {
+    justify-content: space-between;
+    img {
+      width: 3rem;
+    }
+    @include menu_btn;
+  }
+  .navs {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 10vh;
+    display: block;
+    background-color: $azul_fondo;
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    transition: left 0.5s ease;
+  }
+  .collapse {
+    left: 100%;
+  }
+  .show {
+    left: 0;
+  }
+  .nav_options {
+    background-color: rgb(250, 250, 250);
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border-bottom: solid 1px grey;
+    flex-direction: column !important;
+  }
+  .nav_options > * {
+    color: dodgerblue !important;
+    margin-inline: 0.9rem;
+  }
+}

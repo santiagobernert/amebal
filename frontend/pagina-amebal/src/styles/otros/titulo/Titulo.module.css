@@ -1,21 +1,18 @@
+@use "colors.scss";
 .cont_titulo {
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin: 0;
-  padding-block: 5vh;
-  text-align: center;
-  color: white;
-  background: rgb(0, 24, 128);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 24, 128, 1) 0%,
-    rgba(88, 14, 207, 1) 35%,
-    rgba(196, 0, 255, 1) 100%
-  );
+  padding: 2.5vh 0 2.5vh 8vw;
+  color: #fafafafa;
+  background-color: #30475E;
 }
 
-.titulo {
-  font-size: 4em;
-  font-weight: bold;
-  font-family: fantasy;
+.cont_titulo .titulo {
+  font-size: 1.5em;
+  font-weight: 700;
+  max-width: 70vw;
 }
+/*# sourceMappingURL=Titulo.module.css.map */

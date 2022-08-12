@@ -1,27 +1,27 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar } from "react-bootstrap";
-import styles from "../../styles/EquiposNav.module.css";
+
+import styles from "../../styles/otros/equiposnav/EquiposNav.module.css";
 
 import EQUIPOS from "../../lists/equipos.js";
 
 export default function EquiposNav() {
-  if (window.scrollY <= 10) {
     return (
-      <div>
-        <Navbar
+      <div className={styles.box}>
+       <div className={styles.shadow1}></div>
+       <div className={styles.shadow2}></div>
+        <nav
           justify-content="space-evenly"
-          expand="lg"
           className={styles.nav}
         >
           {EQUIPOS &&
             EQUIPOS.map((item) => (
-              <Navbar.Brand key={item.id}>
-                <img src={item.imagen} className={styles.logo} alt="" />
-              </Navbar.Brand>
+              <div key={item.id}>
+                <img src={item.imagen} className='' alt="" />
+              </div>
             ))}
-        </Navbar>
+        </nav>
       </div>
     );
   }
-}
+
