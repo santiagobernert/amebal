@@ -24,13 +24,13 @@ export default function NuevoArticulo() {
     },
   });
 
-  /*const thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img src={file.preview} style={img} />
+  const thumbs = files.map((file) => (
+    <div key={file.name}>
+      <div>
+        <img src={file.preview} />
       </div>
     </div>
-  ));*/
+  ));
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks

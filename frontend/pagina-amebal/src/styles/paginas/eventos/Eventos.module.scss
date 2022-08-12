@@ -5,11 +5,17 @@
     padding-left: 1rem;
 }
 
+.principal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .eventos{
     display: flex;
     flex-wrap: wrap;
-    padding: 1rem;
-    width: -webkit-fill-available;
+    padding: 3rem;
+    width: 50vw;
     .evento{
         display: flex;
         align-items: center;
@@ -20,6 +26,7 @@
             margin: 0;
         }
         .titulo{
+            width: 90%;
             font-weight: bold;
             font-size: 1em;
             color: $negro;
@@ -46,5 +53,18 @@
                 padding: .5rem;
             }
         }
+    }
+}
+.div_calendario{
+    max-width: 40vw;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+    .eventos{
+        width: 100%;
+    }
+    .div_calendario{
+        max-width: 80vw;
     }
 }

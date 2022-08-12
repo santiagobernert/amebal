@@ -56,7 +56,7 @@ function App() {
               <Route
                 key={item.id}
                 path={"noticias/" + item.titulo.replace(/ /g, "").toLowerCase()}
-                element={<Noticia titulo={item.titulo} img={item.img} />}
+                element={<Noticia titulo={item.titulo} img={item.img} cuerpo={item.cuerpo} />}
               />
             ))}
           {NACIONALES &&
