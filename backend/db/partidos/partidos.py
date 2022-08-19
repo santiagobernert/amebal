@@ -1,7 +1,41 @@
 from . import db
-from mysql.connector import connect, Error
 
+class Partido(db.Model):
+    __tablename__ = 'Partidos'
+    id = db.Column('id', db.Integer, primary_key=True)
+    titulo = db.Column(db.String(30))
+    liga = db.Column(db.String(30))
+    categoria = db.Column(db.String(50))
+    equipoA = db.Column(db.String(50))
+    equipoB = db.Column(db.String(50))
+    sede = db.Column(db.String(50))
+    fecha = db.Column(db.String(50))
+    jornada = db.Column(db.String(50))
+    resultado = db.Column(db.String(150))
 
+    def __init__(self, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.email = email
+        self.contraseña = contraseña
+        self.club = club
+        self.rol = rol
+        self.categoria = categoria
+        self.numero = numero
+    
+    def __str__(self):
+        return f'{self.nombre} {self.apellido} {self.id} {self.mail} {self.contraseña}'
+
+    def string_club_categoria(self):
+        return f' {self.club} {self.categoria} '
+
+def nuevo_partido(nombre, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+    partido = Partido(titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado)
+    db.session.add(partido)
+    db.session.commit()
+    return partido
+
+'''
 create_partidos_table_query = """
 CREATE TABLE personas(
     id INT PRIMARY KEY,
@@ -22,4 +56,4 @@ try:
             cursor.execute(create_partidos_table_query)
             connection.commit()
 except Error as e:
-    print(e)
+    print(e)'''
