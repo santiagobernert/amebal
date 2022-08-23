@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash
 from flask_login import login_user, login_required, logout_user, current_user
-from ..db import User, new_user
+from ..db import Usuario, nuevo_usuario
 from ..db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -14,8 +14,8 @@ def signup():
         contraseña = request.form.get('contraseña')
         contraseña2 = request.form.get('contraseña2')
 
-        us_existe = User.query.filter_by(nombre=usuario).first()
-        email_existe = User.query.filter_by(nombre=email).first()
+        us_existe = Usuario.query.filter_by(nombre=usuario).first()
+        email_existe = Usuario.query.filter_by(nombre=email).first()
         
         if us_existe or email_existe:
             print('usuario ya existe')
@@ -33,7 +33,7 @@ def signup():
         elif len(usuario) < 3:
             flash('nombre de usuario muy corto')
         else:
-            nu = new_user(usuario, email, generate_password_hash(contraseña, method='sha256'))
+            nu = nuevo_usuario(usuario, email, generate_password_hash(contraseña, method='sha256'))
             print('usuario creado')
             flash('usuario creado')
             login_user(nu, remember=True)
@@ -47,7 +47,7 @@ def log_in():
         email = request.form.get('email')
         contraseña = request.form.get('contraseña')
 
-        usuario = User.query.filter_by(email=email).first()
+        usuario = Usuario.query.filter_by(email=email).first()
         if usuario:
             if check_password_hash(usuario.contraseña, contraseña):
                 print('Logged in successfully!')

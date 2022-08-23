@@ -14,14 +14,15 @@ class Partido(db.Model):
     resultado = db.Column(db.String(150))
 
     def __init__(self, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
-        self.nombre = nombre
-        self.apellido = apellido
-        self.email = email
-        self.contraseña = contraseña
-        self.club = club
-        self.rol = rol
+        self.titulo = titulo
+        self.liga = liga
         self.categoria = categoria
-        self.numero = numero
+        self.equipoA = equipoA
+        self.equipoB = equipoB
+        self.sede = sede
+        self.fecha = fecha
+        self.jornada = jornada
+        self.resultado = resultado
     
     def __str__(self):
         return f'{self.nombre} {self.apellido} {self.id} {self.mail} {self.contraseña}'
@@ -29,7 +30,7 @@ class Partido(db.Model):
     def string_club_categoria(self):
         return f' {self.club} {self.categoria} '
 
-def nuevo_partido(nombre, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+def nuevo_partido(titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
     partido = Partido(titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado)
     db.session.add(partido)
     db.session.commit()

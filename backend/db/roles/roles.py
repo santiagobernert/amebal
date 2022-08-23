@@ -13,10 +13,10 @@ class Rol(db.Model):
 
     
     def __str__(self):
-        return f'{self.id} {self.nombre} {self.años}'
+        return f'{self.id} {self.nombre} {self.permisos}'
 
 def nuevo_rol(nombre, permisos):
-    rol = Roles(nombre, permisos)
+    rol = Rol(nombre, permisos)
     db.session.add(rol)
     db.session.commit()
     return rol

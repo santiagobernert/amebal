@@ -16,7 +16,7 @@ class Categoria(db.Model):
         return f'{self.id} {self.nombre} {self.años}'
 
 def nueva_categoria(nombre, años):
-    categoria = Categorias(nombre, años)
+    categoria = Categoria(nombre, años)
     db.session.add(categoria)
     db.session.commit()
     return categoria

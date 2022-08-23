@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from os import path
 
 db = SQLAlchemy()
-DB_NAME = 'usuarios.db'
+DB_NAME = 'amebal.db'
 
 def create_app():
     app = Flask(__name__)

@@ -1,25 +1,22 @@
 from . import db
-from mysql.connector import connect, Error
+
+class Club(db.Model):
+    __tablename__ = 'Clubes'
+    id = db.Column('id', db.Integer, primary_key=True)
+    nombre = db.Column(db.String(30))
+    asociacion = db.Column(db.INT(30))
 
 
-create_clubes_table_query = """
-CREATE TABLE personas(
-    id INT PRIMARY KEY,
-    nombre VARCHAR(20),
-    apellido VARCHAR(20),
-    release_year YEAR(4),
-    genre VARCHAR(100),
-    collection_in_mil INT
-)
-"""
-try:
-    with connect(
-        host="localhost",
-        user=input("Enter username: "),
-        password=input("Enter password: "),
-    ) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute(create_clubes_table_query)
-            connection.commit()
-except Error as e:
-    print(e)
+    def __init__(self, nombre, asociacion):
+        self.nombre = nombre
+        self.asociacion = asociacion
+
+    
+    def __str__(self):
+        return f'{self.id} {self.nombre} {self.asociacion}'
+
+def nuevo_club(nombre, asociacion):
+    club = Club(nombre, asociacion)
+    db.session.add(club)
+    db.session.commit()
+    return club
