@@ -2,12 +2,15 @@ from . import db
 
 class Jugador(db.Model):
     __tablename__ = 'Jugadores'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True, unique=True)
     nombre = db.Column(db.String(30))
     apellido = db.Column(db.String(30))
+    dni = db.Column(db.Integer, unique=True)
     nacimiento = db.Column(db.Date())
-    club = db.Column(db.String(50))
-    categoria = db.Column(db.String(50))
+    sexo = db.Column(db.Enum(['Masculino', 'Femenino']))
+    club = db.Column(db.String(50), db.ForeignKey('club.nombre'))
+    categoria = db.Column(db.String(12), db.ForeignKey('categoria.nombre'))
+    pases = db.relationship('Pases', backref='jugadores')
 
     def __init__(self, nombre, apellido, nacimiento, club, categoria):
         self.nombre = nombre

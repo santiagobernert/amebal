@@ -4,6 +4,7 @@ class Asociacion(db.Model):
     __tablename__ = 'Asociaciones'
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
+    clubes = db.relationship('Club', backref='asociacion')
 
     def __init__(self, nombre):
         self.nombre = nombre
