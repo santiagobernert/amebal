@@ -12,19 +12,21 @@ class Jugador(db.Model):
     categoria = db.Column(db.String(12), db.ForeignKey('categoria.nombre'))
     pases = db.relationship('Pases', backref='jugadores')
 
-    def __init__(self, nombre, apellido, nacimiento, club, categoria):
+    def __init__(self, nombre, apellido, dni, nacimiento, sexo, club, categoria):
         self.nombre = nombre
         self.apellido = apellido
+        self.dni = dni
         self.nacimiento = nacimiento
+        self.sexo = sexo
         self.club = club
         self.categoria = categoria
     
     def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.id} {self.nacimiento} {self.club} {self.categoria}'
+        return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.nacimiento} {self.sexo} {self.club} {self.categoria}'
 
 
-def nuevo_jugador(nombre, apellido, nacimiento, club, categoria):
-    jugador = Jugador(nombre, apellido, nacimiento, club, categoria)
+def nuevo_jugador(nombre, apellido, dni, nacimiento, sexo, club, categoria):
+    jugador = Jugador(nombre, apellido, dni, nacimiento, sexo, club, categoria)
     db.session.add(jugador)
     db.session.commit()
     return jugador

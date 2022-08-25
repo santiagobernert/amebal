@@ -6,25 +6,27 @@ class Usuario(db.Model, UserMixin):
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
     apellido = db.Column(db.String(30))
+    dni = db.Column(db.Integer, unique=True)
     email = db.Column(db.String(50))
     contraseña = db.Column(db.String(50))
-    rol = db.Column(db.String(50))
+    rol = db.Column(db.String(50), db.ForeignKey('roles.letra'))
     numero = db.Column(db.String(50))
 
-    def __init__(self, nombre, apellido, email, contraseña, rol, numero):
+    def __init__(self, nombre, apellido, dni, email, contraseña, rol, numero):
         self.nombre = nombre
         self.apellido = apellido
+        self.dni = dni
         self.email = email
         self.contraseña = contraseña
         self.rol = rol
         self.numero = numero
     
     def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.id} {self.email} {self.contraseña}'
+        return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.email} {self.contraseña}'
 
 
-def nuevo_usurio(nombre, apellido, email, contraseña, rol, numero):
-    usuario = Usuario(nombre, apellido, email, contraseña, rol, numero)
+def nuevo_usurio(nombre, apellido, dni, email, contraseña, rol, numero):
+    usuario = Usuario(nombre, apellido, dni, email, contraseña, rol, numero)
     db.session.add(usuario)
     db.session.commit()
     return usuario

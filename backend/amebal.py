@@ -59,22 +59,31 @@ def pase():
             }
     return render_template('pases.html')
 
-@app.route('/asociacion', methods=['POST'])
+@app.route('/asociacion', methods=['GET', 'POST'])
 def asociacion():
+    asociaciones = Asociacion.query.all()
+    if request.method == 'GET':
+        return render_template('asociaciones.html', asociaciones=asociaciones)
     if request.method == 'POST':
         nombre = request.form.get('nombre')
+        abreviatura = request.form.get('abreviatura')
 
         nombre_existe = Asociacion.query.filter_by(nombre=nombre).first()
+        abreviatura_existe = Asociacion.query.filter_by(abreviatura=abreviatura).first()
         
         if nombre_existe:
+            flash('asociacion ya existe')
             print('asociacion ya existe')
+        if abreviatura_existe:
+            flash('abreviatura ya existe')
+            print('abreviatura ya existe')
         else:
             nueva_asociacion(nombre)
             print('asociacion creado')
             return { 
                 'asociacion': nombre,
             }
-    return render_template('asociaciones.html')
+    return render_template('asociaciones.html', asociaciones=asociaciones)
 
 if __name__ == '__main__':
     app.run(debug=True)
