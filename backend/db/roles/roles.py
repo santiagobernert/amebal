@@ -1,11 +1,11 @@
-from . import db
+from db import db
 
 class Rol(db.Model):
     __tablename__ = 'Roles'
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
     letra = db.Column(db.String(1))
-    usuarios = db.relationship('Usuarios', backref='rol')
+    usuarios = db.relationship('Usuario', backref='rol')
 
 
     def __init__(self, nombre, letra):

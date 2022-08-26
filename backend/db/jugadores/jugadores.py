@@ -1,4 +1,5 @@
-from . import db
+from db import db
+from db.estadisticas.estadisticas import Estadistica
 
 class Jugador(db.Model):
     __tablename__ = 'Jugadores'
@@ -7,11 +8,11 @@ class Jugador(db.Model):
     apellido = db.Column(db.String(30))
     dni = db.Column(db.Integer, unique=True)
     nacimiento = db.Column(db.Date())
-    sexo = db.Column(db.Enum(['Masculino', 'Femenino']))
-    club = db.Column(db.String(50), db.ForeignKey('club.nombre'))
-    categoria = db.Column(db.String(12), db.ForeignKey('categoria.nombre'))
-    pases = db.relationship('Pases', backref='jugadores')
-    estadisticas = db.relationship('Estadisticas', backref='id_jugador')
+    sexo = db.Column(db.Enum('Masculino', 'Femenino'))
+    club = db.Column(db.String(50), db.ForeignKey('Clubes.nombre'))
+    categoria = db.Column(db.String(12), db.ForeignKey('Categorias.nombre'))
+    pases = db.relationship('Pase', backref='id_jugador')
+    estadisticas = db.relationship(Estadistica, backref='id_jugador')
 
     def __init__(self, nombre, apellido, dni, nacimiento, sexo, club, categoria):
         self.nombre = nombre

@@ -1,4 +1,4 @@
-from . import db
+from db import db
 from flask_login import UserMixin
 
 class Usuario(db.Model, UserMixin):
@@ -25,7 +25,7 @@ class Usuario(db.Model, UserMixin):
         return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.email} {self.contraseña}'
 
 
-def nuevo_usurio(nombre, apellido, dni, email, contraseña, rol, numero):
+def nuevo_usuario(nombre, apellido, dni, email, contraseña, rol, numero):
     usuario = Usuario(nombre, apellido, dni, email, contraseña, rol, numero)
     db.session.add(usuario)
     db.session.commit()

@@ -1,11 +1,13 @@
-from . import db
+from db import db
+from db.clubes.clubes import Club
+
 
 class Asociacion(db.Model):
     __tablename__ = 'Asociaciones'
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
     abreviatura = db.Column(db.String(12))
-    clubes = db.relationship('Club', backref='asociacion')
+    clubes = db.relationship(Club, backref='nombre_asociacion')
 
     def __init__(self, nombre, abreviatura):
         self.nombre = nombre

@@ -1,11 +1,11 @@
-from . import db
+from db import db
 
 class Estadistica(db.Model):
     __tablename__ = 'Estadisticas'
     id = db.Column('id', db.Integer, primary_key=True, unique=True)
-    id_partido = db.Column(db.String(30), db.ForeignKey('partido.id'))
-    id_club = db.Column(db.String(30), db.ForeignKey('club.id'))
-    id_jugador = db.Column(db.Integer, db.ForeignKey('jugador.id'))
+    partido = db.Column(db.String(30), db.ForeignKey('Partidos.id'))
+    club = db.Column(db.String(30), db.ForeignKey('Clubes.id'))
+    jugador = db.Column(db.Integer, db.ForeignKey('Jugadores.id'))
     goles = db.Column(db.Integer)
     tiros = db.Column(db.Integer)
     amarilla = db.Column(db.Integer)

@@ -11,14 +11,8 @@
     
 
     <div class="container">
-      <div class="d-flex bd-highlight my-3">
-        <div class="me-auto p-2 bd-highlight"><h2>Asociaciones</div>
-        <div class="p-2 bd-highlight">
-          <button id="nuevo" type="button" class="btn btn-secondary" onclick="document.getElementById('modal').styles.display='block'">Nueva asociacion</button>
-        </div>
-      </div>
-      <div id="modal" class="modal" style="display: none; background-color: rgba(40, 40, 40, 0.4); position: absolute; height: 100%; width: 100%;">
-        <form action='' method = "POST" style="position: absolute; top: 10vw; left: 20vw;">
+      <div id="modal" class="mt-5" >
+        <form action='' method = "POST">
             <p>Nombre de la asociacion<input type = "text" name = "nombre" /></p>
             <p>Abreviacion <input type = "text" name = "Abreviacion" /></p>
             <p><input type = "submit" value = "Submit" /></p>
@@ -32,6 +26,12 @@
             </ul>
           {% endif %}
         {% endwith %}
+      </div>
+      <div class="d-flex bd-highlight my-3">
+        <div class="me-auto p-2 bd-highlight"><h2>Asociaciones</div>
+        <div class="p-2 bd-highlight">
+          <button id="nuevo" type="button" class="btn btn-secondary" onclick="document.getElementById('modal').styles.display='block'">Nueva asociacion</button>
+        </div>
       </div>
       
       <div class="table-responsive">

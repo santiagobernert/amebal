@@ -1,9 +1,10 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash
-from .db.jugadores.jugadores import Jugador, nuevo_jugador 
+from db.jugadores.jugadores import Jugador, nuevo_jugador 
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.pases.pases import Pase, nuevo_pase
+from __init__ import create_app
 
-app = Flask(__name__)
+app = create_app()
 
 @app.route('/')
 @app.route('/home')
