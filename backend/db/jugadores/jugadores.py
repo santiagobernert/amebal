@@ -11,6 +11,7 @@ class Jugador(db.Model):
     club = db.Column(db.String(50), db.ForeignKey('club.nombre'))
     categoria = db.Column(db.String(12), db.ForeignKey('categoria.nombre'))
     pases = db.relationship('Pases', backref='jugadores')
+    estadisticas = db.relationship('Estadisticas', backref='id_jugador')
 
     def __init__(self, nombre, apellido, dni, nacimiento, sexo, club, categoria):
         self.nombre = nombre

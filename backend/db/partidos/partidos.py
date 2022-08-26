@@ -12,6 +12,8 @@ class Partido(db.Model):
     fecha = db.Column(db.String(50))
     jornada = db.Column(db.String(50))
     resultado = db.Column(db.String(150))
+    estadisticas = db.relationship('Estadisticas', backref='id_partido')
+
 
     def __init__(self, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
         self.titulo = titulo

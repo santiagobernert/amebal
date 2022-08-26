@@ -6,6 +6,7 @@ class Club(db.Model):
     nombre = db.Column(db.String(30))
     asociacion = db.Column(db.String(30), db.ForeignKey('asociaciones.nombre'))
     jugadores = db.relationship('Jugadores', backref='club')
+    estadisticas = db.relationship('Estadisticas', backref='id_club')
 
 
     def __init__(self, nombre, asociacion):
