@@ -1,4 +1,5 @@
 from db import db
+from db.roles.roles import Rol
 from flask_login import UserMixin
 
 class Usuario(db.Model, UserMixin):
@@ -9,7 +10,7 @@ class Usuario(db.Model, UserMixin):
     dni = db.Column(db.Integer, unique=True)
     email = db.Column(db.String(50))
     contraseña = db.Column(db.String(50))
-    rol = db.Column(db.String(50), db.ForeignKey('roles.letra'))
+    rol = db.Column(db.Integer, db.ForeignKey(Rol.id))
     numero = db.Column(db.String(50))
 
     def __init__(self, nombre, apellido, dni, email, contraseña, rol, numero):

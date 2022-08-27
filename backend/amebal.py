@@ -79,11 +79,10 @@ def asociacion():
             flash('abreviatura ya existe')
             print('abreviatura ya existe')
         else:
-            nueva_asociacion(nombre)
+            nueva_asociacion(nombre, abreviatura)
             print('asociacion creado')
-            return { 
-                'asociacion': nombre,
-            }
+            asociaciones = Asociacion.query.all()
+            return render_template('asociaciones.html', asociaciones=asociaciones)
     return render_template('asociaciones.html', asociaciones=asociaciones)
 
 if __name__ == '__main__':

@@ -5,7 +5,7 @@ from db.clubes.clubes import Club
 class Asociacion(db.Model):
     __tablename__ = 'Asociaciones'
     id = db.Column('id', db.Integer, primary_key=True)
-    nombre = db.Column(db.String(30))
+    nombre = db.Column(db.String(100))
     abreviatura = db.Column(db.String(12))
     clubes = db.relationship(Club, backref='nombre_asociacion')
 

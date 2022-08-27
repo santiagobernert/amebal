@@ -1,13 +1,14 @@
 from db import db
+from db.categorias.categorias import Categoria
 
 class Partido(db.Model):
     __tablename__ = 'Partidos'
     id = db.Column('id', db.Integer, primary_key=True)
     titulo = db.Column(db.String(30))
     liga = db.Column(db.String(30))
-    categoria = db.Column(db.String(50), db.ForeignKey('categorias.nombre'))
-    equipoA = db.Column(db.String(50), db.ForeignKey('clubes.nombre'))
-    equipoB = db.Column(db.String(50), db.ForeignKey('clubes.nombre'))
+    categoria = db.Column(db.Integer, db.ForeignKey(Categoria.id))
+    equipoA = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
+    equipoB = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
     sede = db.Column(db.String(50))
     fecha = db.Column(db.String(50))
     jornada = db.Column(db.String(50))

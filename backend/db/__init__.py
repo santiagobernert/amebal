@@ -2,7 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 
 db = SQLAlchemy()
-DB_NAME = 'amebal.db'
+DB_NAME = 'amebal'
+USERNAME = 'root'
+PASSWORD = 'santi1005'
 
 
 def create_database(app):

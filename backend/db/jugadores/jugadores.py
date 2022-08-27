@@ -9,8 +9,8 @@ class Jugador(db.Model):
     dni = db.Column(db.Integer, unique=True)
     nacimiento = db.Column(db.Date())
     sexo = db.Column(db.Enum('Masculino', 'Femenino'))
-    club = db.Column(db.String(50), db.ForeignKey('Clubes.nombre'))
-    categoria = db.Column(db.String(12), db.ForeignKey('Categorias.nombre'))
+    club = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
+    categoria = db.Column(db.Integer, db.ForeignKey('Categorias.id'))
     pases = db.relationship('Pase', backref='id_jugador')
     estadisticas = db.relationship(Estadistica, backref='id_jugador')
 

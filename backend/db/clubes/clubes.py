@@ -4,7 +4,7 @@ class Club(db.Model):
     __tablename__ = 'Clubes'
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
-    asociacion = db.Column(db.String(30), db.ForeignKey('Asociaciones.nombre'))
+    asociacion = db.Column(db.Integer, db.ForeignKey('Asociaciones.id'))
     jugadores = db.relationship('Jugador', backref='nombre_club')
     estadisticas = db.relationship('Estadistica', backref='id_club')
 
