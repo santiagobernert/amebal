@@ -4,7 +4,7 @@ from os import path
 db = SQLAlchemy()
 DB_NAME = 'amebal'
 USERNAME = 'root'
-PASSWORD = 'santi1005'
+PASSWORD = '1234'
 
 
 def create_database(app):

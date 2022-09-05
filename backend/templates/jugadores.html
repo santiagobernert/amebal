@@ -4,24 +4,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Jugadores</title>
-</head>
-<body>
-    <div>
-        <h4>Añadir nuevo jugador</h4>
-        <form action="" method="post">
-            <label for="">Nombre</label>
-            <input name="nombre" type="text">
-            <label for="">Apellido</label>
-            <input name="apellido" type="text">
-            <label for="">Nacimiento</label>
-            <input name="nacimiento" type="date">
-            <label for="">Club</label>
-            <input name="club" type="text">
-            <label for="">Categoria</label>
-            <input name="categoria" type="text">
-            <input type="submit">
+  </head>
+  <body>
+    
+
+    <div class="container">
+      <div id="modal" class="mt-5" >
+        <form action='' method = "POST">
+            <p>Nombre del jugador<input type = "text" name = "nombre" /></p>
+            <p>Apellido <input type = "text" name = "abreviatura" /></p>
+            <p>Nacimiento <input type = "date" name = "abreviatura" /></p>
+            <p>DNI <input type = "number" name = "abreviatura" /></p>
+            <p>Sexo <select name="sexo" id="sexo"><option selected value="seleccionar">Seleccionar</option><option value="masculino">Masculino</option><option value="femenino">Femenino</option></select></p>
+            <p>Club <select name="club" id="club"><option selected value="seleccionar">Seleccionar</option>
+                {% for club in clubes %}
+                    <option value={{club.nombre}}>{{club.nombre}}</option>
+                {% endfor %}
+                </select>
+            </p>
+            <p>Categoría <select name="categoria" id="categoria"><option selected value="seleccionar">Seleccionar</option>
+                {% for categoria in categorias %}
+                    <option value={{categoria.nombre}}>{{categoria.nombre}}</option>
+                {% endfor %}
+                </select>
+            </p>
+            <p><input type = "submit" value = "Submit" /></p>
         </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </div>
+      <div class="d-flex bd-highlight my-3">
+        <div class="me-auto p-2 bd-highlight"><h2>Asociaciones</div>
+        <div class="p-2 bd-highlight">
+          <button id="nuevo" type="button" class="btn btn-secondary" onclick="document.getElementById('modal').styles.display='block'">Nueva asociacion</button>
+        </div>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Nacimiento</th>
+              <th scope="col">Sexo</th>
+              <th scope="col">Club</th>
+              <th scope="col">Categoría</th>
+            </tr>
+          </thead>
+          <tbody id="mytable">
+            <tr>
+                {% for jugador in jugadores %}
+                    <td id="jugador_id" scope="row" colspan="5">{{jugador.id}}</td>
+                    <td scope="row" colspan="5">{{jugador.nombre}}</td>
+                    <td scope="row" colspan="5">{{jugador.apellido}}</td>
+                    <td scope="row" colspan="5">{{jugador.dni}}</td>
+                    <td scope="row" colspan="5">{{jugador.nacimiento}}</td>
+                    <td scope="row" colspan="5">{{jugador.sexo}}</td>
+                    <td scope="row" colspan="5">{{jugador.club}}</td>
+                    <td scope="row" colspan="5">{{jugador.categoria}}</td>
+                    <button class="btn btn-outline-secondary" onclick="">Editar</button>
+                    <button class="btn btn-outline-danger" onclick="eliminar('asociacion', asociacion_id.innerText)">Eliminar</button>
+                {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-</body>
+
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
 </html>
