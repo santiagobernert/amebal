@@ -39,7 +39,7 @@ def jugador():
             return render_template('asociaciones.html', jugadores=jugadores, clubes=clubes, categorias=categorias)
     return render_template('jugadores.html')
 
-@app.route('/pase', methods=['GET', 'POST'])
+@app.route('/pases', methods=['GET', 'POST'])
 def pase():
     pases = Pase.query.all()
     if request.method == 'GET':

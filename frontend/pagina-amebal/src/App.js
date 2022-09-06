@@ -28,6 +28,8 @@ import Sistema from "./components/paginas/Sistema";
 import PagPartido from "./components/paginas/PagPartido";
 import Noticias from "./components/paginas/Noticias";
 import Eventos from "./components/paginas/Eventos";
+import PasesCRUD from "./components/cruds/PasesCRUD";
+import ClubesCRUD from "./components/cruds/ClubesCRUD";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -56,7 +58,13 @@ function App() {
               <Route
                 key={item.id}
                 path={"noticias/" + item.titulo.replace(/ /g, "").toLowerCase()}
-                element={<Noticia titulo={item.titulo} img={item.img} cuerpo={item.cuerpo} />}
+                element={
+                  <Noticia
+                    titulo={item.titulo}
+                    img={item.img}
+                    cuerpo={item.cuerpo}
+                  />
+                }
               />
             ))}
           {NACIONALES &&
@@ -94,6 +102,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/noticias" element={<Noticias />} />
           <Route path="/eventos" element={<Eventos />} />
+          <Route path="/crud/pases" element={<PasesCRUD />} />
+          <Route path="/crud/clubes" element={<ClubesCRUD />} />
         </Routes>
       </BrowserRouter>
 
