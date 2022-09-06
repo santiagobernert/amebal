@@ -12,97 +12,97 @@ import {
 } from "react-bootstrap";
 
 export default function ClubesCRUD() {
-  const state, setState = useState({
-    data: getIems(),
-    modalActualizar: false,
-    modalInsertar: false,
-    form: {
-      id: "",
-      personaje: "",
-      anime: "",
-    },
-  );
+    // const state, setState = useState({
+    //   data: getIems(),
+    //   modalActualizar: false,
+    //   modalInsertar: false,
+  //   form: {
+  //     id: "",
+  //     personaje: "",
+  //     anime: "",
+  //   },}
+  // );
 
-  const getUsers = async () => {
-    const res = await fetch("http://localhost:5000/pases");
-    const data = await res.json();
-    setUsers(data);
-  };
+  // const getUsers = async () => {
+  //   const res = await fetch("http://localhost:5000/pases");
+  //   const data = await res.json();
+  //   setUsers(data);
+  // };
 
-  const mostrarModalActualizar = (dato) => {
-    setState({
-      form: dato,
-      modalActualizar: true,
-    });
-  };
+  // const mostrarModalActualizar = (dato) => {
+  //   setState({
+  //     form: dato,
+  //     modalActualizar: true,
+  //   });
+  // };
 
-  const cerrarModalActualizar = () => {
-    setState({ modalActualizar: false });
-  };
+  // const cerrarModalActualizar = () => {
+  //   setState({ modalActualizar: false });
+  // };
 
-  const mostrarModalInsertar = () => {
-    setState({
-      modalInsertar: true,
-    });
-  };
+  // const mostrarModalInsertar = () => {
+  //   setState({
+  //     modalInsertar: true,
+  //   });
+  // };
 
-  const cerrarModalInsertar = () => {
-    setState({ modalInsertar: false });
-  };
+  // const cerrarModalInsertar = () => {
+  //   setState({ modalInsertar: false });
+  // };
 
-  const editar = (dato) => {
-    let contador = 0;
-    let data = state.data;
-    data.map((registro) => {
-      if (dato.id == registro.id) {
-        data[contador].personaje = dato.personaje;
-        data[contador].anime = dato.anime;
-      }
-      contador++;
-    });
-    setState({ data: data, modalActualizar: false });
-  };
+  // const editar = (dato) => {
+  //   let contador = 0;
+  //   let data = state.data;
+  //   data.map((registro) => {
+  //     if (dato.id == registro.id) {
+  //       data[contador].personaje = dato.personaje;
+  //       data[contador].anime = dato.anime;
+  //     }
+  //     contador++;
+  //   });
+  //   setState({ data: data, modalActualizar: false });
+  // };
 
-  const eliminar = (dato) => {
-    let opcion = window.confirm(
-      "Estás seguro que deseas eliminar el elemento " + dato.id
-    );
-    if (opcion == true) {
-      let contador = 0;
-      let arreglo = state.data;
-      arreglo.map((registro) => {
-        if (dato.id == registro.id) {
-          arreglo.splice(contador, 1);
-        }
-        contador++;
-      });
-      setState({ data: arreglo, modalActualizar: false });
-    }
-  };
+  // const eliminar = (dato) => {
+  //   let opcion = window.confirm(
+  //     "Estás seguro que deseas eliminar el elemento " + dato.id
+  //   );
+  //   if (opcion == true) {
+  //     let contador = 0;
+  //     let arreglo = state.data;
+  //     arreglo.map((registro) => {
+  //       if (dato.id == registro.id) {
+  //         arreglo.splice(contador, 1);
+  //       }
+  //       contador++;
+  //     });
+  //     setState({ data: arreglo, modalActualizar: false });
+  //   }
+  // };
 
-  const insertar = () => {
-    let valorNuevo = { ...state.form };
-    valorNuevo.id = state.data.length + 1;
-    let lista = state.data;
-    lista.push(valorNuevo);
-    setState({ modalInsertar: false, data: lista });
-  };
+  // const insertar = () => {
+  //   let valorNuevo = { ...state.form };
+  //   valorNuevo.id = state.data.length + 1;
+  //   let lista = state.data;
+  //   lista.push(valorNuevo);
+  //   setState({ modalInsertar: false, data: lista });
+  // };
 
-  const handleChange = (e) => {
-    setState({
-      form: {
-        ...state.form,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
+  // const handleChange = (e) => {
+  //   setState({
+  //     form: {
+  //       ...state.form,
+  //       [e.target.name]: e.target.value,
+  //     },
+  //   });
+  // };
 
   return (
     <>
       <Container>
         <h2>Clubes</h2>
         <br />
-        <Button color="success" onClick={() => mostrarModalInsertar()}>
+        <Button color="success" /*onClick={() => mostrarModalInsertar()}*/>
           Crear
         </Button>
         <br />
@@ -126,11 +126,11 @@ export default function ClubesCRUD() {
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(dato)}
+                    /*onClick={() => mostrarModalActualizar(dato)}*/
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(dato)}>
+                  <Button color="danger" /*onClick={() => eliminar(dato)}*/>
                     Eliminar
                   </Button>
                 </td>
@@ -140,7 +140,7 @@ export default function ClubesCRUD() {
         </Table>
       </Container>
 
-      <Modal isOpen={state.modalActualizar}>
+      <Modal isOpen={false/*state.modalActualizar*/}>
         <ModalHeader>
           <div>
             <h3>Editar Registro</h3>
@@ -155,7 +155,7 @@ export default function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={state.form.id}
+              value={'a'/*state.form.id*/}
             />
           </FormGroup>
 
@@ -166,7 +166,7 @@ export default function ClubesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={state.form.nombre}
+              value={'a'/*state.form.nombre*/}
             />
           </FormGroup>
 
@@ -177,22 +177,22 @@ export default function ClubesCRUD() {
               name="asociacion"
               type="text"
               onChange={handleChange}
-              value={state.form.asociacion}
+              value={'a'/*state.form.asociacion*/}
             />
           </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" onClick={() => editar(state.form)}>
+          <Button color="primary" /*onClick={() => editar(state.form)}*/>
             Editar
           </Button>
-          <Button color="danger" onClick={() => cerrarModalActualizar()}>
+          <Button color="danger" /*onClick={() => cerrarModalActualizar()}*/>
             Cancelar
           </Button>
         </ModalFooter>
       </Modal>
 
-      <Modal isOpen={state.modalInsertar}>
+      <Modal isOpen={false/*state.modalInsertar*/}>
         <ModalHeader>
           <div>
             <h3>Insertar Personaje</h3>
@@ -207,7 +207,7 @@ export default function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={state.data.length + 1}
+              value={'a'/*state.data.length + 1*/}
             />
           </FormGroup>
 
@@ -217,28 +217,28 @@ export default function ClubesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              onChange={handleChange}
+              /*onChange={handleChange}*/
             />
           </FormGroup>
 
           <FormGroup>
-            <label>sociación:</label>
+            <label>Asociación:</label>
             <input
               className="form-control"
               name="asociacion"
               type="text"
-              onChange={handleChange}
+              /*onChange={handleChange}*/
             />
           </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" onClick={() => insertar()}>
+          <Button color="primary" /*onClick={() => insertar()}*/>
             Insertar
           </Button>
           <Button
             className="btn btn-danger"
-            onClick={() => cerrarModalInsertar()}
+            /*onClick={() => cerrarModalInsertar()}*/
           >
             Cancelar
           </Button>

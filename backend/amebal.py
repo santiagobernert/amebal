@@ -117,6 +117,9 @@ def club():
             return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
     return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
 
+@app.route('/api', methods=['GET', 'POST'])
+def api():
+    return {'data': 'hace algo'}
 if __name__ == '__main__':
     app.run(debug=True)
 
