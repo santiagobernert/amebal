@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from mysql.connector import connect, Error
+from pymysql import connect, Error
 
 db = SQLAlchemy()
 DB_NAME = 'amebal'
@@ -9,26 +9,30 @@ PASSWORD = '1234'
 
 
 try:
-    with connect(
+    connection = connect(
         host="localhost",
         user=input("Enter username: "),
         password=input("Enter password: "),
-    ) as connection:
-        create_db_query = "CREATE DATABASE amebal"
-        with connection.cursor() as cursor:
-            cursor.execute(create_db_query)
+    )
+    create_db_query = "CREATE DATABASE amebal"
+    cur = connection.cursor()
+    cur.execute(create_db_query)
 except Error as e:
     print(e)
     
 show_db_query = "SHOW DATABASES"
-with connect(
+try:
+    connection = connect(
         host="localhost",
         user=input("Enter username: "),
         password=input("Enter password: "),
-    ) as connection:
-    connection.cursor.execute(show_db_query)
-    for db in cursor:
+    )
+    cur = connection.cursor()
+    cur.execute(show_db_query)
+    for db in cur:
         print(db)
+except Error as e:
+    print(e)
 
 def create_database(app):
     if not path.exists('backend/' + DB_NAME):

@@ -11,7 +11,8 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
-export default function ClubesCRUD() {
+function ClubesCRUD() {
+  let data = fetch('http://localhost:5000/api').then(res => res.json()).then(resp => JSON.parse(resp))
     // const state, setState = useState({
     //   data: getIems(),
     //   modalActualizar: false,
@@ -99,10 +100,12 @@ export default function ClubesCRUD() {
 
   return (
     <>
+    <h2>{data}</h2>
+    {/*
       <Container>
         <h2>Clubes</h2>
         <br />
-        <Button color="success" /*onClick={() => mostrarModalInsertar()}*/>
+        <Button color="success" /*onClick={() => mostrarModalInsertar()}>
           Crear
         </Button>
         <br />
@@ -126,11 +129,11 @@ export default function ClubesCRUD() {
                 <td>
                   <Button
                     color="primary"
-                    /*onClick={() => mostrarModalActualizar(dato)}*/
+                    /*onClick={() => mostrarModalActualizar(dato)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" /*onClick={() => eliminar(dato)}*/>
+                  <Button color="danger" /*onClick={() => eliminar(dato)}>
                     Eliminar
                   </Button>
                 </td>
@@ -140,7 +143,7 @@ export default function ClubesCRUD() {
         </Table>
       </Container>
 
-      <Modal isOpen={false/*state.modalActualizar*/}>
+      <Modal isOpen={false/*state.modalActualizar}>
         <ModalHeader>
           <div>
             <h3>Editar Registro</h3>
@@ -155,7 +158,7 @@ export default function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={'a'/*state.form.id*/}
+              value={'a'/*state.form.id}
             />
           </FormGroup>
 
@@ -166,7 +169,7 @@ export default function ClubesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={'a'/*state.form.nombre*/}
+              value={'a'/*state.form.nombre}
             />
           </FormGroup>
 
@@ -177,22 +180,22 @@ export default function ClubesCRUD() {
               name="asociacion"
               type="text"
               onChange={handleChange}
-              value={'a'/*state.form.asociacion*/}
+              value={'a'/*state.form.asociacion}
             />
           </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" /*onClick={() => editar(state.form)}*/>
+          <Button color="primary" /*onClick={() => editar(state.form)}>
             Editar
           </Button>
-          <Button color="danger" /*onClick={() => cerrarModalActualizar()}*/>
+          <Button color="danger" /*onClick={() => cerrarModalActualizar()}>
             Cancelar
           </Button>
         </ModalFooter>
       </Modal>
 
-      <Modal isOpen={false/*state.modalInsertar*/}>
+      <Modal isOpen={false/*state.modalInsertar}>
         <ModalHeader>
           <div>
             <h3>Insertar Personaje</h3>
@@ -207,7 +210,7 @@ export default function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={'a'/*state.data.length + 1*/}
+              value={'a'/*state.data.length + 1}
             />
           </FormGroup>
 
@@ -217,7 +220,7 @@ export default function ClubesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              /*onChange={handleChange}*/
+              /*onChange={handleChange}
             />
           </FormGroup>
 
@@ -227,23 +230,24 @@ export default function ClubesCRUD() {
               className="form-control"
               name="asociacion"
               type="text"
-              /*onChange={handleChange}*/
+              /*onChange={handleChange}
             />
           </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" /*onClick={() => insertar()}*/>
+          <Button color="primary" /*onClick={() => insertar()}>
             Insertar
           </Button>
           <Button
             className="btn btn-danger"
-            /*onClick={() => cerrarModalInsertar()}*/
+            /*onClick={() => cerrarModalInsertar()}
           >
             Cancelar
           </Button>
         </ModalFooter>
-      </Modal>
+            </Modal>*/}
     </>
   );
 }
+export default ClubesCRUD;
