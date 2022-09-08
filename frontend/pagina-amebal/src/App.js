@@ -102,7 +102,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/noticias" element={<Noticias />} />
           <Route path="/eventos" element={<Eventos />} />
-          <Route path="/crud/pases" element={<PasesCRUD />} />
           <Route path="/crud/clubes" element={<ClubesCRUD />} />
         </Routes>
       </BrowserRouter>

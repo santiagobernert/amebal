@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash
+from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
 from db.jugadores.jugadores import Jugador, nuevo_jugador 
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
@@ -117,9 +117,11 @@ def club():
             return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
     return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
 
-@app.route('/api', methods=['GET', 'POST'])
+@app.route('/api', methods=['GET'])
 def api():
-    return {'data': 'hace algo'}
+    response = jsonify( {'data': 'hace algo'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 if __name__ == '__main__':
     app.run(debug=True)
 
