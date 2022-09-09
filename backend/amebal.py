@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
+from flask_cors import CORS, cross_origin
 from db.jugadores.jugadores import Jugador, nuevo_jugador 
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
@@ -7,6 +8,10 @@ from db.pases.pases import Pase, nuevo_pase
 from __init__ import create_app
 
 app = create_app()
+cors = CORS(app)
+
+
+
 
 @app.route('/')
 @app.route('/home')
@@ -96,7 +101,12 @@ def club():
     clubes = Club.query.all()
     asociaciones = Asociacion.query.all()
     if request.method == 'GET':
-        return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
+        response = jsonify({
+            'clubes': [c.__asdict__() for c in clubes],
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if request.method == 'POST':
         nombre = request.form.get('nombre')
         asociacion = request.form.get('asociacion')
@@ -114,8 +124,18 @@ def club():
             nuevo_club(nombre, asociacion)
             print(f'club {nombre} {asociacion}, creado')
             asociaciones = Club.query.all()
-            return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
-    return render_template('clubes.html', clubes=clubes, asociaciones=asociaciones)
+            response = jsonify({
+            'clubes': [c.__asdict__() for c in clubes],
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+    response = jsonify({
+            'clubes': [c.__asdict__() for c in clubes],
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/api', methods=['GET'])
 def api():

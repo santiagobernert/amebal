@@ -5,15 +5,15 @@ from pymysql import connect, Error
 db = SQLAlchemy()
 DB_NAME = 'amebal'
 USERNAME = 'root'
-PASSWORD = '1234'
+PASSWORD = 'santi1005'
 
 show_db_query = "SHOW DATABASES"
-
+'''
 try:
     connection = connect(
-        host="localhost:3306",
+        host="127.0.0.1:3308",
         user=USERNAME,
-        #password=PASSWORD
+        password=PASSWORD
     )
     create_db_query = f"CREATE DATABASE {DB_NAME}"
     cur = connection.cursor()
@@ -21,9 +21,9 @@ try:
 except Error as e:
     try:
         connection = connect(
-            host="localhost:3306",
+            host="127.0.0.1:3308",
             user=USERNAME,
-            #password=PASSWORD,
+            password=PASSWORD,
         )
         cur = connection.cursor()
         cur.execute(show_db_query)
@@ -32,7 +32,7 @@ except Error as e:
     except Error as e:
         print(e)
 
-
+'''
 
 
 def create_database(app):

@@ -14,8 +14,8 @@ class Asociacion(db.Model):
         self.abreviatura = abreviatura
 
     
-    def __str__(self):
-        return f'{self.id} {self.nombre} {self.abreviatura}'
+    def __asdict__(self):
+        return  {'id':self.id, 'nombre':self.nombre, 'abreviatura':self.abreviatura}
 
 def nueva_asociacion(nombre, abreviatura):
     asociacion = Asociacion(nombre, abreviatura)

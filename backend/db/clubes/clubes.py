@@ -14,8 +14,8 @@ class Club(db.Model):
         self.asociacion = asociacion
 
     
-    def __str__(self):
-        return f'{self.id} {self.nombre} {self.asociacion}'
+    def __asdict__(self):
+        return {'id':self.id, 'nombre':self.nombre, 'asociacion':self.asociacion}
 
 def nuevo_club(nombre, asociacion):
     club = Club(nombre, asociacion)
