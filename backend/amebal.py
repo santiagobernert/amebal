@@ -1,5 +1,4 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
-from flask_cors import CORS, cross_origin
 from db.jugadores.jugadores import Jugador, nuevo_jugador 
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
@@ -8,7 +7,6 @@ from db.pases.pases import Pase, nuevo_pase
 from __init__ import create_app
 
 app = create_app()
-cors = CORS(app)
 
 
 

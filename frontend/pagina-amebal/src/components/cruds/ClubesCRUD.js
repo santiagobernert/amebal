@@ -15,12 +15,11 @@ function ClubesCRUD() {
   const [data, setdata] = useState({clubes: [''], asociaciones: ['']});
   const [modalActualizar, setmodalActualizar] = useState(false);
   const [modalInsertar, setmodalInsertar] = useState(false);
-  const [form, setform] = useState({id: 0, nombre:'', asociacion:''});
+  const [form, setform] = useState({id: 0, nombre:'', asociacion:'', nombrecorto:'', abreviatura:'', escudo:''});
   useEffect(() => {
     fetch("http://localhost:5000/club")
     .then((res) => res.json())
     .then((responseJson) => {
-      console.log(responseJson);
       setdata(responseJson);
       return responseJson;
     });
@@ -113,6 +112,9 @@ function ClubesCRUD() {
               <th>ID</th>
               <th>Nombre</th>
               <th>Asociación</th>
+              <th>Corto</th>
+              <th>Abreviatura</th>
+              <th>Escudo</th>
               <th>_</th>
             </tr>
           </thead>
@@ -122,7 +124,10 @@ function ClubesCRUD() {
               <tr key={club.id}>
                 <td>{club.id}</td>
                 <td>{club.nombre}</td>
-                <td>{club.asociacion}</td>
+                <td>{data.asociaciones.find(a => a.id == club.asociacion) }</td>
+                <td>{club.nombrecorto}</td>
+                <td>{club.abreviatura}</td>
+                <td>{club.escudo}</td>
                 <td>
                   <Button
                     color="primary"
@@ -155,7 +160,7 @@ function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.id}
+              value={form.id}
             />
           </FormGroup>
 
@@ -166,19 +171,62 @@ function ClubesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={data.nombre}
+              value={form.nombre}
             />
           </FormGroup>
 
           <FormGroup>
             <label>Asociación:</label>
-            <input
+            <select
               className="form-control"
               name="asociacion"
+              value={form.asociacion}
+              onChange={handleChange}
+              style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
+            >
+              {data.asociaciones.map(asociacion => {
+                return(
+                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
+                )
+              })}
+            </select>
+            
+          </FormGroup>
+
+          <FormGroup>
+            <label>Nombre corto:</label>
+            <input
+              className="form-control"
+              name="nombrecorto"
+              value={form.nombrecorto}
               type="text"
               onChange={handleChange}
-              value={data.asociacion}
-            />
+            >
+            </input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Abreviatura:</label>
+            <input
+              className="form-control"
+              name="abreviatura"
+              value={form.abreviatura}
+              type="text"
+              onChange={handleChange}
+            >
+            </input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Escudo:</label>
+            <input
+              className="form-control"
+              name="escudo"
+              value=''
+              type="file"
+              onChange={handleChange}
+            >
+            </input>
           </FormGroup>
         </ModalBody>
 
@@ -223,12 +271,52 @@ function ClubesCRUD() {
 
           <FormGroup>
             <label>Asociación:</label>
-            <input
+            <select
               className="form-control"
               name="asociacion"
+              onChange={handleChange}
+              style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
+            >
+              {data.asociaciones.map(asociacion => {
+                return(
+                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
+                )
+              })}
+            </select>
+            
+          </FormGroup>
+
+          <FormGroup>
+            <label>Nombre corto:</label>
+            <input
+              className="form-control"
+              name="nombrecorto"
               type="text"
               onChange={handleChange}
-            />
+            >
+            </input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Abreviatura:</label>
+            <input
+              className="form-control"
+              name="abreviatura"
+              type="text"
+              onChange={handleChange}
+            >
+            </input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Escudo:</label>
+            <input
+              className="form-control"
+              name="escudo"
+              type="file"
+              onChange={handleChange}
+            >
+            </input>
           </FormGroup>
         </ModalBody>
 
