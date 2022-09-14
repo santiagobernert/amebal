@@ -8,20 +8,22 @@ USERNAME = 'root'
 PASSWORD = '1234'
 
 show_db_query = "SHOW DATABASES"
-'''
+
 try:
     connection = connect(
-        host="127.0.0.1:3308",
+        host="127.0.0.1:3306",
         user=USERNAME,
         password=PASSWORD
     )
     create_db_query = f"CREATE DATABASE {DB_NAME}"
     cur = connection.cursor()
+    print('conexion')
     cur.execute(create_db_query)
+    print('db creada')
 except Error as e:
     try:
         connection = connect(
-            host="127.0.0.1:3308",
+            host="127.0.0.1:3306",
             user=USERNAME,
             password=PASSWORD,
         )
@@ -32,7 +34,7 @@ except Error as e:
     except Error as e:
         print(e)
 
-'''
+
 
 
 def create_database(app):

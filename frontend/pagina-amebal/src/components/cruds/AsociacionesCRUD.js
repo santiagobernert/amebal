@@ -11,13 +11,13 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
-function ClubesCRUD() {
-  const [data, setdata] = useState({clubes: [''], asociaciones: ['']});
-  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'club': 0});
+function AsociacionesCRUD() {
+  const [data, setdata] = useState({asociaciones: ['']});
+  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'asociacion': 0});
   const [modalInsertar, setmodalInsertar] = useState(false);
-  const [form, setform] = useState({id: 1, nombre:'', asociacion:'', nombrecorto:'', abreviatura:'', escudo:''});
+  const [form, setform] = useState({id: 1, nombre:'', abreviatura:'', provincia:''});
   useEffect(() => {
-    fetch("http://localhost:5000/club")
+    fetch("http://localhost:5000/asociacion")
     .then((res) => res.json())
     .then((responseJson) => {
       setdata(responseJson);
@@ -25,22 +25,14 @@ function ClubesCRUD() {
     });
   }, []);
 
-  const postdata = ()=>{
-    fetch("http://localhost:5000/club", {
-      method:'POST',
-      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:data
-    })
-  }
-
-  const mostrarModalActualizar = (club) => {
+  const mostrarModalActualizar = (asociacion) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({'abierto': true, 'club': club});
+    setmodalActualizar({'abierto': true, 'asociacion': asociacion});
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
-    setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
+    setmodalActualizar({'abierto':false, 'asociacion': modalActualizar.asociacion});
   };
 
   const mostrarModalInsertar = () => {
@@ -56,16 +48,16 @@ function ClubesCRUD() {
   const editar = (dato) => {
     console.log("editar");
     let contador = 0;
-    let datos = data.clubes;
+    let datos = data.asociaciones;
     datos.map((registro) => {
       if (dato.id == registro.id) {
         datos[contador].nombre = dato.nombre;
-        datos[contador].asociacion = dato.asociacion;
+        datos[contador].abreviatura = dato.abreviatura;
+        datos[contador].provincia = dato.provincia;
       }
       contador++;
     });
-    setdata({'asociaciones': data.asociaciones, 'clubes': datos});
-    postdata();
+    setdata({'asociaciones': datos});
     setmodalActualizar(false);
   };
 
@@ -76,15 +68,14 @@ function ClubesCRUD() {
     );
     if (opcion == true) {
       let contador = 0;
-      let arreglo = data.clubes;
+      let arreglo = data.asociaciones;
       arreglo.map((registro) => {
         if (dato.id == registro.id) {
           arreglo.splice(contador, 1);
         }
         contador++;
       });
-      setdata({'asociaciones': data.asociaciones, 'clubes': arreglo});
-      postdata();
+      setdata({'asociaciones': arreglo});
       setmodalActualizar(false);
     }
   };
@@ -93,11 +84,10 @@ function ClubesCRUD() {
     console.log("insertar");
     console.log(form);
     let valorNuevo = form;
-    valorNuevo.id = data.clubes.length + 1;
-    let lista = data.clubes;
+    valorNuevo.id = data.asociaciones.length + 1;
+    let lista = data.asociaciones;
     lista.push(valorNuevo);
-    setdata({'asociaciones': data.asociaciones, 'clubes': lista});
-    postdata();
+    setdata({'asociaciones': lista});
     setmodalInsertar(false);
   };
 
@@ -121,31 +111,27 @@ function ClubesCRUD() {
             <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Asociación</th>
-              <th>Corto</th>
               <th>Abreviatura</th>
-              <th>Escudo</th>
+              <th>Provincia</th>
               <th>_</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.clubes.map((club) => (
-              <tr key={club.id}>
-                <td>{club.id}</td>
-                <td>{club.nombre}</td>
-                <td>{club.asociacion}</td>
-                <td>{club.nombrecorto}</td>
-                <td>{club.abreviatura}</td>
-                <td>{club.escudo}</td>
+            {data.asociaciones.map((asociacion) => (
+              <tr key={asociacion.id}>
+                <td>{asociacion.id}</td>
+                <td>{asociacion.nombre}</td>
+                <td>{asociacion.abreviatura}</td>
+                <td>{asociacion.provincia}</td>
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(club)}
+                    onClick={() => mostrarModalActualizar(asociacion)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(club)}>
+                  <Button color="danger" onClick={() => eliminar(asociacion)}>
                     Eliminar
                   </Button>
                 </td>
@@ -170,7 +156,7 @@ function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={modalActualizar.club.id}
+              value={modalActualizar.asociacion.id}
             />
           </FormGroup>
 
@@ -181,63 +167,33 @@ function ClubesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={modalActualizar.club.nombre}
+              value={modalActualizar.asociacion.nombre}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Asociación:</label>
-            <select
+            <label>Abreviatura::</label>
+            <input
               className="form-control"
-              name="asociacion"
-              value={modalActualizar.club.asociacion}
+              name="abreviatura"
+              value={modalActualizar.asociacion.abreviatura}
               onChange={handleChange}
-              style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
-            >
-              {data.asociaciones.map(asociacion => {
-                return(
-                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
-                )
-              })}
-            </select>
+            />
             
           </FormGroup>
 
           <FormGroup>
-            <label>Nombre corto:</label>
+            <label>Provincia</label>
             <input
               className="form-control"
-              name="nombrecorto"
-              value={modalActualizar.club.nombrecorto}
+              name="provincia"
+              value={modalActualizar.asociacion.provincia}
               type="text"
               onChange={handleChange}
             >
             </input>
           </FormGroup>
 
-          <FormGroup>
-            <label>Abreviatura:</label>
-            <input
-              className="form-control"
-              name="abreviatura"
-              value={modalActualizar.club.abreviatura}
-              type="text"
-              onChange={handleChange}
-            >
-            </input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Escudo:</label>
-            <input
-              className="form-control"
-              name="escudo"
-              value=''
-              type="file"
-              onChange={handleChange}
-            >
-            </input>
-          </FormGroup>
         </ModalBody>
 
         <ModalFooter>
@@ -253,7 +209,7 @@ function ClubesCRUD() {
       <Modal show={modalInsertar}>
         <ModalHeader>
           <div>
-            <h3>Nuevo Club</h3>
+            <h3>Nueva Asociación</h3>
           </div>
         </ModalHeader>
 
@@ -265,7 +221,7 @@ function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.clubes.length + 1}
+              value={data.asociaciones.length + 1}
             />
           </FormGroup>
 
@@ -280,56 +236,26 @@ function ClubesCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Asociación:</label>
-            <select
-              className="form-control"
-              name="asociacion"
-              onSelect={handleChange}
-              onChange={handleChange}
-              defaultValue='Seleccionar'
-            >
-              <option>Seleccionar</option>
-              {data.asociaciones.map(asociacion => {
-                return(
-                  <option value={data.asociaciones.find(a => a.id == asociacion.id).nombre} key={asociacion.id}>{asociacion.nombre}</option>
-                )
-              })}
-            </select>
-            
-          </FormGroup>
-
-          <FormGroup>
-            <label>Nombre corto:</label>
-            <input
-              className="form-control"
-              name="nombrecorto"
-              type="text"
-              onChange={handleChange}
-            >
-            </input>
-          </FormGroup>
-
-          <FormGroup>
             <label>Abreviatura:</label>
             <input
               className="form-control"
               name="abreviatura"
+              onChange={handleChange}
+            />
+            
+          </FormGroup>
+
+          <FormGroup>
+            <label>Provincia:</label>
+            <input
+              className="form-control"
+              name="provincia"
               type="text"
               onChange={handleChange}
             >
             </input>
           </FormGroup>
 
-          <FormGroup>
-            <label>Escudo:</label>
-            <input
-              className="form-control"
-              name="escudo"
-              type="file"
-              onChange={handleChange}
-            >
-            </input>
-          </FormGroup>
         </ModalBody>
 
         <ModalFooter>
@@ -347,4 +273,4 @@ function ClubesCRUD() {
     </>
   );
 }
-export default ClubesCRUD;
+export default AsociacionesCRUD;

@@ -72,26 +72,39 @@ def pase():
 def asociacion():
     asociaciones = Asociacion.query.all()
     if request.method == 'GET':
-        return render_template('asociaciones.html', asociaciones=asociaciones)
+        response = jsonify({
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        abreviatura = request.form.get('abreviatura')
+        nombre = request.json['nombre']
+        abreviatura = request.json['abreviatura']
+        provincia = request.json['provincia']
 
         nombre_existe = Asociacion.query.filter_by(nombre=nombre).first()
-        abreviatura_existe = Asociacion.query.filter_by(abreviatura=abreviatura).first()
+        abreviatura_existe = Asociacion.query.filter_by(asociacion=asociacion).first()
         
         if nombre_existe:
-            flash('asociacion ya existe')
-            print('asociacion ya existe')
+            flash('Asociacion ya existe')
+            print('Asociacion ya existe')
         if abreviatura_existe:
             flash('abreviatura ya existe')
             print('abreviatura ya existe')
         else:
-            nueva_asociacion(nombre, abreviatura)
-            print(f'asociacion {nombre} {abreviatura}, creado')
+            nueva_asociacion(nombre, abreviatura, provincia)
+            print(f'club {nombre} {abreviatura} {provincia}, creado')
             asociaciones = Asociacion.query.all()
-            return render_template('asociaciones.html', asociaciones=asociaciones)
-    return render_template('asociaciones.html', asociaciones=asociaciones)
+            response = jsonify({
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+    response = jsonify({
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.route('/club', methods=['GET', 'POST'])
@@ -106,8 +119,9 @@ def club():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        asociacion = request.form.get('asociacion')
+        request.headers.add('Access-Control-Allow-Origin', '*')
+        nombre = request.json['nombre']
+        asociacion = request.json['asociacion']
 
         nombre_existe = Club.query.filter_by(nombre=nombre).first()
         abreviatura_existe = Club.query.filter_by(asociacion=asociacion).first()
