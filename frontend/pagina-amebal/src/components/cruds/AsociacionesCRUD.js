@@ -13,7 +13,7 @@ import {
 
 function AsociacionesCRUD() {
   const [data, setdata] = useState({asociaciones: ['']});
-  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'asociacion': 0});
+  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'asociacion': data.asociaciones.length});
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({id: 1, nombre:'', abreviatura:'', provincia:''});
   useEffect(() => {
@@ -30,7 +30,7 @@ function AsociacionesCRUD() {
       method:'POST',
       headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
       body:JSON.stringify(form)
-    }).then(response => response.json()).catch(error => console.log(error))
+    }).then(response => response.json()).catch(error => console.log('post' , error))
   }
   
   const putData = ()=>{
@@ -46,7 +46,7 @@ function AsociacionesCRUD() {
       method:'DELETE',
       headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
       body:JSON.stringify(id)
-    }).then(response => response.json()).catch(error => console.log(error))
+    }).then(response => response.json()).catch(error => console.log('delete', error))
   }
 
   const mostrarModalActualizar = (asociacion) => {
@@ -101,8 +101,8 @@ function AsociacionesCRUD() {
         contador++;
       });
       setdata({'asociaciones': arreglo});
-      deleteData(dato.id)
-      setmodalActualizar(false);
+      setmodalActualizar({'abierto':false, 'asociacion': modalActualizar.asociacion});
+      deleteData(dato.id);
     }
   };
 

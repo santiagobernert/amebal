@@ -72,6 +72,7 @@ def pase():
 @app.route('/asociacion', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def asociacion():
     asociaciones = Asociacion.query.all()
+    print([a.__asdict__() for a in asociaciones])
     if request.method == 'GET':
         response = jsonify({
             'asociaciones': [a.__asdict__() for a in asociaciones],
@@ -109,15 +110,25 @@ def asociacion():
         print('delete')
         id = request.get_json()
         print(id)
-        Asociacion.query.filter_by(id=id).delete()
-        print(Asociacion.query.filter_by(id=id).first(), ' eliminado')
-
-
-    response = jsonify({
+        asociacion = Asociacion.query.filter_by(id=id)
+        clubes_relacionados = Club.query.filter_by(asociacion=id)
+        clubes_relacionados.update({'asociacion': None})
+        asociacion.delete()
+        print('Asociacion ', id, ' eliminado')
+        asociaciones = Asociacion.query.all()
+        print([a.__asdict__() for a in asociaciones])
+        response = jsonify({
             'asociaciones': [a.__asdict__() for a in asociaciones],
             })
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+
+    # response = jsonify({
+    #         'asociaciones': [a.__asdict__() for a in asociaciones],
+    #         })
+    # response.headers.add('Access-Control-Allow-Origin', '*')
+    # return response
 
 
 @app.route('/club', methods=['GET', 'POST'])
