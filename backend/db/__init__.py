@@ -9,9 +9,12 @@ PASSWORD = '1234'
 
 show_db_query = "SHOW DATABASES"
 
+'''
+print(type(db))
 try:
     connection = connect(
-        host="127.0.0.1:3306",
+        host="127.0.0.1",
+        port=3306,
         user=USERNAME,
         password=PASSWORD
     )
@@ -23,9 +26,11 @@ try:
 except Error as e:
     try:
         connection = connect(
-            host="127.0.0.1:3306",
+            host="127.0.0.1",
+            port=3306,
             user=USERNAME,
             password=PASSWORD,
+            database='amebal'
         )
         cur = connection.cursor()
         cur.execute(show_db_query)
@@ -34,7 +39,7 @@ except Error as e:
     except Error as e:
         print(e)
 
-
+'''
 
 
 def create_database(app):

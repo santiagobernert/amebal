@@ -5,6 +5,9 @@ class Club(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     nombre = db.Column(db.String(30))
     asociacion = db.Column(db.Integer, db.ForeignKey('Asociaciones.id'))
+    #nombrecorto = db.Column(db.String(12))
+    #abreviatura = db.Column(db.String(3))
+    #escudo = db.Column(db.String(100))
     jugadores = db.relationship('Jugador', backref='nombre_club')
     estadisticas = db.relationship('Estadistica', backref='id_club')
 

@@ -29,8 +29,8 @@ function ClubesCRUD() {
     fetch("http://localhost:5000/club", {
       method:'POST',
       headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:data
-    })
+      body:JSON.stringify(data)
+    }).then(response => response.json()).catch(error => console.log(error))
   }
 
   const mostrarModalActualizar = (club) => {
@@ -134,7 +134,7 @@ function ClubesCRUD() {
               <tr key={club.id}>
                 <td>{club.id}</td>
                 <td>{club.nombre}</td>
-                <td>{club.asociacion}</td>
+                <td>{data.asociaciones.find(a => a.id == club.asociacion).nombre}</td>
                 <td>{club.nombrecorto}</td>
                 <td>{club.abreviatura}</td>
                 <td>{club.escudo}</td>
@@ -291,7 +291,7 @@ function ClubesCRUD() {
               <option>Seleccionar</option>
               {data.asociaciones.map(asociacion => {
                 return(
-                  <option value={data.asociaciones.find(a => a.id == asociacion.id).nombre} key={asociacion.id}>{asociacion.nombre}</option>
+                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
                 )
               })}
             </select>

@@ -25,6 +25,30 @@ function AsociacionesCRUD() {
     });
   }, []);
 
+  const postData = ()=>{
+    fetch("http://localhost:5000/asociacion", {
+      method:'POST',
+      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+      body:JSON.stringify(form)
+    }).then(response => response.json()).catch(error => console.log(error))
+  }
+  
+  const putData = ()=>{
+    fetch("http://localhost:5000/asociacion", {
+      method:'PUT',
+      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+      body:JSON.stringify(form)
+    }).then(response => response.json()).catch(error => console.log(error))
+  }
+  
+  const deleteData = (id)=>{
+    fetch("http://localhost:5000/asociacion", {
+      method:'DELETE',
+      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+      body:JSON.stringify(id)
+    }).then(response => response.json()).catch(error => console.log(error))
+  }
+
   const mostrarModalActualizar = (asociacion) => {
     console.log("mostrar actualizar");
     setmodalActualizar({'abierto': true, 'asociacion': asociacion});
@@ -58,6 +82,7 @@ function AsociacionesCRUD() {
       contador++;
     });
     setdata({'asociaciones': datos});
+    putData()
     setmodalActualizar(false);
   };
 
@@ -76,6 +101,7 @@ function AsociacionesCRUD() {
         contador++;
       });
       setdata({'asociaciones': arreglo});
+      deleteData(dato.id)
       setmodalActualizar(false);
     }
   };
@@ -88,6 +114,7 @@ function AsociacionesCRUD() {
     let lista = data.asociaciones;
     lista.push(valorNuevo);
     setdata({'asociaciones': lista});
+    postData()
     setmodalInsertar(false);
   };
 
@@ -99,7 +126,7 @@ function AsociacionesCRUD() {
     <>
 
       <Container>
-        <h2>Clubes</h2>
+        <h2>Asociaciones</h2>
         <br />
         <Button color="success" onClick={() => mostrarModalInsertar()}>
           Crear
