@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -12,56 +12,82 @@ import {
 } from "react-bootstrap";
 
 function AsociacionesCRUD() {
-  const [data, setdata] = useState({asociaciones: ['']});
-  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'asociacion': data.asociaciones.length});
+  const [data, setdata] = useState({ asociaciones: [""] });
+  const [modalActualizar, setmodalActualizar] = useState({
+    abierto: false,
+    asociacion: data.asociaciones.length,
+  });
   const [modalInsertar, setmodalInsertar] = useState(false);
-  const [form, setform] = useState({id: 1, nombre:'', abreviatura:'', provincia:''});
+  const [form, setform] = useState({
+    id: 1,
+    nombre: "",
+    abreviatura: "",
+    provincia: "",
+  });
   useEffect(() => {
     fetch("http://localhost:5000/asociacion")
-    .then((res) => res.json())
-    .then((responseJson) => {
-      setdata(responseJson);
-      return responseJson;
-    });
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setdata(responseJson);
+        return responseJson;
+      });
   }, []);
 
-  const postData = ()=>{
+  const postData = () => {
     fetch("http://localhost:5000/asociacion", {
-      method:'POST',
-      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:JSON.stringify(form)
-    }).then(response => response.json()).catch(error => console.log('post' , error))
-  }
-  
-  const putData = ()=>{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("post", error));
+  };
+
+  const putData = () => {
     fetch("http://localhost:5000/asociacion", {
-      method:'PUT',
-      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:JSON.stringify(form)
-    }).then(response => response.json()).catch(error => console.log(error))
-  }
-  
-  const deleteData = (id)=>{
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
+  };
+
+  const deleteData = (id) => {
     fetch("http://localhost:5000/asociacion", {
-      method:'DELETE',
-      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:JSON.stringify(id)
-    }).then(response => response.json()).catch(error => console.log('delete', error))
-  }
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("delete", error));
+  };
 
   const mostrarModalActualizar = (asociacion) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({'abierto': true, 'asociacion': asociacion});
+    setmodalActualizar({ abierto: true, asociacion: asociacion });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
-    setmodalActualizar({'abierto':false, 'asociacion': modalActualizar.asociacion});
+    setmodalActualizar({
+      abierto: false,
+      asociacion: modalActualizar.asociacion,
+    });
   };
 
   const mostrarModalInsertar = () => {
     console.log("mostrar insertar");
-    setmodalInsertar(true)
+    setmodalInsertar(true);
   };
 
   const cerrarModalInsertar = () => {
@@ -81,8 +107,8 @@ function AsociacionesCRUD() {
       }
       contador++;
     });
-    setdata({'asociaciones': datos});
-    putData()
+    setdata({ asociaciones: datos });
+    putData();
     setmodalActualizar(false);
   };
 
@@ -100,8 +126,11 @@ function AsociacionesCRUD() {
         }
         contador++;
       });
-      setdata({'asociaciones': arreglo});
-      setmodalActualizar({'abierto':false, 'asociacion': modalActualizar.asociacion});
+      setdata({ asociaciones: arreglo });
+      setmodalActualizar({
+        abierto: false,
+        asociacion: modalActualizar.asociacion,
+      });
       deleteData(dato.id);
     }
   };
@@ -113,18 +142,17 @@ function AsociacionesCRUD() {
     valorNuevo.id = data.asociaciones.length + 1;
     let lista = data.asociaciones;
     lista.push(valorNuevo);
-    setdata({'asociaciones': lista});
-    postData()
+    setdata({ asociaciones: lista });
+    postData();
     setmodalInsertar(false);
   };
 
   const handleChange = (e) => {
-    setform({...form, [e.target.name]: e.target.value});
+    setform({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
     <>
-
       <Container>
         <h2>Asociaciones</h2>
         <br />
@@ -183,7 +211,7 @@ function AsociacionesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={modalActualizar.asociacion.id}
+              defaultValue={modalActualizar.asociacion.id}
             />
           </FormGroup>
 
@@ -194,7 +222,7 @@ function AsociacionesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={modalActualizar.asociacion.nombre}
+              defaultValue={modalActualizar.asociacion.nombre}
             />
           </FormGroup>
 
@@ -203,10 +231,9 @@ function AsociacionesCRUD() {
             <input
               className="form-control"
               name="abreviatura"
-              value={modalActualizar.asociacion.abreviatura}
+              defaultValue={modalActualizar.asociacion.abreviatura}
               onChange={handleChange}
             />
-            
           </FormGroup>
 
           <FormGroup>
@@ -214,13 +241,11 @@ function AsociacionesCRUD() {
             <input
               className="form-control"
               name="provincia"
-              value={modalActualizar.asociacion.provincia}
+              defaultValue={modalActualizar.asociacion.provincia}
               type="text"
               onChange={handleChange}
-            >
-            </input>
+            ></input>
           </FormGroup>
-
         </ModalBody>
 
         <ModalFooter>
@@ -269,7 +294,6 @@ function AsociacionesCRUD() {
               name="abreviatura"
               onChange={handleChange}
             />
-            
           </FormGroup>
 
           <FormGroup>
@@ -279,10 +303,8 @@ function AsociacionesCRUD() {
               name="provincia"
               type="text"
               onChange={handleChange}
-            >
-            </input>
+            ></input>
           </FormGroup>
-
         </ModalBody>
 
         <ModalFooter>
@@ -296,7 +318,7 @@ function AsociacionesCRUD() {
             Cancelar
           </Button>
         </ModalFooter>
-            </Modal>
+      </Modal>
     </>
   );
 }

@@ -10,13 +10,12 @@ PASSWORD = '1234'
 show_db_query = "SHOW DATABASES"
 
 '''
-print(type(db))
 try:
     connection = connect(
         host="127.0.0.1",
         port=3306,
         user=USERNAME,
-        password=PASSWORD
+        #password=PASSWORD
     )
     create_db_query = f"CREATE DATABASE {DB_NAME}"
     cur = connection.cursor()
@@ -29,7 +28,7 @@ except Error as e:
             host="127.0.0.1",
             port=3306,
             user=USERNAME,
-            password=PASSWORD,
+            #password=PASSWORD,
             database='amebal'
         )
         cur = connection.cursor()
@@ -38,9 +37,7 @@ except Error as e:
             print(db)
     except Error as e:
         print(e)
-
 '''
-
 
 def create_database(app):
     if not path.exists('backend/' + DB_NAME):
