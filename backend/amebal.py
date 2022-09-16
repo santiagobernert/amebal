@@ -110,14 +110,15 @@ def asociacion():
         valores = request.get_json()
         id = valores['id']
         print(valores)
-        asociacion = Asociacion.query.filter_by(id=id)
-        clubes_relacionados = Club.query.filter_by(asociacion=id)
-        clubes_relacionados.update({'asociacion': None})
+        asociacion = Asociacion.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(asociacion=id)
+        #clubes_relacionados.update({'asociacion': None})
+        print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
         asociacion.nombre = valores['nombre']
         asociacion.abreviatura = valores['abreviatura']
         asociacion.provincia = valores['provincia']
         db.session.commit()
-        print('Asociacion ', id, ' eliminado')
+        print('Asociacion ', id, ' editado')
         asociaciones = Asociacion.query.all()
         print([a.__asdict__() for a in asociaciones])
         response = jsonify({

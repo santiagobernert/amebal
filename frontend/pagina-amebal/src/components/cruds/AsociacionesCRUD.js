@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -23,6 +23,12 @@ function AsociacionesCRUD() {
     nombre: "",
     abreviatura: "",
     provincia: "",
+  });
+  const ref = useRef({
+    id: useRef(0),
+    nombre: useRef(""),
+    abreviatura: useRef(""),
+    provincia: useRef(""),
   });
   useEffect(() => {
     fetch("http://localhost:5000/asociacion")
@@ -148,7 +154,11 @@ function AsociacionesCRUD() {
   };
 
   const handleChange = (e) => {
-    setform({ ...form, [e.target.name]: e.target.value });
+    const property = e.target.name;
+    setform({
+      ...form,
+      [property]: e.target.value ? e.target.value : ref.current.value.property,
+    });
   };
 
   return (
@@ -211,6 +221,7 @@ function AsociacionesCRUD() {
               className="form-control"
               readOnly
               type="text"
+              ref={ref.current.id}
               defaultValue={modalActualizar.asociacion.id}
             />
           </FormGroup>
@@ -222,6 +233,7 @@ function AsociacionesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
+              ref={ref.current.nombre}
               defaultValue={modalActualizar.asociacion.nombre}
             />
           </FormGroup>
@@ -231,6 +243,7 @@ function AsociacionesCRUD() {
             <input
               className="form-control"
               name="abreviatura"
+              ref={ref.current.abreviatura}
               defaultValue={modalActualizar.asociacion.abreviatura}
               onChange={handleChange}
             />
@@ -241,6 +254,7 @@ function AsociacionesCRUD() {
             <input
               className="form-control"
               name="provincia"
+              ref={ref.current.provincia}
               defaultValue={modalActualizar.asociacion.provincia}
               type="text"
               onChange={handleChange}
