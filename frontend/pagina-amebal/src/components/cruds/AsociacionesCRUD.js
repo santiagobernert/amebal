@@ -115,7 +115,10 @@ function AsociacionesCRUD() {
     });
     setdata({ asociaciones: datos });
     putData();
-    setmodalActualizar(false);
+    setmodalActualizar({
+      abierto: false,
+      asociacion: modalActualizar.asociacion,
+    });
   };
 
   const eliminar = (dato) => {
@@ -157,7 +160,7 @@ function AsociacionesCRUD() {
     const property = e.target.name;
     setform({
       ...form,
-      [property]: e.target.value ? e.target.value : ref.current.value.property,
+      [property]: e.target.value ? e.target.value : ref.current.property,
     });
   };
 

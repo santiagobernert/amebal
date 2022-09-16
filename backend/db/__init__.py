@@ -5,11 +5,27 @@ from pymysql import connect, Error
 db = SQLAlchemy()
 DB_NAME = 'amebal'
 USERNAME = 'root'
-PASSWORD = '1234'
+PASSWORD = 'santi1005'
 
 show_db_query = "SHOW DATABASES"
 
+query = "ALTER TABLE `amebal`.`Asociaciones` ADD COLUMN `provincias` VARCHAR(20) NULL AFTER `abreviatura`;"
+
 '''
+try:
+    connection = connect(
+        host="127.0.0.1",
+        port=3308,
+        user=USERNAME,
+        password=PASSWORD
+    )
+    cur = connection.cursor()
+    print('conexion')
+    cur.execute(query)
+    print('capo')
+except Error as e:
+        print(e)
+
 try:
     connection = connect(
         host="127.0.0.1",

@@ -97,7 +97,7 @@ def asociacion():
             return 'abreviatura ya existe'
         else:
             nueva_asociacion(nombre, abreviatura, provincia)
-            print(f'club {nombre} {abreviatura} {provincia}, creado')
+            print(f'Asociacion {nombre} {abreviatura} {provincia}, creado')
             asociaciones = Asociacion.query.all()
             response = jsonify({
             'asociaciones': [a.__asdict__() for a in asociaciones],
@@ -153,7 +153,7 @@ def asociacion():
     # return response
 
 
-@app.route('/club', methods=['GET', 'POST'])
+@app.route('/club', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def club():
     clubes = Club.query.all()
     asociaciones = Asociacion.query.all()
@@ -168,9 +168,9 @@ def club():
         print(request.get_json())
         nombre = request.json['clubes'][-1]['nombre']
         asociacion = request.json['clubes'][-1]['asociacion']
-        nombrecorto = request.json['clubes']['nombrecorto']
-        abreviatura = request.json['clubes']['abreviatura']
-        escudo = request.json['clubes']['escudo']
+        nombrecorto = request.json['clubes'][-1]['nombrecorto']
+        abreviatura = request.json['clubes'][-1]['abreviatura']
+        escudo = request.json['clubes'][-1]['escudo']
 
         nombre_existe = Club.query.filter_by(nombre=nombre).first()
         abreviatura_existe = Club.query.filter_by(abreviatura=abreviatura).first()
@@ -183,7 +183,7 @@ def club():
             return'abreviatura ya existe'
         else:
             nuevo_club(nombre, asociacion, nombrecorto, abreviatura, escudo)
-            print(f'club {nombre} {asociacion}, creado')
+            print(f'club {nombre} {asociacion} {nombrecorto} {abreviatura} creado')
             asociaciones = Club.query.all()
             response = jsonify({
             'clubes': [c.__asdict__() for c in clubes],
@@ -191,6 +191,31 @@ def club():
             })
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+
+    if request.method == 'PUT':
+        print('PUT')
+        valores = request.get_json()
+        id = valores['id']
+        print(valores)
+        club = Club.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(asociacion=id)
+        #clubes_relacionados.update({'asociacion': None})
+        print(club.nombre, club.abreviatura, club.asociacion, club.nombrecorto)
+        club.nombre = valores['nombre']
+        club.asociacion = valores['asociacion']
+        club.nombrecorto = valores['nombrecorto']
+        club.abreviatura = valores['abreviatura']
+        club.escudo = valores['escudo']
+        db.session.commit()
+        print('Club ', id, ' editado')
+        clubes = Club.query.all()
+        print([c.__asdict__() for c in clubes])
+        response = jsonify({
+            'clubes': [c.__asdict__() for c in clubes],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
     if request.method == 'DELETE':
         print('delete')
         id = request.get_json()
@@ -200,11 +225,11 @@ def club():
         #clubes_relacionados.update({'asociacion': None})
         club.delete()
         db.session.commit()
-        print('Asociacion ', id, ' eliminado')
-        asociaciones = Asociacion.query.all()
-        print([a.__asdict__() for a in asociaciones])
+        print('Club ', id, ' eliminado')
+        clubes = Club.query.all()
+        print([c.__asdict__() for c in clubes])
         response = jsonify({
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'clubes': [c.__asdict__() for c in clubes],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -25,6 +25,15 @@ function ClubesCRUD() {
     });
   }, []);
 
+  const ref = useRef({
+    id: useRef(0),
+    nombre: useRef(""),
+    asociacion: useRef(""),
+    nombrecorto: useRef(""),
+    abreviatura: useRef("")
+  });
+
+
   const postdata = ()=>{
     fetch("http://localhost:5000/club", {
       method:'POST',
@@ -32,6 +41,33 @@ function ClubesCRUD() {
       body:JSON.stringify(data)
     }).then(response => response.json()).catch(error => console.log(error))
   }
+
+  const putData = () => {
+    fetch("http://localhost:5000/club", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
+  };
+
+  const deleteData = (id) => {
+    fetch("http://localhost:5000/club", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("delete", error));
+  };
+
 
   const mostrarModalActualizar = (club) => {
     console.log("mostrar actualizar");
@@ -65,8 +101,8 @@ function ClubesCRUD() {
       contador++;
     });
     setdata({'asociaciones': data.asociaciones, 'clubes': datos});
-    postdata();
-    setmodalActualizar(false);
+    putData();
+    setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
   };
 
   const eliminar = (dato) => {
@@ -84,8 +120,8 @@ function ClubesCRUD() {
         contador++;
       });
       setdata({'asociaciones': data.asociaciones, 'clubes': arreglo});
-      postdata();
-      setmodalActualizar(false);
+      deleteData(dato.id);
+      setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
     }
   };
 
@@ -102,7 +138,11 @@ function ClubesCRUD() {
   };
 
   const handleChange = (e) => {
-    setform({...form, [e.target.name]: e.target.value});
+    const property = e.target.name;
+    setform({
+      ...form,
+      [property]: e.target.value ? e.target.value : ref.current.value.property,
+    });
   };
 
   return (
@@ -170,7 +210,8 @@ function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={modalActualizar.club.id}
+              ref={ref.current.id}
+              defaultValue={modalActualizar.club.id}
             />
           </FormGroup>
 
@@ -181,7 +222,8 @@ function ClubesCRUD() {
               name="nombre"
               type="text"
               onChange={handleChange}
-              value={modalActualizar.club.nombre}
+              ref={ref.current.nombre}
+              defaultValue={modalActualizar.club.nombre}
             />
           </FormGroup>
 
@@ -190,7 +232,8 @@ function ClubesCRUD() {
             <select
               className="form-control"
               name="asociacion"
-              value={modalActualizar.club.asociacion}
+              ref={ref.current.asociacion}
+              defaultValue={modalActualizar.club.asociacion}
               onChange={handleChange}
               style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
             >
@@ -208,7 +251,8 @@ function ClubesCRUD() {
             <input
               className="form-control"
               name="nombrecorto"
-              value={modalActualizar.club.nombrecorto}
+              ref={ref.current.nombrecorto}
+              defaultValue={modalActualizar.club.nombrecorto}
               type="text"
               onChange={handleChange}
             >
@@ -220,7 +264,8 @@ function ClubesCRUD() {
             <input
               className="form-control"
               name="abreviatura"
-              value={modalActualizar.club.abreviatura}
+              ref={ref.current.abreviatura}
+              defaultValue={modalActualizar.club.abreviatura}
               type="text"
               onChange={handleChange}
             >
