@@ -3,7 +3,7 @@ from db.categorias.categorias import Categoria
 
 class Partido(db.Model):
     __tablename__ = 'Partidos'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     titulo = db.Column(db.String(30))
     liga = db.Column(db.String(30))
     categoria = db.Column(db.Integer, db.ForeignKey(Categoria.id))
@@ -16,7 +16,8 @@ class Partido(db.Model):
     estadisticas = db.relationship('Estadistica', backref='id_partido')
 
 
-    def __init__(self, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+    def __init__(self, id, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+        self.id = id
         self.titulo = titulo
         self.liga = liga
         self.categoria = categoria
@@ -33,8 +34,8 @@ class Partido(db.Model):
     def string_club_categoria(self):
         return f' {self.club} {self.categoria} '
 
-def nuevo_partido(titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
-    partido = Partido(titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado)
+def nuevo_partido(id, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado):
+    partido = Partido(id, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jornada, resultado)
     db.session.add(partido)
     db.session.commit()
     return partido

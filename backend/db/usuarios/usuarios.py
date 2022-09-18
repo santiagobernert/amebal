@@ -4,7 +4,7 @@ from flask_login import UserMixin
 
 class Usuario(db.Model, UserMixin):
     __tablename__ = 'Usuarios'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     nombre = db.Column(db.String(30))
     apellido = db.Column(db.String(30))
     dni = db.Column(db.Integer, unique=True)
@@ -13,7 +13,8 @@ class Usuario(db.Model, UserMixin):
     rol = db.Column(db.Integer, db.ForeignKey(Rol.id))
     numero = db.Column(db.String(50))
 
-    def __init__(self, nombre, apellido, dni, email, contraseña, rol, numero):
+    def __init__(self, id, nombre, apellido, dni, email, contraseña, rol, numero):
+        self.id = id
         self.nombre = nombre
         self.apellido = apellido
         self.dni = dni
@@ -26,8 +27,8 @@ class Usuario(db.Model, UserMixin):
         return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.email} {self.contraseña}'
 
 
-def nuevo_usuario(nombre, apellido, dni, email, contraseña, rol, numero):
-    usuario = Usuario(nombre, apellido, dni, email, contraseña, rol, numero)
+def nuevo_usuario(id, nombre, apellido, dni, email, contraseña, rol, numero):
+    usuario = Usuario(id, nombre, apellido, dni, email, contraseña, rol, numero)
     db.session.add(usuario)
     db.session.commit()
     return usuario

@@ -1,4 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
+
+import EQUIPOS from "../../lists/equipos.js";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -30,7 +33,8 @@ function ClubesCRUD() {
     nombre: useRef(""),
     asociacion: useRef(""),
     nombrecorto: useRef(""),
-    abreviatura: useRef("")
+    abreviatura: useRef(""),
+    escudo: useRef("")
   });
 
 
@@ -68,6 +72,9 @@ function ClubesCRUD() {
       .catch((error) => console.log("delete", error));
   };
 
+  const getImg = (img) => {
+    require(fetch("http://localhost:5000/imagenes/".concat(img.substring(12, img.length -4))))
+  } 
 
   const mostrarModalActualizar = (club) => {
     console.log("mostrar actualizar");
@@ -91,12 +98,16 @@ function ClubesCRUD() {
 
   const editar = (dato) => {
     console.log("editar");
+    console.log(dato);
     let contador = 0;
     let datos = data.clubes;
     datos.map((registro) => {
       if (dato.id == registro.id) {
         datos[contador].nombre = dato.nombre;
         datos[contador].asociacion = dato.asociacion;
+        datos[contador].nombrecorto = dato.nombrecorto;
+        datos[contador].abreviatura = dato.abreviatura;
+        datos[contador].escudo = dato.escudo;
       }
       contador++;
     });
@@ -137,11 +148,21 @@ function ClubesCRUD() {
     setmodalInsertar(false);
   };
 
-  const handleChange = (e) => {
-    const property = e.target.name;
+  const handleChangeEdit = (e) => {
+    setform({
+      'id': ref.current['id'].current.value,
+      'nombre': ref.current['nombre'].current.value,
+      'asociacion': ref.current['asociacion'].current.value,
+      'nombrecorto': ref.current['nombrecorto'].current.value,
+      'abreviatura': ref.current['abreviatura'].current.value,
+      'escudo': ref.current['escudo'].current.value,
+    });
+  };
+
+  const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [property]: e.target.value ? e.target.value : ref.current.value.property,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -177,7 +198,7 @@ function ClubesCRUD() {
                 <td>{data.asociaciones.find(a => a.id == club.asociacion).nombre}</td>
                 <td>{club.nombrecorto}</td>
                 <td>{club.abreviatura}</td>
-                <td>{club.escudo}</td>
+                <td> <img src={club.escudo} alt={club.nombre} /> </td>
                 <td>
                   <Button
                     color="primary"
@@ -221,7 +242,7 @@ function ClubesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
               ref={ref.current.nombre}
               defaultValue={modalActualizar.club.nombre}
             />
@@ -234,7 +255,7 @@ function ClubesCRUD() {
               name="asociacion"
               ref={ref.current.asociacion}
               defaultValue={modalActualizar.club.asociacion}
-              onChange={handleChange}
+              onChange={handleChangeEdit}
               style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
             >
               {data.asociaciones.map(asociacion => {
@@ -254,7 +275,7 @@ function ClubesCRUD() {
               ref={ref.current.nombrecorto}
               defaultValue={modalActualizar.club.nombrecorto}
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
             >
             </input>
           </FormGroup>
@@ -267,7 +288,7 @@ function ClubesCRUD() {
               ref={ref.current.abreviatura}
               defaultValue={modalActualizar.club.abreviatura}
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
             >
             </input>
           </FormGroup>
@@ -277,9 +298,10 @@ function ClubesCRUD() {
             <input
               className="form-control"
               name="escudo"
-              value=''
+              ref={ref.current.escudo}
+              files={modalActualizar.club.escudo}
               type="file"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
             >
             </input>
           </FormGroup>
@@ -320,7 +342,7 @@ function ClubesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             />
           </FormGroup>
 
@@ -329,8 +351,8 @@ function ClubesCRUD() {
             <select
               className="form-control"
               name="asociacion"
-              onSelect={handleChange}
-              onChange={handleChange}
+              onSelect={handleChangeInsert}
+              onChange={handleChangeInsert}
               defaultValue='Seleccionar'
             >
               <option>Seleccionar</option>
@@ -349,7 +371,7 @@ function ClubesCRUD() {
               className="form-control"
               name="nombrecorto"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             >
             </input>
           </FormGroup>
@@ -360,7 +382,7 @@ function ClubesCRUD() {
               className="form-control"
               name="abreviatura"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             >
             </input>
           </FormGroup>
@@ -371,7 +393,7 @@ function ClubesCRUD() {
               className="form-control"
               name="escudo"
               type="file"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             >
             </input>
           </FormGroup>

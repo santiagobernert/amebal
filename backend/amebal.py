@@ -1,5 +1,7 @@
+from select import select
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
 from db import db
+from db.imagenes.imagenes import Imagen
 from flask_cors import CORS
 from db.jugadores.jugadores import Jugador, nuevo_jugador 
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
@@ -82,13 +84,18 @@ def asociacion():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     if request.method == 'POST':
+        id = request.json['id']
         nombre = request.json['nombre']
         abreviatura = request.json['abreviatura']
         provincia = request.json['provincia']
 
+        id_existe = Asociacion.query.filter_by(id=id).first()
         nombre_existe = Asociacion.query.filter_by(nombre=nombre).first()
         abreviatura_existe = Asociacion.query.filter_by(abreviatura=abreviatura).first()
         
+        if id_existe:
+            print('id ya existe')
+            return 'id ya existe'
         if nombre_existe:
             print('Asociacion ya existe')
             return 'Asociacion ya existe'
@@ -96,8 +103,8 @@ def asociacion():
             print('abreviatura ya existe')
             return 'abreviatura ya existe'
         else:
-            nueva_asociacion(nombre, abreviatura, provincia)
-            print(f'Asociacion {nombre} {abreviatura} {provincia}, creado')
+            nueva_asociacion(id, nombre, abreviatura, provincia)
+            print(f'Asociacion {id} {nombre} {abreviatura} {provincia}, creado')
             asociaciones = Asociacion.query.all()
             response = jsonify({
             'asociaciones': [a.__asdict__() for a in asociaciones],
@@ -114,6 +121,7 @@ def asociacion():
         #clubes_relacionados = Club.query.filter_by(asociacion=id)
         #clubes_relacionados.update({'asociacion': None})
         print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
+        asociacion.id = valores['id']
         asociacion.nombre = valores['nombre']
         asociacion.abreviatura = valores['abreviatura']
         asociacion.provincia = valores['provincia']
@@ -158,23 +166,30 @@ def club():
     clubes = Club.query.all()
     asociaciones = Asociacion.query.all()
     if request.method == 'GET':
+        print([c.__asdict__() for c in clubes])
         response = jsonify({
             'clubes': [c.__asdict__() for c in clubes],
             'asociaciones': [a.__asdict__() for a in asociaciones],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+
     if request.method == 'POST':
         print(request.get_json())
+        id = request.json['clubes'][-1]['id']
         nombre = request.json['clubes'][-1]['nombre']
         asociacion = request.json['clubes'][-1]['asociacion']
         nombrecorto = request.json['clubes'][-1]['nombrecorto']
         abreviatura = request.json['clubes'][-1]['abreviatura']
         escudo = request.json['clubes'][-1]['escudo']
 
+        id_existe = Club.query.filter_by(id=id).first()
         nombre_existe = Club.query.filter_by(nombre=nombre).first()
         abreviatura_existe = Club.query.filter_by(abreviatura=abreviatura).first()
         
+        if id_existe:
+            print('id ya existe')
+            return'id ya existe'
         if nombre_existe:
             print('club ya existe')
             return'club ya existe'
@@ -182,8 +197,8 @@ def club():
             print('abreviatura ya existe')
             return'abreviatura ya existe'
         else:
-            nuevo_club(nombre, asociacion, nombrecorto, abreviatura, escudo)
-            print(f'club {nombre} {asociacion} {nombrecorto} {abreviatura} creado')
+            nuevo_club(id, nombre, asociacion, nombrecorto, abreviatura, escudo)
+            print(f'club {id} {nombre} {asociacion} {nombrecorto} {abreviatura} creado')
             asociaciones = Club.query.all()
             response = jsonify({
             'clubes': [c.__asdict__() for c in clubes],
@@ -240,9 +255,14 @@ def club():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-@app.route('/api', methods=['GET'])
-def api():
-    response = jsonify( {'data': 'hace algo'})
+@app.route('/imagenes/<img>', methods=['GET'])
+def imagenes(img):
+    if not img:
+        response = jsonify( {'data': 'imagen'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    imagen = Imagen.query.filter(Imagen.imagen.contains(img)).first()
+    response = jsonify( {'data': imagen.imagen})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 if __name__ == '__main__':

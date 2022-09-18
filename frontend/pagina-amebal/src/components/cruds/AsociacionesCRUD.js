@@ -156,11 +156,19 @@ function AsociacionesCRUD() {
     setmodalInsertar(false);
   };
 
-  const handleChange = (e) => {
-    const property = e.target.name;
+  const handleChangeEdit = (e) => {
+    setform({
+      'id': ref.current['id'].current.value,
+      'nombre': ref.current['nombre'].current.value,
+      'abreviatura': ref.current['abreviatura'].current.value,
+      'provincia': ref.current['provincia'].current.value,
+    });
+  };
+  
+  const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [property]: e.target.value ? e.target.value : ref.current.property,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -235,7 +243,7 @@ function AsociacionesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
               ref={ref.current.nombre}
               defaultValue={modalActualizar.asociacion.nombre}
             />
@@ -248,7 +256,7 @@ function AsociacionesCRUD() {
               name="abreviatura"
               ref={ref.current.abreviatura}
               defaultValue={modalActualizar.asociacion.abreviatura}
-              onChange={handleChange}
+              onChange={handleChangeEdit}
             />
           </FormGroup>
 
@@ -260,7 +268,7 @@ function AsociacionesCRUD() {
               ref={ref.current.provincia}
               defaultValue={modalActualizar.asociacion.provincia}
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeEdit}
             ></input>
           </FormGroup>
         </ModalBody>
@@ -300,7 +308,7 @@ function AsociacionesCRUD() {
               className="form-control"
               name="nombre"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             />
           </FormGroup>
 
@@ -309,7 +317,7 @@ function AsociacionesCRUD() {
             <input
               className="form-control"
               name="abreviatura"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             />
           </FormGroup>
 
@@ -319,7 +327,7 @@ function AsociacionesCRUD() {
               className="form-control"
               name="provincia"
               type="text"
-              onChange={handleChange}
+              onChange={handleChangeInsert}
             ></input>
           </FormGroup>
         </ModalBody>

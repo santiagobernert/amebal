@@ -2,7 +2,7 @@ from db import db
 
 class Club(db.Model):
     __tablename__ = 'Clubes'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     nombre = db.Column(db.String(30))
     asociacion = db.Column(db.Integer, db.ForeignKey('Asociaciones.id'))
     nombrecorto = db.Column(db.String(12))
@@ -12,7 +12,8 @@ class Club(db.Model):
     estadisticas = db.relationship('Estadistica', backref='id_club')
 
 
-    def __init__(self, nombre, asociacion, nombrecorto, abreviatura, escudo):
+    def __init__(self, id, nombre, asociacion, nombrecorto, abreviatura, escudo):
+        self.id = id
         self.nombre = nombre
         self.asociacion = asociacion
         self.nombrecorto = nombrecorto
@@ -21,10 +22,10 @@ class Club(db.Model):
 
     
     def __asdict__(self):
-        return {'id':self.id, 'nombre':self.nombre, 'asociacion':self.asociacion}
+        return {'id':self.id, 'nombre':self.nombre, 'asociacion':self.asociacion, 'nombrecorto': self.nombrecorto, 'abreviatura': self.abreviatura, 'escudo': self.escudo,}
 
-def nuevo_club(nombre, asociacion, nombrecorto, abreviatura, escudo):
-    club = Club(nombre, asociacion, nombrecorto, abreviatura, escudo)
+def nuevo_club(id, nombre, asociacion, nombrecorto, abreviatura, escudo):
+    club = Club(id, nombre, asociacion, nombrecorto, abreviatura, escudo)
     db.session.add(club)
     db.session.commit()
     return club

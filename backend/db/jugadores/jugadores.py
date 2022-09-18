@@ -3,7 +3,7 @@ from db.estadisticas.estadisticas import Estadistica
 
 class Jugador(db.Model):
     __tablename__ = 'Jugadores'
-    id = db.Column('id', db.Integer, primary_key=True, unique=True)
+    id = db.Column('id', db.Integer, primary_key=True, unique=True, autoincrement=False)
     nombre = db.Column(db.String(30))
     apellido = db.Column(db.String(30))
     dni = db.Column(db.Integer, unique=True)
@@ -14,7 +14,8 @@ class Jugador(db.Model):
     pases = db.relationship('Pase', backref='id_jugador')
     estadisticas = db.relationship(Estadistica, backref='id_jugador')
 
-    def __init__(self, nombre, apellido, dni, nacimiento, sexo, club, categoria):
+    def __init__(self, id, nombre, apellido, dni, nacimiento, sexo, club, categoria):
+        self.id = id
         self.nombre = nombre
         self.apellido = apellido
         self.dni = dni
@@ -27,8 +28,8 @@ class Jugador(db.Model):
         return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.nacimiento} {self.sexo} {self.club} {self.categoria}'
 
 
-def nuevo_jugador(nombre, apellido, dni, nacimiento, sexo, club, categoria):
-    jugador = Jugador(nombre, apellido, dni, nacimiento, sexo, club, categoria)
+def nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria):
+    jugador = Jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria)
     db.session.add(jugador)
     db.session.commit()
     return jugador
