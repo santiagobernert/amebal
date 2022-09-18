@@ -20,13 +20,17 @@ function ClubesCRUD() {
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({id: 1, nombre:'', asociacion:'', nombrecorto:'', abreviatura:'', escudo:''});
   useEffect(() => {
-    fetch("http://localhost:5000/club")
-    .then((res) => res.json())
-    .then((responseJson) => {
-      setdata(responseJson);
-      return responseJson;
-    });
+    getData()
   }, []);
+
+  const getData = () => {
+    fetch("http://localhost:5000/club")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setdata(responseJson);
+        return responseJson;
+      });
+  };
 
   const ref = useRef({
     id: useRef(0),
@@ -166,12 +170,28 @@ function ClubesCRUD() {
     });
   };
 
+  const search = (e) => {
+    let searchData = [];
+    if (e.target.value !== ""){
+      data.clubes.map(club => {
+      if (club.nombre.toLowerCase().includes(e.target.value.toLowerCase())){
+        searchData.push(club)
+      }
+    })
+    setdata({asociaciones: data.asociaciones, clubes: searchData})
+    }else{
+      searchData = getData()
+    }
+    console.log(data.clubes);
+    };
+
   return (
     <>
 
       <Container>
         <h2>Clubes</h2>
         <br />
+        <input onChange={(e) => search(e)} placeholder="Buscar por nombre" type="text" />
         <Button color="success" onClick={() => mostrarModalInsertar()}>
           Crear
         </Button>

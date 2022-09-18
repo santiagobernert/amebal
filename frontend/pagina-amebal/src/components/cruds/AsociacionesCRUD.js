@@ -31,13 +31,17 @@ function AsociacionesCRUD() {
     provincia: useRef(""),
   });
   useEffect(() => {
+    getData()
+  }, []);
+
+  const getData = () => {
     fetch("http://localhost:5000/asociacion")
       .then((res) => res.json())
       .then((responseJson) => {
         setdata(responseJson);
         return responseJson;
       });
-  }, []);
+  };
 
   const postData = () => {
     fetch("http://localhost:5000/asociacion", {
@@ -172,12 +176,28 @@ function AsociacionesCRUD() {
     });
   };
 
+  const search = (e) => {
+    let searchData = [];
+    if (e.target.value !== ""){
+      data.asociaciones.map(asociacion => {
+      if (asociacion.nombre.toLowerCase().includes(e.target.value.toLowerCase())){
+        searchData.push(asociacion)
+      }
+    })
+    setdata({asociaciones: searchData})
+    }else{
+      searchData = getData()
+    }
+    console.log(data.asociaciones);
+    };
+
   return (
     <>
       <Container>
         <h2>Asociaciones</h2>
         <br />
-        <Button color="success" onClick={() => mostrarModalInsertar()}>
+        <input onChange={(e) => search(e)} placeholder="Buscar por nombre" type="text" />
+        <Button ms="auto" color="success" onClick={() => mostrarModalInsertar()}>
           Crear
         </Button>
         <br />
