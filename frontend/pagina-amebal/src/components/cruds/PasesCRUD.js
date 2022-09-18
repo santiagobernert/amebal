@@ -1,252 +1,350 @@
-{
-  /*  import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-    Table,
-    Button,
-    Container,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    FormGroup,
-    ModalFooter,
+  Table,
+  Button,
+  Container,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  FormGroup,
+  ModalFooter,
 } from "react-bootstrap";
 
-export default function PasesCRUD() {
-    let state = {
-    data: getIems(),
-    modalActualizar: false,
-    modalInsertar: false,
-    form: {
-        id: "",
-        personaje: "",
-        anime: "",
-    },
-    };
+function PasesCRUD() {
+  const [data, setdata] = useState({ pases: [""] });
+  const [modalActualizar, setmodalActualizar] = useState({
+    abierto: false,
+    asociacion: data.pases.length,
+  });
+  const [modalInsertar, setmodalInsertar] = useState(false);
+  const [form, setform] = useState({
+    id: 1,
+    nombre: "",
+    abreviatura: "",
+    provincia: "",
+  });
+  const ref = useRef({
+    id: useRef(0),
+    nombre: useRef(""),
+    abreviatura: useRef(""),
+    provincia: useRef(""),
+  });
+  useEffect(() => {
+    fetch("http://localhost:5000/asociacion")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setdata(responseJson);
+        return responseJson;
+      });
+  }, []);
 
-    const getUsers = async () => {
-    const res = await fetch("http://localhost:5000/pases");
-    const data = await res.json();
-    setUsers(data);
-    };
+  const postData = () => {
+    fetch("http://localhost:5000/asociacion", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("post", error));
+  };
 
-    const mostrarModalActualizar = (dato) => {
-    setState({
-        form: dato,
-        modalActualizar: true,
+  const putData = () => {
+    fetch("http://localhost:5000/asociacion", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
+  };
+
+  const deleteData = (id) => {
+    fetch("http://localhost:5000/asociacion", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("delete", error));
+  };
+
+  const mostrarModalActualizar = (asociacion) => {
+    console.log("mostrar actualizar");
+    setmodalActualizar({ abierto: true, asociacion: asociacion });
+  };
+
+  const cerrarModalActualizar = () => {
+    console.log("cerrar actualizar");
+    setmodalActualizar({
+      abierto: false,
+      asociacion: modalActualizar.asociacion,
     });
-    };
+  };
 
-    const cerrarModalActualizar = () => {
-    setState({ modalActualizar: false });
-    };
+  const mostrarModalInsertar = () => {
+    console.log("mostrar insertar");
+    setmodalInsertar(true);
+  };
 
-    const mostrarModalInsertar = () => {
-    setState({
-        modalInsertar: true,
-    });
-    };
+  const cerrarModalInsertar = () => {
+    console.log("cerrar insertar");
+    setmodalInsertar(false);
+  };
 
-    const cerrarModalInsertar = () => {
-    setState({ modalInsertar: false });
-    };
-
-    const editar = (dato) => {
+  const editar = (dato) => {
+    console.log("editar");
     let contador = 0;
-    let data = state.data;
-    data.map((registro) => {
-        if (dato.id == registro.id) {
-        data[contador].personaje = dato.personaje;
-        data[contador].anime = dato.anime;
-        }
-        contador++;
+    let datos = data.asociaciones;
+    datos.map((registro) => {
+      if (dato.id == registro.id) {
+        datos[contador].nombre = dato.nombre;
+        datos[contador].abreviatura = dato.abreviatura;
+        datos[contador].provincia = dato.provincia;
+      }
+      contador++;
     });
-    setState({ data: data, modalActualizar: false });
-    };
+    setdata({ asociaciones: datos });
+    putData();
+    setmodalActualizar({
+      abierto: false,
+      asociacion: modalActualizar.asociacion,
+    });
+  };
 
-    const eliminar = (dato) => {
+  const eliminar = (dato) => {
+    console.log("eliminar");
     let opcion = window.confirm(
-        "Estás seguro que deseas eliminar el elemento " + dato.id
+      "Estás seguro que deseas eliminar el elemento " + dato.id
     );
     if (opcion == true) {
-        let contador = 0;
-        let arreglo = state.data;
-        arreglo.map((registro) => {
+      let contador = 0;
+      let arreglo = data.asociaciones;
+      arreglo.map((registro) => {
         if (dato.id == registro.id) {
-            arreglo.splice(contador, 1);
+          arreglo.splice(contador, 1);
         }
         contador++;
-        });
-        setState({ data: arreglo, modalActualizar: false });
+      });
+      setdata({ asociaciones: arreglo });
+      setmodalActualizar({
+        abierto: false,
+        asociacion: modalActualizar.asociacion,
+      });
+      deleteData(dato.id);
     }
-    };
+  };
 
-    const insertar = () => {
-    let valorNuevo = { ...state.form };
-    valorNuevo.id = state.data.length + 1;
-    let lista = state.data;
+  const insertar = () => {
+    console.log("insertar");
+    console.log(form);
+    let valorNuevo = form;
+    valorNuevo.id = data.asociaciones.length + 1;
+    let lista = data.asociaciones;
     lista.push(valorNuevo);
-    setState({ modalInsertar: false, data: lista });
-    };
+    setdata({ asociaciones: lista });
+    postData();
+    setmodalInsertar(false);
+  };
 
-    const handleChange = (e) => {
-    setState({
-        form: {
-        ...state.form,
-        [e.target.name]: e.target.value,
-        },
+  const handleChangeEdit = (e) => {
+    setform({
+      'id': ref.current['id'].current.value,
+      'nombre': ref.current['nombre'].current.value,
+      'abreviatura': ref.current['abreviatura'].current.value,
+      'provincia': ref.current['provincia'].current.value,
     });
-    };
+  };
+  
+  const handleChangeInsert = (e) => {
+    setform({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
 
-    return (
+  return (
     <>
-        <Container>
-        <h2>Clubes</h2>
+      <Container>
+        <h2>Asociaciones</h2>
         <br />
         <Button color="success" onClick={() => mostrarModalInsertar()}>
-            Crear
+          Crear
         </Button>
         <br />
         <br />
         <Table>
-            <thead>
+          <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Asociación</th>
-                <th>_</th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Abreviatura</th>
+              <th>Provincia</th>
+              <th>_</th>
             </tr>
-            </thead>
+          </thead>
 
-            <tbody>
-            {state.data.map((dato) => (
-                <tr key={dato.id}>
-                <td>{dato.id}</td>
-                <td>{dato.nombre}</td>
-                <td>{dato.asociacion}</td>
+          <tbody>
+            {data.asociaciones.map((asociacion) => (
+              <tr key={asociacion.id}>
+                <td>{asociacion.id}</td>
+                <td>{asociacion.nombre}</td>
+                <td>{asociacion.abreviatura}</td>
+                <td>{asociacion.provincia}</td>
                 <td>
-                    <Button
+                  <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(dato)}
-                    >
+                    onClick={() => mostrarModalActualizar(asociacion)}
+                  >
                     Editar
-                    </Button>{" "}
-                    <Button color="danger" onClick={() => eliminar(dato)}>
+                  </Button>{" "}
+                  <Button color="danger" onClick={() => eliminar(asociacion)}>
                     Eliminar
-                    </Button>
+                  </Button>
                 </td>
-                </tr>
+              </tr>
             ))}
-            </tbody>
+          </tbody>
         </Table>
-        </Container>
+      </Container>
 
-        <Modal isOpen={state.modalActualizar}>
+      <Modal show={modalActualizar.abierto}>
         <ModalHeader>
-            <div>
+          <div>
             <h3>Editar Registro</h3>
-            </div>
+          </div>
         </ModalHeader>
 
         <ModalBody>
-            <FormGroup>
+          <FormGroup>
             <label>Id:</label>
 
             <input
-                className="form-control"
-                readOnly
-                type="text"
-                value={state.form.id}
+              className="form-control"
+              readOnly
+              type="text"
+              ref={ref.current.id}
+              defaultValue={modalActualizar.asociacion.id}
             />
-            </FormGroup>
+          </FormGroup>
 
-            <FormGroup>
+          <FormGroup>
             <label>Nombre:</label>
             <input
-                className="form-control"
-                name="nombre"
-                type="text"
-                onChange={handleChange}
-                value={state.form.nombre}
+              className="form-control"
+              name="nombre"
+              type="text"
+              onChange={handleChangeEdit}
+              ref={ref.current.nombre}
+              defaultValue={modalActualizar.asociacion.nombre}
             />
-            </FormGroup>
+          </FormGroup>
 
-            <FormGroup>
-            <label>Asociación:</label>
+          <FormGroup>
+            <label>Abreviatura::</label>
             <input
-                className="form-control"
-                name="asociacion"
-                type="text"
-                onChange={handleChange}
-                value={state.form.asociacion}
+              className="form-control"
+              name="abreviatura"
+              ref={ref.current.abreviatura}
+              defaultValue={modalActualizar.asociacion.abreviatura}
+              onChange={handleChangeEdit}
             />
-            </FormGroup>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Provincia</label>
+            <input
+              className="form-control"
+              name="provincia"
+              ref={ref.current.provincia}
+              defaultValue={modalActualizar.asociacion.provincia}
+              type="text"
+              onChange={handleChangeEdit}
+            ></input>
+          </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-            <Button color="primary" onClick={() => editar(state.form)}>
+          <Button color="primary" onClick={() => editar(form)}>
             Editar
-            </Button>
-            <Button color="danger" onClick={() => cerrarModalActualizar()}>
+          </Button>
+          <Button color="danger" onClick={() => cerrarModalActualizar()}>
             Cancelar
-            </Button>
+          </Button>
         </ModalFooter>
-        </Modal>
+      </Modal>
 
-        <Modal isOpen={state.modalInsertar}>
+      <Modal show={modalInsertar}>
         <ModalHeader>
-            <div>
-            <h3>Insertar Personaje</h3>
-            </div>
+          <div>
+            <h3>Nueva Asociación</h3>
+          </div>
         </ModalHeader>
 
         <ModalBody>
-            <FormGroup>
+          <FormGroup>
             <label>Id:</label>
 
             <input
-                className="form-control"
-                readOnly
-                type="text"
-                value={state.data.length + 1}
+              className="form-control"
+              readOnly
+              type="text"
+              value={data.asociaciones.length + 1}
             />
-            </FormGroup>
+          </FormGroup>
 
-            <FormGroup>
+          <FormGroup>
             <label>Nombre:</label>
             <input
-                className="form-control"
-                name="nombre"
-                type="text"
-                onChange={handleChange}
+              className="form-control"
+              name="nombre"
+              type="text"
+              onChange={handleChangeInsert}
             />
-            </FormGroup>
+          </FormGroup>
 
-            <FormGroup>
-            <label>sociación:</label>
+          <FormGroup>
+            <label>Abreviatura:</label>
             <input
-                className="form-control"
-                name="asociacion"
-                type="text"
-                onChange={handleChange}
+              className="form-control"
+              name="abreviatura"
+              onChange={handleChangeInsert}
             />
-            </FormGroup>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Provincia:</label>
+            <input
+              className="form-control"
+              name="provincia"
+              type="text"
+              onChange={handleChangeInsert}
+            ></input>
+          </FormGroup>
         </ModalBody>
 
         <ModalFooter>
-            <Button color="primary" onClick={() => insertar()}>
+          <Button color="primary" onClick={() => insertar()}>
             Insertar
-            </Button>
-            <Button
+          </Button>
+          <Button
             className="btn btn-danger"
             onClick={() => cerrarModalInsertar()}
-            >
+          >
             Cancelar
-            </Button>
+          </Button>
         </ModalFooter>
-        </Modal>
+      </Modal>
     </>
-    );
-} 
-*/
+  );
 }
+export default PasesCRUD;

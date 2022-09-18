@@ -46,31 +46,78 @@ def jugador():
             return render_template('asociaciones.html', jugadores=jugadores, clubes=clubes, categorias=categorias)
     return render_template('jugadores.html')
 
-@app.route('/pases', methods=['GET', 'POST'])
+@app.route('/pases', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def pase():
     pases = Pase.query.all()
+    print([a.__asdict__() for a in pases])
     if request.method == 'GET':
-        return render_template('pases.html', pases=pases)
+        pases = Pase.query.all()
+        response = jsonify({
+            'pases': [p.__asdict__() for p in pases],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if request.method == 'POST':
-        jugador = request.form.get('nombre')
-        fecha = request.form.get('fecha')
-        club_salida = request.form.get('clubsalida')
-        club_llegada = request.form.get('clubllegada')
+        id = request.json['id']
+        nombre = request.json['nombre']
+        abreviatura = request.json['abreviatura']
+        provincia = request.json['provincia']
 
-        jugador_existe = Pase.query.filter_by(jugador=jugador).first()
+        id_existe = Pase.query.filter_by(id=id).first()
         
-        if jugador_existe:
+        if id_existe:
             print('pase ya existe')
+            return 'pase ya existe'
         else:
-            nuevo_pase(jugador, fecha, club_salida, club_llegada)
-            print('pase creado')
-            return { 
-                'jugador': jugador,
-                'fecha': fecha,
-                'club_salida': club_salida,
-                'club_llegada': club_llegada,
-            }
-    return render_template('pases.html')
+            nuevo_pase(id, nombre, abreviatura, provincia)
+            print(f'Pase {id} {nombre} {abreviatura} {provincia}, creado')
+            pases = Pase.query.all()
+            response = jsonify({
+            'pases': [p.__asdict__() for p in pases],
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+
+    if request.method == 'PUT':
+        print('PUT')
+        valores = request.get_json()
+        id = valores['id']
+        print(valores)
+        asociacion = Asociacion.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(asociacion=id)
+        #clubes_relacionados.update({'asociacion': None})
+        print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
+        asociacion.id = valores['id']
+        asociacion.nombre = valores['nombre']
+        asociacion.abreviatura = valores['abreviatura']
+        asociacion.provincia = valores['provincia']
+        db.session.commit()
+        print('Asociacion ', id, ' editado')
+        asociaciones = Asociacion.query.all()
+        print([a.__asdict__() for a in asociaciones])
+        response = jsonify({
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    if request.method == 'DELETE':
+        print('delete')
+        id = request.get_json()
+        print(id)
+        asociacion = Asociacion.query.filter_by(id=id)
+        clubes_relacionados = Club.query.filter_by(asociacion=id)
+        clubes_relacionados.update({'asociacion': None})
+        asociacion.delete()
+        db.session.commit()
+        print('Asociacion ', id, ' eliminado')
+        asociaciones = Asociacion.query.all()
+        print([a.__asdict__() for a in asociaciones])
+        response = jsonify({
+            'asociaciones': [a.__asdict__() for a in asociaciones],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
 @app.route('/asociacion', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def asociacion():
@@ -262,7 +309,7 @@ def imagenes(img):
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     imagen = Imagen.query.filter(Imagen.imagen.contains(img)).first()
-    response = jsonify( {'data': imagen.imagen})
+    response = jsonify( {'img': imagen})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 if __name__ == '__main__':

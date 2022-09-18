@@ -17,8 +17,8 @@ class Pase(db.Model):
         self.club_llegada = club_llegada
 
     
-    def __str__(self):
-        return f'{self.id} {self.jugador} {self.fecha} {self.club_salida} {self.club_llegada}'
+    def __asdict__(self):
+        return  {'id':self.id, 'jugador':self.jugador, 'fecha':self.fecha, 'club_salida': self.club_salida, 'club_llegada': self.club_llegada}
 
 def nuevo_pase(id, jugador, fecha, club_salida, club_llegada):
     pase = Pase(id, jugador, fecha, club_salida, club_llegada)
