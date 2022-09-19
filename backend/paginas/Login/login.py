@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash
+from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from db.usuarios.usuarios import Usuario, nuevo_usuario
 from db import db
@@ -68,3 +68,87 @@ def log_in():
 def logout():
     logout_user(current_user)
     return redirect(url_for('paginas.home'))
+
+
+@login.route('/usuario', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def asociacion():
+    usuarios = Usuario.query.all()
+    print([u.__asdict__() for u in usuarios])
+    if request.method == 'GET':
+        usuarios = Usuario.query.all()
+        response = jsonify({
+            'usuarios': [u.__asdict__() for u in usuarios],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    if request.method == 'POST':
+        id = request.json['id']
+        nombre = request.json['nombre']
+        apellido = request.json['apellido']
+        dni = request.json['dni']
+        email = request.json['email']
+        contraseña = request.json['contraseña']
+        roles = request.json['roles']
+
+        id_existe = Usuario.query.filter_by(id=id).first()
+        dni_existe = Usuario.query.filter_by(dni=dni).first()
+        
+        if id_existe:
+            print('id ya existe')
+            return 'id ya existe'
+        if dni_existe:
+            print('usuario ya existe')
+            return 'usuario ya existe'
+        else:
+            nuevo_usuario(id, nombre, apellido, dni, email, contraseña, roles)
+            print(f'Usuario {id} {nombre} {apellido} {dni} {roles}, creado')
+            usuarios = Usuario.query.all()
+            response = jsonify({
+            'usuarios': [u.__asdict__() for u in usuarios],
+            })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+
+    if request.method == 'PUT':
+        print('PUT')
+        valores = request.get_json()
+        id = valores['id']
+        print(valores)
+        asociacion = Usuario.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(asociacion=id)
+        #clubes_relacionados.update({'asociacion': None})
+        print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
+        asociacion.id = valores['id']
+        asociacion.nombre = valores['nombre']
+        asociacion.apellido = valores['apellido']
+        asociacion.dni = valores['dni']
+        asociacion.email = valores['email']
+        asociacion.contraseña = valores['contraseña']
+        asociacion.roles = valores['roles']
+        db.session.commit()
+        print('Usuario ', id, ' editado')
+        usuarios = Usuario.query.all()
+        print([u.__asdict__() for u in usuarios])
+        response = jsonify({
+            'usuarios': [u.__asdict__() for u in usuarios],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    if request.method == 'DELETE':
+        print('delete')
+        id = request.get_json()
+        print(id)
+        asociacion = Usuario.query.filter_by(id=id)
+        clubes_relacionados = Usuario.query.filter_by(asociacion=id)
+        clubes_relacionados.update({'asociacion': None})
+        asociacion.delete()
+        db.session.commit()
+        print('Usuario ', id, ' eliminado')
+        usuarios = Usuario.query.all()
+        print([u.__asdict__() for u in usuarios])
+        response = jsonify({
+            'usuarios': [u.__asdict__() for u in usuarios],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response

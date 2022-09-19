@@ -11,9 +11,8 @@ class Usuario(db.Model, UserMixin):
     email = db.Column(db.String(50))
     contraseña = db.Column(db.String(50))
     rol = db.Column(db.Integer, db.ForeignKey(Rol.id))
-    numero = db.Column(db.String(50))
 
-    def __init__(self, id, nombre, apellido, dni, email, contraseña, rol, numero):
+    def __init__(self, id, nombre, apellido, dni, email, contraseña, rol):
         self.id = id
         self.nombre = nombre
         self.apellido = apellido
@@ -21,14 +20,13 @@ class Usuario(db.Model, UserMixin):
         self.email = email
         self.contraseña = contraseña
         self.rol = rol
-        self.numero = numero
     
-    def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.email} {self.contraseña}'
+    def __asdict__(self):
+        return  {'id':self.id, 'nombre':self.nombre, 'apellido':self.apellido, 'dni': self.dni, 'email' : self.email, 'contraseña' : self.contraseña, 'rol' : self.rol}
 
 
-def nuevo_usuario(id, nombre, apellido, dni, email, contraseña, rol, numero):
-    usuario = Usuario(id, nombre, apellido, dni, email, contraseña, rol, numero)
+def nuevo_usuario(id, nombre, apellido, dni, email, contraseña, rol):
+    usuario = Usuario(id, nombre, apellido, dni, email, contraseña, rol)
     db.session.add(usuario)
     db.session.commit()
     return usuario

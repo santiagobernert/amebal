@@ -31,6 +31,7 @@ import Eventos from "./components/paginas/Eventos";
 import PasesCRUD from "./components/cruds/PasesCRUD";
 import ClubesCRUD from "./components/cruds/ClubesCRUD";
 import AsociacionesCRUD from "./components/cruds/AsociacionesCRUD";
+import UsuariosCRUD from "./components/cruds/UsuariosCRUD";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -105,7 +106,8 @@ function App() {
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/crud/clubes" element={<ClubesCRUD />} />
           <Route path="/crud/asociaciones" element={<AsociacionesCRUD />} />
-          <Route path="/crud/clubes" element={<PasesCRUD />} />
+          <Route path="/crud/pases" element={<PasesCRUD />} />
+          <Route path="/crud/usuarios" element={<UsuariosCRUD />} />
         </Routes>
       </BrowserRouter>
 

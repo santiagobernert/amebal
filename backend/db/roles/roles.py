@@ -14,8 +14,8 @@ class Rol(db.Model):
         self.letra = letra
 
     
-    def __str__(self):
-        return f'{self.id} {self.nombre} {self.letra}'
+    def __asdict__(self):
+        return  {'id':self.id, 'nombre':self.nombre, 'letra':self.letra}
 
 def nuevo_rol(id, nombre, letra):
     rol = Rol(id, nombre, letra)

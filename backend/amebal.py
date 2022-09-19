@@ -8,6 +8,7 @@ from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
 from db.categorias.categorias import Categoria, nueva_categoria
 from db.pases.pases import Pase, nuevo_pase
+from db.roles.roles import Rol, nuevo_rol
 from __init__ import create_app
 
 app = create_app()
@@ -302,6 +303,8 @@ def club():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+
+
 @app.route('/imagenes/<img>', methods=['GET'])
 def imagenes(img):
     if not img:
@@ -312,6 +315,21 @@ def imagenes(img):
     response = jsonify( {'img': imagen})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+
+
+@app.route('/roles', methods=['GET'])
+def roles():
+    if request.method == 'GET':
+        roles = Rol.query.all()
+        response = jsonify( [r.__asdict__() for r in roles])
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
