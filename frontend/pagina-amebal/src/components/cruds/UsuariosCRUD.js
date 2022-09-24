@@ -27,7 +27,7 @@ function UsuariosCRUD() {
     dni: "",
     email: "",
     contraseña: "",
-    roles: "",
+    roles: [],
   });
   const ref = useRef({
     id: useRef(0),
@@ -36,7 +36,7 @@ function UsuariosCRUD() {
     dni: useRef(""),
     email: useRef(""),
     contraseña: useRef(""),
-    roles: useRef(""),
+    roles: useRef([]),
   });
   useEffect(() => {
     getRoles();
@@ -197,7 +197,7 @@ function UsuariosCRUD() {
   const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [e.target.name ]: e.target.name != 'roles'? e.target.value: e.target.selectedOptions,
+      [e.target.name]: e.target.name !== "roles"? e.target.value: form.roles.push(e.target.value),
     });
     console.log(form);
   };
@@ -251,7 +251,7 @@ function UsuariosCRUD() {
                 <td>{usuario.dni}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.contraseña}</td>
-                <td>{roles.find(r => r.id == usuario.roles)}</td>
+                <td>{usuario.roles?roles.find(r => r.id == usuario.roles).letra:''}</td>
                 <td>
                   <Button
                     color="primary"
@@ -451,16 +451,33 @@ function UsuariosCRUD() {
               multiple
               className="form-control"
               name="roles"
-              ref={ref.current.roles}
               defaultValue={modalActualizar.usuario.roles}
-              onChange={handleChangeEdit}
+              onChange={handleChangeInsert}
+              style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
             >
               {roles.map(rol => {
                 return(
-                  <option type="checkbox" value={rol.id} key={rol.id}>{rol.nombre}</option>
+                  <option value={rol.id} key={rol.id}>{rol.nombre}</option>
                 )
               })}
             </Form.Control>
+            <div ref={ref.current.roles} className="checkboxes border-gray-200 border border-solid">
+              {roles.map(rol =>{
+                return(
+                <label htmlFor={rol.nombre} className="block ">
+                  <input
+                    type="checkbox"
+                    name="roles"
+                    id={rol.nombre}
+                    onChange={handleChangeInsert}
+                    value={rol.id}
+                    className="m-3"
+                  />
+                  {rol.nombre}
+                </label>)
+                
+              })}
+            </div>
           </FormGroup>
         </ModalBody>
 
