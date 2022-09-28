@@ -32,6 +32,7 @@ import PasesCRUD from "./components/cruds/PasesCRUD";
 import ClubesCRUD from "./components/cruds/ClubesCRUD";
 import AsociacionesCRUD from "./components/cruds/AsociacionesCRUD";
 import UsuariosCRUD from "./components/cruds/UsuariosCRUD";
+import JugadoresCRUD from "./components/cruds/JugadoresCRUD";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -108,6 +109,7 @@ function App() {
           <Route path="/crud/asociaciones" element={<AsociacionesCRUD />} />
           <Route path="/crud/pases" element={<PasesCRUD />} />
           <Route path="/crud/usuarios" element={<UsuariosCRUD />} />
+          <Route path="/crud/jugadores" element={<JugadoresCRUD />} />
         </Routes>
       </BrowserRouter>
 

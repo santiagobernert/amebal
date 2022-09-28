@@ -24,10 +24,13 @@ def home():
 @app.route('/jugador', methods=['GET', 'POST'])
 def jugador():
     jugadores = Jugador.query.all()
-    clubes = Club.query.all()
-    categorias = Categoria.query.all()
     if request.method == 'GET':
-        return render_template('jugadores.html', jugadores=jugadores, clubes=clubes, categorias=categorias)
+        jugadores = Pase.query.all()
+        response = jsonify({
+            'jugadores': [j.__asdict__() for j in jugadores],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response    
     if request.method == 'POST':
         nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')
@@ -212,12 +215,10 @@ def asociacion():
 @app.route('/club', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def club():
     clubes = Club.query.all()
-    asociaciones = Asociacion.query.all()
     if request.method == 'GET':
         print([c.__asdict__() for c in clubes])
         response = jsonify({
-            'clubes': [c.__asdict__() for c in clubes],
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'clubes': [c.__asdict__() for c in clubes]
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -247,10 +248,8 @@ def club():
         else:
             nuevo_club(id, nombre, asociacion, nombrecorto, abreviatura, escudo)
             print(f'club {id} {nombre} {asociacion} {nombrecorto} {abreviatura} creado')
-            asociaciones = Club.query.all()
             response = jsonify({
-            'clubes': [c.__asdict__() for c in clubes],
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'clubes': [c.__asdict__() for c in clubes]
             })
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
@@ -297,11 +296,22 @@ def club():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
     response = jsonify({
-            'clubes': [c.__asdict__() for c in clubes],
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'clubes': [c.__asdict__() for c in clubes]
             })
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+
+@app.route('/categorias', methods=['GET'])
+def categoria():
+    categorias = Categoria.query.all()
+    if request.method == 'GET':
+        print([c.__asdict__() for c in categorias])
+        response = jsonify({
+            'categorias': [c.__asdict__() for c in categorias],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
 
 

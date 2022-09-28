@@ -24,8 +24,8 @@ class Jugador(db.Model):
         self.club = club
         self.categoria = categoria
     
-    def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.dni} {self.id} {self.nacimiento} {self.sexo} {self.club} {self.categoria}'
+    def __asdict__(self):
+        return {'nombre':self.nombre, 'apellido':self.apellido, 'dni':self.dni, 'id':self.id, 'nacimiento':self.nacimiento, 'sexo':self.sexo, 'club':self.club, 'categoria':self.categoria}
 
 
 def nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria):

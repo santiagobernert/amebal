@@ -23,11 +23,20 @@ function ClubesCRUD() {
     getData()
   }, []);
 
-  const getData = () => {
+  const getClubes = () => {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
       .then((responseJson) => {
-        setdata(responseJson);
+        setdata({clubes: responseJson.clubes, asociaciones: asociaciones});
+        return responseJson;
+      });
+  };
+
+  const getAsociaciones = () => {
+    fetch("http://localhost:5000/asociacion")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setdata({clubes: responseJson.clubes, asociaciones: asociaciones});
         return responseJson;
       });
   };
