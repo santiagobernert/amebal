@@ -10,7 +10,7 @@ class Usuario(db.Model, UserMixin):
     dni = db.Column(db.Integer, unique=True)
     email = db.Column(db.String(50))
     contraseña = db.Column(db.String(50))
-    roles = db.Column(db.String(12), db.ForeignKey(Rol.id))
+    rol = db.Column(db.Integer, db.ForeignKey(Rol.id))
 
     def __init__(self, id, nombre, apellido, dni, email, contraseña, rol):
         self.id = id
@@ -22,7 +22,7 @@ class Usuario(db.Model, UserMixin):
         self.rol = rol
     
     def __asdict__(self):
-        return  {'id':self.id, 'nombre':self.nombre, 'apellido':self.apellido, 'dni': self.dni, 'email' : self.email, 'contraseña' : self.contraseña, 'roles' : self.rol}
+        return  {'id':self.id, 'nombre':self.nombre, 'apellido':self.apellido, 'dni': self.dni, 'email' : self.email, 'contraseña' : self.contraseña, 'rol' : self.rol}
 
 
 def nuevo_usuario(id, nombre, apellido, dni, email, contraseña, rol):

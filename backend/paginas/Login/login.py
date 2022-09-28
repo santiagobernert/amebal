@@ -71,7 +71,7 @@ def logout():
 
 
 @login.route('/usuario', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def asociacion():
+def usuario():
     usuarios = Usuario.query.all()
     print([u.__asdict__() for u in usuarios])
     if request.method == 'GET':
@@ -88,7 +88,7 @@ def asociacion():
         dni = request.json['dni']
         email = request.json['email']
         contraseña = request.json['contraseña']
-        roles = request.json['roles']
+        rol = request.json['rol']
 
         id_existe = Usuario.query.filter_by(id=id).first()
         dni_existe = Usuario.query.filter_by(dni=dni).first()
@@ -100,8 +100,8 @@ def asociacion():
             print('usuario ya existe')
             return 'usuario ya existe'
         else:
-            nuevo_usuario(id, nombre, apellido, dni, email, contraseña, roles)
-            print(f'Usuario {id} {nombre} {apellido} {dni} {roles}, creado')
+            nuevo_usuario(id, nombre, apellido, dni, email, contraseña, rol)
+            print(f'Usuario {id} {nombre} {apellido} {dni} {rol}, creado')
             usuarios = Usuario.query.all()
             response = jsonify({
             'usuarios': [u.__asdict__() for u in usuarios],
@@ -114,17 +114,17 @@ def asociacion():
         valores = request.get_json()
         id = valores['id']
         print(valores)
-        asociacion = Usuario.query.filter_by(id=id).first()
-        #clubes_relacionados = Club.query.filter_by(asociacion=id)
-        #clubes_relacionados.update({'asociacion': None})
-        print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
-        asociacion.id = valores['id']
-        asociacion.nombre = valores['nombre']
-        asociacion.apellido = valores['apellido']
-        asociacion.dni = valores['dni']
-        asociacion.email = valores['email']
-        asociacion.contraseña = valores['contraseña']
-        asociacion.roles = valores['roles']
+        usuario = Usuario.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(usuario=id)
+        #clubes_relacionados.update({'usuario': None})
+        print(usuario.nombre, usuario.dni, usuario.email)
+        usuario.id = valores['id']
+        usuario.nombre = valores['nombre']
+        usuario.apellido = valores['apellido']
+        usuario.dni = valores['dni']
+        usuario.email = valores['email']
+        usuario.contraseña = valores['contraseña']
+        usuario.rol = valores['rol']
         db.session.commit()
         print('Usuario ', id, ' editado')
         usuarios = Usuario.query.all()
@@ -139,10 +139,10 @@ def asociacion():
         print('delete')
         id = request.get_json()
         print(id)
-        asociacion = Usuario.query.filter_by(id=id)
-        clubes_relacionados = Usuario.query.filter_by(asociacion=id)
-        clubes_relacionados.update({'asociacion': None})
-        asociacion.delete()
+        usuario = Usuario.query.filter_by(id=id)
+        clubes_relacionados = Usuario.query.filter_by(usuario=id)
+        clubes_relacionados.update({'usuario': None})
+        usuario.delete()
         db.session.commit()
         print('Usuario ', id, ' eliminado')
         usuarios = Usuario.query.all()

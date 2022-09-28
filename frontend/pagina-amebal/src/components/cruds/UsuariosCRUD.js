@@ -27,7 +27,7 @@ function UsuariosCRUD() {
     dni: "",
     email: "",
     contraseña: "",
-    roles: [],
+    rol: 0,
   });
   const ref = useRef({
     id: useRef(0),
@@ -36,7 +36,7 @@ function UsuariosCRUD() {
     dni: useRef(""),
     email: useRef(""),
     contraseña: useRef(""),
-    roles: useRef([]),
+    rol: useRef(0),
   });
   useEffect(() => {
     getRoles();
@@ -134,7 +134,7 @@ function UsuariosCRUD() {
         datos[contador].dni = dato.dni;
         datos[contador].email = dato.email;
         datos[contador].contraseña = dato.contraseña;
-        datos[contador].roles = dato.roles;
+        datos[contador].rol = dato.rol;
       }
       contador++;
     });
@@ -190,14 +190,14 @@ function UsuariosCRUD() {
       'dni': ref.current['dni'].current.value,
       'email': ref.current['email'].current.value,
       'contraseña': ref.current['contraseña'].current.value,
-      'roles': ref.current['roles'].current.value,
+      'rol': ref.current['rol'].current.value,
     });
   };
   
   const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [e.target.name]: e.target.name !== "roles"? e.target.value: form.roles.push(e.target.value),
+      [e.target.name]: e.target.value,
     });
     console.log(form);
   };
@@ -237,7 +237,7 @@ function UsuariosCRUD() {
               <th>Dni</th>
               <th>Email</th>
               <th>Contraseña</th>
-              <th>Roles</th>
+              <th>Rol</th>
               <th>_</th>
             </tr>
           </thead>
@@ -251,7 +251,7 @@ function UsuariosCRUD() {
                 <td>{usuario.dni}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.contraseña}</td>
-                <td>{usuario.roles?roles.find(r => r.id == usuario.roles).letra:''}</td>
+                <td>{usuario.rol?roles.find(r => r.id == usuario.rol).letra:''}</td>
                 <td>
                   <Button
                     color="primary"
@@ -319,7 +319,7 @@ function UsuariosCRUD() {
               name="dni"
               ref={ref.current.dni}
               defaultValue={modalActualizar.usuario.dni}
-              type="text"
+              type="number"
               onChange={handleChangeEdit}
             ></input>
           </FormGroup>
@@ -349,12 +349,12 @@ function UsuariosCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Roles</label>
+            <label>Rol</label>
             <select
               className="form-control"
-              name="roles"
-              ref={ref.current.roles}
-              defaultValue={modalActualizar.usuario.roles}
+              name="rol"
+              ref={ref.current.rol}
+              defaultValue={modalActualizar.usuario.rol}
               onChange={handleChangeEdit}
             >
               {roles.map(rol => {
@@ -419,7 +419,7 @@ function UsuariosCRUD() {
             <input
                 className="form-control"
                 name="dni"
-                type="text"
+                type="number"
                 onChange={handleChangeInsert}
             ></input>
             </FormGroup>
@@ -445,13 +445,13 @@ function UsuariosCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Roles:</label>
+            <label>Rol:</label>
             <Form.Control
               as="select"
               multiple
               className="form-control"
-              name="roles"
-              defaultValue={modalActualizar.usuario.roles}
+              name="rol"
+              defaultValue={modalActualizar.usuario.rol}
               onChange={handleChangeInsert}
               style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
             >
@@ -461,23 +461,6 @@ function UsuariosCRUD() {
                 )
               })}
             </Form.Control>
-            <div ref={ref.current.roles} className="checkboxes border-gray-200 border border-solid">
-              {roles.map(rol =>{
-                return(
-                <label htmlFor={rol.nombre} className="block ">
-                  <input
-                    type="checkbox"
-                    name="roles"
-                    id={rol.nombre}
-                    onChange={handleChangeInsert}
-                    value={rol.id}
-                    className="m-3"
-                  />
-                  {rol.nombre}
-                </label>)
-                
-              })}
-            </div>
           </FormGroup>
         </ModalBody>
 

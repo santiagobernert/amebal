@@ -4,7 +4,7 @@ class Rol(db.Model):
     __tablename__ = 'Roles'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     nombre = db.Column(db.String(30))
-    letra = db.Column(db.String(1))
+    letra = db.Column(db.String(2))
     usuarios = db.relationship('Usuario', backref='id_rol')
 
 
