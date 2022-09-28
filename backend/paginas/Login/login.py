@@ -140,8 +140,6 @@ def usuario():
         id = request.get_json()
         print(id)
         usuario = Usuario.query.filter_by(id=id)
-        clubes_relacionados = Usuario.query.filter_by(usuario=id)
-        clubes_relacionados.update({'usuario': None})
         usuario.delete()
         db.session.commit()
         print('Usuario ', id, ' eliminado')
