@@ -15,19 +15,20 @@ import {
 } from "react-bootstrap";
 
 function ClubesCRUD() {
-  const [data, setdata] = useState({clubes: [''], asociaciones: ['']});
+  const [data, setdata] = useState({clubes: [], asociaciones: []});
   const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'club': 0});
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({id: 1, nombre:'', asociacion:'', nombrecorto:'', abreviatura:'', escudo:''});
   useEffect(() => {
-    getData()
+    getClubes();
+    getAsociaciones();
   }, []);
 
   const getClubes = () => {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
       .then((responseJson) => {
-        setdata({clubes: responseJson.clubes, asociaciones: asociaciones});
+        setdata({clubes: responseJson.clubes, 'asociaciones': data.asociaciones});
         return responseJson;
       });
   };
@@ -36,7 +37,7 @@ function ClubesCRUD() {
     fetch("http://localhost:5000/asociacion")
       .then((res) => res.json())
       .then((responseJson) => {
-        setdata({clubes: responseJson.clubes, asociaciones: asociaciones});
+        setdata({clubes: data.clubes, 'asociaciones': responseJson.asociaciones});
         return responseJson;
       });
   };
@@ -189,7 +190,7 @@ function ClubesCRUD() {
     })
     setdata({asociaciones: data.asociaciones, clubes: searchData})
     }else{
-      searchData = getData()
+      searchData = getClubes()
     }
     console.log(data.clubes);
     };

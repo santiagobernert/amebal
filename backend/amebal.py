@@ -25,18 +25,22 @@ def home():
 def jugador():
     jugadores = Jugador.query.all()
     if request.method == 'GET':
-        jugadores = Pase.query.all()
+        jugadores = Jugador.query.all()
+        print([j.__asdict__() for j in jugadores])
         response = jsonify({
             'jugadores': [j.__asdict__() for j in jugadores],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response    
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        apellido = request.form.get('apellido')
-        nacimiento = request.form.get('nacimiento')
-        club = request.form.get('club')
-        categoria = request.form.get('categoria')
+        id = request.json['id']
+        nombre = request.json['nombre']
+        apellido = request.json['apellido']
+        dni = request.json['dni']
+        nacimiento = request.json['nacimiento']
+        sexo = request.json['sexo']
+        club = request.json['club']
+        categoria = request.json['categoria']
 
         nombre_existe = Jugador.query.filter_by(nombre=nombre).first()
         apellido_existe = Jugador.query.filter_by(apellido=apellido).first()
@@ -44,11 +48,56 @@ def jugador():
         if nombre_existe or apellido_existe:
             print('jugador ya existe')
         else:
-            nuevo_jugador(nombre, apellido, nacimiento, club, categoria)
+            nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria)
             print(f'jugador {nombre} {apellido}, creado')
             jugadores = Jugador.query.all()
-            return render_template('asociaciones.html', jugadores=jugadores, clubes=clubes, categorias=categorias)
-    return render_template('jugadores.html')
+            response = jsonify({
+                'jugadores': [j.__asdict__() for j in jugadores],
+                })
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+
+    
+    if request.method == 'PUT':
+        print('PUT')
+        valores = request.get_json()
+        id = valores['id']
+        print(valores)
+        jugador = Jugador.query.filter_by(id=id).first()
+        print(jugador.nombre, jugador.apellido, jugador.nacimiento)
+        jugador.id = valores['id']
+        jugador.nombre = valores['nombre']
+        jugador.apellido = valores['apellido']
+        jugador.dni = valores['dni']
+        jugador.nacimiento = valores['nacimiento']
+        jugador.sexo = valores['sexo']
+        jugador.club = valores['club']
+        jugador.categoria = valores['categoria']
+        db.session.commit()
+        print('jugador ', id, ' editado')
+        jugadores = Jugador.query.all()
+        print([j.__asdict__() for j in jugadores])
+        response = jsonify({
+            'jugadores': [j.__asdict__() for j in jugadores],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    if request.method == 'DELETE':
+        print('delete')
+        id = request.get_json()
+        print(id)
+        jugador = Jugador.query.filter_by(id=id)
+        jugador.delete()
+        db.session.commit()
+        print('jugador ', id, ' eliminado')
+        jugadores = Jugador.query.all()
+        print([j.__asdict__() for j in jugadores])
+        response = jsonify({
+            'jugadores': [j.__asdict__() for j in jugadores],
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response 
 
 @app.route('/pases', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def pase():

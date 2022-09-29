@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 
 function JugadoresCRUD() {
-  const [data, setdata] = useState({ jugadores: [""] });
+  const [data, setdata] = useState({ jugadores: [] });
   const [categorias, setCategorias] = useState([]);
   const [clubes, setClubes] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
@@ -28,7 +28,7 @@ function JugadoresCRUD() {
     dni: "",
     nacimiento: "",
     sexo: "",
-    club: "",
+    club: 0,
     categoria: 0,
   });
   const ref = useRef({
@@ -38,7 +38,7 @@ function JugadoresCRUD() {
     dni: useRef(""),
     nacimiento: useRef(""),
     sexo: useRef(""),
-    club: useRef(""),
+    club: useRef(0),
     categoria: useRef(0),
   });
   useEffect(() => {
@@ -52,7 +52,7 @@ function JugadoresCRUD() {
     fetch("http://localhost:5000/categorias")
       .then((res) => res.json())
       .then((responseJson) => {
-        setCategorias(responseJson);
+        setCategorias(responseJson.categorias);
         return responseJson;
       });
   };
@@ -61,7 +61,7 @@ function JugadoresCRUD() {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
       .then((responseJson) => {
-        setClubes(responseJson);
+        setClubes(responseJson.clubes);
         return responseJson;
       });
   };
@@ -76,7 +76,7 @@ function JugadoresCRUD() {
   };
 
   const postData = () => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/jugador", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function JugadoresCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/jugador", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +102,7 @@ function JugadoresCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/jugador", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -268,8 +268,8 @@ function JugadoresCRUD() {
                 <td>{jugador.dni}</td>
                 <td>{jugador.nacimiento}</td>
                 <td>{jugador.sexo}</td>
-                <td>{jugador.club?clubes.find(c => c.id == jugador.categoria).letra:''}</td>
-                <td>{jugador.categoria?categorias.find(c => c.id == jugador.categoria).letra:''}</td>
+                <td>{clubes.find(c => c.id == jugador.club).nombre}</td>
+                <td>{categorias.find(c => c.id == jugador.categoria).nombre}</td>
                 <td>
                   <Button
                     color="primary"
@@ -363,6 +363,7 @@ function JugadoresCRUD() {
               defaultValue={modalActualizar.jugador.sexo}
               onChange={handleChangeEdit}
             >
+                <option value="seleccionar">Seleccionar</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
             </select>
@@ -387,19 +388,18 @@ function JugadoresCRUD() {
 
           <FormGroup>
             <label>Categoría</label>
-            <select
-              className="form-control"
+            <Form.Control
               name="categoria"
-              ref={ref.current.club}
+              plaintext
+              readOnly
               defaultValue={modalActualizar.jugador.categoria}
-              onChange={handleChangeEdit}
+              onChange={handleChangeInsert}
+              style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
             >
-              {categorias.map(categoria => {
-                return(
-                  <option value={categoria.id} key={categoria.id}>{categoria.nombre}</option>
-                )
-              })}
-            </select>
+              {form.nacimiento?
+              categorias.find(c => c.años.includes(new Date(form.nacimiento).getFullYear())).nombre:
+              ''}
+            </Form.Control>
           </FormGroup>
         </ModalBody>
 
@@ -479,6 +479,7 @@ function JugadoresCRUD() {
               name="sexo"
               onChange={handleChangeInsert}
             >
+                <option value="seleccionar">Seleccionar</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
             </select>
@@ -506,20 +507,16 @@ function JugadoresCRUD() {
           <FormGroup>
             <label>Categoría:</label>
             <Form.Control
-              as="select"
-              multiple
-              className="form-control"
               name="categoria"
+              plaintext
+              readOnly
               defaultValue={modalActualizar.jugador.categoria}
               onChange={handleChangeInsert}
               style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
-            >
-              {categorias.map(categoria => {
-                return(
-                  <option value={categoria.id} key={categoria.id}>{categoria.nombre}</option>
-                )
-              })}
-            </Form.Control>
+              placeholder={form.nacimiento?
+              categorias.find(c => c.años.includes(new Date(form.nacimiento).getFullYear())).nombre:
+              ''}
+            />
           </FormGroup>
         </ModalBody>
 
