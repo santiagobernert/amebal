@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import EQUIPOS from "../../lists/equipos.js";
 
@@ -15,10 +15,21 @@ import {
 } from "react-bootstrap";
 
 function ClubesCRUD() {
-  const [data, setdata] = useState({clubes: [], asociaciones: []});
-  const [modalActualizar, setmodalActualizar] = useState({'abierto':false, 'club': 0});
+  const [clubes, setClubes] = useState([]);
+  const [asociaciones, setAsociaciones] = useState([]);
+  const [modalActualizar, setmodalActualizar] = useState({
+    abierto: false,
+    club: 0,
+  });
   const [modalInsertar, setmodalInsertar] = useState(false);
-  const [form, setform] = useState({id: 1, nombre:'', asociacion:'', nombrecorto:'', abreviatura:'', escudo:''});
+  const [form, setform] = useState({
+    id: 1,
+    nombre: "",
+    asociacion: "",
+    nombrecorto: "",
+    abreviatura: "",
+    escudo: "",
+  });
   useEffect(() => {
     getClubes();
     getAsociaciones();
@@ -28,7 +39,9 @@ function ClubesCRUD() {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
       .then((responseJson) => {
-        setdata({clubes: responseJson.clubes, 'asociaciones': data.asociaciones});
+        console.log(responseJson.clubes);
+        setClubes(responseJson.clubes);
+        console.log(clubes);
         return responseJson;
       });
   };
@@ -37,7 +50,9 @@ function ClubesCRUD() {
     fetch("http://localhost:5000/asociacion")
       .then((res) => res.json())
       .then((responseJson) => {
-        setdata({clubes: data.clubes, 'asociaciones': responseJson.asociaciones});
+        console.log(responseJson.asociaciones);
+        setAsociaciones(responseJson.asociaciones);
+        console.log(asociaciones);
         return responseJson;
       });
   };
@@ -48,17 +63,21 @@ function ClubesCRUD() {
     asociacion: useRef(""),
     nombrecorto: useRef(""),
     abreviatura: useRef(""),
-    escudo: useRef("")
+    escudo: useRef(""),
   });
 
-
-  const postdata = ()=>{
+  const postdata = () => {
     fetch("http://localhost:5000/club", {
-      method:'POST',
-      headers:{'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body:JSON.stringify(data)
-    }).then(response => response.json()).catch(error => console.log(error))
-  }
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(clubes),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
+  };
 
   const putData = () => {
     fetch("http://localhost:5000/club", {
@@ -87,22 +106,26 @@ function ClubesCRUD() {
   };
 
   const getImg = (img) => {
-    require(fetch("http://localhost:5000/imagenes/".concat(img.substring(12, img.length -4))))
-  } 
+    require(fetch(
+      "http://localhost:5000/imagenes/".concat(
+        img.substring(12, img.length - 4)
+      )
+    ));
+  };
 
   const mostrarModalActualizar = (club) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({'abierto': true, 'club': club});
+    setmodalActualizar({ abierto: true, club: club });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
-    setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
+    setmodalActualizar({ abierto: false, club: modalActualizar.club });
   };
 
   const mostrarModalInsertar = () => {
     console.log("mostrar insertar");
-    setmodalInsertar(true)
+    setmodalInsertar(true);
   };
 
   const cerrarModalInsertar = () => {
@@ -114,7 +137,7 @@ function ClubesCRUD() {
     console.log("editar");
     console.log(dato);
     let contador = 0;
-    let datos = data.clubes;
+    let datos = clubes;
     datos.map((registro) => {
       if (dato.id == registro.id) {
         datos[contador].nombre = dato.nombre;
@@ -125,9 +148,9 @@ function ClubesCRUD() {
       }
       contador++;
     });
-    setdata({'asociaciones': data.asociaciones, 'clubes': datos});
+    setClubes(datos);
     putData();
-    setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
+    setmodalActualizar({ abierto: false, club: modalActualizar.club });
   };
 
   const eliminar = (dato) => {
@@ -137,16 +160,16 @@ function ClubesCRUD() {
     );
     if (opcion == true) {
       let contador = 0;
-      let arreglo = data.clubes;
+      let arreglo = clubes;
       arreglo.map((registro) => {
         if (dato.id == registro.id) {
           arreglo.splice(contador, 1);
         }
         contador++;
       });
-      setdata({'asociaciones': data.asociaciones, 'clubes': arreglo});
+      setClubes(arreglo);
       deleteData(dato.id);
-      setmodalActualizar({'abierto': false, 'club': modalActualizar.club});
+      setmodalActualizar({ abierto: false, club: modalActualizar.club });
     }
   };
 
@@ -154,54 +177,57 @@ function ClubesCRUD() {
     console.log("insertar");
     console.log(form);
     let valorNuevo = form;
-    valorNuevo.id = data.clubes.length + 1;
-    let lista = data.clubes;
+    valorNuevo.id = clubes.length + 1;
+    let lista = clubes;
     lista.push(valorNuevo);
-    setdata({'asociaciones': data.asociaciones, 'clubes': lista});
+    setClubes(lista);
     postdata();
     setmodalInsertar(false);
   };
 
   const handleChangeEdit = (e) => {
     setform({
-      'id': ref.current['id'].current.value,
-      'nombre': ref.current['nombre'].current.value,
-      'asociacion': ref.current['asociacion'].current.value,
-      'nombrecorto': ref.current['nombrecorto'].current.value,
-      'abreviatura': ref.current['abreviatura'].current.value,
-      'escudo': ref.current['escudo'].current.value,
+      id: ref.current["id"].current.value,
+      nombre: ref.current["nombre"].current.value,
+      asociacion: ref.current["asociacion"].current.value,
+      nombrecorto: ref.current["nombrecorto"].current.value,
+      abreviatura: ref.current["abreviatura"].current.value,
+      escudo: ref.current["escudo"].current.value,
     });
   };
 
   const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const search = (e) => {
     let searchData = [];
-    if (e.target.value !== ""){
-      data.clubes.map(club => {
-      if (club.nombre.toLowerCase().includes(e.target.value.toLowerCase())){
-        searchData.push(club)
-      }
-    })
-    setdata({asociaciones: data.asociaciones, clubes: searchData})
-    }else{
-      searchData = getClubes()
+    if (e.target.value !== "") {
+      clubes.map((club) => {
+        if (club.nombre.toLowerCase().includes(e.target.value.toLowerCase())) {
+          searchData.push(club);
+        }
+      });
+      setClubes(searchData);
+    } else {
+      searchData = getClubes();
     }
-    console.log(data.clubes);
-    };
+    console.log(clubes);
+  };
 
   return (
     <>
-
       <Container>
         <h2>Clubes</h2>
         <br />
-        <input onChange={(e) => search(e)} placeholder="Buscar por nombre" type="text" />
+        <input
+          onChange={(e) => search(e)}
+          placeholder="Buscar por nombre"
+          type="text"
+        />
         <Button color="success" onClick={() => mostrarModalInsertar()}>
           Crear
         </Button>
@@ -221,14 +247,21 @@ function ClubesCRUD() {
           </thead>
 
           <tbody>
-            {data.clubes.map((club) => (
+            {clubes.map((club) => (
               <tr key={club.id}>
                 <td>{club.id}</td>
                 <td>{club.nombre}</td>
-                <td>{data.asociaciones.find(a => a.id == club.asociacion).nombre}</td>
+                <td>
+                  {asociaciones.find((a) => a.id == club.asociacion)
+                    ? asociaciones.find((a) => a.id == club.asociacion).nombre
+                    : ""}
+                </td>
                 <td>{club.nombrecorto}</td>
                 <td>{club.abreviatura}</td>
-                <td> <img src={club.escudo} alt={club.nombre} /> </td>
+                <td>
+                  {" "}
+                  <img src={club.escudo} alt={club.nombre} />{" "}
+                </td>
                 <td>
                   <Button
                     color="primary"
@@ -286,15 +319,19 @@ function ClubesCRUD() {
               ref={ref.current.asociacion}
               defaultValue={modalActualizar.club.asociacion}
               onChange={handleChangeEdit}
-              style={{color: '#121212 !important', border: '1px solid #ced4da !important'}}
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
             >
-              {data.asociaciones.map(asociacion => {
-                return(
-                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
-                )
+              {asociaciones.map((asociacion) => {
+                return (
+                  <option value={asociacion.id} key={asociacion.id}>
+                    {asociacion.nombre}
+                  </option>
+                );
               })}
             </select>
-            
           </FormGroup>
 
           <FormGroup>
@@ -306,8 +343,7 @@ function ClubesCRUD() {
               defaultValue={modalActualizar.club.nombrecorto}
               type="text"
               onChange={handleChangeEdit}
-            >
-            </input>
+            ></input>
           </FormGroup>
 
           <FormGroup>
@@ -319,8 +355,7 @@ function ClubesCRUD() {
               defaultValue={modalActualizar.club.abreviatura}
               type="text"
               onChange={handleChangeEdit}
-            >
-            </input>
+            ></input>
           </FormGroup>
 
           <FormGroup>
@@ -332,8 +367,7 @@ function ClubesCRUD() {
               files={modalActualizar.club.escudo}
               type="file"
               onChange={handleChangeEdit}
-            >
-            </input>
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -362,7 +396,7 @@ function ClubesCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.clubes.length + 1}
+              value={clubes.length + 1}
             />
           </FormGroup>
 
@@ -383,16 +417,17 @@ function ClubesCRUD() {
               name="asociacion"
               onSelect={handleChangeInsert}
               onChange={handleChangeInsert}
-              defaultValue='Seleccionar'
+              defaultValue="Seleccionar"
             >
               <option>Seleccionar</option>
-              {data.asociaciones.map(asociacion => {
-                return(
-                  <option value={asociacion.id} key={asociacion.id}>{asociacion.nombre}</option>
-                )
+              {asociaciones.map((asociacion) => {
+                return (
+                  <option value={asociacion.id} key={asociacion.id}>
+                    {asociacion.nombre}
+                  </option>
+                );
               })}
             </select>
-            
           </FormGroup>
 
           <FormGroup>
@@ -402,8 +437,7 @@ function ClubesCRUD() {
               name="nombrecorto"
               type="text"
               onChange={handleChangeInsert}
-            >
-            </input>
+            ></input>
           </FormGroup>
 
           <FormGroup>
@@ -413,8 +447,7 @@ function ClubesCRUD() {
               name="abreviatura"
               type="text"
               onChange={handleChangeInsert}
-            >
-            </input>
+            ></input>
           </FormGroup>
 
           <FormGroup>
@@ -424,8 +457,7 @@ function ClubesCRUD() {
               name="escudo"
               type="file"
               onChange={handleChangeInsert}
-            >
-            </input>
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -440,7 +472,7 @@ function ClubesCRUD() {
             Cancelar
           </Button>
         </ModalFooter>
-            </Modal>
+      </Modal>
     </>
   );
 }

@@ -45,7 +45,7 @@ function JugadoresCRUD() {
     getCategorias();
     getClubes();
     getData();
-    console.log(clubes, categorias)
+    console.log(clubes, categorias);
   }, []);
 
   const getCategorias = () => {
@@ -199,47 +199,63 @@ function JugadoresCRUD() {
 
   const handleChangeEdit = (e) => {
     setform({
-      'id': ref.current['id'].current.value,
-      'nombre': ref.current['nombre'].current.value,
-      'apellido': ref.current['apellido'].current.value,
-      'dni': ref.current['dni'].current.value,
-      'nacimiento': ref.current['nacimiento'].current.value,
-      'sexo': ref.current['sexo'].current.value,
-      'club': ref.current['club'].current.value,
-      'categoria': ref.current['categoria'].current.value,
+      id: ref.current["id"].current.value,
+      nombre: ref.current["nombre"].current.value,
+      apellido: ref.current["apellido"].current.value,
+      dni: ref.current["dni"].current.value,
+      nacimiento: ref.current["nacimiento"].current.value,
+      sexo: ref.current["sexo"].current.value,
+      club: ref.current["club"].current.value,
+      categoria: ref.current["categoria"].current.value,
     });
   };
-  
+
   const handleChangeInsert = (e) => {
     setform({
       ...form,
       [e.target.name]: e.target.value,
+      categoria: ref.current["categoria"].current.value
+        ? categorias.find(
+            (c) => c.nombre === ref.current["categoria"].current.value
+          ).id
+        : "",
     });
     console.log(form);
+    console.log(form.categoria);
   };
 
   const search = (e) => {
     let searchData = [];
-    if (e.target.value !== ""){
-      data.jugadores.map(jugador => {
-      if (jugador.nombre.toLowerCase().includes(e.target.value.toLowerCase())){
-        searchData.push(jugador)
-      }
-    })
-    setdata({jugadores: searchData})
-    }else{
-      searchData = getData()
+    if (e.target.value !== "") {
+      data.jugadores.map((jugador) => {
+        if (
+          jugador.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+        ) {
+          searchData.push(jugador);
+        }
+      });
+      setdata({ jugadores: searchData });
+    } else {
+      searchData = getData();
     }
     console.log(data.jugadores);
-    };
+  };
 
   return (
     <>
       <Container>
         <h2>Jugadores</h2>
         <br />
-        <input onChange={(e) => search(e)} placeholder="Buscar por nombre" type="text" />
-        <Button ms="auto" color="success" onClick={() => mostrarModalInsertar()}>
+        <input
+          onChange={(e) => search(e)}
+          placeholder="Buscar por nombre"
+          type="text"
+        />
+        <Button
+          ms="auto"
+          color="success"
+          onClick={() => mostrarModalInsertar()}
+        >
           Crear
         </Button>
         <br />
@@ -268,8 +284,10 @@ function JugadoresCRUD() {
                 <td>{jugador.dni}</td>
                 <td>{jugador.nacimiento}</td>
                 <td>{jugador.sexo}</td>
-                <td>{clubes.find(c => c.id == jugador.club).nombre}</td>
-                <td>{categorias.find(c => c.id == jugador.categoria).nombre}</td>
+                <td>{clubes.find((c) => c.id == jugador.club).nombre}</td>
+                <td>
+                  {categorias.find((c) => c.id == jugador.categoria).nombre}
+                </td>
                 <td>
                   <Button
                     color="primary"
@@ -363,9 +381,9 @@ function JugadoresCRUD() {
               defaultValue={modalActualizar.jugador.sexo}
               onChange={handleChangeEdit}
             >
-                <option value="seleccionar">Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
+              <option value="seleccionar">Seleccionar</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
             </select>
           </FormGroup>
 
@@ -378,10 +396,12 @@ function JugadoresCRUD() {
               defaultValue={modalActualizar.jugador.club}
               onChange={handleChangeEdit}
             >
-              {clubes.map(club => {
-                return(
-                  <option value={club.id} key={club.id}>{club.nombre}</option>
-                )
+              {clubes.map((club) => {
+                return (
+                  <option value={club.id} key={club.id}>
+                    {club.nombre}
+                  </option>
+                );
               })}
             </select>
           </FormGroup>
@@ -394,12 +414,18 @@ function JugadoresCRUD() {
               readOnly
               defaultValue={modalActualizar.jugador.categoria}
               onChange={handleChangeInsert}
-              style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
-            >
-              {form.nacimiento?
-              categorias.find(c => c.años.includes(new Date(form.nacimiento).getFullYear())).nombre:
-              ''}
-            </Form.Control>
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
+              placeholder={
+                form.nacimiento
+                  ? categorias.find((c) =>
+                      c.años.includes(new Date(form.nacimiento).getFullYear())
+                    ).nombre
+                  : ""
+              }
+            />
           </FormGroup>
         </ModalBody>
 
@@ -451,15 +477,15 @@ function JugadoresCRUD() {
             />
           </FormGroup>
 
-            <FormGroup>
+          <FormGroup>
             <label>Dni:</label>
             <input
-                className="form-control"
-                name="dni"
-                type="number"
-                onChange={handleChangeInsert}
+              className="form-control"
+              name="dni"
+              type="number"
+              onChange={handleChangeInsert}
             ></input>
-            </FormGroup>
+          </FormGroup>
 
           <FormGroup>
             <label>Nacimiento:</label>
@@ -479,9 +505,9 @@ function JugadoresCRUD() {
               name="sexo"
               onChange={handleChangeInsert}
             >
-                <option value="seleccionar">Seleccionar</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
+              <option value="seleccionar">Seleccionar</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
             </select>
           </FormGroup>
 
@@ -494,12 +520,17 @@ function JugadoresCRUD() {
               name="club"
               defaultValue={modalActualizar.jugador.club}
               onChange={handleChangeInsert}
-              style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
             >
-              {clubes.map(club => {
-                return(
-                  <option value={club.id} key={club.id}>{club.nombre}</option>
-                )
+              {clubes.map((club) => {
+                return (
+                  <option value={club.id} key={club.id}>
+                    {club.nombre}
+                  </option>
+                );
               })}
             </Form.Control>
           </FormGroup>
@@ -510,12 +541,20 @@ function JugadoresCRUD() {
               name="categoria"
               plaintext
               readOnly
-              defaultValue={modalActualizar.jugador.categoria}
+              ref={ref.current.categoria}
+              id="categoria"
+              defaultValue={
+                form.nacimiento
+                  ? categorias.find((c) =>
+                      c.años.includes(new Date(form.nacimiento).getFullYear())
+                    ).nombre
+                  : ""
+              }
               onChange={handleChangeInsert}
-              style={{color: "#121212 !important", border:"1px solid #ced4da !important"}}
-              placeholder={form.nacimiento?
-              categorias.find(c => c.años.includes(new Date(form.nacimiento).getFullYear())).nombre:
-              ''}
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
             />
           </FormGroup>
         </ModalBody>
