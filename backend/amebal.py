@@ -42,10 +42,9 @@ def jugador():
         club = request.json['club']
         categoria = request.json['categoria']
 
-        nombre_existe = Jugador.query.filter_by(nombre=nombre).first()
-        apellido_existe = Jugador.query.filter_by(apellido=apellido).first()
+        dni_existe = Jugador.query.filter_by(dni=dni).first()
         
-        if nombre_existe or apellido_existe:
+        if dni_existe:
             print('jugador ya existe')
         else:
             nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria)
@@ -112,22 +111,25 @@ def pase():
         return response
     if request.method == 'POST':
         id = request.json['id']
-        nombre = request.json['nombre']
-        abreviatura = request.json['abreviatura']
-        provincia = request.json['provincia']
+        id_jugador = request.json['jugador']
+        nacimiento = request.json['fecha']
+        club_salida = request.json['club_salida']
+        club_llegada = request.json['club_llegada']
+
+        jugador = Jugador.query.filter_by(id=id_jugador).first()
+        jugador.club = request.json['club_llegada']
 
         id_existe = Pase.query.filter_by(id=id).first()
         
         if id_existe:
             print('pase ya existe')
-            return 'pase ya existe'
         else:
-            nuevo_pase(id, nombre, abreviatura, provincia)
-            print(f'Pase {id} {nombre} {abreviatura} {provincia}, creado')
+            nuevo_pase(id, id_jugador, nacimiento, club_salida, club_llegada)
+            print(f'pase {jugador.nombre} {club_salida} {club_llegada}, creado')
             pases = Pase.query.all()
             response = jsonify({
-            'pases': [p.__asdict__() for p in pases],
-            })
+                'pases': [p.__asdict__() for p in pases],
+                })
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
 
@@ -274,12 +276,12 @@ def club():
 
     if request.method == 'POST':
         print(request.get_json())
-        id = request.json['clubes'][-1]['id']
-        nombre = request.json['clubes'][-1]['nombre']
-        asociacion = request.json['clubes'][-1]['asociacion']
-        nombrecorto = request.json['clubes'][-1]['nombrecorto']
-        abreviatura = request.json['clubes'][-1]['abreviatura']
-        escudo = request.json['clubes'][-1]['escudo']
+        id = request.json[-1]['id']
+        nombre = request.json[-1]['nombre']
+        asociacion = request.json[-1]['asociacion']
+        nombrecorto = request.json[-1]['nombrecorto']
+        abreviatura = request.json[-1]['abreviatura']
+        escudo = request.json[-1]['escudo']
 
         id_existe = Club.query.filter_by(id=id).first()
         nombre_existe = Club.query.filter_by(nombre=nombre).first()

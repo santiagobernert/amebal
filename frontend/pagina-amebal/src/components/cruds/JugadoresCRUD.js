@@ -221,7 +221,6 @@ function JugadoresCRUD() {
         : "",
     });
     console.log(form);
-    console.log(form.categoria);
   };
 
   const search = (e) => {
