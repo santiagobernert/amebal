@@ -26,6 +26,7 @@ function PasesCRUD() {
     fecha: "",
     club_salida: "",
     club_llegada: "",
+    tipo: "",
   });
   const ref = useRef({
     id: useRef(0),
@@ -33,6 +34,7 @@ function PasesCRUD() {
     fecha: useRef(""),
     club_salida: useRef(""),
     club_llegada: useRef(""),
+    tipo: useRef(""),
   });
   useEffect(() => {
     getClubes();
@@ -45,7 +47,6 @@ function PasesCRUD() {
       });
   }, []);
 
-  
   const getClubes = () => {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
@@ -54,7 +55,7 @@ function PasesCRUD() {
         return responseJson;
       });
   };
-  
+
   const getJugadores = () => {
     fetch("http://localhost:5000/jugador")
       .then((res) => res.json())
@@ -184,14 +185,15 @@ function PasesCRUD() {
 
   const handleChangeEdit = (e) => {
     setform({
-      'id': ref.current['id'].current.value,
-      'jugador': ref.current['jugador'].current.value,
-      'fecha': ref.current['fecha'].current.value,
-      'club_salida': ref.current['club_salida'].current.value,
-      'club_llegada': ref.current['club_llegada'].current.value,
+      id: ref.current["id"].current.value,
+      jugador: ref.current["jugador"].current.value,
+      fecha: ref.current["fecha"].current.value,
+      club_salida: ref.current["club_salida"].current.value,
+      club_llegada: ref.current["club_llegada"].current.value,
+      tipo: ref.current["tipo"].current.value,
     });
   };
-  
+
   const handleChangeInsert = (e) => {
     setform({
       ...form,
@@ -233,12 +235,34 @@ function PasesCRUD() {
             {data.pases.map((pase) => (
               <tr key={pase.id}>
                 <td>{pase.id}</td>
-                <td>{pase.jugador? jugadores.find(j => j.id === pase.jugador)?jugadores.find(j => j.id === pase.jugador).dni:'':''}</td>
-                <td>{pase.jugador? jugadores.find(j => j.id === pase.jugador).nombre:''}</td>
-                <td>{pase.jugador? jugadores.find(j => j.id === pase.jugador).apellido:''}</td>
+                <td>
+                  {pase.jugador
+                    ? jugadores.find((j) => j.id === pase.jugador)
+                      ? jugadores.find((j) => j.id === pase.jugador).dni
+                      : ""
+                    : ""}
+                </td>
+                <td>
+                  {pase.jugador
+                    ? jugadores.find((j) => j.id === pase.jugador).nombre
+                    : ""}
+                </td>
+                <td>
+                  {pase.jugador
+                    ? jugadores.find((j) => j.id === pase.jugador).apellido
+                    : ""}
+                </td>
                 <td>{pase.fecha}</td>
-                <td>{pase.club_salida? clubes.find(c => c.id == pase.club_salida).nombre:''}</td>
-                <td>{pase.club_llegada? clubes.find(c => c.id == pase.club_llegada).nombre:''}</td>
+                <td>
+                  {pase.club_salida
+                    ? clubes.find((c) => c.id == pase.club_salida).nombre
+                    : ""}
+                </td>
+                <td>
+                  {pase.club_llegada
+                    ? clubes.find((c) => c.id == pase.club_llegada).nombre
+                    : ""}
+                </td>
                 <td>
                   <Button
                     color="primary"
@@ -278,23 +302,39 @@ function PasesCRUD() {
 
           <FormGroup>
             <label>Jugador</label>
-            <input 
-            onChange={handleChangeEdit}
-            list="jugadores_list" 
-            type="search" 
-            className="form-control ds-input" 
-            name="jugador"
-            ref={ref.current.jugador}
-            defaultValue={modalActualizar.pase.jugador}
-            placeholder="Buscar jugador..." 
-            aria-label="Search docs for..." autoComplete="off" data-bd-docs-version="5.1" spellCheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" ></input>
+            <input
+              onChange={handleChangeEdit}
+              list="jugadores_list"
+              type="search"
+              className="form-control ds-input"
+              name="jugador"
+              ref={ref.current.jugador}
+              defaultValue={modalActualizar.pase.jugador}
+              placeholder="Buscar jugador..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
             <datalist id="jugadores_list">
-                  <option>Jugador</option>
-                  {jugadores.map(jugador => {return(
-                    <option key={jugador.id} value={jugador.id} className="dropdown-item">{jugador.dni}</option>
-                  )}
-                    )}
-                </datalist>
+              <option>Jugador</option>
+              {jugadores.map((jugador) => {
+                return (
+                  <option
+                    key={jugador.id}
+                    value={jugador.id}
+                    className="dropdown-item"
+                  >
+                    {jugador.dni}
+                  </option>
+                );
+              })}
+            </datalist>
           </FormGroup>
 
           <FormGroup>
@@ -311,46 +351,77 @@ function PasesCRUD() {
 
           <FormGroup>
             <label>Club Salida</label>
-            <input 
-            onChange={handleChangeEdit}
-            list="clubes_list" 
-            type="search" 
-            className="form-control ds-input" 
-            name="club_salida"
-            ref={ref.current.club_salida}
-            defaultValue={modalActualizar.pase.club_salida}
-            placeholder="Buscar club..." 
-            aria-label="Search docs for..." autoComplete="off" data-bd-docs-version="5.1" spellCheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" ></input>
+            <input
+              onChange={handleChangeEdit}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="club_salida"
+              ref={ref.current.club_salida}
+              defaultValue={modalActualizar.pase.club_salida}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
             <datalist id="clubes_list">
-                  <option>Todos</option>
-                  {clubes.map(club => {return(
-                    <option key={club.id} value={club.id} className="dropdown-item">{club.nombre}</option>
-                  )}
-                    )}
-                </datalist>
+              <option>Todos</option>
+              {clubes.map((club) => {
+                return (
+                  <option
+                    key={club.id}
+                    value={club.id}
+                    className="dropdown-item"
+                  >
+                    {club.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
           </FormGroup>
 
           <FormGroup>
             <label>Club Llegada</label>
-            <input 
-            onChange={handleChangeEdit}
-            list="clubes_list" 
-            type="search" 
-            className="form-control ds-input" 
-            name="club_llegada"
-            ref={ref.current.club_llegada}
-            defaultValue={modalActualizar.pase.club_llegada}
-            placeholder="Buscar club..." 
-            aria-label="Search docs for..." autoComplete="off" data-bd-docs-version="5.1" spellCheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" ></input>
+            <input
+              onChange={handleChangeEdit}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="club_llegada"
+              ref={ref.current.club_llegada}
+              defaultValue={modalActualizar.pase.club_llegada}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
             <datalist id="clubes_list">
-                  <option>Todos</option>
-                  {clubes.map(club => {return(
-                    <option key={club.id} value={club.id} className="dropdown-item">{club.nombre}</option>
-                  )}
-                    )}
-                </datalist>
+              <option>Todos</option>
+              {clubes.map((club) => {
+                return (
+                  <option
+                    key={club.id}
+                    value={club.id}
+                    className="dropdown-item"
+                  >
+                    {club.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
           </FormGroup>
-
         </ModalBody>
 
         <ModalFooter>
@@ -384,24 +455,39 @@ function PasesCRUD() {
 
           <FormGroup>
             <label>Jugador</label>
-            <input 
-            onChange={handleChangeInsert}
-            list="jugadores_list" 
-            type="search" 
-            className="form-control ds-input" 
-            name="jugador"
-            ref={ref.current.jugador}
-            defaultValue={modalActualizar.pase.jugador}
-            placeholder="Buscar jugador..." 
-            aria-label="Search docs for..." autoComplete="off" data-bd-docs-version="5.1" spellCheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" ></input>
+            <input
+              onChange={handleChangeInsert}
+              list="jugadores_list"
+              type="search"
+              className="form-control ds-input"
+              name="jugador"
+              ref={ref.current.jugador}
+              defaultValue={modalActualizar.pase.jugador}
+              placeholder="Buscar jugador..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
             <datalist id="jugadores_list">
-                  <option>Jugador</option>
-                  {jugadores.map(jugador => {
-                    return(
-                    <option key={jugador.id} value={jugador.id} className="dropdown-item">{jugador.dni}</option>
-                  )}
-                    )}
-                </datalist>
+              <option>Jugador</option>
+              {jugadores.map((jugador) => {
+                return (
+                  <option
+                    key={jugador.id}
+                    value={jugador.id}
+                    className="dropdown-item"
+                  >
+                    {jugador.dni}
+                  </option>
+                );
+              })}
+            </datalist>
           </FormGroup>
 
           <FormGroup>
@@ -418,37 +504,60 @@ function PasesCRUD() {
 
           <FormGroup>
             <label>Club Salida</label>
-            <input 
-            onChange={handleChangeInsert}
-            list="clubes_list" 
-            type="text" 
-            readOnly
-            className="form-control ds-input" 
-            name="club_salida"
-            ref={ref.current.club_salida}
-            value={form.jugador? clubes.find(c => c.id == jugadores.find(j => j.id == form.jugador).club).nombre:''}
+            <input
+              onChange={handleChangeInsert}
+              list="clubes_list"
+              type="text"
+              readOnly
+              className="form-control ds-input"
+              name="club_salida"
+              ref={ref.current.club_salida}
+              value={
+                form.jugador
+                  ? clubes.find(
+                      (c) =>
+                        c.id == jugadores.find((j) => j.id == form.jugador).club
+                    ).nombre
+                  : ""
+              }
             ></input>
           </FormGroup>
 
           <FormGroup>
             <label>Club Llegada</label>
-            <input 
-            onChange={handleChangeInsert}
-            list="clubes_list" 
-            type="search" 
-            className="form-control ds-input" 
-            name="club_llegada"
-            ref={ref.current.club_llegada}
-            defaultValue={modalActualizar.pase.club_llegada}
-            placeholder="Buscar club..." 
-            aria-label="Search docs for..." autoComplete="off" data-bd-docs-version="5.1" spellCheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" ></input>
+            <input
+              onChange={handleChangeInsert}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="club_llegada"
+              ref={ref.current.club_llegada}
+              defaultValue={modalActualizar.pase.club_llegada}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
             <datalist id="clubes_list">
-                  <option>Todos</option>
-                  {clubes.map(club => {return(
-                    <option key={club.id} value={club.id} className="dropdown-item">{club.nombre}</option>
-                  )}
-                    )}
-                </datalist>
+              <option>Todos</option>
+              {clubes.map((club) => {
+                return (
+                  <option
+                    key={club.id}
+                    value={club.id}
+                    className="dropdown-item"
+                  >
+                    {club.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
           </FormGroup>
         </ModalBody>
 

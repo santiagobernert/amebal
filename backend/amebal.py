@@ -138,20 +138,21 @@ def pase():
         valores = request.get_json()
         id = valores['id']
         print(valores)
-        asociacion = Asociacion.query.filter_by(id=id).first()
-        #clubes_relacionados = Club.query.filter_by(asociacion=id)
-        #clubes_relacionados.update({'asociacion': None})
-        print(asociacion.nombre, asociacion.abreviatura, asociacion.provincia)
-        asociacion.id = valores['id']
-        asociacion.nombre = valores['nombre']
-        asociacion.abreviatura = valores['abreviatura']
-        asociacion.provincia = valores['provincia']
+        pase = Pase.query.filter_by(id=id).first()
+        #clubes_relacionados = Club.query.filter_by(pase=id)
+        #clubes_relacionados.update({'pase': None})
+        print(pase.id, pase.jugador, pase.fecha)
+        pase.id = valores['id']
+        pase.jugador = valores['jugador']
+        pase.fecha = valores['fecha']
+        pase.club_salida = valores['club_salida']
+        pase.club_llegada = valores['club_llegada']
         db.session.commit()
-        print('Asociacion ', id, ' editado')
-        asociaciones = Asociacion.query.all()
-        print([a.__asdict__() for a in asociaciones])
+        print('pase ', id, ' editado')
+        pases = Pase.query.all()
+        print([p.__asdict__() for p in pases])
         response = jsonify({
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'pasees': [p.__asdict__() for p in pases],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -160,16 +161,14 @@ def pase():
         print('delete')
         id = request.get_json()
         print(id)
-        asociacion = Asociacion.query.filter_by(id=id)
-        clubes_relacionados = Club.query.filter_by(asociacion=id)
-        clubes_relacionados.update({'asociacion': None})
-        asociacion.delete()
+        pase = Pase.query.filter_by(id=id)
+        pase.delete()
         db.session.commit()
-        print('Asociacion ', id, ' eliminado')
-        asociaciones = Asociacion.query.all()
-        print([a.__asdict__() for a in asociaciones])
+        print('pase ', id, ' eliminado')
+        pases = Pase.query.all()
+        print([p.__asdict__() for p in pases])
         response = jsonify({
-            'asociaciones': [a.__asdict__() for a in asociaciones],
+            'pasees': [p.__asdict__() for p in pases],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
