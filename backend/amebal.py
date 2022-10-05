@@ -7,7 +7,7 @@ from db.jugadores.jugadores import Jugador, nuevo_jugador
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
 from db.categorias.categorias import Categoria, nueva_categoria
-from db.pases.pases import Pase, nuevo_pase
+from db.pases.pases import Pase, nuevo_pase, TipoDePase
 from db.roles.roles import Rol, nuevo_rol
 from __init__ import create_app
 
@@ -115,7 +115,8 @@ def pase():
         nacimiento = request.json['fecha']
         club_salida = request.json['club_salida']
         club_llegada = request.json['club_llegada']
-
+        tipo = TipoDePase[request.json['tipo']].value
+        print(type(tipo))
         jugador = Jugador.query.filter_by(id=id_jugador).first()
         jugador.club = request.json['club_llegada']
 
@@ -124,7 +125,7 @@ def pase():
         if id_existe:
             print('pase ya existe')
         else:
-            nuevo_pase(id, id_jugador, nacimiento, club_salida, club_llegada)
+            nuevo_pase(id, id_jugador, nacimiento, club_salida, club_llegada, tipo)
             print(f'pase {jugador.nombre} {club_salida} {club_llegada}, creado')
             pases = Pase.query.all()
             response = jsonify({
@@ -139,20 +140,19 @@ def pase():
         id = valores['id']
         print(valores)
         pase = Pase.query.filter_by(id=id).first()
-        #clubes_relacionados = Club.query.filter_by(pase=id)
-        #clubes_relacionados.update({'pase': None})
         print(pase.id, pase.jugador, pase.fecha)
         pase.id = valores['id']
         pase.jugador = valores['jugador']
         pase.fecha = valores['fecha']
         pase.club_salida = valores['club_salida']
         pase.club_llegada = valores['club_llegada']
+        pase.tipo = TipoDePase[valores['tipo']].value
         db.session.commit()
         print('pase ', id, ' editado')
         pases = Pase.query.all()
         print([p.__asdict__() for p in pases])
         response = jsonify({
-            'pasees': [p.__asdict__() for p in pases],
+            'pases': [p.__asdict__() for p in pases],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -162,6 +162,8 @@ def pase():
         id = request.get_json()
         print(id)
         pase = Pase.query.filter_by(id=id)
+        jugador = Jugador.query.filter_by(id=pase.first().jugador).first()
+        jugador.club = pase.first().club_salida
         pase.delete()
         db.session.commit()
         print('pase ', id, ' eliminado')

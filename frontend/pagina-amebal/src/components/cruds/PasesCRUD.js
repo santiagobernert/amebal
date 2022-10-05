@@ -9,6 +9,7 @@ import {
   ModalBody,
   FormGroup,
   ModalFooter,
+  Form,
 } from "react-bootstrap";
 
 function PasesCRUD() {
@@ -137,6 +138,7 @@ function PasesCRUD() {
         datos[contador].fecha = dato.fecha;
         datos[contador].club_salida = dato.club_salida;
         datos[contador].club_llegada = dato.club_llegada;
+        datos[contador].tipo = dato.tipo;
       }
       contador++;
     });
@@ -203,8 +205,19 @@ function PasesCRUD() {
             (c) => c.nombre === ref.current["club_salida"].current.value
           ).id
         : "",
+      tipo: ref.current["tipo"].current.value,
     });
     console.log(form);
+  };
+
+  const tipoDePase = (club_salida, club_llegada) => {
+    if (club_salida.asociacion != club_llegada.asociacion) {
+      console.log("Nacional");
+      return "Nacional";
+    } else {
+      console.log("Provincial");
+      return "Provincial";
+    }
   };
 
   return (
@@ -227,6 +240,7 @@ function PasesCRUD() {
               <th>Fecha</th>
               <th>Club Salida</th>
               <th>Club Llegada</th>
+              <th>Tipo</th>
               <th>_</th>
             </tr>
           </thead>
@@ -263,6 +277,7 @@ function PasesCRUD() {
                     ? clubes.find((c) => c.id == pase.club_llegada).nombre
                     : ""}
                 </td>
+                <td>{pase.tipo}</td>
                 <td>
                   <Button
                     color="primary"
@@ -422,6 +437,27 @@ function PasesCRUD() {
               })}
             </datalist>
           </FormGroup>
+
+          <FormGroup>
+            <label>Tipo:</label>
+            <Form.Control
+              name="categoria"
+              plaintext
+              readOnly
+              ref={ref.current.tipo}
+              id="tipo"
+              defaultValue={
+                form.club_llegada && form.club_salida
+                  ? tipoDePase(form.club_salida, form.club_llegada)
+                  : ""
+              }
+              onChange={handleChangeInsert}
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
+            />
+          </FormGroup>
         </ModalBody>
 
         <ModalFooter>
@@ -558,6 +594,30 @@ function PasesCRUD() {
                 );
               })}
             </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Tipo:</label>
+            <Form.Control
+              name="categoria"
+              plaintext
+              readOnly
+              ref={ref.current.tipo}
+              id="tipo"
+              defaultValue={
+                form.club_llegada && form.club_salida
+                  ? tipoDePase(
+                      clubes.find((c) => c.id == form.club_salida),
+                      clubes.find((c) => c.id == form.club_llegada)
+                    )
+                  : ""
+              }
+              onChange={handleChangeInsert}
+              style={{
+                color: "#121212 !important",
+                border: "1px solid #ced4da !important",
+              }}
+            />
           </FormGroup>
         </ModalBody>
 
