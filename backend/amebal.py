@@ -7,7 +7,7 @@ from db.jugadores.jugadores import Jugador, nuevo_jugador
 from db.asociaciones.asociaciones import Asociacion, nueva_asociacion
 from db.clubes.clubes import Club, nuevo_club
 from db.categorias.categorias import Categoria, nueva_categoria
-from db.pases.pases import Pase, nuevo_pase, TipoDePase
+from db.pases.pases import Pase, nuevo_pase
 from db.roles.roles import Rol, nuevo_rol
 from __init__ import create_app
 
@@ -115,8 +115,7 @@ def pase():
         nacimiento = request.json['fecha']
         club_salida = request.json['club_salida']
         club_llegada = request.json['club_llegada']
-        tipo = TipoDePase[request.json['tipo']].value
-        print(type(tipo))
+        tipo = request.json['tipo']
         jugador = Jugador.query.filter_by(id=id_jugador).first()
         jugador.club = request.json['club_llegada']
 
@@ -146,7 +145,7 @@ def pase():
         pase.fecha = valores['fecha']
         pase.club_salida = valores['club_salida']
         pase.club_llegada = valores['club_llegada']
-        pase.tipo = TipoDePase[valores['tipo']].value
+        pase.tipo = valores['tipo']
         db.session.commit()
         print('pase ', id, ' editado')
         pases = Pase.query.all()

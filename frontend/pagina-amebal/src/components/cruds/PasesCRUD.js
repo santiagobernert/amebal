@@ -425,15 +425,19 @@ function PasesCRUD() {
             <datalist id="clubes_list">
               <option>Todos</option>
               {clubes.map((club) => {
-                return (
-                  <option
-                    key={club.id}
-                    value={club.id}
-                    className="dropdown-item"
-                  >
-                    {club.nombre}
-                  </option>
-                );
+                if (form.club_salida) {
+                  if (club.id != form.club_salida) {
+                    return (
+                      <option
+                        key={club.id}
+                        value={club.id}
+                        className="dropdown-item"
+                      >
+                        {club.nombre}
+                      </option>
+                    );
+                  }
+                }
               })}
             </datalist>
           </FormGroup>
@@ -448,7 +452,10 @@ function PasesCRUD() {
               id="tipo"
               defaultValue={
                 form.club_llegada && form.club_salida
-                  ? tipoDePase(form.club_salida, form.club_llegada)
+                  ? tipoDePase(
+                      clubes.find((c) => c.id == form.club_salida),
+                      clubes.find((c) => c.id == form.club_llegada)
+                    )
                   : ""
               }
               onChange={handleChangeInsert}
@@ -583,15 +590,19 @@ function PasesCRUD() {
             <datalist id="clubes_list">
               <option>Todos</option>
               {clubes.map((club) => {
-                return (
-                  <option
-                    key={club.id}
-                    value={club.id}
-                    className="dropdown-item"
-                  >
-                    {club.nombre}
-                  </option>
-                );
+                if (form.club_salida) {
+                  if (club.id != form.club_salida) {
+                    return (
+                      <option
+                        key={club.id}
+                        value={club.id}
+                        className="dropdown-item"
+                      >
+                        {club.nombre}
+                      </option>
+                    );
+                  }
+                }
               })}
             </datalist>
           </FormGroup>

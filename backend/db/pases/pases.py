@@ -1,9 +1,4 @@
 from db import db
-import enum
-
-class TipoDePase(enum.Enum):
-    Provincial = "Provincial"
-    Nacional = "Nacional"
 
 class Pase(db.Model):
     __tablename__ = 'Pases'
@@ -12,7 +7,7 @@ class Pase(db.Model):
     fecha = db.Column(db.Date)
     club_salida = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
     club_llegada = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
-    tipo = db.Column(db.Enum(TipoDePase))
+    tipo = db.Column(db.Enum('Nacional', 'Provincial'))
     
 
     def __init__(self, id, jugador, fecha, club_salida, club_llegada, tipo):
