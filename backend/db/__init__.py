@@ -53,8 +53,8 @@ except Error as e:
             print(db)
     except Error as e:
         print(e)
-'''
 
+'''
 def create_database(app):
     if not path.exists('backend/' + DB_NAME):
         db.create_all(app=app)
