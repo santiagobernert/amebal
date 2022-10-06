@@ -9,6 +9,10 @@ class Partido(db.Model):
     categoria = db.Column(db.Integer, db.ForeignKey(Categoria.id))
     equipoA = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
     equipoB = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
+    arbitro1 = db.Column(db.Integer, db.ForeignKey('Arbitros.id'))
+    arbitro2 = db.Column(db.Integer, db.ForeignKey('Arbitros.id'))
+    mesa1 = db.Column(db.Integer, db.ForeignKey('Mesas.id'))
+    mesa2 = db.Column(db.Integer, db.ForeignKey('Mesas.id'))
     sede = db.Column(db.String(50))
     fecha = db.Column(db.String(50))
     jornada = db.Column(db.String(50))
@@ -28,8 +32,8 @@ class Partido(db.Model):
         self.jornada = jornada
         self.resultado = resultado
     
-    def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.id} {self.mail} {self.contraseña}'
+    def __asdict__(self):
+        return {'id':self.id,'titulo': self.titulo,'liga': self.liga,'categoria': self.categoria,'equipoA': self.equipoA,'equipoB': self.equipoB,'sede': self.sede,'fecha': self.fecha,'jornada': self.jornada,'resultado': self.resultado}
 
     def string_club_categoria(self):
         return f' {self.club} {self.categoria} '
@@ -39,26 +43,3 @@ def nuevo_partido(id, titulo, liga, categoria, equipoA, equipoB, sede, fecha, jo
     db.session.add(partido)
     db.session.commit()
     return partido
-
-'''
-create_partidos_table_query = """
-CREATE TABLE personas(
-    id INT PRIMARY KEY,
-    nombre VARCHAR(20),
-    apellido VARCHAR(20),
-    release_year YEAR(4),
-    genre VARCHAR(100),
-    collection_in_mil INT
-)
-"""
-try:
-    with connect(
-        host="localhost",
-        user=input("Enter username: "),
-        password=input("Enter password: "),
-    ) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute(create_partidos_table_query)
-            connection.commit()
-except Error as e:
-    print(e)'''

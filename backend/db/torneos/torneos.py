@@ -8,6 +8,7 @@ class Torneo(db.Model):
     fin = db.Column(db.Date)
     equipos = db.Column(db.String)
     ubicacion = db.Column(db.String)
+    fechas = db.relationship('Fecha', backref='id_torneo')
     
 
     def __init__(self, id, nombre, inicio, fin, equipos, ubicacion):
