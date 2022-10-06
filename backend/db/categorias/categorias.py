@@ -6,6 +6,7 @@ class Categoria(db.Model):
     nombre = db.Column(db.String(30))
     años = db.Column(db.String(10))
     jugadores = db.relationship('Jugador', backref='id_categoria')
+    equipos = db.relationship('Equipo', backref='id_categoria')
 
 
     def __init__(self, id, nombre, años):
