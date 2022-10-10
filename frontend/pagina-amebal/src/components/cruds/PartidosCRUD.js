@@ -14,55 +14,77 @@ import {
 
 function PartidosCRUD() {
   const [partidos, setPartidos] = useState([]);
-  const [roles, setRoles] = useState([]);
+  const [data, setData] = useState({categorias: [], torneos: [], equipos: [], arbitros: [], mesas: [], sedes: []});
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
-    usuario: data.usuarios.length,
+    partido: partidos.length,
   });
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({
     id: 1,
-    nombre: "",
-    apellido: "",
-    dni: "",
-    email: "",
-    contraseña: "",
-    rol: 0,
+    titulo: "",
+    torneo: 0,
+    categoria: 0,
+    equipoA: 0,
+    equipoB: 0,
+    arbitro1: 0,
+    arbitro2: 0,
+    mesa1: 0,
+    mesa2: 0,
+    sede: 0,
+    fecha: "",
+    jornada: "",
+    resultado: "",
   });
   const ref = useRef({
-    id: useRef(0),
-    nombre: useRef(""),
-    apellido: useRef(""),
-    dni: useRef(""),
-    email: useRef(""),
-    contraseña: useRef(""),
-    rol: useRef(0),
+    id: useRef(1),
+    titulo: useRef(""),
+    torneo: useRef(0),
+    categoria: useRef(0),
+    equipoA: useRef(0),
+    equipoB: useRef(0),
+    arbitro1: useRef(0),
+    arbitro2: useRef(0),
+    mesa1: useRef(0),
+    mesa2: useRef(0),
+    sede: useRef(0),
+    fecha: useRef(""),
+    jornada: useRef(""),
+    resultado: useRef(""),
   });
   useEffect(() => {
-    getRoles();
+    getPartidos();
     getData();
   }, []);
 
-  const getRoles = () => {
-    fetch("http://localhost:5000/roles")
+  const getPartidos = () => {
+    fetch("http://localhost:5000/partidos")
       .then((res) => res.json())
       .then((responseJson) => {
-        setRoles(responseJson);
+        setData(responseJson);
         return responseJson;
       });
   };
 
   const getData = () => {
-    fetch("http://localhost:5000/usuario")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setdata(responseJson);
-        return responseJson;
-      });
+    let categorias = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+    let torneos = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+    let equipos = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+    let arbitros = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+    let mesas = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+    let sedes = fetch("http://localhost:5000/categoria")
+    .then((res) => res.json());
+
+    setData({'categorias': categorias, 'torneos': torneos, 'equipos': equipos, 'arbitros': arbitros, 'mesas': mesas, 'sedes': sedes});
   };
 
   const postData = () => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/partido", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +97,7 @@ function PartidosCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/partido", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +110,7 @@ function PartidosCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/usuario", {
+    fetch("http://localhost:5000/partido", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -100,16 +122,16 @@ function PartidosCRUD() {
       .catch((error) => console.log("delete", error));
   };
 
-  const mostrarModalActualizar = (usuario) => {
+  const mostrarModalActualizar = (partido) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({ abierto: true, usuario: usuario });
+    setmodalActualizar({ abierto: true, partido: partido });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
     setmodalActualizar({
       abierto: false,
-      usuario: modalActualizar.usuario,
+      partido: modalActualizar.partido,
     });
   };
 
@@ -126,23 +148,31 @@ function PartidosCRUD() {
   const editar = (dato) => {
     console.log("editar");
     let contador = 0;
-    let datos = data.usuarios;
+    let datos = partidos;
     datos.map((registro) => {
       if (dato.id == registro.id) {
-        datos[contador].nombre = dato.nombre;
-        datos[contador].apellido = dato.apellido;
-        datos[contador].dni = dato.dni;
-        datos[contador].email = dato.email;
-        datos[contador].contraseña = dato.contraseña;
-        datos[contador].rol = dato.rol;
+        datos[contador].id = dato.id;
+        datos[contador].titulo = dato.titulo;
+        datos[contador].torneo = dato.torneo;
+        datos[contador].categoria = dato.categoria;
+        datos[contador].equipoA = dato.equipoA;
+        datos[contador].equipoB = dato.equipoB;
+        datos[contador].arbitro1 = dato.arbitro1;
+        datos[contador].arbitro2 = dato.arbitro2;
+        datos[contador].mesa1 = dato.mesa1;
+        datos[contador].mesa2 = dato.mesa2;
+        datos[contador].sede = dato.sede;
+        datos[contador].fecha = dato.fecha;
+        datos[contador].jornada = dato.jornada;
+        datos[contador].resultado = dato.resultado;
       }
       contador++;
     });
-    setdata({ usuarios: datos });
+    setPartidos(datos);
     putData();
     setmodalActualizar({
       abierto: false,
-      usuario: modalActualizar.usuario,
+      partido: modalActualizar.partido,
     });
   };
 
@@ -153,17 +183,17 @@ function PartidosCRUD() {
     );
     if (opcion == true) {
       let contador = 0;
-      let arreglo = data.usuarios;
+      let arreglo = partidos;
       arreglo.map((registro) => {
         if (dato.id == registro.id) {
           arreglo.splice(contador, 1);
         }
         contador++;
       });
-      setdata({ usuarios: arreglo });
+      setPartidos(arreglo);
       setmodalActualizar({
         abierto: false,
-        usuario: modalActualizar.usuario,
+        partido: modalActualizar.partido,
       });
       deleteData(dato.id);
     }
@@ -173,10 +203,10 @@ function PartidosCRUD() {
     console.log("insertar");
     console.log(form);
     let valorNuevo = form;
-    valorNuevo.id = data.usuarios.length + 1;
-    let lista = data.usuarios;
+    valorNuevo.id = partidos.length + 1;
+    let lista = partidos;
     lista.push(valorNuevo);
-    setdata({ usuarios: lista });
+    setPartidos(lista);
     console.log(lista);
     postData();
     setmodalInsertar(false);
@@ -185,12 +215,19 @@ function PartidosCRUD() {
   const handleChangeEdit = (e) => {
     setform({
       id: ref.current["id"].current.value,
-      nombre: ref.current["nombre"].current.value,
-      apellido: ref.current["apellido"].current.value,
-      dni: ref.current["dni"].current.value,
-      email: ref.current["email"].current.value,
-      contraseña: ref.current["contraseña"].current.value,
-      rol: ref.current["rol"].current.value,
+      titulo: ref.current["titulo"].current.value,
+      torneo: ref.current["torneo"].current.value,
+      categoria: ref.current["categoria"].current.value,
+      equipoA: ref.current["equipoA"].current.value,
+      equipoB: ref.current["equipoB"].current.value,
+      arbitro1: ref.current["arbitro1"].current.value,
+      arbitro2: ref.current["arbitro2"].current.value,
+      mesa1: ref.current["mesa1"].current.value,
+      mesa2: ref.current["mesa2"].current.value,
+      sede: ref.current["sede"].current.value,
+      fecha: ref.current["fecha"].current.value,
+      jornada: ref.current["jornada"].current.value,
+      resultado: ref.current["resultado"].current.value
     });
   };
 
@@ -205,24 +242,24 @@ function PartidosCRUD() {
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      data.usuarios.map((usuario) => {
+      partidos.map((partido) => {
         if (
-          usuario.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+          partido.nombre.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
-          searchData.push(usuario);
+          searchData.push(partido);
         }
       });
-      setdata({ usuarios: searchData });
+      setPartidos(searchData);
     } else {
       searchData = getData();
     }
-    console.log(data.usuarios);
+    console.log(partidos);
   };
 
   return (
     <>
       <Container>
-        <h2>Usuarios</h2>
+        <h2>Partidos</h2>
         <br />
         <input
           onChange={(e) => search(e)}
@@ -242,38 +279,34 @@ function PartidosCRUD() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Dni</th>
-              <th>Email</th>
-              <th>Contraseña</th>
-              <th>Rol</th>
+              <th>Equipo A</th>
+              <th>Equipo B</th>
+              <th>Torneo</th>
+              <th>Sede</th>
+              <th>Fecha</th>
+              <th>Resultado</th>
               <th>_</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.usuarios.map((usuario) => (
-              <tr key={usuario.id}>
-                <td>{usuario.id}</td>
-                <td>{usuario.nombre}</td>
-                <td>{usuario.apellido}</td>
-                <td>{usuario.dni}</td>
-                <td>{usuario.email}</td>
-                <td>{usuario.contraseña}</td>
-                <td>
-                  {usuario.rol
-                    ? roles.find((r) => r.id == usuario.rol).letra
-                    : ""}
-                </td>
+            {partidos.map((partido) => (
+              <tr key={partido.id}>
+                <td>{partido.id}</td>
+                <td>{partido.equipoA}</td>
+                <td>{partido.equipoB}</td>
+                <td>{partido.torneo}</td>
+                <td>{partido.sede}</td>
+                <td>{partido.fecha}</td>
+                <td>{partido.resultado}</td>
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(usuario)}
+                    onClick={() => mostrarModalActualizar(partido)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(usuario)}>
+                  <Button color="danger" onClick={() => eliminar(partido)}>
                     Eliminar
                   </Button>
                 </td>
@@ -299,86 +332,315 @@ function PartidosCRUD() {
               readOnly
               type="text"
               ref={ref.current.id}
-              defaultValue={modalActualizar.usuario.id}
+              defaultValue={modalActualizar.partido.id}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Nombre:</label>
+            <label>Titulo:</label>
             <input
               className="form-control"
-              name="nombre"
+              name="titulo"
               type="text"
               onChange={handleChangeEdit}
-              ref={ref.current.nombre}
-              defaultValue={modalActualizar.usuario.nombre}
+              ref={ref.current.titulo}
+              defaultValue={modalActualizar.partido.titulo}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Apellido:</label>
+            <label>Equipo A</label>
             <input
-              className="form-control"
-              name="apellido"
-              ref={ref.current.apellido}
-              defaultValue={modalActualizar.usuario.apellido}
               onChange={handleChangeEdit}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Dni</label>
-            <input
-              className="form-control"
-              name="dni"
-              ref={ref.current.dni}
-              defaultValue={modalActualizar.usuario.dni}
-              type="number"
-              onChange={handleChangeEdit}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="equipoA"
+              ref={ref.current.equipoA}
+              defaultValue={modalActualizar.pase.equipoA}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
             ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Email:</label>
-            <input
-              className="form-control"
-              name="email"
-              ref={ref.current.email}
-              defaultValue={modalActualizar.usuario.email}
-              type="email"
-              onChange={handleChangeEdit}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Contraseña</label>
-            <input
-              className="form-control"
-              name="contraseña"
-              ref={ref.current.contraseña}
-              defaultValue={modalActualizar.usuario.contraseña}
-              type="text"
-              onChange={handleChangeEdit}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Rol</label>
-            <select
-              className="form-control"
-              name="rol"
-              ref={ref.current.rol}
-              defaultValue={modalActualizar.usuario.rol}
-              onChange={handleChangeEdit}
-            >
-              {roles.map((rol) => {
+            <datalist id="clubes_list">
+              <option>Seleccionar</option>
+              {data.equipos.map((equipo) => {
                 return (
-                  <option value={rol.id} key={rol.id}>
-                    {rol.nombre}
+                  <option
+                    key={equipo.id}
+                    value={equipo.id}
+                    className="dropdown-item"
+                  >
+                    {equipo.nombre}
                   </option>
                 );
               })}
-            </select>
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Equipo B</label>
+            <input
+              onChange={handleChangeEdit}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="equipoB"
+              ref={ref.current.equipoB}
+              defaultValue={modalActualizar.pase.equipoB}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="clubes_list">
+              <option>Seleccionar</option>
+              {data.equipos.map((equipo) => {
+                return (
+                  <option
+                    key={equipo.id}
+                    value={equipo.id}
+                    className="dropdown-item"
+                  >
+                    {equipo.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Arbitro 1</label>
+            <input
+              onChange={handleChangeEdit}
+              list="arbitros_list"
+              type="search"
+              className="form-control ds-input"
+              name="arbitro1"
+              ref={ref.current.arbitro1}
+              defaultValue={modalActualizar.pase.arbitro1}
+              placeholder="Buscar arbitro..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="arbitros_list">
+              <option>Seleccionar</option>
+              {data.arbitros.map((arbitro) => {
+                return (
+                  <option
+                    key={arbitro.id}
+                    value={arbitro.id}
+                    className="dropdown-item"
+                  >
+                    {arbitro.nombre} {arbitro.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Arbitro 2</label>
+            <input
+              onChange={handleChangeEdit}
+              list="arbitros_list"
+              type="search"
+              className="form-control ds-input"
+              name="arbitro2"
+              ref={ref.current.arbitro2}
+              defaultValue={modalActualizar.pase.arbitro2}
+              placeholder="Buscar arbitro..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="arbitros_list">
+              <option>Seleccionar</option>
+              {data.arbitros.map((arbitro) => {
+                return (
+                  <option
+                    key={arbitro.id}
+                    value={arbitro.id}
+                    className="dropdown-item"
+                  >
+                    {arbitro.nombre} {arbitro.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Mesa 1</label>
+            <input
+              onChange={handleChangeEdit}
+              list="mesas_list"
+              type="search"
+              className="form-control ds-input"
+              name="mesa1"
+              ref={ref.current.mesa1}
+              defaultValue={modalActualizar.pase.mesa1}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="mesas_list">
+              <option>Seleccionar</option>
+              {data.mesas.map((mesa) => {
+                return (
+                  <option
+                    key={mesa.id}
+                    value={mesa.id}
+                    className="dropdown-item"
+                  >
+                    {mesa.nombre} {mesa.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Mesa 2</label>
+            <input
+              onChange={handleChangeEdit}
+              list="mesas_list"
+              type="search"
+              className="form-control ds-input"
+              name="mesa2"
+              ref={ref.current.mesa2}
+              defaultValue={modalActualizar.pase.mesa2}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="mesas_list">
+              <option>Seleccionar</option>
+              {data.mesas.map((mesa) => {
+                return (
+                  <option
+                    key={mesa.id}
+                    value={mesa.id}
+                    className="dropdown-item"
+                  >
+                    {mesa.nombre} {mesa.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Sede</label>
+            <input
+              onChange={handleChangeEdit}
+              list="sedes_list"
+              type="search"
+              className="form-control ds-input"
+              name="sede"
+              ref={ref.current.sede}
+              defaultValue={modalActualizar.pase.sede}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="sedes_list">
+              <option>Seleccionar</option>
+              {data.sedes.map((sede) => {
+                return (
+                  <option
+                    key={sede.id}
+                    value={sede.id}
+                    className="dropdown-item"
+                  >
+                    {sede.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Fecha:</label>
+            <input
+              className="form-control"
+              name="fecha"
+              ref={ref.current.fecha}
+              defaultValue={modalActualizar.partido.fecha}
+              type="date"
+              onChange={handleChangeEdit}
+            ></input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Jornada:</label>
+            <input
+              className="form-control"
+              name="jornada"
+              ref={ref.current.jornada}
+              defaultValue={modalActualizar.partido.jornada}
+              onChange={handleChangeEdit}
+            />
+          </FormGroup>
+
+
+          <FormGroup>
+            <label>Resultado:</label>
+            <input
+              className="form-control"
+              name="resultado"
+              ref={ref.current.resultado}
+              defaultValue={modalActualizar.partido.resultado}
+              type="email"
+              onChange={handleChangeEdit}
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -395,7 +657,7 @@ function PartidosCRUD() {
       <Modal show={modalInsertar}>
         <ModalHeader>
           <div>
-            <h3>Nuevo Usuario</h3>
+            <h3>Nuevo partido</h3>
           </div>
         </ModalHeader>
 
@@ -407,7 +669,7 @@ function PartidosCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.usuarios.length + 1}
+              value={partidos.length + 1}
             />
           </FormGroup>
 
@@ -467,14 +729,14 @@ function PartidosCRUD() {
               multiple
               className="form-control"
               name="rol"
-              defaultValue={modalActualizar.usuario.rol}
+              defaultValue={modalActualizar.partido.rol}
               onChange={handleChangeInsert}
               style={{
                 color: "#121212 !important",
                 border: "1px solid #ced4da !important",
               }}
             >
-              {roles.map((rol) => {
+              {partidos.map((rol) => {
                 return (
                   <option value={rol.id} key={rol.id}>
                     {rol.nombre}

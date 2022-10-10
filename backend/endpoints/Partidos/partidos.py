@@ -18,7 +18,7 @@ def partido():
     if request.method == 'POST':
         id = request.json['id']
         titulo = request.json['titulo']
-        liga = request.json['liga']
+        torneo = request.json['torneo']
         categoria = request.json['categoria']
         equipoA = request.json['equipoA']
         equipoB = request.json['equipoB']
@@ -36,7 +36,7 @@ def partido():
         if id_existe:
             print('partido ya existe')
         else:
-            nuevo_partido(id, titulo, liga, categoria, equipoA, equipoB, arbitro1, arbitro2, mesa1, mesa2, sede, fecha, jornada, resultado)
+            nuevo_partido(id, titulo, torneo, categoria, equipoA, equipoB, arbitro1, arbitro2, mesa1, mesa2, sede, fecha, jornada, resultado)
             print(f'partido {id} {equipoA} {equipoB} {sede} {fecha}, creado')
             partidos = Partido.query.all()
             response = jsonify({
@@ -54,7 +54,7 @@ def partido():
         print(partido.id, partido.jugador, partido.fecha)
         id = valores['id']
         titulo = valores['titulo']
-        liga = valores['liga']
+        torneo = valores['torneo']
         categoria = valores['categoria']
         equipoA = valores['equipoA']
         equipoB = valores['equipoB']
