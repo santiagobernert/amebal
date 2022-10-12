@@ -34,6 +34,8 @@ import AsociacionesCRUD from "./components/cruds/AsociacionesCRUD";
 import UsuariosCRUD from "./components/cruds/UsuariosCRUD";
 import JugadoresCRUD from "./components/cruds/JugadoresCRUD";
 import PartidosCRUD from "./components/cruds/PartidosCRUD";
+import SedesCRUD from "./components/cruds/SedesCRUD";
+import InicioCAH from "./components/cruds/InicioCAH";
 
 //https://youtu.be/0ChpbdflTMY
 
@@ -106,12 +108,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/noticias" element={<Noticias />} />
           <Route path="/eventos" element={<Eventos />} />
-          <Route path="/crud/clubes" element={<ClubesCRUD />} />
-          <Route path="/crud/asociaciones" element={<AsociacionesCRUD />} />
-          <Route path="/crud/pases" element={<PasesCRUD />} />
-          <Route path="/crud/usuarios" element={<UsuariosCRUD />} />
-          <Route path="/crud/jugadores" element={<JugadoresCRUD />} />
-          <Route path="/crud/partidos" element={<PartidosCRUD />} />
+          <Route path="/cah/crud/clubes" element={<ClubesCRUD />} />
+          <Route path="/cah/crud/asociaciones" element={<AsociacionesCRUD />} />
+          <Route path="/cah/crud/pases" element={<PasesCRUD />} />
+          <Route path="/cah/crud/usuarios" element={<UsuariosCRUD />} />
+          <Route path="/cah/crud/jugadores" element={<JugadoresCRUD />} />
+          <Route path="/cah/crud/partidos" element={<PartidosCRUD />} />
+          <Route path="/cah/crud/sedes" element={<SedesCRUD />} />
+          <Route path="/cah/inicio" element={<InicioCAH />} />
         </Routes>
       </BrowserRouter>
 

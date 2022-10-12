@@ -9,54 +9,43 @@ import {
   ModalBody,
   FormGroup,
   ModalFooter,
-  Form,
 } from "react-bootstrap";
 
-function JugadoresCRUD() {
-  const [data, setdata] = useState({ jugadores: [] });
-  const [categorias, setCategorias] = useState([]);
+function SedesCRUD() {
+  const [data, setdata] = useState([]);
   const [clubes, setClubes] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
-    jugador: data.jugadores.length,
+    sede: data.length,
   });
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({
     id: 1,
     nombre: "",
-    apellido: "",
-    dni: "",
-    nacimiento: "",
-    sexo: "",
     club: 0,
-    categoria: 0,
+    ubicacion: "",
+    localidad: "",
   });
   const ref = useRef({
     id: useRef(0),
     nombre: useRef(""),
-    apellido: useRef(""),
-    dni: useRef(""),
-    nacimiento: useRef(""),
-    sexo: useRef(""),
     club: useRef(0),
-    categoria: useRef(0),
+    ubicacion: useRef(""),
+    localidad: useRef(""),
   });
   useEffect(() => {
-    getCategorias();
-    getClubes();
     getData();
-    console.log(clubes, categorias);
+    getClubes();
   }, []);
 
-  const getCategorias = () => {
-    fetch("http://localhost:5000/categorias")
+  const getData = () => {
+    fetch("http://localhost:5000/sede")
       .then((res) => res.json())
       .then((responseJson) => {
-        setCategorias(responseJson.categorias);
+        setdata(responseJson);
         return responseJson;
       });
   };
-
   const getClubes = () => {
     fetch("http://localhost:5000/club")
       .then((res) => res.json())
@@ -65,18 +54,8 @@ function JugadoresCRUD() {
         return responseJson;
       });
   };
-
-  const getData = () => {
-    fetch("http://localhost:5000/jugador")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setdata(responseJson);
-        return responseJson;
-      });
-  };
-
   const postData = () => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/sede", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +68,7 @@ function JugadoresCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/sede", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +81,7 @@ function JugadoresCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/sede", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -114,16 +93,16 @@ function JugadoresCRUD() {
       .catch((error) => console.log("delete", error));
   };
 
-  const mostrarModalActualizar = (jugador) => {
+  const mostrarModalActualizar = (sede) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({ abierto: true, jugador: jugador });
+    setmodalActualizar({ abierto: true, sede: sede });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
     setmodalActualizar({
       abierto: false,
-      jugador: modalActualizar.jugador,
+      sede: modalActualizar.sede,
     });
   };
 
@@ -140,24 +119,20 @@ function JugadoresCRUD() {
   const editar = (dato) => {
     console.log("editar");
     let contador = 0;
-    let datos = data.jugadores;
+    let datos = data;
     datos.map((registro) => {
       if (dato.id == registro.id) {
         datos[contador].nombre = dato.nombre;
-        datos[contador].apellido = dato.apellido;
-        datos[contador].dni = dato.dni;
-        datos[contador].nacimiento = dato.nacimiento;
-        datos[contador].sexo = dato.sexo;
-        datos[contador].club = dato.club;
-        datos[contador].categoria = dato.categoria;
+        datos[contador].abreviatura = dato.abreviatura;
+        datos[contador].provincia = dato.provincia;
       }
       contador++;
     });
-    setdata({ jugadores: datos });
+    setdata(datos);
     putData();
     setmodalActualizar({
       abierto: false,
-      jugador: modalActualizar.jugador,
+      sede: modalActualizar.sede,
     });
   };
 
@@ -168,17 +143,17 @@ function JugadoresCRUD() {
     );
     if (opcion == true) {
       let contador = 0;
-      let arreglo = data.jugadores;
+      let arreglo = data;
       arreglo.map((registro) => {
         if (dato.id == registro.id) {
           arreglo.splice(contador, 1);
         }
         contador++;
       });
-      setdata({ jugadores: arreglo });
+      setdata(arreglo);
       setmodalActualizar({
         abierto: false,
-        jugador: modalActualizar.jugador,
+        sede: modalActualizar.sede,
       });
       deleteData(dato.id);
     }
@@ -188,11 +163,10 @@ function JugadoresCRUD() {
     console.log("insertar");
     console.log(form);
     let valorNuevo = form;
-    valorNuevo.id = data.jugadores.length + 1;
-    let lista = data.jugadores;
+    valorNuevo.id = data.length + 1;
+    let lista = data;
     lista.push(valorNuevo);
-    setdata({ jugadores: lista });
-    console.log(lista);
+    setdata(lista);
     postData();
     setmodalInsertar(false);
   };
@@ -201,12 +175,9 @@ function JugadoresCRUD() {
     setform({
       id: ref.current["id"].current.value,
       nombre: ref.current["nombre"].current.value,
-      apellido: ref.current["apellido"].current.value,
-      dni: ref.current["dni"].current.value,
-      nacimiento: ref.current["nacimiento"].current.value,
-      sexo: ref.current["sexo"].current.value,
       club: ref.current["club"].current.value,
-      categoria: ref.current["categoria"].current.value,
+      ubicacion: ref.current["ubicacion"].current.value,
+      localidad: ref.current["localidad"].current.value,
     });
   };
 
@@ -214,36 +185,28 @@ function JugadoresCRUD() {
     setform({
       ...form,
       [e.target.name]: e.target.value,
-      categoria: ref.current["categoria"].current.value
-        ? categorias.find(
-            (c) => c.nombre === ref.current["categoria"].current.value
-          ).id
-        : "",
     });
-    console.log(form);
   };
 
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      data.jugadores.map((jugador) => {
-        if (
-          jugador.nombre.toLowerCase().includes(e.target.value.toLowerCase())
-        ) {
-          searchData.push(jugador);
+      data.map((sede) => {
+        if (sede.nombre.toLowerCase().includes(e.target.value.toLowerCase())) {
+          searchData.push(sede);
         }
       });
-      setdata({ jugadores: searchData });
+      setdata(searchData);
     } else {
       searchData = getData();
     }
-    console.log(data.jugadores);
+    console.log(data);
   };
 
   return (
     <>
       <Container>
-        <h2>Jugadores</h2>
+        <h2>Sedes</h2>
         <br />
         <input
           onChange={(e) => search(e)}
@@ -264,37 +227,29 @@ function JugadoresCRUD() {
             <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Dni</th>
-              <th>Nacimiento</th>
-              <th>Sexo</th>
               <th>Club</th>
-              <th>Categoría</th>
+              <th>Ubicacion</th>
+              <th>Localidad</th>
               <th>_</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.jugadores.map((jugador) => (
-              <tr key={jugador.id}>
-                <td>{jugador.id}</td>
-                <td>{jugador.nombre}</td>
-                <td>{jugador.apellido}</td>
-                <td>{jugador.dni}</td>
-                <td>{jugador.nacimiento}</td>
-                <td>{jugador.sexo}</td>
-                <td>{clubes.find((c) => c.id == jugador.club).nombre}</td>
-                <td>
-                  {categorias.find((c) => c.id == jugador.categoria).nombre}
-                </td>
+            {data.map((sede) => (
+              <tr key={sede.id}>
+                <td>{sede.id}</td>
+                <td>{sede.nombre}</td>
+                <td>{clubes.find((c) => c.id == sede.club).nombre}</td>
+                <td>{sede.ubicacion}</td>
+                <td>{sede.localidad}</td>
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(jugador)}
+                    onClick={() => mostrarModalActualizar(sede)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(jugador)}>
+                  <Button color="danger" onClick={() => eliminar(sede)}>
                     Eliminar
                   </Button>
                 </td>
@@ -320,7 +275,7 @@ function JugadoresCRUD() {
               readOnly
               type="text"
               ref={ref.current.id}
-              defaultValue={modalActualizar.jugador.id}
+              defaultValue={modalActualizar.sede.id}
             />
           </FormGroup>
 
@@ -332,58 +287,8 @@ function JugadoresCRUD() {
               type="text"
               onChange={handleChangeEdit}
               ref={ref.current.nombre}
-              defaultValue={modalActualizar.jugador.nombre}
+              defaultValue={modalActualizar.sede.nombre}
             />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Apellido:</label>
-            <input
-              className="form-control"
-              name="apellido"
-              ref={ref.current.apellido}
-              defaultValue={modalActualizar.jugador.apellido}
-              onChange={handleChangeEdit}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Dni</label>
-            <input
-              className="form-control"
-              name="dni"
-              ref={ref.current.dni}
-              defaultValue={modalActualizar.jugador.dni}
-              type="number"
-              onChange={handleChangeEdit}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Nacimiento:</label>
-            <input
-              className="form-control"
-              name="nacimiento"
-              ref={ref.current.nacimiento}
-              defaultValue={modalActualizar.jugador.nacimiento}
-              type="date"
-              onChange={handleChangeEdit}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Sexo</label>
-            <select
-              className="form-control"
-              name="sexo"
-              ref={ref.current.sexo}
-              defaultValue={modalActualizar.jugador.sexo}
-              onChange={handleChangeEdit}
-            >
-              <option value="seleccionar">Seleccionar</option>
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
-            </select>
           </FormGroup>
 
           <FormGroup>
@@ -395,7 +300,7 @@ function JugadoresCRUD() {
               className="form-control ds-input"
               name="club"
               ref={ref.current.club}
-              defaultValue={modalActualizar.pase.club}
+              defaultValue={modalActualizar.sede.club}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -424,25 +329,27 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Categoría</label>
-            <Form.Control
-              name="categoria"
-              plaintext
-              readOnly
-              defaultValue={modalActualizar.jugador.categoria}
-              onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-              placeholder={
-                form.nacimiento
-                  ? categorias.find((c) =>
-                      c.años.includes(new Date(form.nacimiento).getFullYear())
-                    ).nombre
-                  : ""
-              }
-            />
+            <label>Ubicacion</label>
+            <input
+              className="form-control"
+              name="ubicacion"
+              ref={ref.current.ubicacion}
+              defaultValue={modalActualizar.sede.ubicacion}
+              type="text"
+              onChange={handleChangeEdit}
+            ></input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Localidad</label>
+            <input
+              className="form-control"
+              name="localidad"
+              ref={ref.current.localidad}
+              defaultValue={modalActualizar.sede.localidad}
+              type="text"
+              onChange={handleChangeEdit}
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -459,7 +366,7 @@ function JugadoresCRUD() {
       <Modal show={modalInsertar}>
         <ModalHeader>
           <div>
-            <h3>Nuevo Jugador</h3>
+            <h3>Nueva Sede</h3>
           </div>
         </ModalHeader>
 
@@ -471,7 +378,7 @@ function JugadoresCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.jugadores.length + 1}
+              value={data.length + 1}
             />
           </FormGroup>
 
@@ -486,93 +393,60 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Apellido:</label>
+            <label>Club</label>
             <input
-              className="form-control"
-              name="apellido"
-              onChange={handleChangeInsert}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Dni:</label>
-            <input
-              className="form-control"
-              name="dni"
-              type="number"
-              onChange={handleChangeInsert}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Nacimiento:</label>
-            <input
-              className="form-control"
-              name="nacimiento"
-              type="date"
-              onChange={handleChangeInsert}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Sexo:</label>
-            <select
-              defaultValue={modalActualizar.jugador.sexo}
-              className="form-control"
-              name="sexo"
-              onChange={handleChangeInsert}
-            >
-              <option value="seleccionar">Seleccionar</option>
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
-            </select>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Club:</label>
-            <Form.Control
-              as="select"
-              multiple
-              className="form-control"
+              onChange={handleChangeEdit}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
               name="club"
-              defaultValue={modalActualizar.jugador.club}
-              onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-            >
+              ref={ref.current.club}
+              defaultValue={modalActualizar.sede.club}
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="clubes_list">
+              <option>Seleccionar</option>
               {clubes.map((club) => {
                 return (
-                  <option value={club.id} key={club.id}>
+                  <option
+                    key={club.id}
+                    value={club.id}
+                    className="dropdown-item"
+                  >
                     {club.nombre}
                   </option>
                 );
               })}
-            </Form.Control>
+            </datalist>
           </FormGroup>
 
           <FormGroup>
-            <label>Categoría:</label>
-            <Form.Control
-              name="categoria"
-              plaintext
-              readOnly
-              ref={ref.current.categoria}
-              id="categoria"
-              defaultValue={
-                form.nacimiento
-                  ? categorias.find((c) =>
-                      c.años.includes(new Date(form.nacimiento).getFullYear())
-                    ).nombre
-                  : ""
-              }
+            <label>Ubicacion:</label>
+            <input
+              className="form-control"
+              name="ubicacion"
+              type="text"
               onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-            />
+            ></input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Localidad:</label>
+            <input
+              className="form-control"
+              name="localidad"
+              type="text"
+              onChange={handleChangeInsert}
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -591,4 +465,4 @@ function JugadoresCRUD() {
     </>
   );
 }
-export default JugadoresCRUD;
+export default SedesCRUD;
