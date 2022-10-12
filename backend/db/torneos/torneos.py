@@ -6,8 +6,8 @@ class Torneo(db.Model):
     nombre = db.Column(db.String(50))
     inicio = db.Column(db.Date)
     fin = db.Column(db.Date)
-    equipos = db.Column(db.String)
-    ubicacion = db.Column(db.String)
+    equipos = db.Column(db.String(100))
+    ubicacion = db.Column(db.String(100))
     fechas = db.relationship('Fecha', backref='id_torneo')
     
 

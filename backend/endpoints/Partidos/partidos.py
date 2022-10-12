@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, url_for, Blueprint, render_template,
 from db.partidos.partidos import Partido, nuevo_partido
 from db import db
 
-partidos = Blueprint('login', __name__)
+partidos = Blueprint('partidos', __name__)
 
 @partidos.route('/partidos', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def partido():

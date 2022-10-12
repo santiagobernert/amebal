@@ -5,7 +5,7 @@ class Pago(db.Model):
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     usuario = db.Column(db.Integer, db.ForeignKey('Usuarios.id'))
     fecha = db.Column(db.Date)
-    importe = db.Column(db.String)
+    importe = db.Column(db.String(8))
     banco = db.Column(db.String(20))
     
 

@@ -67,20 +67,21 @@ function PartidosCRUD() {
   };
 
   const getData = () => {
-    let categorias = fetch("http://localhost:5000/categoria")
+    let categorias = fetch("http://localhost:5000/categorias")
     .then((res) => res.json());
-    let torneos = fetch("http://localhost:5000/categoria")
+    let torneos = fetch("http://localhost:5000/jugadores")
     .then((res) => res.json());
-    let equipos = fetch("http://localhost:5000/categoria")
+    let equipos = fetch("http://localhost:5000/equipos")
     .then((res) => res.json());
-    let arbitros = fetch("http://localhost:5000/categoria")
+    let arbitros = fetch("http://localhost:5000/arbitro")
     .then((res) => res.json());
-    let mesas = fetch("http://localhost:5000/categoria")
+    let mesas = fetch("http://localhost:5000/mesa")
     .then((res) => res.json());
-    let sedes = fetch("http://localhost:5000/categoria")
+    let sedes = fetch("http://localhost:5000/sede")
     .then((res) => res.json());
 
     setData({'categorias': categorias, 'torneos': torneos, 'equipos': equipos, 'arbitros': arbitros, 'mesas': mesas, 'sedes': sedes});
+    console.log(data);
   };
 
   const postData = () => {
@@ -357,7 +358,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="equipoA"
               ref={ref.current.equipoA}
-              defaultValue={modalActualizar.pase.equipoA}
+              defaultValue={modalActualizar.partido.equipoA}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -394,7 +395,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="equipoB"
               ref={ref.current.equipoB}
-              defaultValue={modalActualizar.pase.equipoB}
+              defaultValue={modalActualizar.partido.equipoB}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -431,7 +432,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="arbitro1"
               ref={ref.current.arbitro1}
-              defaultValue={modalActualizar.pase.arbitro1}
+              defaultValue={modalActualizar.partido.arbitro1}
               placeholder="Buscar arbitro..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -468,7 +469,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="arbitro2"
               ref={ref.current.arbitro2}
-              defaultValue={modalActualizar.pase.arbitro2}
+              defaultValue={modalActualizar.partido.arbitro2}
               placeholder="Buscar arbitro..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -505,7 +506,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="mesa1"
               ref={ref.current.mesa1}
-              defaultValue={modalActualizar.pase.mesa1}
+              defaultValue={modalActualizar.partido.mesa1}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -542,7 +543,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="mesa2"
               ref={ref.current.mesa2}
-              defaultValue={modalActualizar.pase.mesa2}
+              defaultValue={modalActualizar.partido.mesa2}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
@@ -579,7 +580,7 @@ function PartidosCRUD() {
               className="form-control ds-input"
               name="sede"
               ref={ref.current.sede}
-              defaultValue={modalActualizar.pase.sede}
+              defaultValue={modalActualizar.partido.sede}
               placeholder="Buscar club..."
               aria-label="Search docs for..."
               autoComplete="off"
