@@ -19,12 +19,14 @@ from endpoints.Partidos.partidos import partidos
 from endpoints.Pases.pases import pases
 from endpoints.Roles.roles import roles
 from endpoints.Sedes.sedes import sedes
+from endpoints.Tecnicos.tecnicos import tecnicos
+from endpoints.Torneos.torneos import torneos
 
 from db import db, DB_NAME, USERNAME, PASSWORD, create_database
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USERNAME}:1234@127.0.0.1:3306/{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USERNAME}@127.0.0.1:3306/{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = 'amebal'
     db.init_app(app)
@@ -45,6 +47,8 @@ def create_app():
     app.register_blueprint(pases, url_prefix='/')
     app.register_blueprint(roles, url_prefix='/')
     app.register_blueprint(sedes, url_prefix='/')
+    app.register_blueprint(tecnicos, url_prefix='/')
+    app.register_blueprint(torneos, url_prefix='/')
 
     
     login_manager = LoginManager()
