@@ -13,6 +13,7 @@ import {
 
 function AsociacionesCRUD() {
   const [data, setdata] = useState({ asociaciones: [""] });
+  const [provincias, setProvincias] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
     asociacion: data.asociaciones.length,
@@ -31,7 +32,8 @@ function AsociacionesCRUD() {
     provincia: useRef(""),
   });
   useEffect(() => {
-    getData()
+    getData();
+    getProvincias();
   }, []);
 
   const getData = () => {
@@ -39,6 +41,15 @@ function AsociacionesCRUD() {
       .then((res) => res.json())
       .then((responseJson) => {
         setdata(responseJson);
+        return responseJson;
+      });
+  };
+
+  const getProvincias = () => {
+    fetch("http://localhost:5000/provincia")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setProvincias(responseJson);
         return responseJson;
       });
   };
@@ -162,42 +173,52 @@ function AsociacionesCRUD() {
 
   const handleChangeEdit = (e) => {
     setform({
-      'id': ref.current['id'].current.value,
-      'nombre': ref.current['nombre'].current.value,
-      'abreviatura': ref.current['abreviatura'].current.value,
-      'provincia': ref.current['provincia'].current.value,
+      id: ref.current["id"].current.value,
+      nombre: ref.current["nombre"].current.value,
+      abreviatura: ref.current["abreviatura"].current.value,
+      provincia: ref.current["provincia"].current.value,
     });
   };
-  
+
   const handleChangeInsert = (e) => {
     setform({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const search = (e) => {
     let searchData = [];
-    if (e.target.value !== ""){
-      data.asociaciones.map(asociacion => {
-      if (asociacion.nombre.toLowerCase().includes(e.target.value.toLowerCase())){
-        searchData.push(asociacion)
-      }
-    })
-    setdata({asociaciones: searchData})
-    }else{
-      searchData = getData()
+    if (e.target.value !== "") {
+      data.asociaciones.map((asociacion) => {
+        if (
+          asociacion.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+        ) {
+          searchData.push(asociacion);
+        }
+      });
+      setdata({ asociaciones: searchData });
+    } else {
+      searchData = getData();
     }
     console.log(data.asociaciones);
-    };
+  };
 
   return (
     <>
       <Container>
         <h2>Asociaciones</h2>
         <br />
-        <input onChange={(e) => search(e)} placeholder="Buscar por nombre" type="text" />
-        <Button ms="auto" color="success" onClick={() => mostrarModalInsertar()}>
+        <input
+          onChange={(e) => search(e)}
+          placeholder="Buscar por nombre"
+          type="text"
+        />
+        <Button
+          ms="auto"
+          color="success"
+          onClick={() => mostrarModalInsertar()}
+        >
           Crear
         </Button>
         <br />
@@ -282,14 +303,21 @@ function AsociacionesCRUD() {
 
           <FormGroup>
             <label>Provincia</label>
-            <input
+            <select
               className="form-control"
-              name="provincia"
+              name="asociacion"
               ref={ref.current.provincia}
               defaultValue={modalActualizar.asociacion.provincia}
-              type="text"
               onChange={handleChangeEdit}
-            ></input>
+            >
+              {provincias.map((provincia) => {
+                return (
+                  <option value={provincia.id} key={provincia.id}>
+                    {provincia.nombre}
+                  </option>
+                );
+              })}
+            </select>
           </FormGroup>
         </ModalBody>
 
@@ -343,12 +371,21 @@ function AsociacionesCRUD() {
 
           <FormGroup>
             <label>Provincia:</label>
-            <input
+            <select
               className="form-control"
-              name="provincia"
-              type="text"
+              name="asociacion"
+              ref={ref.current.asociacion}
+              defaultValue={modalActualizar.asociacion.provincia}
               onChange={handleChangeInsert}
-            ></input>
+            >
+              {provincias.map((provincia) => {
+                return (
+                  <option value={provincia.nombre} key={provincia.id}>
+                    {provincia.nombre}
+                  </option>
+                );
+              })}
+            </select>
           </FormGroup>
         </ModalBody>
 

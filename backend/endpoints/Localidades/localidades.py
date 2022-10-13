@@ -2,26 +2,39 @@ from flask import Flask, request, redirect, url_for, Blueprint, render_template,
 import requests
 from urllib.parse import urlencode
 
-API_BASE_URL = "https://apis.datos.gob.ar/georef/api/"
+API_BASE_URL_PROVINCIAS = "https://apis.datos.gob.ar/georef/api/provincias?campos=id,nombre"
+API_BASE_URL_LOCALIDADES = "https://apis.datos.gob.ar/georef/api/departamentos?"
 
-def get_similar(endpoint, nombre='', **kwargs):
-    kwargs["nombre"] = nombre
-    url = f"{API_BASE_URL}{endpoint}?{urlencode(kwargs)}"
-    return requests.get(url).json()[endpoint]
+def get_provincias():
+    return requests.get(API_BASE_URL_PROVINCIAS).json()['provincias']
 
-provincias = get_similar("provincias")
-print(provincias)
+def get_localidades(provincia=''):
+    url = f"{API_BASE_URL_LOCALIDADES}provincia={provincia}&campos=nombre&max=20"
+    return requests.get(url).json()['departamentos']
+
+localidades = get_localidades('mendoza')
+print([i['nombre'] for i in localidades])
 
 
 localidades = Blueprint('localidades', __name__)
 
-@localidades.route('/club', methods=['GET'])
-def club():
-    localidades = ()
+@localidades.route('/localidad', methods=['GET'])
+def localidad():
     if request.method == 'GET':
-        print([l.__asdict__() for l in localidades])
+        nombre = request.args['provincia']
+        localidades = get_localidades(nombre)
         response = jsonify({
-            'localidades': [l.__asdict__() for l in localidades]
+            'localidades': localidades
+            })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+@localidades.route('/provincia', methods=['GET'])
+def localidad():
+    if request.method == 'GET':
+        provincias = get_provincias()
+        response = jsonify({
+            'localidades': provincias
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response

@@ -14,6 +14,9 @@ import {
 function SedesCRUD() {
   const [data, setdata] = useState([]);
   const [clubes, setClubes] = useState([]);
+  const [provincias, setProvincias] = useState([]);
+  const [provincia, setProvincia] = useState("");
+  const [localidades, setLocalidades] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
     sede: data.length,
@@ -36,6 +39,7 @@ function SedesCRUD() {
   useEffect(() => {
     getData();
     getClubes();
+    getProvincias();
   }, []);
 
   const getData = () => {
@@ -54,6 +58,16 @@ function SedesCRUD() {
         return responseJson;
       });
   };
+
+  const getProvincias = () => {
+    fetch("http://localhost:5000/provincia")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setProvincias(responseJson.provincias);
+        return responseJson;
+      });
+  };
+
   const postData = () => {
     fetch("http://localhost:5000/sede", {
       method: "POST",
@@ -341,15 +355,57 @@ function SedesCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Localidad</label>
-            <input
+            <label>Provincia:</label>
+            <select
+              className="form-control"
+              name="provincia"
+              onChange={(e) => setProvincia(e.target.value)}
+            >
+              <option value="" key="">
+                Seleccionar
+              </option>
+              {provincias.map((provincia) => (
+                <option value={provincia.nombre} key={provincia.id}>
+                  {provincia.nombre}
+                </option>
+              ))}
+            </select>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Localidad:</label>
+            <select
               className="form-control"
               name="localidad"
               ref={ref.current.localidad}
               defaultValue={modalActualizar.sede.localidad}
-              type="text"
               onChange={handleChangeEdit}
-            ></input>
+            >
+              <option value="" key="">
+                Seleccionar
+              </option>
+              {fetch("http://localhost:5000/localidad", {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ provincia: provincia }),
+              })
+                .then((res) => res.json())
+                .then((responseJson) => {
+                  setLocalidades(responseJson.localidades);
+                })
+                .then(
+                  localidades.map((localidad) => {
+                    return (
+                      <option value={localidad.nombre} key={localidad.id}>
+                        {localidad.nombre}
+                      </option>
+                    );
+                  })
+                )}
+            </select>
           </FormGroup>
         </ModalBody>
 
@@ -440,13 +496,55 @@ function SedesCRUD() {
           </FormGroup>
 
           <FormGroup>
+            <label>Provincia:</label>
+            <select
+              className="form-control"
+              name="provincia"
+              onChange={(e) => setProvincia(e.target.value)}
+            >
+              <option value="" key="">
+                Seleccionar
+              </option>
+              {provincias.map((provincia) => (
+                <option value={provincia.nombre} key={provincia.id}>
+                  {provincia.nombre}
+                </option>
+              ))}
+            </select>
+          </FormGroup>
+
+          <FormGroup>
             <label>Localidad:</label>
-            <input
+            <select
               className="form-control"
               name="localidad"
-              type="text"
               onChange={handleChangeInsert}
-            ></input>
+            >
+              <option value="" key="">
+                Seleccionar
+              </option>
+              {fetch("http://localhost:5000/localidad", {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ provincia: provincia }),
+              })
+                .then((res) => res.json())
+                .then((responseJson) => {
+                  setLocalidades(responseJson.localidades);
+                })
+                .then(
+                  localidades.map((localidad) => {
+                    return (
+                      <option value={localidad.nombre} key={localidad.id}>
+                        {localidad.nombre}
+                      </option>
+                    );
+                  })
+                )}
+            </select>
           </FormGroup>
         </ModalBody>
 
