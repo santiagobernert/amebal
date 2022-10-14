@@ -5,7 +5,7 @@ class Partido(db.Model):
     __tablename__ = 'Partidos'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     titulo = db.Column(db.String(30))
-    torneo = db.Column(db.String(30))
+    torneo = db.Column(db.Integer, db.ForeignKey('Torneos.id'))
     categoria = db.Column(db.Integer, db.ForeignKey(Categoria.id))
     equipoA = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
     equipoB = db.Column(db.Integer, db.ForeignKey('Equipos.id'))

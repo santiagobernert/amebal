@@ -11,10 +11,11 @@ class Jugador(db.Model):
     sexo = db.Column(db.Enum('Masculino', 'Femenino'))
     equipo = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
     categoria = db.Column(db.Integer, db.ForeignKey('Categorias.id'))
+    club = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
     pases = db.relationship('Pase', backref='id_jugador')
     estadisticas = db.relationship(Estadistica, backref='id_jugador')
 
-    def __init__(self, id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria):
+    def __init__(self, id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria, club):
         self.id = id
         self.nombre = nombre
         self.apellido = apellido
@@ -23,13 +24,14 @@ class Jugador(db.Model):
         self.sexo = sexo
         self.equipo = equipo
         self.categoria = categoria
+        self.club = club
     
     def __asdict__(self):
-        return {'nombre':self.nombre, 'apellido':self.apellido, 'dni':self.dni, 'id':self.id, 'nacimiento':self.nacimiento, 'sexo':self.sexo, 'equipo':self.equipo, 'categoria':self.categoria}
+        return {'nombre':self.nombre, 'apellido':self.apellido, 'dni':self.dni, 'id':self.id, 'nacimiento':self.nacimiento, 'sexo':self.sexo, 'equipo':self.equipo, 'categoria':self.categoria, 'club':self.club}
 
 
-def nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria):
-    jugador = Jugador(id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria)
+def nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria, club):
+    jugador = Jugador(id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria, club)
     db.session.add(jugador)
     db.session.commit()
     return jugador

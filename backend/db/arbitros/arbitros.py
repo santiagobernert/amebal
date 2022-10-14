@@ -1,4 +1,5 @@
 from db import db
+from db.partidos.partidos import Partido
 
 class Arbitro(db.Model):
     __tablename__ = 'Arbitros'
@@ -8,8 +9,10 @@ class Arbitro(db.Model):
     dni = db.Column(db.Integer, unique=True)
     nacimiento = db.Column(db.Date())
     sexo = db.Column(db.Enum('Masculino', 'Femenino'))
-    asociacion = db.Column(db.Integer)
+    asociacion = db.Column(db.Integer, db.ForeignKey('Asociaciones.id'))
     nivel = db.Column(db.Integer)
+    partidos = db.relationship(Partido, backref='id_arbitro', foreign_keys=[Partido.arbitro1, Partido.arbitro2])
+
 
     def __init__(self, id, nombre, apellido, dni, nacimiento, sexo, asociacion, nivel):
         self.id = id

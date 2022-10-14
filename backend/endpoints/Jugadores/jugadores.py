@@ -22,15 +22,16 @@ def jugador():
         dni = request.json['dni']
         nacimiento = request.json['nacimiento']
         sexo = request.json['sexo']
-        club = request.json['club']
+        equipo = request.json['equipo']
         categoria = request.json['categoria']
+        club = request.json['club']
 
         dni_existe = Jugador.query.filter_by(dni=dni).first()
         
         if dni_existe:
             print('jugador ya existe')
         else:
-            nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, club, categoria)
+            nuevo_jugador(id, nombre, apellido, dni, nacimiento, sexo, equipo, categoria, club)
             print(f'jugador {nombre} {apellido}, creado')
             jugadores = Jugador.query.all()
             response = jsonify({
@@ -53,8 +54,9 @@ def jugador():
         jugador.dni = valores['dni']
         jugador.nacimiento = valores['nacimiento']
         jugador.sexo = valores['sexo']
-        jugador.club = valores['club']
+        jugador.equipo = valores['equipo']
         jugador.categoria = valores['categoria']
+        jugador.club = valores['club']
         db.session.commit()
         print('jugador ', id, ' editado')
         jugadores = Jugador.query.all()

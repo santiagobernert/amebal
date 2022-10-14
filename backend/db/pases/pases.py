@@ -8,7 +8,8 @@ class Pase(db.Model):
     club_salida = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
     club_llegada = db.Column(db.Integer, db.ForeignKey('Clubes.id'))
     tipo = db.Column(db.Enum('Nacional', 'Provincial'))
-    
+    pases = db.relationship('Pase', backref='id_club', foreign_keys=[club_salida, club_llegada])
+
 
     def __init__(self, id, jugador, fecha, club_salida, club_llegada, tipo):
         self.id = id

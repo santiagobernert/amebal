@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
-from backend.db.tecnicos.tecnicos import Tecnico, nuevo_tecnico
+from db.tecnicos.tecnicos import Tecnico, nuevo_tecnico
 from db import db
 
 tecnicos = Blueprint('tecnicos', __name__)

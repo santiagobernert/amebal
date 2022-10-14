@@ -10,7 +10,6 @@ class Club(db.Model):
     escudo = db.Column(db.String(100))
     jugadores = db.relationship('Jugador', backref='nombre_club')
     equipos = db.relationship('Equipo', backref='id_club')
-    pases = db.relationship('Pase', backref='id_club')
 
 
     def __init__(self, id, nombre, asociacion, nombrecorto, abreviatura, escudo):

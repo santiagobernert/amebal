@@ -1,5 +1,6 @@
 from db import db
 from db.torneos.torneos import Torneo
+from db.partidos.partidos import Partido
 
 class Equipo(db.Model):
     __tablename__ = 'Equipos'
@@ -11,7 +12,7 @@ class Equipo(db.Model):
     refuerzos = db.Column(db.String(10))
     año = db.Column(db.String(4))
     estadisticas = db.relationship('Estadistica', backref='id_club')
-    partidos = db.relationship('Partido', backref='id_club')
+    partidos = db.relationship('Partido', backref='id_equipo', foreign_keys=[Partido.equipoA, Partido.equipoB])
 
     
 
