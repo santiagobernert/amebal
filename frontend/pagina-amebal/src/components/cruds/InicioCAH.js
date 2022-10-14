@@ -3,13 +3,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../../App.css";
 export default function Inicio() {
   let cruds = [
+    "arbitros",
     "asociaciones",
     "clubes",
+    "equipos",
     "jugadores",
+    "mesas",
+    "pagos",
     "partidos",
     "pases",
-    "usuarios",
     "sedes",
+    "torneos",
+    "usuarios",
   ];
   return (
     <div>
@@ -21,10 +26,10 @@ export default function Inicio() {
       <div>
         <div className="container">
           <h4>Tablero de control</h4>
-          <div className="d-flex w-100 justify-content-evenly">
+          <div className="d-flex w-100 justify-content-evenly flex-wrap">
             {cruds.map((item) => (
               <a
-                className="text-decoration-none text-white bg-primary p-2 rounded"
+                className="text-decoration-none text-white bg-primary p-4 m-3 rounded"
                 target="blank"
                 href={"crud/" + item}
               >

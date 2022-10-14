@@ -12,14 +12,12 @@ import {
   Form,
 } from "react-bootstrap";
 
-function JugadoresCRUD() {
-  const [data, setdata] = useState({ jugadores: [] });
-  const [categorias, setCategorias] = useState([]);
-  const [clubes, setClubes] = useState([]);
-  const [equipos, setEquipos] = useState([]);
+function ArbitrosCRUD() {
+  const [data, setdata] = useState([]);
+  const [asociaciones, setAsociaciones] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
-    jugador: data.jugadores.length,
+    arbitro: data.length,
   });
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({
@@ -29,9 +27,8 @@ function JugadoresCRUD() {
     dni: "",
     nacimiento: "",
     sexo: "",
-    equipo: 0,
-    categoria: 0,
-    club: 0,
+    asociacion: 0,
+    nivel: 0,
   });
   const ref = useRef({
     id: useRef(0),
@@ -40,47 +37,25 @@ function JugadoresCRUD() {
     dni: useRef(""),
     nacimiento: useRef(""),
     sexo: useRef(""),
-    equipo: useRef(0),
-    categoria: useRef(0),
-    club: useRef(0),
+    asociacion: useRef(0),
+    nivel: useRef(0),
   });
   useEffect(() => {
-    getCategorias();
-    getClubes();
-    getEquipos();
+    getAsociaciones();
     getData();
-    console.log(clubes, categorias);
   }, []);
 
-  const getCategorias = () => {
-    fetch("http://localhost:5000/categorias")
+  const getAsociaciones = () => {
+    fetch("http://localhost:5000/asociaciones")
       .then((res) => res.json())
       .then((responseJson) => {
-        setCategorias(responseJson.categorias);
-        return responseJson;
-      });
-  };
-
-  const getClubes = () => {
-    fetch("http://localhost:5000/club")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setClubes(responseJson.clubes);
-        return responseJson;
-      });
-  };
-
-  const getEquipos = () => {
-    fetch("http://localhost:5000/equipo")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setEquipos(responseJson.equipos);
+        setAsociaciones(responseJson.asociaciones);
         return responseJson;
       });
   };
 
   const getData = () => {
-    fetch("http://localhost:5000/jugador")
+    fetch("http://localhost:5000/arbitro")
       .then((res) => res.json())
       .then((responseJson) => {
         setdata(responseJson);
@@ -89,7 +64,7 @@ function JugadoresCRUD() {
   };
 
   const postData = () => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/arbitro", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +77,7 @@ function JugadoresCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/arbitro", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +90,7 @@ function JugadoresCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/jugador", {
+    fetch("http://localhost:5000/arbitro", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -127,16 +102,16 @@ function JugadoresCRUD() {
       .catch((error) => console.log("delete", error));
   };
 
-  const mostrarModalActualizar = (jugador) => {
+  const mostrarModalActualizar = (arbitro) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({ abierto: true, jugador: jugador });
+    setmodalActualizar({ abierto: true, arbitro: arbitro });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
     setmodalActualizar({
       abierto: false,
-      jugador: modalActualizar.jugador,
+      arbitro: modalActualizar.arbitro,
     });
   };
 
@@ -153,7 +128,7 @@ function JugadoresCRUD() {
   const editar = (dato) => {
     console.log("editar");
     let contador = 0;
-    let datos = data.jugadores;
+    let datos = data;
     datos.map((registro) => {
       if (dato.id == registro.id) {
         datos[contador].nombre = dato.nombre;
@@ -161,17 +136,16 @@ function JugadoresCRUD() {
         datos[contador].dni = dato.dni;
         datos[contador].nacimiento = dato.nacimiento;
         datos[contador].sexo = dato.sexo;
-        datos[contador].equipo = dato.equipo;
-        datos[contador].categoria = dato.categoria;
-        datos[contador].club = dato.club;
+        datos[contador].asociacion = dato.asociacion;
+        datos[contador].nivel = dato.nivel;
       }
       contador++;
     });
-    setdata({ jugadores: datos });
+    setdata({ arbitros: datos });
     putData();
     setmodalActualizar({
       abierto: false,
-      jugador: modalActualizar.jugador,
+      arbitro: modalActualizar.arbitro,
     });
   };
 
@@ -182,17 +156,17 @@ function JugadoresCRUD() {
     );
     if (opcion == true) {
       let contador = 0;
-      let arreglo = data.jugadores;
+      let arreglo = data;
       arreglo.map((registro) => {
         if (dato.id == registro.id) {
           arreglo.splice(contador, 1);
         }
         contador++;
       });
-      setdata({ jugadores: arreglo });
+      setdata({ arbitros: arreglo });
       setmodalActualizar({
         abierto: false,
-        jugador: modalActualizar.jugador,
+        arbitro: modalActualizar.arbitro,
       });
       deleteData(dato.id);
     }
@@ -202,10 +176,10 @@ function JugadoresCRUD() {
     console.log("insertar");
     console.log(form);
     let valorNuevo = form;
-    valorNuevo.id = data.jugadores.length + 1;
-    let lista = data.jugadores;
+    valorNuevo.id = data.length + 1;
+    let lista = data;
     lista.push(valorNuevo);
-    setdata({ jugadores: lista });
+    setdata({ arbitros: lista });
     console.log(lista);
     postData();
     setmodalInsertar(false);
@@ -219,9 +193,8 @@ function JugadoresCRUD() {
       dni: ref.current["dni"].current.value,
       nacimiento: ref.current["nacimiento"].current.value,
       sexo: ref.current["sexo"].current.value,
-      equipo: ref.current["equipo"].current.value,
-      categoria: ref.current["categoria"].current.value,
-      club: ref.current["club"].current.value,
+      asociacion: ref.current["asociacion"].current.value,
+      nivel: ref.current["nivel"].current.value,
     });
   };
 
@@ -229,11 +202,6 @@ function JugadoresCRUD() {
     setform({
       ...form,
       [e.target.name]: e.target.value,
-      categoria: ref.current["categoria"].current.value
-        ? categorias.find(
-            (c) => c.nombre === ref.current["categoria"].current.value
-          ).id
-        : "",
     });
     console.log(form);
   };
@@ -241,24 +209,24 @@ function JugadoresCRUD() {
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      data.jugadores.map((jugador) => {
+      data.map((arbitro) => {
         if (
-          jugador.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+          arbitro.nombre.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
-          searchData.push(jugador);
+          searchData.push(arbitro);
         }
       });
-      setdata({ jugadores: searchData });
+      setdata({ arbitros: searchData });
     } else {
       searchData = getData();
     }
-    console.log(data.jugadores);
+    console.log(data);
   };
 
   return (
     <>
       <Container>
-        <h2>Jugadores</h2>
+        <h2>Arbitros</h2>
         <br />
         <input
           onChange={(e) => search(e)}
@@ -283,35 +251,33 @@ function JugadoresCRUD() {
               <th>Dni</th>
               <th>Nacimiento</th>
               <th>Sexo</th>
-              <th>Equipo</th>
-              <th>Categoría</th>
-              <th>Club</th>
+              <th>Asociación</th>
+              <th>Nivel</th>
               <th>_</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.jugadores.map((jugador) => (
-              <tr key={jugador.id}>
-                <td>{jugador.id}</td>
-                <td>{jugador.nombre}</td>
-                <td>{jugador.apellido}</td>
-                <td>{jugador.dni}</td>
-                <td>{jugador.nacimiento}</td>
-                <td>{jugador.sexo}</td>
-                <td>{equipos.find((e) => e.id == jugador.equipo).nombre}</td>
+            {data.map((arbitro) => (
+              <tr key={arbitro.id}>
+                <td>{arbitro.id}</td>
+                <td>{arbitro.nombre}</td>
+                <td>{arbitro.apellido}</td>
+                <td>{arbitro.dni}</td>
+                <td>{arbitro.nacimiento}</td>
+                <td>{arbitro.sexo}</td>
                 <td>
-                  {categorias.find((c) => c.id == jugador.categoria).nombre}
+                  {asociaciones.find((c) => c.id == arbitro.asociacion).nombre}
                 </td>
-                <td>{clubes.find((c) => c.id == jugador.club).nombre}</td>
+                <td>{arbitro.nivel}</td>
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(jugador)}
+                    onClick={() => mostrarModalActualizar(arbitro)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(jugador)}>
+                  <Button color="danger" onClick={() => eliminar(arbitro)}>
                     Eliminar
                   </Button>
                 </td>
@@ -337,7 +303,7 @@ function JugadoresCRUD() {
               readOnly
               type="text"
               ref={ref.current.id}
-              defaultValue={modalActualizar.jugador.id}
+              defaultValue={modalActualizar.arbitro.id}
             />
           </FormGroup>
 
@@ -349,7 +315,7 @@ function JugadoresCRUD() {
               type="text"
               onChange={handleChangeEdit}
               ref={ref.current.nombre}
-              defaultValue={modalActualizar.jugador.nombre}
+              defaultValue={modalActualizar.arbitro.nombre}
             />
           </FormGroup>
 
@@ -359,7 +325,7 @@ function JugadoresCRUD() {
               className="form-control"
               name="apellido"
               ref={ref.current.apellido}
-              defaultValue={modalActualizar.jugador.apellido}
+              defaultValue={modalActualizar.arbitro.apellido}
               onChange={handleChangeEdit}
             />
           </FormGroup>
@@ -370,7 +336,7 @@ function JugadoresCRUD() {
               className="form-control"
               name="dni"
               ref={ref.current.dni}
-              defaultValue={modalActualizar.jugador.dni}
+              defaultValue={modalActualizar.arbitro.dni}
               type="number"
               onChange={handleChangeEdit}
             ></input>
@@ -382,7 +348,7 @@ function JugadoresCRUD() {
               className="form-control"
               name="nacimiento"
               ref={ref.current.nacimiento}
-              defaultValue={modalActualizar.jugador.nacimiento}
+              defaultValue={modalActualizar.arbitro.nacimiento}
               type="date"
               onChange={handleChangeEdit}
             ></input>
@@ -394,7 +360,7 @@ function JugadoresCRUD() {
               className="form-control"
               name="sexo"
               ref={ref.current.sexo}
-              defaultValue={modalActualizar.jugador.sexo}
+              defaultValue={modalActualizar.arbitro.sexo}
               onChange={handleChangeEdit}
             >
               <option value="seleccionar">Seleccionar</option>
@@ -404,16 +370,16 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Equipo</label>
+            <label>Asociacion:</label>
             <input
               onChange={handleChangeEdit}
-              list="clubes_list"
+              list="asociaciones_list"
               type="search"
               className="form-control ds-input"
-              name="equipo"
-              ref={ref.current.equipo}
-              defaultValue={modalActualizar.jugador.equipo}
-              placeholder="Buscar equipo..."
+              name="asociacion"
+              ref={ref.current.asociacion}
+              defaultValue={modalActualizar.arbitro.asociacion}
+              placeholder="Buscar asociación..."
               aria-label="Search docs for..."
               autoComplete="off"
               data-bd-docs-version="5.1"
@@ -424,16 +390,16 @@ function JugadoresCRUD() {
               aria-owns="algolia-autocomplete-listbox-0"
               dir="auto"
             ></input>
-            <datalist id="equipos_list">
+            <datalist id="asociaciones_list">
               <option>Seleccionar</option>
-              {equipos.map((equipo) => {
+              {asociaciones.map((asociacion) => {
                 return (
                   <option
-                    key={equipo.id}
-                    value={equipo.id}
+                    key={asociacion.id}
+                    value={asociacion.id}
                     className="dropdown-item"
                   >
-                    {equipo.nombre}
+                    {asociacion.nombre}
                   </option>
                 );
               })}
@@ -441,38 +407,16 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Categoría</label>
-            <Form.Control
-              name="categoria"
-              plaintext
-              readOnly
-              defaultValue={modalActualizar.jugador.categoria}
-              onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-              placeholder={
-                form.nacimiento
-                  ? categorias.find((c) =>
-                      c.años.includes(new Date(form.nacimiento).getFullYear())
-                    ).nombre
-                  : ""
-              }
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Club</label>
+            <label>Nivel</label>
             <input
               onChange={handleChangeEdit}
-              list="clubes_list"
+              list="niveles_list"
               type="search"
               className="form-control ds-input"
-              name="club"
-              ref={ref.current.club}
-              defaultValue={modalActualizar.jugador.club}
-              placeholder="Buscar club..."
+              name="nivel"
+              ref={ref.current.nivel}
+              defaultValue={modalActualizar.arbitro.nivel}
+              placeholder="Buscar nivel..."
               aria-label="Search docs for..."
               autoComplete="off"
               data-bd-docs-version="5.1"
@@ -483,19 +427,11 @@ function JugadoresCRUD() {
               aria-owns="algolia-autocomplete-listbox-0"
               dir="auto"
             ></input>
-            <datalist id="clubes_list">
+            <datalist id="niveles_list">
               <option>Seleccionar</option>
-              {clubes.map((club) => {
-                return (
-                  <option
-                    key={club.id}
-                    value={club.id}
-                    className="dropdown-item"
-                  >
-                    {club.nombre}
-                  </option>
-                );
-              })}
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
             </datalist>
           </FormGroup>
         </ModalBody>
@@ -513,7 +449,7 @@ function JugadoresCRUD() {
       <Modal show={modalInsertar}>
         <ModalHeader>
           <div>
-            <h3>Nuevo Jugador</h3>
+            <h3>Nuevo árbitro</h3>
           </div>
         </ModalHeader>
 
@@ -525,7 +461,7 @@ function JugadoresCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={data.jugadores.length + 1}
+              value={data.length + 1}
             />
           </FormGroup>
 
@@ -571,7 +507,7 @@ function JugadoresCRUD() {
           <FormGroup>
             <label>Sexo:</label>
             <select
-              defaultValue={modalActualizar.jugador.sexo}
+              defaultValue={modalActualizar.arbitro.sexo}
               className="form-control"
               name="sexo"
               onChange={handleChangeInsert}
@@ -583,19 +519,19 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Equipo:</label>
+            <label>Asociación:</label>
             <Form.Control
               as="select"
               multiple
               className="form-control"
-              name="equipo"
-              defaultValue={modalActualizar.jugador.equipo}
+              name="asociacion"
+              defaultValue={modalActualizar.arbitro.asociacion}
               onChange={handleChangeInsert}
             >
-              {equipos.map((equipo) => {
+              {asociaciones.map((asociacion) => {
                 return (
-                  <option value={equipo.id} key={equipo.id}>
-                    {equipo.nombre}
+                  <option value={asociacion.id} key={asociacion.id}>
+                    {asociacion.nombre}
                   </option>
                 );
               })}
@@ -603,49 +539,22 @@ function JugadoresCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Categoría:</label>
-            <Form.Control
-              name="categoria"
-              plaintext
-              readOnly
-              ref={ref.current.categoria}
-              id="categoria"
-              defaultValue={
-                form.nacimiento
-                  ? categorias.find((c) =>
-                      c.años.includes(new Date(form.nacimiento).getFullYear())
-                    ).nombre
-                  : ""
-              }
-              onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Club:</label>
+            <label>Nvel:</label>
             <Form.Control
               as="select"
               multiple
               className="form-control"
-              name="club"
-              defaultValue={modalActualizar.jugador.club}
+              name="nivel"
+              defaultValue={modalActualizar.arbitro.nivel}
               onChange={handleChangeInsert}
               style={{
                 color: "#121212 !important",
                 border: "1px solid #ced4da !important",
               }}
             >
-              {clubes.map((club) => {
-                return (
-                  <option value={club.id} key={club.id}>
-                    {club.nombre}
-                  </option>
-                );
-              })}
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
             </Form.Control>
           </FormGroup>
         </ModalBody>
@@ -665,4 +574,4 @@ function JugadoresCRUD() {
     </>
   );
 }
-export default JugadoresCRUD;
+export default ArbitrosCRUD;

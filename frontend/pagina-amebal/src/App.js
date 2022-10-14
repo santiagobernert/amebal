@@ -28,13 +28,18 @@ import Sistema from "./components/paginas/Sistema";
 import PagPartido from "./components/paginas/PagPartido";
 import Noticias from "./components/paginas/Noticias";
 import Eventos from "./components/paginas/Eventos";
-import PasesCRUD from "./components/cruds/PasesCRUD";
-import ClubesCRUD from "./components/cruds/ClubesCRUD";
+import ArbitrosCRUD from "./components/cruds/ArbitrosCRUD";
 import AsociacionesCRUD from "./components/cruds/AsociacionesCRUD";
-import UsuariosCRUD from "./components/cruds/UsuariosCRUD";
+import ClubesCRUD from "./components/cruds/ClubesCRUD";
+import EquiposCRUD from "./components/cruds/EquiposCRUD";
 import JugadoresCRUD from "./components/cruds/JugadoresCRUD";
+import MesasCRUD from "./components/cruds/MesasCRUD";
+import PagosCRUD from "./components/cruds/PagosCRUD";
 import PartidosCRUD from "./components/cruds/PartidosCRUD";
+import PasesCRUD from "./components/cruds/PasesCRUD";
 import SedesCRUD from "./components/cruds/SedesCRUD";
+import TorneosCRUD from "./components/cruds/TorneosCRUD";
+import UsuariosCRUD from "./components/cruds/UsuariosCRUD";
 import InicioCAH from "./components/cruds/InicioCAH";
 
 //https://youtu.be/0ChpbdflTMY
@@ -108,13 +113,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/noticias" element={<Noticias />} />
           <Route path="/eventos" element={<Eventos />} />
-          <Route path="/cah/crud/clubes" element={<ClubesCRUD />} />
           <Route path="/cah/crud/asociaciones" element={<AsociacionesCRUD />} />
-          <Route path="/cah/crud/pases" element={<PasesCRUD />} />
-          <Route path="/cah/crud/usuarios" element={<UsuariosCRUD />} />
+          <Route path="/cah/crud/arbitros" element={<ArbitrosCRUD />} />
+          <Route path="/cah/crud/clubes" element={<ClubesCRUD />} />
+          <Route path="/cah/crud/equipos" element={<EquiposCRUD />} />
           <Route path="/cah/crud/jugadores" element={<JugadoresCRUD />} />
+          <Route path="/cah/crud/mesas" element={<MesasCRUD />} />
+          <Route path="/cah/crud/pagos" element={<PagosCRUD />} />
           <Route path="/cah/crud/partidos" element={<PartidosCRUD />} />
+          <Route path="/cah/crud/pases" element={<PasesCRUD />} />
           <Route path="/cah/crud/sedes" element={<SedesCRUD />} />
+          <Route path="/cah/crud/torneos" element={<TorneosCRUD />} />
+          <Route path="/cah/crud/usuarios" element={<UsuariosCRUD />} />
           <Route path="/cah/inicio" element={<InicioCAH />} />
         </Routes>
       </BrowserRouter>

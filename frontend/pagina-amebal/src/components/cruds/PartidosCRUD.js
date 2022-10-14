@@ -14,7 +14,14 @@ import {
 
 function PartidosCRUD() {
   const [partidos, setPartidos] = useState([]);
-  const [data, setData] = useState({categorias: [], torneos: [], equipos: [], arbitros: [], mesas: [], sedes: []});
+  const [data, setData] = useState({
+    categorias: [],
+    torneos: [],
+    equipos: [],
+    arbitros: [],
+    mesas: [],
+    sedes: [],
+  });
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
     partido: partidos.length,
@@ -67,20 +74,29 @@ function PartidosCRUD() {
   };
 
   const getData = () => {
-    let categorias = fetch("http://localhost:5000/categorias")
-    .then((res) => res.json());
-    let torneos = fetch("http://localhost:5000/jugadores")
-    .then((res) => res.json());
-    let equipos = fetch("http://localhost:5000/equipos")
-    .then((res) => res.json());
-    let arbitros = fetch("http://localhost:5000/arbitro")
-    .then((res) => res.json());
-    let mesas = fetch("http://localhost:5000/mesa")
-    .then((res) => res.json());
-    let sedes = fetch("http://localhost:5000/sede")
-    .then((res) => res.json());
+    let categorias = fetch("http://localhost:5000/categorias").then((res) =>
+      res.json()
+    );
+    let torneos = fetch("http://localhost:5000/jugadores").then((res) =>
+      res.json()
+    );
+    let equipos = fetch("http://localhost:5000/equipos").then((res) =>
+      res.json()
+    );
+    let arbitros = fetch("http://localhost:5000/arbitro").then((res) =>
+      res.json()
+    );
+    let mesas = fetch("http://localhost:5000/mesa").then((res) => res.json());
+    let sedes = fetch("http://localhost:5000/sede").then((res) => res.json());
 
-    setData({'categorias': categorias, 'torneos': torneos, 'equipos': equipos, 'arbitros': arbitros, 'mesas': mesas, 'sedes': sedes});
+    setData({
+      categorias: categorias,
+      torneos: torneos,
+      equipos: equipos,
+      arbitros: arbitros,
+      mesas: mesas,
+      sedes: sedes,
+    });
     console.log(data);
   };
 
@@ -228,7 +244,7 @@ function PartidosCRUD() {
       sede: ref.current["sede"].current.value,
       fecha: ref.current["fecha"].current.value,
       jornada: ref.current["jornada"].current.value,
-      resultado: ref.current["resultado"].current.value
+      resultado: ref.current["resultado"].current.value,
     });
   };
 
@@ -630,7 +646,6 @@ function PartidosCRUD() {
               onChange={handleChangeEdit}
             />
           </FormGroup>
-
 
           <FormGroup>
             <label>Resultado:</label>

@@ -11,65 +11,52 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
-function SedesCRUD() {
+function pagosCRUD() {
   const [data, setdata] = useState([]);
-  const [clubes, setClubes] = useState([]);
-  const [provincias, setProvincias] = useState([]);
-  const [provincia, setProvincia] = useState("");
-  const [localidades, setLocalidades] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
     abierto: false,
-    sede: data.length,
+    pago: data.length,
   });
   const [modalInsertar, setmodalInsertar] = useState(false);
   const [form, setform] = useState({
     id: 1,
-    nombre: "",
-    club: 0,
-    ubicacion: "",
-    localidad: "",
+    usuario: 0,
+    fecha: "",
+    importe: "",
+    banco: "",
   });
   const ref = useRef({
     id: useRef(0),
-    nombre: useRef(""),
-    club: useRef(0),
-    ubicacion: useRef(""),
-    localidad: useRef(""),
+    usuario: useRef(0),
+    fecha: useRef(""),
+    importe: useRef(""),
+    banco: useRef(""),
   });
   useEffect(() => {
     getData();
-    getClubes();
-    getProvincias();
+    getUsuarios();
   }, []);
 
   const getData = () => {
-    fetch("http://localhost:5000/sede")
+    fetch("http://localhost:5000/pago")
       .then((res) => res.json())
       .then((responseJson) => {
         setdata(responseJson);
         return responseJson;
       });
   };
-  const getClubes = () => {
-    fetch("http://localhost:5000/club")
+  const getUsuarios = () => {
+    fetch("http://localhost:5000/usuario")
       .then((res) => res.json())
       .then((responseJson) => {
-        setClubes(responseJson.clubes);
-        return responseJson;
-      });
-  };
-
-  const getProvincias = () => {
-    fetch("http://localhost:5000/provincia")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setProvincias(responseJson.provincias);
+        setUsuarios(responseJson.usuarios);
         return responseJson;
       });
   };
 
   const postData = () => {
-    fetch("http://localhost:5000/sede", {
+    fetch("http://localhost:5000/pago", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +69,7 @@ function SedesCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/sede", {
+    fetch("http://localhost:5000/pago", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +82,7 @@ function SedesCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/sede", {
+    fetch("http://localhost:5000/pago", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -107,16 +94,16 @@ function SedesCRUD() {
       .catch((error) => console.log("delete", error));
   };
 
-  const mostrarModalActualizar = (sede) => {
+  const mostrarModalActualizar = (pago) => {
     console.log("mostrar actualizar");
-    setmodalActualizar({ abierto: true, sede: sede });
+    setmodalActualizar({ abierto: true, pago: pago });
   };
 
   const cerrarModalActualizar = () => {
     console.log("cerrar actualizar");
     setmodalActualizar({
       abierto: false,
-      sede: modalActualizar.sede,
+      pago: modalActualizar.pago,
     });
   };
 
@@ -136,10 +123,10 @@ function SedesCRUD() {
     let datos = data;
     datos.map((registro) => {
       if (dato.id == registro.id) {
-        datos[contador].nombre = dato.nombre;
-        datos[contador].club = dato.club;
-        datos[contador].ubicacion = dato.ubicacion;
-        datos[contador].localidad = dato.localidad;
+        datos[contador].usuario = dato.usuario;
+        datos[contador].fecha = dato.fecha;
+        datos[contador].importe = dato.importe;
+        datos[contador].banco = dato.banco;
       }
       contador++;
     });
@@ -147,7 +134,7 @@ function SedesCRUD() {
     putData();
     setmodalActualizar({
       abierto: false,
-      sede: modalActualizar.sede,
+      pago: modalActualizar.pago,
     });
   };
 
@@ -168,7 +155,7 @@ function SedesCRUD() {
       setdata(arreglo);
       setmodalActualizar({
         abierto: false,
-        sede: modalActualizar.sede,
+        pago: modalActualizar.pago,
       });
       deleteData(dato.id);
     }
@@ -189,10 +176,10 @@ function SedesCRUD() {
   const handleChangeEdit = (e) => {
     setform({
       id: ref.current["id"].current.value,
-      nombre: ref.current["nombre"].current.value,
-      club: ref.current["club"].current.value,
-      ubicacion: ref.current["ubicacion"].current.value,
-      localidad: ref.current["localidad"].current.value,
+      usuario: ref.current["usuario"].current.value,
+      fecha: ref.current["fecha"].current.value,
+      importe: ref.current["importe"].current.value,
+      banco: ref.current["banco"].current.value,
     });
   };
 
@@ -206,9 +193,9 @@ function SedesCRUD() {
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      data.map((sede) => {
-        if (sede.nombre.toLowerCase().includes(e.target.value.toLowerCase())) {
-          searchData.push(sede);
+      data.map((pago) => {
+        if (pago.usuario.toLowerCase().includes(e.target.value.toLowerCase())) {
+          searchData.push(pago);
         }
       });
       setdata(searchData);
@@ -221,11 +208,11 @@ function SedesCRUD() {
   return (
     <>
       <Container>
-        <h2>Sedes</h2>
+        <h2>Pagos</h2>
         <br />
         <input
           onChange={(e) => search(e)}
-          placeholder="Buscar por nombre"
+          placeholder="Buscar por usuario"
           type="text"
         />
         <Button
@@ -241,30 +228,30 @@ function SedesCRUD() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Club</th>
-              <th>Ubicacion</th>
-              <th>Localidad</th>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Importe</th>
+              <th>Banco</th>
               <th>_</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.map((sede) => (
-              <tr key={sede.id}>
-                <td>{sede.id}</td>
-                <td>{sede.nombre}</td>
-                <td>{clubes.find((c) => c.id == sede.club).nombre}</td>
-                <td>{sede.ubicacion}</td>
-                <td>{sede.localidad}</td>
+            {data.map((pago) => (
+              <tr key={pago.id}>
+                <td>{pago.id}</td>
+                <td>{usuarios.find((c) => c.id == pago.fecha).usuario}</td>
+                <td>{pago.fecha}</td>
+                <td>{pago.importe}</td>
+                <td>{pago.banco}</td>
                 <td>
                   <Button
                     color="primary"
-                    onClick={() => mostrarModalActualizar(sede)}
+                    onClick={() => mostrarModalActualizar(pago)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(sede)}>
+                  <Button color="danger" onClick={() => eliminar(pago)}>
                     Eliminar
                   </Button>
                 </td>
@@ -290,33 +277,21 @@ function SedesCRUD() {
               readOnly
               type="text"
               ref={ref.current.id}
-              defaultValue={modalActualizar.sede.id}
+              defaultValue={modalActualizar.pago.id}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Nombre:</label>
-            <input
-              className="form-control"
-              name="nombre"
-              type="text"
-              onChange={handleChangeEdit}
-              ref={ref.current.nombre}
-              defaultValue={modalActualizar.sede.nombre}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Club</label>
+            <label>Usuario</label>
             <input
               onChange={handleChangeEdit}
-              list="clubes_list"
+              list="usuarios_list"
               type="search"
               className="form-control ds-input"
-              name="club"
-              ref={ref.current.club}
-              defaultValue={modalActualizar.sede.club}
-              placeholder="Buscar club..."
+              name="usuario"
+              ref={ref.current.usuario}
+              defaultValue={modalActualizar.pago.usuario}
+              placeholder="Buscar usuario..."
               aria-label="Search docs for..."
               autoComplete="off"
               data-bd-docs-version="5.1"
@@ -327,16 +302,16 @@ function SedesCRUD() {
               aria-owns="algolia-autocomplete-listbox-0"
               dir="auto"
             ></input>
-            <datalist id="clubes_list">
+            <datalist id="usuarios_list">
               <option>Seleccionar</option>
-              {clubes.map((club) => {
+              {usuarios.map((usuario) => {
                 return (
                   <option
-                    key={club.id}
-                    value={club.id}
+                    key={usuario.id}
+                    value={usuario.id}
                     className="dropdown-item"
                   >
-                    {club.nombre}
+                    {usuario.usuario}
                   </option>
                 );
               })}
@@ -344,69 +319,38 @@ function SedesCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Ubicacion</label>
+            <label>Fecha</label>
+            <input
+              onChange={handleChangeEdit}
+              type="date"
+              className="form-control ds-input"
+              name="fecha"
+              ref={ref.current.fecha}
+              defaultValue={modalActualizar.pago.fecha}
+            ></input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Importe</label>
             <input
               className="form-control"
-              name="ubicacion"
-              ref={ref.current.ubicacion}
-              defaultValue={modalActualizar.sede.ubicacion}
-              type="text"
+              name="importe"
+              ref={ref.current.importe}
+              defaultValue={modalActualizar.pago.importe}
+              type="number"
               onChange={handleChangeEdit}
             ></input>
           </FormGroup>
 
           <FormGroup>
-            <label>Provincia:</label>
-            <select
+            <label>Banco:</label>
+            <input
               className="form-control"
-              name="provincia"
-              onChange={(e) => setProvincia(e.target.value)}
-            >
-              <option value="" key="">
-                Seleccionar
-              </option>
-              {provincias.map((provincia) => (
-                <option value={provincia.nombre} key={provincia.id}>
-                  {provincia.nombre}
-                </option>
-              ))}
-            </select>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Localidad:</label>
-            <select
-              className="form-control"
-              name="localidad"
-              ref={ref.current.localidad}
-              defaultValue={modalActualizar.sede.localidad}
+              name="banco"
+              ref={ref.current.banco}
+              defaultValue={modalActualizar.pago.banco}
               onChange={handleChangeEdit}
-            >
-              <option value="" key="">
-                Seleccionar
-              </option>
-              {fetch("http://localhost:5000/localidad", {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify({ provincia: provincia }),
-              })
-                .then((res) => res.json())
-                .then((responseJson) => {
-                  setLocalidades(responseJson.localidades);
-                })
-                .then(
-                  localidades.map((localidad) => {
-                    return (
-                      <option value={localidad.nombre} key={localidad.id}>
-                        {localidad.nombre}
-                      </option>
-                    );
-                  })
-                )}
-            </select>
+            ></input>
           </FormGroup>
         </ModalBody>
 
@@ -423,7 +367,7 @@ function SedesCRUD() {
       <Modal show={modalInsertar}>
         <ModalHeader>
           <div>
-            <h3>Nueva Sede</h3>
+            <h3>Nueva pago</h3>
           </div>
         </ModalHeader>
 
@@ -440,26 +384,16 @@ function SedesCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Nombre:</label>
-            <input
-              className="form-control"
-              name="nombre"
-              type="text"
-              onChange={handleChangeInsert}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Club</label>
+            <label>Usuario</label>
             <input
               onChange={handleChangeInsert}
-              list="clubes_list"
+              list="usuarios_list"
               type="search"
               className="form-control ds-input"
-              name="club"
-              ref={ref.current.club}
-              defaultValue={modalActualizar.sede.club}
-              placeholder="Buscar club..."
+              name="usuario"
+              ref={ref.current.usuario}
+              defaultValue={modalActualizar.pago.usuario}
+              placeholder="Buscar usuario..."
               aria-label="Search docs for..."
               autoComplete="off"
               data-bd-docs-version="5.1"
@@ -470,16 +404,16 @@ function SedesCRUD() {
               aria-owns="algolia-autocomplete-listbox-0"
               dir="auto"
             ></input>
-            <datalist id="clubes_list">
+            <datalist id="usuarios_list">
               <option>Seleccionar</option>
-              {clubes.map((club) => {
+              {usuarios.map((usuario) => {
                 return (
                   <option
-                    key={club.id}
-                    value={club.id}
+                    key={usuario.id}
+                    value={usuario.id}
                     className="dropdown-item"
                   >
-                    {club.nombre}
+                    {usuario.usuario}
                   </option>
                 );
               })}
@@ -487,44 +421,36 @@ function SedesCRUD() {
           </FormGroup>
 
           <FormGroup>
-            <label>Ubicacion:</label>
+            <label>Fecha:</label>
             <input
               className="form-control"
-              name="ubicacion"
+              name="fecha"
+              type="date"
+              onChange={handleChangeInsert}
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <label>Importe:</label>
+            <input
+              className="form-control"
+              name="importe"
               type="text"
               onChange={handleChangeInsert}
             ></input>
           </FormGroup>
 
           <FormGroup>
-            <label>Provincia:</label>
+            <label>Banco:</label>
             <select
               className="form-control"
-              name="provincia"
-              onChange={(e) => setProvincia(e.target.value)}
-            >
-              <option value="" key="">
-                Seleccionar
-              </option>
-              {provincias.map((provincia) => (
-                <option value={provincia.nombre} key={provincia.id}>
-                  {provincia.nombre}
-                </option>
-              ))}
-            </select>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Localidad:</label>
-            <select
-              className="form-control"
-              name="localidad"
+              name="banco"
               onChange={handleChangeInsert}
             >
               <option value="" key="">
                 Seleccionar
               </option>
-              {fetch("http://localhost:5000/localidad", {
+              {fetch("http://localhost:5000/banco", {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -534,13 +460,13 @@ function SedesCRUD() {
               })
                 .then((res) => res.json())
                 .then((responseJson) => {
-                  setLocalidades(responseJson.localidades);
+                  setbancoes(responseJson.bancoes);
                 })
                 .then(
-                  localidades.map((localidad) => {
+                  bancoes.map((banco) => {
                     return (
-                      <option value={localidad.nombre} key={localidad.id}>
-                        {localidad.nombre}
+                      <option value={banco.usuario} key={banco.id}>
+                        {banco.usuario}
                       </option>
                     );
                   })
@@ -564,4 +490,4 @@ function SedesCRUD() {
     </>
   );
 }
-export default SedesCRUD;
+export default pagosCRUD;
