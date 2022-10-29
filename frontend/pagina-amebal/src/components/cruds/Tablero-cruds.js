@@ -1,20 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../App.css";
-export default function Inicio() {
+export default function Tablero() {
   let cruds = [
-    "arbitros",
-    "asociaciones",
-    "clubes",
-    "equipos",
-    "jugadores",
-    "mesas",
     "pagos",
     "partidos",
-    "pases",
-    "sedes",
     "torneos",
-    "usuarios",
   ];
   return (
     <div>
