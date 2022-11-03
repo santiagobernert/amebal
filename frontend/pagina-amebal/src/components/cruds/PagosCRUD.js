@@ -11,7 +11,7 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
-function pagosCRUD() {
+function PagosCRUD() {
   const [data, setdata] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [modalActualizar, setmodalActualizar] = useState({
@@ -450,20 +450,13 @@ function pagosCRUD() {
               <option value="" key="">
                 Seleccionar
               </option>
-              {fetch("http://localhost:5000/banco", {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify({ provincia: provincia }),
-              })
+              {fetch("http://localhost:5000/banco")
                 .then((res) => res.json())
                 .then((responseJson) => {
-                  setbancoes(responseJson.bancoes);
+                  setUsuarios(responseJson);
                 })
                 .then(
-                  bancoes.map((banco) => {
+                  data.map((banco) => {
                     return (
                       <option value={banco.usuario} key={banco.id}>
                         {banco.usuario}
@@ -490,4 +483,4 @@ function pagosCRUD() {
     </>
   );
 }
-export default pagosCRUD;
+export default PagosCRUD;

@@ -45,7 +45,7 @@ function TorneosCRUD() {
     getLocalidades();
     getEquipos();
     getData();
-    console.log(clubes, categorias);
+    console.log(equipos , categorias);
   }, []);
 
   const getCategorias = () => {
@@ -408,7 +408,7 @@ function TorneosCRUD() {
                     value={ubicacion.id}
                     className="dropdown-item"
                   >
-                    {equipo.nombre}
+                    {ubicacion.nombre}
                   </option>
                 );
               })}
@@ -551,7 +551,7 @@ function TorneosCRUD() {
                     value={ubicacion.id}
                     className="dropdown-item"
                   >
-                    {equipo.nombre}
+                    {ubicacion.nombre}
                   </option>
                 );
               })}

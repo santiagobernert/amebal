@@ -6,21 +6,9 @@ import logo from "../../imgs/logo-amebal-cd.png";
 
 
 export default function Login() {
-  const [usuarios, setUsuarios] = useState([]);
+  const setdata = '';
+  const [usuario, setUsuario] = useState({dni: '', contraseña:''});
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-
-  const getData = () => {
-    fetch("http://localhost:5000/usuario")
-      .then((res) => res.json())
-      .then((responseJson) => {
-        setdata(responseJson);
-        return responseJson;
-      });
-  };
 
   return (
     <div>
