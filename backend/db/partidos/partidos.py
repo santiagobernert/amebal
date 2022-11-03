@@ -1,18 +1,17 @@
 from db import db
-from db.categorias.categorias import Categoria
 
 class Partido(db.Model):
     __tablename__ = 'Partidos'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
     titulo = db.Column(db.String(30))
     torneo = db.Column(db.Integer, db.ForeignKey('Torneos.id'))
-    categoria = db.Column(db.Integer, db.ForeignKey(Categoria.id))
-    equipoA = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
-    equipoB = db.Column(db.Integer, db.ForeignKey('Equipos.id'))
-    arbitro1 = db.Column(db.Integer, db.ForeignKey('Arbitros.id'))
-    arbitro2 = db.Column(db.Integer, db.ForeignKey('Arbitros.id'))
-    mesa1 = db.Column(db.Integer, db.ForeignKey('Mesas.id'))
-    mesa2 = db.Column(db.Integer, db.ForeignKey('Mesas.id'))
+    categoria = db.Column(db.Integer)
+    equipoA = db.Column(db.Integer)
+    equipoB = db.Column(db.Integer)
+    arbitro1 = db.Column(db.Integer)
+    arbitro2 = db.Column(db.Integer)
+    mesa1 = db.Column(db.Integer)
+    mesa2 = db.Column(db.Integer)
     sede = db.Column(db.String(50))
     fecha = db.Column(db.String(50))
     jornada = db.Column(db.String(50))

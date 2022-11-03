@@ -5,7 +5,7 @@ from pymysql import connect, Error
 db = SQLAlchemy()
 DB_NAME = 'amebal'
 USERNAME = 'root'
-PASSWORD = '1234'
+PASSWORD = '[$Ant:1005]'
 
 show_db_query = "SHOW DATABASES"
 

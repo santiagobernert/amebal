@@ -3,7 +3,7 @@ from db import db
 class Pago(db.Model):
     __tablename__ = 'Pagos'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=False)
-    usuario = db.Column(db.Integer, db.ForeignKey('Usuarios.id'))
+    usuario = db.Column(db.Integer)
     fecha = db.Column(db.Date)
     importe = db.Column(db.String(8))
     banco = db.Column(db.String(20))
