@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import {
   Container,
@@ -11,6 +11,7 @@ import {
 
 export default function NuevoArticulo() {
   const [files, setFiles] = useState([]);
+  const [etiquetas, setetiquetas] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -24,6 +25,23 @@ export default function NuevoArticulo() {
     },
   });
 
+  const [articulo, setarticulo] = useState({titulo:'', portada:'', cuerpo:'', tags:'', fecha:''});
+  
+  const postData = () => {
+    fetch("http://localhost:5000/articulo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(articulo),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("post", error));
+  };
+
+  const refEtiqueta = useRef('')
+
   const thumbs = files.map((file) => (
     <div key={file.name}>
       <div>
@@ -31,6 +49,16 @@ export default function NuevoArticulo() {
       </div>
     </div>
   ));
+
+  const handleChangeInsert = (e) => {
+    setarticulo({
+      ...articulo,
+      [e.target.name]: e.target.value,
+      'tags': etiquetas.toString(),
+      'fecha': new Date()
+    });
+    console.log(articulo);
+  };
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks
@@ -42,13 +70,28 @@ export default function NuevoArticulo() {
         <InputGroup className="d-flex flex-column">
           <FormControl
             className="mb-3 w-100 text-center"
-            placeholder="Titulo del artículo"
+            placeholder="Titulo de la noticia"
+            name="titulo"
+            type="text"
+            onChange={handleChangeInsert}
           />
 
           <Row>
             <Col className="justify-content-center d-flex mb-3">
-              <Button>+etiqueta</Button>
+              <FormControl className="w-25" ref={refEtiqueta} type="text" name="etiqueta" placeholder="Nueva etiqueta" />
+              <Button onClick={()=> {setetiquetas([...etiquetas, refEtiqueta.current.value])}}>+etiqueta</Button>
             </Col>
+          </Row>
+          
+          <Row>
+            
+              {etiquetas && etiquetas.map((etiqueta)=>{
+                return(
+                  <Col>
+                  <div className="bg-primary rounded vw-10 text-center text-light me-1">{etiqueta}</div>
+                  </Col>
+                )
+              })}
           </Row>
 
           <input
@@ -65,6 +108,9 @@ export default function NuevoArticulo() {
           <FormControl
             className="mb-3 w-100"
             placeholder="Cuerpo de la noticia"
+            name="cuerpo"
+            type="text"
+            onChange={handleChangeInsert}
           />
 
           <Row>
@@ -79,6 +125,8 @@ export default function NuevoArticulo() {
           <InputGroup.Text>Cargar desde Word</InputGroup.Text>
           <input className="mb-3" type="file" />
         </InputGroup>
+
+        <Button onClick={() => postData()}>Subir</Button>
       </Container>
     </div>
   );

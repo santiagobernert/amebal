@@ -1,37 +1,37 @@
-from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
-from db.pagos.pagos import Pago, nuevo_pago
+from flask import request, Blueprint, jsonify
+from db.articulos.articulos import Articulo, nuevo_articulo
 from db import db
 
 articulos = Blueprint('articulos', __name__)
 
 @articulos.route('/articulo', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def articulo():
-    pagos = Pago.query.all()
+    articulos = Articulo.query.all()
     if request.method == 'GET':
-        pagos = Pago.query.all()
-        print([p.__asdict__() for p in pagos])
+        articulos = Articulo.query.all()
+        print([a.__asdict__() for a in articulos])
         response = jsonify({
-            'pagos': [p.__asdict__() for p in pagos],
+            'articulos': [a.__asdict__() for a in articulos],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response    
     if request.method == 'POST':
-        id = request.json['id']
-        usuario = request.json['usuario']
+        titulo = request.json['titulo']
+        portada = request.json['portada']
+        tags = request.json['tags']
+        cuerpo = request.json['cuerpo']
         fecha = request.json['fecha']
-        importe = request.json['importe']
-        banco = request.json['banco']
 
-        id_existe = Pago.query.filter_by(id=id).first()
+        id_existe = Articulo.query.filter_by(id=0).first()
         
         if id_existe:
-            print('pago ya existe')
+            print('articulo ya existe')
         else:
-            nuevo_pago(id, usuario, fecha, importe, banco)
-            print(f'pago {usuario} {fecha} {importe} {banco}, creado')
-            pagos = Pago.query.all()
+            nuevo_articulo(1, titulo, portada, tags, cuerpo, fecha)
+            print(f'articulo {titulo} {fecha} {portada} {tags}, creado')
+            articulos = Articulo.query.all()
             response = jsonify({
-                'pagos': [p.__asdict__() for p in pagos],
+                'articulos': [a.__asdict__() for a in articulos],
                 })
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
@@ -42,19 +42,20 @@ def articulo():
         valores = request.get_json()
         id = valores['id']
         print(valores)
-        pago = Pago.query.filter_by(id=id).first()
-        print(pago.nombre, pago.apellido, pago.nacimiento)
-        pago.id = valores['id']
-        pago.usuario = valores['usuario']
-        pago.fecha = valores['fecha']
-        pago.importe = valores['importe']
-        pago.banco = valores['banco']
+        articulo = Articulo.query.filter_by(id=id).first()
+        print(articulo.nombre, articulo.apellido, articulo.nacimiento)
+        articulo.id = valores['id']
+        articulo.titulo = valores['titulo']
+        articulo.portada = valores['portada']
+        articulo.tags = valores['tags']
+        articulo.cuerpo = valores['cuerpo']
+        articulo.fecha = valores['fecha']
         db.session.commit()
-        print('pago ', id, ' editado')
-        pagos = Pago.query.all()
-        print([p.__asdict__() for p in pagos])
+        print('articulo ', id, ' editado')
+        articulos = Articulo.query.all()
+        print([a.__asdict__() for a in articulos])
         response = jsonify({
-            'pagos': [p.__asdict__() for p in pagos],
+            'articulos': [a.__asdict__() for a in articulos],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -63,14 +64,14 @@ def articulo():
         print('delete')
         id = request.get_json()
         print(id)
-        pago = Pago.query.filter_by(id=id)
-        pago.delete()
+        articulo = Articulo.query.filter_by(id=id)
+        articulo.delete()
         db.session.commit()
-        print('pago ', id, ' eliminado')
-        pagos = Pago.query.all()
-        print([p.__asdict__() for p in pagos])
+        print('articulo ', id, ' eliminado')
+        articulos = Articulo.query.all()
+        print([a.__asdict__() for a in articulos])
         response = jsonify({
-            'pagos': [p.__asdict__() for p in pagos],
+            'articulos': [a.__asdict__() for a in articulos],
             })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response 
