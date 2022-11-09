@@ -1,5 +1,7 @@
 import EQUIPOS from "./equipos";
-const PARTIDOS = [
+
+
+let PARTIDOS = [
   {
     id: 1,
     titulo: "Regatas vs Uncuyo",
@@ -91,5 +93,7 @@ const PARTIDOS = [
     },
   },
 ];
+
+fetch("http://localhost:5000/partidos").then((res) => res.json()).then(data => PARTIDOS = data) 
 
 export default PARTIDOS;
