@@ -9,6 +9,26 @@ export default function Login() {
   const setdata = '';
   const [usuario, setUsuario] = useState({dni: '', contraseña:''});
 
+  function handleChange(e) {
+    setUsuario({
+        ...usuario,
+        [e.target.name]: e.target.value
+    })
+  }
+
+  const postData = () => {
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(usuario),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log("post", error));
+  };
+
 
   return (
     <div>
@@ -19,11 +39,11 @@ export default function Login() {
                 <h4>Login</h4>
                 <Form>
                     <FormGroup>
-                        <FormControl placeholder="Usuario" />
-                        <FormControl type="password" placeholder="Contraseña" />
+                        <FormControl name='dni' type='number' placeholder="Dni" />
+                        <FormControl name='contraseña' type="password" placeholder="Contraseña" />
                         <a href="">Olvidé mi clave</a>
                     </FormGroup>
-                    <Button type="submit" variant="primary" >Ingresar</Button>
+                    <Button onClick={()=> postData()} type="submit" variant="primary" >Ingresar</Button>
                 </Form>
             </Container>
         </div>

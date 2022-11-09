@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, Blueprint, render_template, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from db import db
+import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -44,10 +45,13 @@ def signup():
 @login.route('/login', methods=['GET', 'POST'])
 def log_in():
     if request.method == 'POST':
-        email = request.form.get('email')
-        contraseña = request.form.get('contraseña')
+        dni = request.json['dni']
+        contraseña = request.json['contraseña']
 
-        usuario = True #Usuario.query.filter_by(email=email).first()
+        usuarios = requests.get('localhost:5000/usuario').json().usuarios
+
+        usuario = [u for u in usuarios if u.dni == dni]
+        print(usuarios, usuario)
         if usuario:
             if check_password_hash(usuario.contraseña, contraseña):
                 print('Logged in successfully!')
