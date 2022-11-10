@@ -1,88 +1,62 @@
-@use "colors.scss";
 .cont_titulo {
   padding-left: 1rem;
 }
 
 .principal {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .eventos {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding: 3rem;
   width: 50vw;
 }
-
 .eventos .evento {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #fafafafa;
-  margin: .7rem;
-  border-radius: .5rem;
+  align-items: center;
+  background-color: rgba(250, 250, 250, 0.9803921569);
+  margin: 0.7rem;
+  border-radius: 0.5rem;
 }
-
 .eventos .evento * {
   margin: 0;
 }
-
 .eventos .evento .titulo {
   width: 90%;
   font-weight: bold;
   font-size: 1em;
   color: #121212;
-  padding: .8rem .8rem .8rem .5rem;
+  padding: 0.8rem 0.8rem 0.8rem 0.5rem;
   width: 100%;
 }
-
 .eventos .evento .tag {
   color: #30475E;
-  font-size: .6em;
+  font-size: 0.6em;
   max-width: 6rem;
 }
-
 .eventos .evento .type {
   background-color: #30475E;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 0 .5rem .5rem 0;
+  justify-content: center;
+  border-radius: 0 0.5rem 0.5rem 0;
   height: 100%;
 }
-
 .eventos .evento .type h5 {
   text-align: center;
-  font-size: .8em;
-  color: #fafafafa;
-  -webkit-writing-mode: vertical-rl;
-      -ms-writing-mode: tb-rl;
-          writing-mode: vertical-rl;
+  font-size: 0.8em;
+  color: rgba(250, 250, 250, 0.9803921569);
+  -ms-writing-mode: tb-rl;
+      writing-mode: vertical-rl;
   text-orientation: mixed;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .div_calendario {
   max-width: 40vw;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -92,5 +66,4 @@
   .div_calendario {
     max-width: 80vw;
   }
-}
-/*# sourceMappingURL=Eventos.module.css.map */
+}/*# sourceMappingURL=Eventos.module.css.map */

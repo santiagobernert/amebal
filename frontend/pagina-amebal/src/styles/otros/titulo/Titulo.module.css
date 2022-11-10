@@ -1,4 +1,3 @@
-@use "colors.scss";
 .cont_titulo {
   width: 100%;
   height: -webkit-fit-content;
@@ -6,13 +5,11 @@
   height: fit-content;
   margin: 0;
   padding: 2.5vh 0 2.5vh 8vw;
-  color: #fafafafa;
+  color: rgba(250, 250, 250, 0.9803921569);
   background-color: #30475E;
 }
-
 .cont_titulo .titulo {
   font-size: 1.5em;
   font-weight: 700;
   max-width: 70vw;
-}
-/*# sourceMappingURL=Titulo.module.css.map */
+}/*# sourceMappingURL=Titulo.module.css.map */

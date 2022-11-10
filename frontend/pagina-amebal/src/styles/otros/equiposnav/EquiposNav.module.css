@@ -1,17 +1,14 @@
 .box {
   position: relative;
 }
-
 .box .shadow1 {
   position: absolute;
   top: 0;
   width: 25vw;
   height: 7vh;
   z-index: 1;
-  -webkit-box-shadow: inset 90px 0px 50px -45px #F3F3F3;
-          box-shadow: inset 90px 0px 50px -45px #F3F3F3;
+  box-shadow: inset 90px 0px 50px -45px #F3F3F3;
 }
-
 .box .shadow2 {
   position: absolute;
   top: 0;
@@ -19,29 +16,20 @@
   height: 7vh;
   z-index: 1;
   right: 0;
-  -webkit-box-shadow: inset -90px 0px 50px -45px #F3F3F3;
-          box-shadow: inset -90px 0px 50px -45px #F3F3F3;
+  box-shadow: inset -90px 0px 50px -45px #F3F3F3;
 }
-
 .box .nav {
   position: relative;
   top: 0;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   padding-block: 0.8vh;
   padding-inline: 10vw;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   background-color: #F3F3F3;
   text-align: center;
 }
-
 .box .nav img {
   max-width: 2rem;
   margin-inline: 0.4rem;
@@ -51,5 +39,4 @@
   .nav {
     overflow-x: scroll;
   }
-}
-/*# sourceMappingURL=EquiposNav.module.css.map */
+}/*# sourceMappingURL=EquiposNav.module.css.map */

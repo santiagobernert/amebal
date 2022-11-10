@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AEAA,IAAI,CAAJ,aAAI;AFGJ,AAAA,YAAY,CAAC;EACX,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,WAAW;EACnB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,iBAAiB;EAC1B,KAAK,ECCE,SAAS;EDAhB,gBAAgB,ECTL,OAAO;CDgBnB;;AAbD,AAQE,YARU,CAQV,OAAO,CAAC;EACN,SAAS,EAAE,KAAK;EAChB,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;CAChB",
-    "sources": [
-        "Titulo.module.scss",
-        "../../scss/_colors.scss",
-        "../../scss/_mixins.scss"
-    ],
-    "names": [],
-    "file": "Titulo.module.css"
-}
+{"version":3,"sources":["Titulo.module.scss","../../scss/_colors.scss","Titulo.module.css"],"names":[],"mappings":"AAGA;EACE,WAAA;EACA,2BAAA;EAAA,wBAAA;EAAA,mBAAA;EACA,SAAA;EACA,0BAAA;EACA,wCCCO;EDAP,yBCTW;ACOb;AFIE;EACE,gBAAA;EACA,gBAAA;EACA,eAAA;AEFJ","file":"Titulo.module.css"}

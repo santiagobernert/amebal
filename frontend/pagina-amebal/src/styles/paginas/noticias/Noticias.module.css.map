@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AEAA,IAAI,CAAJ,aAAI;AFGJ,AAAA,KAAK,CAAA;EE4BH,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,EAAE;EACX,KAAK,EAAE,IAAI;EAET,MAAM,EF/BQ,IAAI;EEmCpB,gBAAgB,EDvCL,OAAO;ECwClB,aAAa,EAAE,+BAA+B;CFnC/C;;AAED,AAAA,UAAU,EAAE,UAAU,CAAA;EAClB,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,eAAe,EAAE,MAAM;CAC1B",
-    "sources": [
-        "Noticias.module.scss",
-        "../../scss/_colors.scss",
-        "../../scss/_mixins.scss"
-    ],
-    "names": [],
-    "file": "Noticias.module.css"
-}
+{"version":3,"sources":["Noticias.module.scss","../../scss/_mixins.scss","../../scss/_colors.scss","Noticias.module.css"],"names":[],"mappings":"AAGA;EC4BE,kBAAA;EACA,WAAA;EACA,WAAA;EAEE,YD/Bc;ECmChB,yBCvCW;EDwCX,4CAAA;AEjCF;;AHAA;EACI,aAAA;EACA,aAAA;EACA,eAAA;EACA,uBAAA;AGGJ","file":"Noticias.module.css"}

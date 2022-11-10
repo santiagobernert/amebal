@@ -21,7 +21,7 @@ export default function ({ titulo,
           <div className={styles.detalles}>
             <h6 className={styles.torneo}>{torneo}</h6>
             <h6 className={styles.categoria}>{categoria}</h6>
-            <h4 className={styles.resultado}>{resultado}</h4>
+            <h4 className={styles.resultado}>{resultado.total_str}</h4>
           </div>  
         <a href={`clubes/${equipo2}`}><img src={equipo2.imagen} alt={equipo2.abv} /></a>
       </div>

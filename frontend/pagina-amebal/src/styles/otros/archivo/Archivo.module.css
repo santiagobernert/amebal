@@ -1,30 +1,18 @@
-@use "colors.scss";
 .archivo {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  padding: .6rem 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  padding: 0.6rem 0 0;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #E5E5E5;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
-
 .archivo img {
-  padding: 0 2.2rem .2rem;
+  padding: 0 2.2rem 0.2rem;
 }
-
 .archivo h4 {
   width: 100%;
   max-width: 40vw;
@@ -33,7 +21,7 @@
 .descargar {
   width: 100%;
   border: none;
-  border-radius: 0 0 .3rem .3rem;
+  border-radius: 0 0 0.3rem 0.3rem;
   background-color: #0d6efd;
   color: white;
   height: 2.4rem;
@@ -42,5 +30,4 @@
 .descargar :hover {
   cursor: pointer;
   background-color: #054ebb;
-}
-/*# sourceMappingURL=Archivo.module.css.map */
+}/*# sourceMappingURL=Archivo.module.css.map */

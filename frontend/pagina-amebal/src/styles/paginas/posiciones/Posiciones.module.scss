@@ -24,12 +24,21 @@
   background-color: $blanco;
   color: $negro;
 
+  thead{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
   td {
     width: 100% !important;
   }
   td,
   th {
     border-width: 0 0;
+  }
+  *{
+    border-bottom-width: 0px !important;
+    border-top-width: 0px !important;
   }
 }
 

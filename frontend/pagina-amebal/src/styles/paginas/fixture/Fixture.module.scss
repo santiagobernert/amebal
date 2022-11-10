@@ -19,6 +19,9 @@
 .selects_row {
   padding-left: 2.5rem;
   min-width: 90vw;
+  select{
+    max-width: 8rem;
+  }
 }
 
 .div_calendario {

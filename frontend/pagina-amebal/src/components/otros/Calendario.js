@@ -9,7 +9,7 @@ export default function Calendario() {
       <Container className={styles.container}>
         <div className={styles.calendar}>
           <header>
-            <h2>Noviembre 2021</h2>
+            <h2>Noviembre 2022</h2>
             <a className={styles.btn_prev} href="#"></a> 
             <a className={styles.btn_next} href="#"></a>
           </header>
