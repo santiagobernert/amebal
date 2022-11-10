@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Form, Row, InputGroup } from "react-bootstrap";
@@ -14,6 +14,21 @@ import Titulo from "../otros/Titulo";
 import styles from "../../styles/paginas/fixture/Fixture.module.css";
 
 export default function Fixture() {
+  const [partidos, setPartidos] = useState([]);
+
+  const getPartidos = () => {
+    fetch("http://localhost:5000/partidos")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setPartidos(responseJson.partidos);
+        return responseJson;
+      });
+  };
+
+  useEffect(() => {
+    getPartidos()
+  }, []);
+
   return (
     <div>
       <Titulo text="Fixture" />
@@ -60,8 +75,8 @@ export default function Fixture() {
         <div className={styles.div_partidos}>
 
           <div className={styles.cont_partidos}>
-            {PARTIDOS &&
-              PARTIDOS.map((item) => <Partido className={styles.partido} key={item.id} {...item} />)}
+            {partidos &&
+              partidos.map((item) => <Partido className={styles.partido} key={item.id} {...item} />)}
             <a href="/posiciones"><h5>Ver posiciones</h5></a>
           </div>
         </div>

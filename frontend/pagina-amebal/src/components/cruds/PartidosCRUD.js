@@ -68,40 +68,40 @@ function PartidosCRUD() {
     fetch("http://localhost:5000/partidos")
       .then((res) => res.json())
       .then((responseJson) => {
-        setData(responseJson);
+        setPartidos(responseJson.partidos);
         return responseJson;
       });
   };
 
   const getData = () => {
     let categorias = fetch("http://localhost:5000/categorias").then((res) =>
-      res.json()
+      res.ok?res.json():res
     );
     let torneos = fetch("http://localhost:5000/jugadores").then((res) =>
-      res.json()
+      res.ok?res.json():res
     );
     let equipos = fetch("http://localhost:5000/equipos").then((res) =>
-      res.json()
+      res.ok?res.json():res
     );
     let arbitros = fetch("http://localhost:5000/arbitro").then((res) =>
-      res.json()
+      res.ok?res.json():res
     );
-    let mesas = fetch("http://localhost:5000/mesa").then((res) => res.json());
-    let sedes = fetch("http://localhost:5000/sede").then((res) => res.json());
+    let mesas = fetch("http://localhost:5000/mesa").then((res) => res.ok?res.json():res);
+    let sedes = fetch("http://localhost:5000/sede").then((res) => res.ok?res.json():res);
 
     setData({
-      categorias: categorias,
-      torneos: torneos,
-      equipos: equipos,
-      arbitros: arbitros,
-      mesas: mesas,
-      sedes: sedes,
+      categorias: [],
+      torneos: [],
+      equipos: [],
+      arbitros: [],
+      mesas: [],
+      sedes: [],
     });
     console.log(data);
   };
 
   const postData = () => {
-    fetch("http://localhost:5000/partido", {
+    fetch("http://localhost:5000/partidos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ function PartidosCRUD() {
   };
 
   const putData = () => {
-    fetch("http://localhost:5000/partido", {
+    fetch("http://localhost:5000/partidos", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +127,7 @@ function PartidosCRUD() {
   };
 
   const deleteData = (id) => {
-    fetch("http://localhost:5000/partido", {
+    fetch("http://localhost:5000/partidos", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -259,7 +259,7 @@ function PartidosCRUD() {
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      partidos.map((partido) => {
+      partidos && partidos.map((partido) => {
         if (
           partido.nombre.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
@@ -299,6 +299,7 @@ function PartidosCRUD() {
               <th>Equipo A</th>
               <th>Equipo B</th>
               <th>Torneo</th>
+              <th>Categoría</th>
               <th>Sede</th>
               <th>Fecha</th>
               <th>Resultado</th>
@@ -307,12 +308,13 @@ function PartidosCRUD() {
           </thead>
 
           <tbody>
-            {partidos.map((partido) => (
+            {partidos && partidos.map((partido) => (
               <tr key={partido.id}>
                 <td>{partido.id}</td>
                 <td>{partido.equipoA}</td>
                 <td>{partido.equipoB}</td>
                 <td>{partido.torneo}</td>
+                <td>{partido.categoria}</td>
                 <td>{partido.sede}</td>
                 <td>{partido.fecha}</td>
                 <td>{partido.resultado}</td>
@@ -388,7 +390,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.map((equipo) => {
+              {data.equipos && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -425,7 +427,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.map((equipo) => {
+              {data.equipos && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -433,6 +435,80 @@ function PartidosCRUD() {
                     className="dropdown-item"
                   >
                     {equipo.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Torneo</label>
+            <input
+              onChange={handleChangeEdit}
+              list="torneos_list"
+              type="search"
+              className="form-control ds-input"
+              name="torneo"
+              ref={ref.current.torneo}
+              defaultValue={modalActualizar.partido.torneo}
+              placeholder="Buscar torneo..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="torneos_list">
+              <option>Seleccionar</option>
+              {data.torneos && data.torneos.map((torneo) => {
+                return (
+                  <option
+                    key={torneo.id}
+                    value={torneo.id}
+                    className="dropdown-item"
+                  >
+                    {torneo.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Categoria</label>
+            <input
+              onChange={handleChangeEdit}
+              list="categorias_list"
+              type="search"
+              className="form-control ds-input"
+              name="categoria"
+              ref={ref.current.categoria}
+              defaultValue={modalActualizar.partido.categoria}
+              placeholder="Buscar categoria..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="categorias_list">
+              <option>Seleccionar</option>
+              {data.categorias && data.categorias.map((categoria) => {
+                return (
+                  <option
+                    key={categoria.id}
+                    value={categoria.id}
+                    className="dropdown-item"
+                  >
+                    {categoria.nombre}
                   </option>
                 );
               })}
@@ -462,7 +538,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros.map((arbitro) => {
+              {data.arbitros && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -499,7 +575,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros.map((arbitro) => {
+              {data.arbitros && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -536,7 +612,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas.map((mesa) => {
+              {data.mesas && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -573,7 +649,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas.map((mesa) => {
+              {data.mesas && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -610,7 +686,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="sedes_list">
               <option>Seleccionar</option>
-              {data.sedes.map((sede) => {
+              {data.sedes && data.sedes.map((sede) => {
                 return (
                   <option
                     key={sede.id}
@@ -685,81 +761,367 @@ function PartidosCRUD() {
               className="form-control"
               readOnly
               type="text"
-              value={partidos.length + 1}
+              defaultValue={modalActualizar.partido.id}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Nombre:</label>
+            <label>Titulo:</label>
             <input
               className="form-control"
-              name="nombre"
+              name="titulo"
               type="text"
               onChange={handleChangeInsert}
             />
           </FormGroup>
 
           <FormGroup>
-            <label>Apellido:</label>
+            <label>Equipo A</label>
             <input
-              className="form-control"
-              name="apellido"
               onChange={handleChangeInsert}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Dni:</label>
-            <input
-              className="form-control"
-              name="dni"
-              type="number"
-              onChange={handleChangeInsert}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="equipoA"
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
             ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Email:</label>
-            <input
-              className="form-control"
-              name="email"
-              type="email"
-              onChange={handleChangeInsert}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Contraseña:</label>
-            <input
-              className="form-control"
-              name="contraseña"
-              type="text"
-              onChange={handleChangeInsert}
-            ></input>
-          </FormGroup>
-
-          <FormGroup>
-            <label>Rol:</label>
-            <Form.Control
-              as="select"
-              multiple
-              className="form-control"
-              name="rol"
-              defaultValue={modalActualizar.partido.rol}
-              onChange={handleChangeInsert}
-              style={{
-                color: "#121212 !important",
-                border: "1px solid #ced4da !important",
-              }}
-            >
-              {partidos.map((rol) => {
+            <datalist id="clubes_list">
+              <option>Seleccionar</option>
+              {data.equipos && data.equipos.map((equipo) => {
                 return (
-                  <option value={rol.id} key={rol.id}>
-                    {rol.nombre}
+                  <option
+                    key={equipo.id}
+                    value={equipo.id}
+                    className="dropdown-item"
+                  >
+                    {equipo.nombre}
                   </option>
                 );
               })}
-            </Form.Control>
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Equipo B</label>
+            <input
+              onChange={handleChangeInsert}
+              list="clubes_list"
+              type="search"
+              className="form-control ds-input"
+              name="equipoB"
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="clubes_list">
+              <option>Seleccionar</option>
+              {data.equipos && data.equipos.map((equipo) => {
+                return (
+                  <option
+                    key={equipo.id}
+                    value={equipo.id}
+                    className="dropdown-item"
+                  >
+                    {equipo.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Torneo</label>
+            <input
+              onChange={handleChangeInsert}
+              list="torneos_list"
+              type="search"
+              className="form-control ds-input"
+              name="torneo"
+              ref={ref.current.torneo}
+              defaultValue={modalActualizar.partido.torneo}
+              placeholder="Buscar torneo..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="torneos_list">
+              <option>Seleccionar</option>
+              {data.torneos && data.torneos.map((torneo) => {
+                return (
+                  <option
+                    key={torneo.id}
+                    value={torneo.id}
+                    className="dropdown-item"
+                  >
+                    {torneo.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Categoria</label>
+            <input
+              onChange={handleChangeInsert}
+              list="categorias_list"
+              type="search"
+              className="form-control ds-input"
+              name="categoria"
+              ref={ref.current.categoria}
+              defaultValue={modalActualizar.partido.categoria}
+              placeholder="Buscar categoria..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="categorias_list">
+              <option>Seleccionar</option>
+              {data.categorias && data.categorias.map((categoria) => {
+                return (
+                  <option
+                    key={categoria.id}
+                    value={categoria.id}
+                    className="dropdown-item"
+                  >
+                    {categoria.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Arbitro 1</label>
+            <input
+              onChange={handleChangeInsert}
+              list="arbitros_list"
+              type="search"
+              className="form-control ds-input"
+              name="arbitro1"
+              placeholder="Buscar arbitro..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="arbitros_list">
+              <option>Seleccionar</option>
+              {data.arbitros && data.arbitros.map((arbitro) => {
+                return (
+                  <option
+                    key={arbitro.id}
+                    value={arbitro.id}
+                    className="dropdown-item"
+                  >
+                    {arbitro.nombre} {arbitro.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Arbitro 2</label>
+            <input
+              onChange={handleChangeInsert}
+              list="arbitros_list"
+              type="search"
+              className="form-control ds-input"
+              name="arbitro2"
+              placeholder="Buscar arbitro..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="arbitros_list">
+              <option>Seleccionar</option>
+              {data.arbitros && data.arbitros.map((arbitro) => {
+                return (
+                  <option
+                    key={arbitro.id}
+                    value={arbitro.id}
+                    className="dropdown-item"
+                  >
+                    {arbitro.nombre} {arbitro.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Mesa 1</label>
+            <input
+              onChange={handleChangeInsert}
+              list="mesas_list"
+              type="search"
+              className="form-control ds-input"
+              name="mesa1"
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="mesas_list">
+              <option>Seleccionar</option>
+              {data.mesas && data.mesas.map((mesa) => {
+                return (
+                  <option
+                    key={mesa.id}
+                    value={mesa.id}
+                    className="dropdown-item"
+                  >
+                    {mesa.nombre} {mesa.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Mesa 2</label>
+            <input
+              onChange={handleChangeInsert}
+              list="mesas_list"
+              type="search"
+              className="form-control ds-input"
+              name="mesa2"
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="mesas_list">
+              <option>Seleccionar</option>
+              {data.mesas && data.mesas.map((mesa) => {
+                return (
+                  <option
+                    key={mesa.id}
+                    value={mesa.id}
+                    className="dropdown-item"
+                  >
+                    {mesa.nombre} {mesa.appellido}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Sede</label>
+            <input
+              onChange={handleChangeInsert}
+              list="sedes_list"
+              type="search"
+              className="form-control ds-input"
+              name="sede"
+              placeholder="Buscar club..."
+              aria-label="Search docs for..."
+              autoComplete="off"
+              data-bd-docs-version="5.1"
+              spellCheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-owns="algolia-autocomplete-listbox-0"
+              dir="auto"
+            ></input>
+            <datalist id="sedes_list">
+              <option>Seleccionar</option>
+              {data.sedes && data.sedes.map((sede) => {
+                return (
+                  <option
+                    key={sede.id}
+                    value={sede.id}
+                    className="dropdown-item"
+                  >
+                    {sede.nombre}
+                  </option>
+                );
+              })}
+            </datalist>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Fecha:</label>
+            <input
+              className="form-control"
+              name="fecha"
+              type="date"
+              onChange={handleChangeInsert}
+            ></input>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Jornada:</label>
+            <input
+              className="form-control"
+              name="jornada"
+              onChange={handleChangeInsert}
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <label>Resultado:</label>
+            <input
+              className="form-control"
+              name="resultado"
+              type="text"
+              pattern="[0-9]{2}-[0-9]{2}"
+              onChange={handleChangeInsert}
+            ></input>
           </FormGroup>
         </ModalBody>
 
