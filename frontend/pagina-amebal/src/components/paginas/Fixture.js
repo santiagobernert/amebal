@@ -15,6 +15,7 @@ import styles from "../../styles/paginas/fixture/Fixture.module.css";
 
 export default function Fixture() {
   const [partidos, setPartidos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
   const [equipos, setEquipos] = useState([]);
   const [clubes, setClubes] = useState([]);
 
@@ -28,7 +29,7 @@ export default function Fixture() {
   };
 
   const getEquipos = () => {
-    fetch("http://localhost:5000/equipo")
+    fetch("http://localhost:8000/equipo")
       .then((res) => res.json())
       .then((responseJson) => {
         setEquipos(responseJson.equipos);
@@ -37,7 +38,7 @@ export default function Fixture() {
   };
 
   const getClubes = () => {
-    fetch("http://localhost:5000/club")
+    fetch("http://localhost:8000/club")
       .then((res) => res.json())
       .then((responseJson) => {
         setClubes(responseJson.clubes);
@@ -45,9 +46,20 @@ export default function Fixture() {
       });
   };
 
+  const getCategorias = () => {
+    fetch("http://localhost:8000/categoria")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setCategorias(responseJson.categorias);
+        return responseJson;
+      });
+  };
+
   useEffect(() => {
     getPartidos()
     getEquipos()
+    getClubes()
+    getCategorias()
   }, []);
 
   return (
@@ -80,13 +92,11 @@ export default function Fixture() {
             </Form.Select>
             <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="todos">Categoría</option>
-              <option value="liga">Liga</option>
-              <option value="1">Mayores</option>
-              <option value="1">Junior</option>
-              <option value="2">Juvenil</option>
-              <option value="3">Cadetes</option>
-              <option value="3">Menores</option>
-              <option value="3">Infantiles</option>
+              {categorias && categorias.map(categoria => {
+                return(
+                  <option key={categoria.id} value={categoria.nombre}>{categoria.nombre}</option>
+                )
+              })}
             </Form.Select>
             <Form.Select className={styles.select} readOnly aria-label="Default select example">
               <option value="masculino">Masculino</option>
