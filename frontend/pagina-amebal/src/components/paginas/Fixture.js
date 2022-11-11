@@ -15,6 +15,8 @@ import styles from "../../styles/paginas/fixture/Fixture.module.css";
 
 export default function Fixture() {
   const [partidos, setPartidos] = useState([]);
+  const [equipos, setEquipos] = useState([]);
+  const [clubes, setClubes] = useState([]);
 
   const getPartidos = () => {
     fetch("http://localhost:5000/partidos")
@@ -25,8 +27,27 @@ export default function Fixture() {
       });
   };
 
+  const getEquipos = () => {
+    fetch("http://localhost:5000/equipo")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setEquipos(responseJson.equipos);
+        return responseJson;
+      });
+  };
+
+  const getClubes = () => {
+    fetch("http://localhost:5000/club")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setClubes(responseJson.clubes);
+        return responseJson;
+      });
+  };
+
   useEffect(() => {
     getPartidos()
+    getEquipos()
   }, []);
 
   return (

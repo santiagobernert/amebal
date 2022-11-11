@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import styles from "../../styles/paginas/cruds/Cruds.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -74,28 +75,24 @@ function PartidosCRUD() {
   };
 
   const getData = () => {
-    let categorias = fetch("http://localhost:5000/categorias").then((res) =>
-      res.ok?res.json():res
-    );
-    let torneos = fetch("http://localhost:5000/jugadores").then((res) =>
-      res.ok?res.json():res
-    );
-    let equipos = fetch("http://localhost:5000/equipos").then((res) =>
-      res.ok?res.json():res
-    );
-    let arbitros = fetch("http://localhost:5000/arbitro").then((res) =>
-      res.ok?res.json():res
-    );
-    let mesas = fetch("http://localhost:5000/mesa").then((res) => res.ok?res.json():res);
-    let sedes = fetch("http://localhost:5000/sede").then((res) => res.ok?res.json():res);
+    let categorias = fetch("http://localhost:8000/categoria").then((res) =>
+      res.json()).then(resJson => setData({...data, 'categorias': resJson.categorias}));
+    let torneos = fetch("http://localhost:8000/torneo").then((res) =>
+      res.json()).then(resJson => setData({...data, 'torneos': resJson.torneos}))
+    let equipos = fetch("http://localhost:8000/equipo").then((res) =>
+      res.json()).then(resJson => setData({...data, 'equipos': resJson.equipos}))
+    let arbitros = fetch("http://localhost:8000/arbitro").then((res) =>
+      res.json()).then(resJson => setData({...data, 'arbitros': resJson.arbitros}))
+    let mesas = fetch("http://localhost:8000/mesa").then((res) => res.json()).then(resJson => setData({...data, 'mesas': resJson.mesas}))
+    let sedes = fetch("http://localhost:8000/sede").then((res) => res.json()).then(resJson => setData({...data, 'sedes': resJson.sedes}))
 
     setData({
-      categorias: [],
-      torneos: [],
-      equipos: [],
-      arbitros: [],
-      mesas: [],
-      sedes: [],
+      'categorias': categorias,
+      'torneos': torneos,
+      'equipos': equipos,
+      'arbitros': arbitros,
+      'mesas': mesas,
+      'sedes': sedes,
     });
     console.log(data);
   };
@@ -259,9 +256,9 @@ function PartidosCRUD() {
   const search = (e) => {
     let searchData = [];
     if (e.target.value !== "") {
-      partidos && partidos.map((partido) => {
+      partidos.length && partidos.map((partido) => {
         if (
-          partido.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+          partido.equipoA.toLowerCase().includes(e.target.value.toLowerCase()) || partido.equipoB.toLowerCase().includes(e.target.value.toLowerCase())
         ) {
           searchData.push(partido);
         }
@@ -275,12 +272,14 @@ function PartidosCRUD() {
 
   return (
     <>
-      <Container>
-        <h2>Partidos</h2>
+      <Container className={styles.cont}>
+        <h2 className="pt-4">Partidos</h2>
         <br />
-        <input
+        <div className="d-flex justify-content-between mb-2 pe-4">
+          <input
           onChange={(e) => search(e)}
-          placeholder="Buscar por nombre"
+          placeholder="Buscar por equipo"
+          className="form-control w-25 me-0"
           type="text"
         />
         <Button
@@ -290,9 +289,9 @@ function PartidosCRUD() {
         >
           Crear
         </Button>
-        <br />
-        <br />
-        <Table>
+        </div>
+        
+        <Table className={styles.tabla}>
           <thead>
             <tr>
               <th>ID</th>
@@ -303,12 +302,12 @@ function PartidosCRUD() {
               <th>Sede</th>
               <th>Fecha</th>
               <th>Resultado</th>
-              <th>_</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            {partidos && partidos.map((partido) => (
+            {partidos.length && partidos.map((partido) => (
               <tr key={partido.id}>
                 <td>{partido.id}</td>
                 <td>{partido.equipoA}</td>
@@ -320,12 +319,12 @@ function PartidosCRUD() {
                 <td>{partido.resultado}</td>
                 <td>
                   <Button
-                    color="primary"
+                    color="primary" className={styles.btn}
                     onClick={() => mostrarModalActualizar(partido)}
                   >
                     Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => eliminar(partido)}>
+                  <Button variant="danger" onClick={() => eliminar(partido)}>
                     Eliminar
                   </Button>
                 </td>
@@ -390,7 +389,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos && data.equipos.map((equipo) => {
+              {data.equipos.length && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -427,7 +426,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos && data.equipos.map((equipo) => {
+              {data.equipos.length && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -464,7 +463,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="torneos_list">
               <option>Seleccionar</option>
-              {data.torneos && data.torneos.map((torneo) => {
+              {data.torneos.length && data.torneos.map((torneo) => {
                 return (
                   <option
                     key={torneo.id}
@@ -501,7 +500,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="categorias_list">
               <option>Seleccionar</option>
-              {data.categorias && data.categorias.map((categoria) => {
+              {data.categorias.length && data.categorias.map((categoria) => {
                 return (
                   <option
                     key={categoria.id}
@@ -538,7 +537,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros && data.arbitros.map((arbitro) => {
+              {data.arbitros.length && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -575,7 +574,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros && data.arbitros.map((arbitro) => {
+              {data.arbitros.length && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -612,7 +611,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas && data.mesas.map((mesa) => {
+              {data.mesas.length && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -649,7 +648,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas && data.mesas.map((mesa) => {
+              {data.mesas.length && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -686,7 +685,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="sedes_list">
               <option>Seleccionar</option>
-              {data.sedes && data.sedes.map((sede) => {
+              {data.sedes.length && data.sedes.map((sede) => {
                 return (
                   <option
                     key={sede.id}
@@ -796,7 +795,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos && data.equipos.map((equipo) => {
+              {data.equipos.length && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -831,7 +830,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos && data.equipos.map((equipo) => {
+              {data.equipos.length && data.equipos.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -868,7 +867,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="torneos_list">
               <option>Seleccionar</option>
-              {data.torneos && data.torneos.map((torneo) => {
+              {data.torneos.length && data.torneos.map((torneo) => {
                 return (
                   <option
                     key={torneo.id}
@@ -905,7 +904,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="categorias_list">
               <option>Seleccionar</option>
-              {data.categorias && data.categorias.map((categoria) => {
+              {data.categorias.length && data.categorias.map((categoria) => {
                 return (
                   <option
                     key={categoria.id}
@@ -940,7 +939,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros && data.arbitros.map((arbitro) => {
+              {data.arbitros.length && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -975,7 +974,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="arbitros_list">
               <option>Seleccionar</option>
-              {data.arbitros && data.arbitros.map((arbitro) => {
+              {data.arbitros.length && data.arbitros.map((arbitro) => {
                 return (
                   <option
                     key={arbitro.id}
@@ -1010,7 +1009,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas && data.mesas.map((mesa) => {
+              {data.mesas.length && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -1045,7 +1044,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="mesas_list">
               <option>Seleccionar</option>
-              {data.mesas && data.mesas.map((mesa) => {
+              {data.mesas.length && data.mesas.map((mesa) => {
                 return (
                   <option
                     key={mesa.id}
@@ -1080,7 +1079,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="sedes_list">
               <option>Seleccionar</option>
-              {data.sedes && data.sedes.map((sede) => {
+              {data.sedes.length && data.sedes.map((sede) => {
                 return (
                   <option
                     key={sede.id}

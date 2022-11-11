@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/paginas/inicio/Inicio.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../App.css"
@@ -8,12 +8,25 @@ import Buscar from "../otros/Buscar";
 import Noticia from "../otros/Noticia";
 
 import ARTICULOS from "../../lists/articulos.js";
-import PARTIDOS from "../../lists/partidos.js";
 import EQUIPOS from "../../lists/equipos.js";
 
 import { Row, Col, Button } from "react-bootstrap";
 
 export default function Inicio() {
+  const [partidos, setPartidos] = useState([]); 
+  
+  const getPartidos = () => {
+    fetch("http://localhost:5000/partidos")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setPartidos(responseJson.partidos);
+        return responseJson;
+      });
+  };
+
+  useEffect(() => {
+    getPartidos()
+  }, []);
   return (
     <div>
       <div className={styles.blob}></div>
@@ -63,8 +76,8 @@ export default function Inicio() {
           </div>
           <div className={styles.sector_partidos}>
             <Row className={styles.partidos}>
-              {PARTIDOS &&
-                PARTIDOS.map((item) => <Partido key={item.id} {...item} />)}
+              {partidos &&
+                partidos.map((item) => <Partido key={item.id} {...item} />)}
             </Row>
             <a href="fixture"><h4 className="link text-center">Ver más</h4></a>
           </div>

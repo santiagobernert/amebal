@@ -5,6 +5,10 @@
   @include card;
   box-shadow: .3rem .3rem .6rem 0px rgba(0,0,0,0.4);
   margin: 1rem;
+  width: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
 }
 
 .articulo_title {
