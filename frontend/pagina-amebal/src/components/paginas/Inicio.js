@@ -14,7 +14,17 @@ import { Row, Col, Button } from "react-bootstrap";
 
 export default function Inicio() {
   const [partidos, setPartidos] = useState([]); 
-  
+  const [clubes, setClubes] = useState([]);
+
+  const getClubes = () => {
+    fetch("http://localhost:8000/club")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setClubes(responseJson.clubes);
+        return responseJson;
+      });
+  };
+
   const getPartidos = () => {
     fetch("http://localhost:5000/partidos")
       .then((res) => res.json())
@@ -25,7 +35,8 @@ export default function Inicio() {
   };
 
   useEffect(() => {
-    getPartidos()
+    getPartidos();
+    getClubes()
   }, []);
   return (
     <div>
@@ -36,12 +47,12 @@ export default function Inicio() {
           <h5>Fundada en 1974</h5>
         </div>
         <div className={styles.equipos}>
-          {EQUIPOS &&
-              EQUIPOS.map((item) => (
+          {clubes &&
+              clubes.map((club) => (
                 <img
-                  key={item.id}
-                  src={item.imagen}
-                  alt={item.nombre}
+                  key={club.id}
+                  src={club.escudo}
+                  alt={club.nombre}
                 />
               ))}
         </div>

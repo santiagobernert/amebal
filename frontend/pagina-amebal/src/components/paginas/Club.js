@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 
 import styles from "../../styles/paginas/club/Club.module.css";
@@ -12,6 +12,20 @@ import facebook from "../../imgs/facebook-logo.png";
 import twitter from "../../imgs/twitter-logo.png";
 
 export default function Club({ nombre, imagen }) {
+  const [partidos, setPartidos] = useState([]); 
+  
+  const getPartidos = () => {
+    fetch("http://localhost:5000/partidos")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setPartidos(responseJson.partidos);
+        return responseJson;
+      });
+  };
+
+  useEffect(() => {
+    getPartidos();
+  }, []);
   return (
     <div>
       <div className={styles.mobile}>
@@ -130,14 +144,19 @@ export default function Club({ nombre, imagen }) {
             <div>
               <h3>Partidos</h3>
               <div className={styles.cont_partidos}>
-                {PARTIDOS &&
-                  PARTIDOS.map((item) => (
+                {partidos &&
+                  partidos.map((partido) => {
+                    if (partido.equipoA == nombre || partido.equipoB == nombre){
+                      return(
                     <Partido
                       className={styles.partido}
-                      key={item.id}
-                      {...item}
+                      key={partido.id}
+                      {...partido}
                     />
-                  ))}
+                  )
+                    }
+                    
+                  })}
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default function ClubCard({ img, titulo }) {
             className="max-vw-30"
             src={img}
             alt={titulo}
-            style={{ width: "10rem" }}
+            style={{ width: "auto", height: "10rem"}}
           />
           <Card.Title className="h6">{titulo}</Card.Title>
         </a>

@@ -26,7 +26,7 @@ export default function Clubes() {
       <Titulo text="Clubes" />
       <div className={styles.blob}></div>
       <div className={styles.descripcion}>
-        <h6>Son más de 15 los clubes que  pertenecen a nuestra institución, los cuales cuentan con equipos en varias categorías. Siempre estamos abiertos a nuevas inscripciones.</h6>
+        <h5>Son más de 15 los clubes que  pertenecen a nuestra institución, los cuales cuentan con equipos en varias categorías. Siempre estamos abiertos a nuevas inscripciones.</h5>
       </div>
       <CardGroup className={styles.div_clubes}>
         {clubes &&

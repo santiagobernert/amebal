@@ -17,6 +17,7 @@ function PartidosCRUD() {
   const [partidos, setPartidos] = useState([]);
   const [data, setData] = useState({
     categorias: [],
+    clubes: [],
     torneos: [],
     equipos: [],
     arbitros: [],
@@ -77,6 +78,8 @@ function PartidosCRUD() {
   const getData = () => {
     let categorias = fetch("http://localhost:8000/categoria").then((res) =>
       res.json()).then(resJson => setData({...data, 'categorias': resJson.categorias}));
+    let clubes = fetch("http://localhost:8000/club").then((res) =>
+      res.json()).then(resJson => setData({...data, 'clubes': resJson.clubes}));
     let torneos = fetch("http://localhost:8000/torneo").then((res) =>
       res.json()).then(resJson => setData({...data, 'torneos': resJson.torneos}))
     let equipos = fetch("http://localhost:8000/equipo").then((res) =>
@@ -88,6 +91,7 @@ function PartidosCRUD() {
 
     setData({
       'categorias': categorias,
+      'clubes': clubes,
       'torneos': torneos,
       'equipos': equipos,
       'arbitros': arbitros,
@@ -389,7 +393,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.length && data.equipos.map((equipo) => {
+              {data.clubes.length && data.clubes.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -426,7 +430,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.length && data.equipos.map((equipo) => {
+              {data.clubes.length && data.clubes.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -795,7 +799,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.length && data.equipos.map((equipo) => {
+              {data.clubes.length && data.clubes.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}
@@ -830,7 +834,7 @@ function PartidosCRUD() {
             ></input>
             <datalist id="clubes_list">
               <option>Seleccionar</option>
-              {data.equipos.length && data.equipos.map((equipo) => {
+              {data.clubes.length && data.clubes.map((equipo) => {
                 return (
                   <option
                     key={equipo.id}

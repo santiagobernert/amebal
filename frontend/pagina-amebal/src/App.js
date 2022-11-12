@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -36,6 +36,20 @@ import Tablero from "./components/cruds/Tablero-cruds";
 //https://youtu.be/0ChpbdflTMY
 
 function App() {
+  const [clubes, setClubes] = useState([]);
+
+  const getClubes = () => {
+    fetch("http://localhost:8000/club")
+      .then((res) => res.json())
+      .then((responseJson) => {
+        setClubes(responseJson.clubes);
+        return responseJson;
+      });
+  };
+
+  useEffect(() => {
+    getClubes()
+  }, []);
   return (
     <div className="App">
       <EquiposNav />
@@ -47,12 +61,12 @@ function App() {
           <Route path="/fixture" element={<Fixture />} />
           <Route path="/nacionales" element={<Nacionales />} />
           <Route path="/clubes" element={<Clubes />} />
-          {EQUIPOS &&
-            EQUIPOS.map((item) => (
+          {clubes &&
+            clubes.map((club) => (
               <Route
-                key={item.id}
-                path={"clubes/" + item.nombre.replace(/ /g, "").toLowerCase()}
-                element={<Club nombre={item.nombre} imagen={item.imagen} />}
+                key={club.id}
+                path={"clubes/" + club.nombre.replace(/ /g, "").toLowerCase()}
+                element={<Club nombre={club.nombre} imagen={club.escudo} />}
               />
             ))}
           {ARTICULOS &&

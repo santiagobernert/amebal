@@ -25,7 +25,7 @@ export default function ({ titulo,
         <a href={`partidos/${torneo.replace(/ /g, "").toLowerCase()}${jornada.replace(/ /g, "").toLowerCase()}`}><h4>{jornada}</h4></a>
       </div>
       <div  className={styles.info}>
-        <a href={`clubes/${equipoA.toLowerCase()}`}><img src="../src/imgs/equipos/regatas.png" alt={equipoA} /></a>
+        <a href={`clubes/${equipoA.toLowerCase()}`}><img src={imagenA} alt={equipoA} /></a>
           <div className={styles.detalles}>
             <h6 className={styles.torneo}>{torneo}</h6>
             <h6 className={styles.categoria}>{categoria}</h6>

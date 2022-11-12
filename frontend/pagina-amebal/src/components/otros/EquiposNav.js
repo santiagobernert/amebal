@@ -32,7 +32,7 @@ export default function EquiposNav() {
           {clubes &&
             clubes.map((club) => (
               <div key={club.id}>
-                <img src={EQUIPOS.filter(e => e.nombre == club.nombre).imagen} alt={club.nombrecorto} />
+                <img src={club.escudo} alt={club.nombrecorto} />
               </div>
             ))}
         </nav>
