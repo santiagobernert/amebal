@@ -18,13 +18,30 @@
   .div_clubes {
     justify-content: center;
     padding: 1rem 3rem;
+    div{
+      margin: 0.7rem;
+    }
   }
 
 @media(max-width: 768px){
     .div_clubes{
-        background-color: transparent;
-        img{
-            max-width: 30vw;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: transparent;
+      justify-content: space-between;
+      img{
+          max-width: 20vw;
+          height: auto !important;
+      }
+      div{
+        div{
+          margin: 1rem 0.5rem !important;
+          a{
+            div{
+              display: none;
+            }
+          }
         }
+      }
     }
 }

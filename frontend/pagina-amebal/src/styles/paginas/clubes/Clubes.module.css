@@ -21,12 +21,25 @@
   justify-content: center;
   padding: 1rem 3rem;
 }
+.div_clubes div {
+  margin: 0.7rem;
+}
 
 @media (max-width: 768px) {
   .div_clubes {
+    display: flex;
+    flex-wrap: wrap;
     background-color: transparent;
+    justify-content: space-between;
   }
   .div_clubes img {
-    max-width: 30vw;
+    max-width: 20vw;
+    height: auto !important;
+  }
+  .div_clubes div div {
+    margin: 1rem 0.5rem !important;
+  }
+  .div_clubes div div a div {
+    display: none;
   }
 }/*# sourceMappingURL=Clubes.module.css.map */

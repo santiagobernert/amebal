@@ -5,13 +5,16 @@
   width: 100%;
   height: fit-content;
   margin: 0;
-  padding: 2.5vh 0 2.5vh 8vw;
+  padding: 5vh 0;
   color: $blanco;
   background-color: $azul_fondo;
+  justify-content: center;
+  text-align: center;
 
   .titulo {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: 700;
-    max-width: 70vw;
+    justify-content: center;
+    text-align: center;
   }
 }

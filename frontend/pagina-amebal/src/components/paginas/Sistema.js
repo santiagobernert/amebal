@@ -1,6 +1,9 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import Login from "./components/paginas/Login";
+
 
 import styles from "../../styles/paginas/sistema/Sistema.module.css";
 
@@ -9,6 +12,15 @@ import Archivo from "../otros/Archivo";
 import Titulo from "../otros/Titulo";
 
 export default function Sistema() {
+  const [token, setToken] = useState('');
+  useEffect(() => {
+    getToken().then(
+    token? <Sistema/>: <Navigate to={<Login />} />)
+  }, []);
+
+  getToken = () =>{
+    fetch().then(token => setToken(token))
+  }
   const [pos, setPos] = useState(0);
   let seccionHeight;
   switch (pos) {

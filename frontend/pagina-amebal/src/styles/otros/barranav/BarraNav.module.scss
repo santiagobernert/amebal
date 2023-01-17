@@ -15,9 +15,16 @@
   button {
     display: none;
   }
+  .navs{
+    width: 100%;
+    hr{
+      visibility: hidden;
+    }
+  }
   .nav_options {
     display: flex;
     justify-self: end;
+    width: 100%;
     background-color: inherit;
     a {
       color: inherit !important;
@@ -36,9 +43,6 @@
   }
 }
 
-@media (min-width: 1200px) {
-  flex-wrap: nowrap;
-}
 @media (max-width: 1200px) {
   .barranav {
     justify-content: space-between;

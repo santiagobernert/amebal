@@ -10,6 +10,7 @@ a{
 }
 .headers {
   padding: 3rem 1rem;
+  text-align: center;
   h1 {
     @include titulo-mobile;
   }
